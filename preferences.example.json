@@ -1,0 +1,67 @@
+{
+  "_comment": "Template. The real file lives in the private data repo as data/preferences.json and is gitignored here. Copy this, fill in your own store and household.",
+  "household": {
+    "adults": 0,
+    "cats": 0,
+    "dinnersPerWeek": 0,
+    "lunchesPerWeek": 0,
+    "lunchStyle": "separate | leftovers",
+    "notes": ""
+  },
+  "store": {
+    "name": "Intermarché <your town>",
+    "address": "<street, postcode town>",
+    "phone": "<store phone>",
+    "mode": "drive",
+    "typicalSlot": "<e.g. afternoon, 12h30–17h30>",
+    "url": "https://www.intermarche.com"
+  },
+  "budget": {
+    "ceilingPerOrder": 0,
+    "pantryWeekCeiling": 0,
+    "currency": "EUR",
+    "note": "Ceiling, not a target."
+  },
+  "dietary": {
+    "excluded": [],
+    "excludedReason": "",
+    "limited": [],
+    "limitedReason": "",
+    "disliked": [],
+    "boredOf": [],
+    "alwaysWelcome": []
+  },
+  "cuisines": {
+    "weeklyShare": "most | some | few",
+    "preferred": [],
+    "notes": "",
+    "fallback": ""
+  },
+  "cooking": {
+    "maxWeeknightMinutes": 30,
+    "batchCooks": false,
+    "batchDay": null,
+    "batchNote": "",
+    "leftoversNight": null
+  },
+  "staples": {
+    "_comment": "Auto-detected from purchase history, but pin the ones that must never be dropped.",
+    "alwaysInclude": [
+      {
+        "name": "<exact Intermarché product name>",
+        "quantity": 1,
+        "note": ""
+      }
+    ]
+  },
+  "pantry": {
+    "_comment": "Items your store is confirmed to stock, taken from your own receipts. Known-good search terms.",
+    "confirmedAtMere": [],
+    "notKnownToStock": []
+  },
+  "substitutions": {
+    "_comment": "Two different things. A recipe adaptation is decided up front and reported. An out-of-stock item at basket time stops and asks.",
+    "autoAcceptSameProductDifferentBrand": false,
+    "adaptRecipesToWhatMereStocks": true
+  }
+}

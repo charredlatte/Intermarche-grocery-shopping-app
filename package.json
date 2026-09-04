@@ -1,0 +1,10 @@
+{
+  "name": "intermarche-grocery-shopping-app",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Weekly meal planning that ends with a pre-filled Intermarche Drive basket.",
+  "scripts": {
+    "parse": "node scripts/parse-invoices.mjs"
+  }
+}
