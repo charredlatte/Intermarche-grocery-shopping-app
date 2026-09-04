@@ -90,8 +90,11 @@ Two things in `purchase-history.json` to respect:
 - A product with `nameTruncated: true` came only from the old, narrower invoice
   template and its name is a cut-off fragment. **Never use it as a search term.**
   It is a frequency signal only.
-- `lastPrice` is the most recent price seen, which is what the running total
-  should be built from.
+- **Cost the list from `typicalLineTotal`, never from `lastPrice`.** For anything
+  sold by weight `lastPrice` is the price *per kilo* — the chicken aiguillettes
+  read 29,99 € but a pack actually costs about 6 €, and garlic reads 15,99 €
+  against about 2 € a head. `typicalLineTotal` is the median of what was really
+  paid for that line. Costing from `lastPrice` overstates a basket by half again.
 
 For anything not in the history, propose the closest thing and flag it as a
 guess. If a recipe wants something Méré doesn't stock — gochujang, mirin, fish

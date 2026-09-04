@@ -214,6 +214,11 @@ function aggregate(orders) {
           totalQuantity: 0,
           unit: item.unit,
           lastPrice: null,
+          // Every non-zero amount actually paid for this line, used below to
+          // derive what one of these really costs.
+          lineTotals: [],
+          lastLineTotal: null,
+          typicalLineTotal: null,
           timesUnavailable: 0,
           // True only if every sighting came from the truncated template, so the
           // name is a fragment and must not be used as a search term.
@@ -225,10 +230,28 @@ function aggregate(orders) {
       p.timesOrdered += 1;
       p.totalQuantity += item.quantity ?? 0;
       p.lastPrice = item.unitPrice;
+      if (item.lineTotal) {
+        p.lineTotals.push(item.lineTotal);
+        p.lastLineTotal = item.lineTotal;
+      }
       if (!item.truncated || canonical.has(norm(key))) p.nameTruncated = false;
       if (item.unavailable) p.timesUnavailable += 1;
       if (order.orderNumber) p.orders.push(order.orderNumber);
     }
+  }
+
+  // For anything sold by weight, unitPrice is the price per kilo — chicken
+  // aiguillettes list at 29,99 € but a pack costs about six. Estimating a
+  // basket from unitPrice overstates it four- or fivefold, so carry the median
+  // of what was actually paid per line. Median rather than last, because one
+  // unusually heavy pack shouldn't set the expectation.
+  for (const p of byProduct.values()) {
+    if (!p.lineTotals.length) continue;
+    const sorted = [...p.lineTotals].sort((a, b) => a - b);
+    const mid = sorted.length >> 1;
+    p.typicalLineTotal = +(sorted.length % 2
+      ? sorted[mid]
+      : (sorted[mid - 1] + sorted[mid]) / 2).toFixed(2);
   }
 
   const products = [...byProduct.values()].sort((a, b) => b.timesOrdered - a.timesOrdered);

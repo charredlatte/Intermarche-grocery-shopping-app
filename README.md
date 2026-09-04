@@ -41,6 +41,7 @@ Three things the invoices do that the parser has to handle:
 
 - **The year is never stated.** "jeudi 27 août, entre 14h30 et 15h30" — no year anywhere in the body. It comes from the filename, which is why invoices are saved as `<YYYY-MM-DD>-<orderNumber>.txt`.
 - **Quantities come in five shapes**: `x1`, `x0.36 kg`, `x150 g`, `Poids exact / 0.194 kg`, and `Poids exact / 2` — that last one being a unit count, not a weight.
+- **Prices are per kilo for anything weighed.** The chicken aiguillettes list at 29,99 € and the garlic at 15,99 €, but a pack of chicken costs about 6 € and a head of garlic about 2 €. So each product also carries `typicalLineTotal` — the median of what was actually paid for that line — and that, not the unit price, is what a basket estimate is built from.
 - **Invoices before November 2025 use a narrower template that cuts product names mid-word**: "Jean Rozé, une ma... Chipolata supérie...". The parser folds each of those onto the one full name containing all its fragments in order, and leaves the genuinely ambiguous ones alone — "Jean Rozé, une ma... Viande hachée vra..." matches both the 5% and the 15% mince, so it stays separate and is marked `nameTruncated`. Those names are a frequency signal only; they must never be used as search terms.
 
 ### 2. Standing preferences
@@ -96,6 +97,7 @@ The handoff is the plan itself. Answer on the couch Sunday morning, run the bask
 - [x] Weekly planning skill
 - [x] Recurring Sunday reminder
 - [ ] Browser automation step — documented in the skill, not yet run against a real plan
+- [ ] The budget question — a 7-dinner, 5-lunch week with a pantry restock prices out around 139 €, comfortably over the normal 100 € ceiling. First real run will settle whether the ceiling moves or the lunches go back to being leftovers.
 - [ ] Pantry state — knowing the 20-egg pack from last week is half gone
 
 ## Setup
