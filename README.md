@@ -62,7 +62,7 @@ The one rule in there worth calling out: **familiarity comes from the ingredient
 
 ### 4. The basket
 
-Claude in Chrome, on my laptop, with my Intermarché session already logged in. It goes to the Drive Méré store, searches each line item, adds it, and stops. It does **not** book a slot and does **not** pay. I open the basket, read it, remove what I don't want, and confirm.
+Claude in Chrome, on my PC, with my Intermarché session already logged in. It goes to the Drive Méré store, searches each line item, adds it, and stops. It does **not** book a slot and does **not** pay. I open the basket, read it, remove what I don't want, and confirm.
 
 ## Non-negotiable rules
 
@@ -83,12 +83,12 @@ My disk is full, so nothing is checked out permanently. There are two repos:
 
 The private one is cloned into `data/`, which is gitignored here, so the layout on disk is exactly what the parser expects and the public repo can't leak anything. `preferences.example.json` documents the config shape without any of my details in it.
 
-## Phone vs computer
+## Phone vs PC
 
 - **Phone:** the weekly conversation. Answering the three questions, seeing the plan, adjusting it. This is 90% of the interaction and works fine in the Claude app.
-- **Computer:** the basket-filling step only, because it needs Chrome with my logged-in session.
+- **PC:** the basket-filling step only, because it needs Chrome with my logged-in session. I don't have a laptop — this is the desktop, and it's the machine Claude Code runs on.
 
-The handoff is the plan itself. Answer on the couch Sunday morning, run the basket step on the laptop whenever.
+The handoff is the plan itself. Answer on the couch Sunday morning, run the basket step at the PC whenever.
 
 ## Status
 

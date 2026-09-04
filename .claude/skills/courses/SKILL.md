@@ -111,7 +111,9 @@ the browser. A pantry-restock week uses `pantryWeekCeiling` instead of
 
 ## Filling the basket
 
-Runs on the laptop, in Chrome, with her Intermarché session already logged in.
+Runs on her PC, in Chrome, with her Intermarché session already logged in. That
+is the same machine Claude Code runs on — she has no laptop, so if you are on the
+PC you can do this now; if she is on her phone, it waits.
 
 1. Confirm the store is **Drive Méré** before adding anything.
 2. Search each line item by exact name, add it, set the quantity.

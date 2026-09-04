@@ -71,9 +71,10 @@ parser. The filename supplies the year — the email body never states it.
 - **Nothing personal goes in the public repo.** `data/` is gitignored; check with
   `git status --ignored --short` before pushing.
 
-## Phone vs computer
+## Phone vs PC
 
 The weekly conversation — answering the three questions, seeing the plan,
 adjusting it — is 90% of the interaction and works fine in the Claude app. The
-basket-filling step needs Chrome with her logged-in session, so it runs on the
-laptop. The handoff is the plan itself.
+basket-filling step needs Chrome with her logged-in session, so it runs on her
+PC — the same machine Claude Code runs on. She has no laptop. The handoff is
+the plan itself.
