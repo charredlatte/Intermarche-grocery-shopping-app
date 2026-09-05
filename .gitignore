@@ -1,5 +1,1 @@
-# Everything personal lives in the private repo charredlatte/intermarche-grocery-data,
-# which is cloned into data/. Nothing under it belongs in this public repo.
-data/
 node_modules/
-artifact/week.html

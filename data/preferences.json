@@ -1,0 +1,114 @@
+{
+  "_comment": "The things receipts can't tell you. Edit this by hand; it is the one file that is not generated. Lives in the private data repo, never in the public one.",
+  "household": {
+    "adults": 2,
+    "cats": 2,
+    "dinnersPerWeek": 7,
+    "lunchesPerWeek": 5,
+    "lunchStyle": "separate",
+    "notes": "Dinners every night, plus five weekday lunches planned as their own light dishes — not dinner leftovers."
+  },
+  "store": {
+    "name": "Intermarché Méré",
+    "address": "17 Rue Roger Vannier, 78490 Méré",
+    "phone": "0130599496",
+    "mode": "drive",
+    "typicalSlot": "afternoon, 12h30–17h30",
+    "url": "https://www.intermarche.com"
+  },
+  "budget": {
+    "ceilingPerOrder": 150,
+    "pantryWeekCeiling": 150,
+    "currency": "EUR",
+    "note": "Raised from 100 to 150 on 2026-09-04 to cover 7 dinners plus 5 planned lunches. The separate pantry-week allowance is retired — both numbers are 150 now. Observed average across 22 orders was 85,10 €, but those weeks had no planned lunches. Ceiling, not a target."
+  },
+  "dietary": {
+    "excluded": [
+      "piment",
+      "chili",
+      "capsaïcine",
+      "harissa",
+      "sauce piquante"
+    ],
+    "excludedReason": "IBS. No heat at all — this is a constraint, not a preference. Aromatics carry the flavour instead: gingembre, ail, oignon vert, sésame, soja, vinaigre, miso.",
+    "limited": [
+      "lait",
+      "crème fraîche",
+      "crème entière"
+    ],
+    "limitedReason": "Mildly lactose intolerant. Cheese is fine. Coconut milk is not dairy and is unrestricted.",
+    "disliked": [],
+    "boredOf": [],
+    "alwaysWelcome": [
+      "choux de Bruxelles",
+      "poivrons",
+      "rouleaux de printemps",
+      "brocolis",
+      "aubergines"
+    ]
+  },
+  "cuisines": {
+    "weeklyShare": "most",
+    "preferred": [
+      "japonaise",
+      "coréenne",
+      "chinoise",
+      "thaïe",
+      "vietnamienne",
+      "indienne"
+    ],
+    "notes": "Indian means mild curry, never hot. Spring rolls are made often and are a favourite.",
+    "fallback": "french, vegetable-forward — the non-Asian nights should lean on vegetables rather than another gratin"
+  },
+  "cooking": {
+    "maxWeeknightMinutes": 30,
+    "batchCooks": true,
+    "batchDay": "sunday",
+    "batchNote": "One base cooked Sunday that seeds two weeknights.",
+    "leftoversNight": null
+  },
+  "staples": {
+    "_comment": "Auto-detected from purchase history, but pin the ones that must never be dropped.",
+    "alwaysInclude": [
+      {
+        "name": "Ultima croquettes pour chat stérilisé adulte poulet",
+        "quantity": 2,
+        "note": "Two cats. History shows a single 1,5 kg sac per order, which runs out."
+      },
+      {
+        "name": "Canaillou, une marque Intermarché Litière végétale agglomérante à base de bois pour animaux familiers",
+        "quantity": 2,
+        "note": "Ordered in pairs every time it appears."
+      }
+    ]
+  },
+  "pantry": {
+    "_comment": "Asian staples Méré is confirmed to stock, from the receipts. Use these exact names; they are known-good search terms.",
+    "confirmedAtMere": [
+      "Kikkoman Sauce soja salée",
+      "Itinéraire des Saveurs, une marque Intermarché Sauce Yakitori assaisonnement à base de sauce soja, saké et mirin",
+      "Itinéraire des Saveurs, une marque Intermarché Saveur d'Asie - Sauce soja sucrée",
+      "Tanoshi Riz pour sushi Japonica",
+      "Tanoshi Feuilles d'algues nori grillées pour sushi",
+      "Tanoshi Nouilles ramen précuites au poulet teriyaki",
+      "Tanoshi Nouilles japonaises précuites Ramen assaisonnement bœuf",
+      "Suzi Wan Vermicelles de riz",
+      "Ajinomoto Gyoza poulet et légumes raviolis à poêler",
+      "Taureau Ailé Riz Basmati"
+    ],
+    "notKnownToStock": [
+      "gochujang",
+      "gochugaru",
+      "mirin (en bouteille)",
+      "pâte de curry thaï",
+      "sauce poisson",
+      "pâte miso",
+      "vinaigre de riz"
+    ]
+  },
+  "substitutions": {
+    "_comment": "Two different things. A recipe adaptation is decided up front and reported. An out-of-stock item at basket time stops and asks.",
+    "autoAcceptSameProductDifferentBrand": false,
+    "adaptRecipesToWhatMereStocks": true
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "weekOf": "2026-09-06",
+  "label": "Week of 6 September",
+  "store": "Intermarché Drive Méré",
+  "notes": [
+    "Eggs are not on the list — you said you have plenty, and six dishes lean on them.",
+    "The basket is derived from whatever meals are currently picked, so it follows every swap."
+  ],
+  "meals": [
+    {
+      "id": "sunday-dinner",
+      "day": "sunday",
+      "slot": "dinner",
+      "recipe": "curry-coco-poulet",
+      "note": "Batch cook. Makes Wednesday's dinner and one lunch as well."
+    },
+    {
+      "id": "monday-dinner",
+      "day": "monday",
+      "slot": "dinner",
+      "recipe": "boeuf-poivrons"
+    },
+    {
+      "id": "tuesday-dinner",
+      "day": "tuesday",
+      "slot": "dinner",
+      "recipe": "yakisoba-dinde"
+    },
+    {
+      "id": "wednesday-dinner",
+      "day": "wednesday",
+      "slot": "dinner",
+      "recipe": "curry-coco-poulet",
+      "minutesOverride": 10,
+      "note": "Sunday's curry, reheated. Cucumber and coriander on the side to freshen it.",
+      "leftovers": true
+    },
+    {
+      "id": "thursday-dinner",
+      "day": "thursday",
+      "slot": "dinner",
+      "recipe": "donburi-teriyaki"
+    },
+    {
+      "id": "friday-dinner",
+      "day": "friday",
+      "slot": "dinner",
+      "recipe": "gyoza-brocoli"
+    },
+    {
+      "id": "saturday-dinner",
+      "day": "saturday",
+      "slot": "dinner",
+      "recipe": "saucisses-lentilles"
+    },
+    {
+      "id": "monday-lunch",
+      "day": "monday",
+      "slot": "lunch",
+      "recipe": "onigiri-oeuf",
+      "note": "Roll them Sunday evening while the curry is cooling."
+    },
+    {
+      "id": "tuesday-lunch",
+      "day": "tuesday",
+      "slot": "lunch",
+      "recipe": "bun-vermicelles"
+    },
+    {
+      "id": "wednesday-lunch",
+      "day": "wednesday",
+      "slot": "lunch",
+      "recipe": "curry-coco-poulet",
+      "minutesOverride": 5,
+      "note": "The last of Sunday's pot, over rice.",
+      "leftovers": true
+    },
+    {
+      "id": "thursday-lunch",
+      "day": "thursday",
+      "slot": "lunch",
+      "recipe": "salade-mache-oeuf"
+    },
+    {
+      "id": "friday-lunch",
+      "day": "friday",
+      "slot": "lunch",
+      "recipe": "baguette-boursin"
+    }
+  ]
+}

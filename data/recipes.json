@@ -1,0 +1,2785 @@
+{
+  "curry-coco-poulet": {
+    "title": "Coconut chicken curry",
+    "cuisine": "thai",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 15,
+    "cookMinutes": 35,
+    "serves": 4,
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "dairy-free"
+    ],
+    "short": "Brown the thighs, soften the aromatics, simmer it all in coconut milk for half an hour. Makes enough for three meals.",
+    "ingredients": [
+      {
+        "item": "chicken thighs",
+        "qty": "1 kg (4 pieces)",
+        "product": "Volaé, une marque Intermarché Cuisse de poulet jaune x4",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "coconut milk",
+        "qty": "2 tins (800 ml)",
+        "product": "Lait de coco",
+        "guess": true,
+        "buy": {
+          "amount": 2,
+          "mode": "sum",
+          "section": "Best guesses",
+          "price": 2.5
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "2 medium",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "4 cloves",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "ginger",
+        "qty": "a thumb, grated",
+        "product": "Gingembre frais",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.5
+        }
+      },
+      {
+        "item": "carrot",
+        "qty": "2, in coins",
+        "product": "Le Choix du Primeur Carottes",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "red pepper",
+        "qty": "1, in strips",
+        "product": "Le Choix du Primeur Poivron ROUGE",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "soy sauce",
+        "qty": "2 tbsp",
+        "product": "Kikkoman Sauce soja salée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "coriander",
+        "qty": "half a bunch",
+        "product": "Le Choix du Primeur Coriandre",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "lemon",
+        "qty": "half, juiced",
+        "product": "Le Choix du Primeur Citrons JAUNES",
+        "buy": {
+          "amount": 0.28,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "basmati rice",
+        "qty": "to serve",
+        "product": "Taureau Ailé Riz Basmati",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      }
+    ],
+    "steps": [
+      "Pat the thighs dry and season. Brown them skin-down in a dry casserole over medium-high heat, 6 minutes, until the skin releases easily. Turn, 3 minutes more, then lift out.",
+      "Pour off all but a spoonful of the fat. Soften the sliced onion in it for 5 minutes without letting it colour.",
+      "Add the garlic and grated ginger, 1 minute, until it smells like the inside of a good takeaway.",
+      "Return the chicken. Pour in both tins of coconut milk and the soy. Bring to a bare simmer — do not let it boil hard or the coconut splits.",
+      "Lid on, 20 minutes. Add the carrot coins, 10 minutes more. Add the pepper strips for the last 5 so they keep some bite.",
+      "Off the heat, squeeze in the lemon and stir through most of the coriander. Taste for salt.",
+      "Serve a third over basmati. The rest is another dinner and a lunch — cool it uncovered before it goes in the fridge."
+    ]
+  },
+  "boeuf-poivrons": {
+    "title": "Beef and green pepper stir-fry",
+    "cuisine": "chinese",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 8,
+    "cookMinutes": 12,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli",
+      "dairy-free"
+    ],
+    "short": "Get the pan properly hot, brown the mince hard without stirring, then peppers, then both soys.",
+    "ingredients": [
+      {
+        "item": "beef mince",
+        "qty": "350 g",
+        "product": "Jean Rozé, une marque Intermarché Viande hachée vrac pur BŒUF 5% MG",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "green pepper",
+        "qty": "2, in squares",
+        "product": "Le Choix du Primeur Poivrons VERTS",
+        "buy": {
+          "amount": 0.4,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "1, in wedges",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.15,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "3 cloves, sliced",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "ginger",
+        "qty": "a thumb, matchsticked",
+        "product": "Gingembre frais",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.5
+        }
+      },
+      {
+        "item": "soy sauce",
+        "qty": "2 tbsp",
+        "product": "Kikkoman Sauce soja salée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "sweet soy",
+        "qty": "1 tbsp",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Saveur d'Asie - Sauce soja sucrée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "basmati rice",
+        "qty": "to serve",
+        "product": "Taureau Ailé Riz Basmati",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      }
+    ],
+    "steps": [
+      "Start the rice first — everything else takes twelve minutes and will not wait for it.",
+      "Get a wide pan very hot with a little oil. Add the mince, then leave it alone for 3 minutes. Resisting the urge to stir is the whole dish; that dark crust is the flavour.",
+      "Break it up, another 2 minutes, then push it to one side of the pan.",
+      "Onion wedges into the clear side, 2 minutes. Garlic and ginger, 30 seconds.",
+      "Peppers in, toss everything together, 3 minutes — they should still squeak.",
+      "Both soys down the hot side of the pan so they sizzle and catch, toss once, off the heat."
+    ]
+  },
+  "yakisoba-dinde": {
+    "title": "Turkey yakisoba",
+    "cuisine": "japanese",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli",
+      "dairy-free"
+    ],
+    "short": "Sear the turkey, steam the broccoli bright green, then fold the precooked ramen through soy and sweet soy.",
+    "ingredients": [
+      {
+        "item": "turkey escalope",
+        "qty": "260 g, sliced thin",
+        "product": "Le Gaulois Escalope de dinde",
+        "buy": {
+          "amount": 0.26,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "ramen noodles",
+        "qty": "1 pack",
+        "product": "Tanoshi Nouilles japonaises précuites Ramen assaisonnement bœuf",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "broccoli",
+        "qty": "half a head",
+        "product": "Le Choix du Primeur Brocolis",
+        "buy": {
+          "amount": 0.25,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "carrot",
+        "qty": "1, ribboned",
+        "product": "Le Choix du Primeur Carottes",
+        "buy": {
+          "amount": 0.1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "half, sliced",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.08,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "2 cloves",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "soy sauce",
+        "qty": "2 tbsp",
+        "product": "Kikkoman Sauce soja salée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "sweet soy",
+        "qty": "1 tbsp",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Saveur d'Asie - Sauce soja sucrée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      }
+    ],
+    "steps": [
+      "Slice the turkey across the grain as thinly as you can manage — it cooks in about ninety seconds that way and stays tender.",
+      "Very hot pan, oil, turkey in a single layer. 90 seconds a side, then out onto a plate. It finishes later; do not cook it through now.",
+      "Same pan: onion 2 minutes, then broccoli florets and a splash of water, lid on, 3 minutes to steam them bright green.",
+      "Lid off, carrot ribbons and garlic, 1 minute.",
+      "Loosen the noodles under the tap and add them with their sachet, plus the turkey and any juices.",
+      "Both soys, then toss hard for 2 minutes until everything is glossy."
+    ]
+  },
+  "donburi-teriyaki": {
+    "title": "Chicken teriyaki donburi",
+    "cuisine": "japanese",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli",
+      "uses eggs"
+    ],
+    "short": "Chicken glazed in yakitori sauce over rice, with a soft egg broken across the top.",
+    "ingredients": [
+      {
+        "item": "chicken",
+        "qty": "220 g aiguillettes",
+        "product": "La Nouvelle Agriculture Aiguillette de poulet",
+        "buy": {
+          "amount": 0.22,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "egg",
+        "qty": "2",
+        "product": "already in the fridge",
+        "pantry": true
+      },
+      {
+        "item": "yakitori sauce",
+        "qty": "4 tbsp",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Sauce Yakitori assaisonnement à base de sauce soja, saké et mirin",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "basmati rice",
+        "qty": "2 portions",
+        "product": "Taureau Ailé Riz Basmati",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "broccoli",
+        "qty": "a few florets",
+        "product": "Le Choix du Primeur Brocolis",
+        "buy": {
+          "amount": 0.12,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "nori",
+        "qty": "1 sheet, snipped",
+        "product": "Tanoshi Feuilles d'algues nori grillées pour sushi",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      }
+    ],
+    "steps": [
+      "Rice on. Bring a small pan of water to the boil for the eggs.",
+      "Six-and-a-half-minute eggs: from the fridge into boiling water, then into cold. The yolk should still be liquid at the centre.",
+      "Meanwhile, hot pan, chicken in a single layer, 3 minutes without moving it, turn, 2 minutes.",
+      "Pour in the yakitori sauce. It thickens fast — turn the chicken through it for a minute until lacquered, then off before the sugar catches.",
+      "Blanch the broccoli in the egg water for 2 minutes.",
+      "Rice into deep bowls, chicken and all the pan sauce over, broccoli alongside. Halve the eggs on top, scatter the nori."
+    ]
+  },
+  "gyoza-brocoli": {
+    "title": "Gyoza with garlic-ginger broccoli",
+    "cuisine": "japanese",
+    "slot": "dinner",
+    "kind": "assembly",
+    "prepMinutes": 5,
+    "cookMinutes": 12,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli",
+      "from the freezer"
+    ],
+    "packNote": "The gyoza are shop-bought and cook straight from frozen — follow the pack, roughly 3 minutes in oil, 5 under a lid with a splash of water, 2 more with the lid off. There is no recipe to give you for that.",
+    "short": "A no-cooking night. The gyoza come from a packet; the only real cooking is the broccoli beside them.",
+    "ingredients": [
+      {
+        "item": "gyoza",
+        "qty": "1 pack (400 g)",
+        "product": "Ajinomoto Gyoza poulet et légumes raviolis à poêler",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "broccoli",
+        "qty": "half a head",
+        "product": "Le Choix du Primeur Brocolis",
+        "buy": {
+          "amount": 0.25,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "3 cloves, sliced",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "ginger",
+        "qty": "a thumb, matchsticked",
+        "product": "Gingembre frais",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.5
+        }
+      },
+      {
+        "item": "soy sauce",
+        "qty": "for dipping",
+        "product": "Kikkoman Sauce soja salée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "lemon",
+        "qty": "a wedge",
+        "product": "Le Choix du Primeur Citrons JAUNES",
+        "buy": {
+          "amount": 0.28,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "basmati rice",
+        "qty": "to serve",
+        "product": "Taureau Ailé Riz Basmati",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      }
+    ],
+    "steps": [
+      "The broccoli, which is the part worth doing properly: cut it into florets and get a pan hot with a film of oil.",
+      "Florets in, cut face down, and leave them 2 minutes to char in patches. That browning is the whole point of cooking broccoli in a pan rather than boiling it.",
+      "Add the sliced garlic, the ginger and a splash of water, clamp a lid on, 3 minutes.",
+      "Lid off, a squeeze of lemon, and let any remaining water go.",
+      "Serve with the gyoza and rice, soy for dipping."
+    ]
+  },
+  "porc-soja-gingembre": {
+    "title": "Sweet soy and ginger pork chops",
+    "cuisine": "chinese",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "serves": 2,
+    "tags": [
+      "no chilli",
+      "dairy-free"
+    ],
+    "short": "Marinate the chops while the rice cooks, sear them hard, then finish them in the reduced marinade.",
+    "ingredients": [
+      {
+        "item": "pork chops",
+        "qty": "2 of the 4-pack",
+        "product": "Terroirs, une marque Intermarché Côtes de PORC",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "sweet soy",
+        "qty": "3 tbsp",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Saveur d'Asie - Sauce soja sucrée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "soy sauce",
+        "qty": "1 tbsp",
+        "product": "Kikkoman Sauce soja salée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "ginger",
+        "qty": "a thumb, grated",
+        "product": "Gingembre frais",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.5
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "2 cloves, crushed",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "red pepper",
+        "qty": "1, in strips",
+        "product": "Le Choix du Primeur Poivron ROUGE",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "1, in wedges",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.15,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "basmati rice",
+        "qty": "to serve",
+        "product": "Taureau Ailé Riz Basmati",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      }
+    ],
+    "steps": [
+      "Mix both soys, the grated ginger and the crushed garlic in a shallow dish. Turn the chops through it and leave them while the rice cooks — 20 minutes is plenty, and much longer makes the surface too sweet to sear cleanly.",
+      "Lift the chops out and scrape the marinade back into the dish. Keep it.",
+      "Very hot pan, a little oil. Chops in, 4 minutes without touching them, until deeply browned. Turn, 3 minutes.",
+      "Out onto a warm plate to rest.",
+      "Same pan, heat down: onion and pepper, 4 minutes, scraping up everything stuck to the base.",
+      "Pour in the reserved marinade and 3 tbsp water. Bubble 2 minutes until syrupy.",
+      "Chops back in with any resting juices, turn once to coat, serve over rice."
+    ]
+  },
+  "riz-saute-lardons": {
+    "title": "Egg fried rice with lardons",
+    "cuisine": "chinese",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 8,
+    "cookMinutes": 12,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli",
+      "uses eggs"
+    ],
+    "short": "Yesterday's rice, a very hot pan, lardons for fat and salt, egg scrambled through at the end.",
+    "ingredients": [
+      {
+        "item": "basmati rice",
+        "qty": "400 g cooked, cold",
+        "product": "Taureau Ailé Riz Basmati",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "lardons",
+        "qty": "150 g",
+        "product": "Herta Lardons nature",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "egg",
+        "qty": "3",
+        "product": "already in the fridge",
+        "pantry": true
+      },
+      {
+        "item": "carrot",
+        "qty": "1, diced small",
+        "product": "Le Choix du Primeur Carottes",
+        "buy": {
+          "amount": 0.1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "1, diced",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.15,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "2 cloves",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "soy sauce",
+        "qty": "2 tbsp",
+        "product": "Kikkoman Sauce soja salée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      }
+    ],
+    "steps": [
+      "Cold rice is not a suggestion. Warm rice steams and clumps; if you have not got leftovers, cook it an hour ahead and spread it on a tray to cool.",
+      "Lardons into a cold wide pan, heat to medium. Let the fat render out for 4 minutes until they are golden, then lift them out and leave the fat behind.",
+      "Carrot and onion into that fat, 4 minutes on high. Garlic, 30 seconds.",
+      "Rice in, breaking up the clumps with the back of a spatula. Spread it out and leave it a full minute at a time so it toasts rather than steams — 4 minutes in total.",
+      "Push everything aside, beat the eggs into the clear space, let them set for 20 seconds, then fold them through.",
+      "Lardons back in, soy round the edge of the pan, one more toss."
+    ]
+  },
+  "poulet-citron-gingembre": {
+    "title": "Lemon and ginger chicken",
+    "cuisine": "chinese",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli",
+      "dairy-free"
+    ],
+    "short": "Chicken strips in a sharp lemon-soy glaze that thickens in the pan. Brighter than teriyaki.",
+    "ingredients": [
+      {
+        "item": "chicken",
+        "qty": "300 g fillet, in strips",
+        "product": "Le Gaulois Filet de poulet extra tendre",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "lemon",
+        "qty": "2, juice and zest",
+        "product": "Le Choix du Primeur Citrons JAUNES",
+        "buy": {
+          "amount": 0.28,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "ginger",
+        "qty": "a large thumb",
+        "product": "Gingembre frais",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.5
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "2 cloves",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "soy sauce",
+        "qty": "2 tbsp",
+        "product": "Kikkoman Sauce soja salée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "broccoli",
+        "qty": "half a head",
+        "product": "Le Choix du Primeur Brocolis",
+        "buy": {
+          "amount": 0.25,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "basmati rice",
+        "qty": "to serve",
+        "product": "Taureau Ailé Riz Basmati",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      }
+    ],
+    "steps": [
+      "Zest both lemons before you juice them — it is the zest, not the juice, that carries the perfume.",
+      "Toss the chicken strips with a spoonful of flour and a pinch of salt. The flour is what thickens the sauce later.",
+      "Hot pan, oil, chicken in one layer. 3 minutes, turn, 2 minutes, then out.",
+      "Ginger and garlic in the same pan, 30 seconds.",
+      "Lemon juice, soy, a teaspoon of sugar and 100 ml water. Scrape the base and let it bubble down for 2 minutes until it coats a spoon.",
+      "Chicken and zest back in, turn to coat. Broccoli steamed alongside, rice underneath."
+    ]
+  },
+  "dahl-lentilles-coco": {
+    "title": "Coconut lentil dahl",
+    "cuisine": "indian",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 25,
+    "serves": 4,
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "vegetarian",
+      "dairy-free"
+    ],
+    "short": "Tinned lentils, coconut milk and warm spices, simmered until it thickens. Mild by design — the warmth is cumin and coriander, never heat.",
+    "ingredients": [
+      {
+        "item": "lentils",
+        "qty": "2 tins",
+        "product": "Saint Eloi, une marque Intermarché Lentilles préparées",
+        "buy": {
+          "amount": 2,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "coconut milk",
+        "qty": "1 tin",
+        "product": "Lait de coco",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Best guesses",
+          "price": 2.5
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "2, finely chopped",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "4 cloves",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "ginger",
+        "qty": "a thumb",
+        "product": "Gingembre frais",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.5
+        }
+      },
+      {
+        "item": "tomatoes",
+        "qty": "3, chopped",
+        "product": "Le Choix du Primeur Tomate RONDE en GRAPPE",
+        "buy": {
+          "amount": 0.35,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "curry powder",
+        "qty": "2 tsp mild",
+        "product": "already in the cupboard — the mild tandoori",
+        "pantry": true
+      },
+      {
+        "item": "coriander",
+        "qty": "a handful",
+        "product": "Le Choix du Primeur Coriandre",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "basmati rice",
+        "qty": "to serve",
+        "product": "Taureau Ailé Riz Basmati",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      }
+    ],
+    "steps": [
+      "Soften the onion in oil over medium heat for a full 8 minutes. Rushing this is the difference between a dahl that tastes sweet and one that tastes raw.",
+      "Garlic, ginger and the curry powder, 1 minute, stirring — the spices need the hot oil to open up.",
+      "Tomatoes in, cook them down for 5 minutes until they collapse and the oil separates out at the edges.",
+      "Drained lentils and the coconut milk. Simmer uncovered, 12 minutes, stirring now and then so it does not catch.",
+      "It should be thick enough to hold a furrow when you drag the spoon through. Loosen with water if it goes past that.",
+      "Salt properly — lentils take more than you expect — and stir the coriander through at the end."
+    ]
+  },
+  "pho-express-boeuf": {
+    "title": "Quick beef noodle soup",
+    "cuisine": "vietnamese",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "serves": 2,
+    "tags": [
+      "no chilli",
+      "dairy-free"
+    ],
+    "short": "A cheat's phở: charred onion and ginger in the broth for twenty minutes, then raw beef cooked by the heat of it in the bowl.",
+    "ingredients": [
+      {
+        "item": "beef mince",
+        "qty": "250 g, or thin steak",
+        "product": "Jean Rozé, une marque Intermarché Viande hachée vrac pur BŒUF 5% MG",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "rice vermicelli",
+        "qty": "160 g",
+        "product": "Suzi Wan Vermicelles de riz",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "1, halved",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.15,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "ginger",
+        "qty": "a big piece, halved",
+        "product": "Gingembre frais",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.5
+        }
+      },
+      {
+        "item": "soy sauce",
+        "qty": "3 tbsp",
+        "product": "Kikkoman Sauce soja salée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "coriander",
+        "qty": "a big handful",
+        "product": "Le Choix du Primeur Coriandre",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "lemon",
+        "qty": "1, in wedges",
+        "product": "Le Choix du Primeur Citrons JAUNES",
+        "buy": {
+          "amount": 0.28,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "carrot",
+        "qty": "1, ribboned",
+        "product": "Le Choix du Primeur Carottes",
+        "buy": {
+          "amount": 0.1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      }
+    ],
+    "steps": [
+      "Char the onion and ginger halves cut-side down in a dry pan for 4 minutes, until properly blackened in patches. This is where the whole flavour of the broth comes from, so let them go further than feels right.",
+      "Add 1.2 litres of water, the soy, a cinnamon stick if you have one, and a teaspoon of sugar. Simmer 20 minutes.",
+      "Meanwhile soak the vermicelli in just-boiled water for 4 minutes, drain, and divide between two deep bowls.",
+      "Brown the beef hard in a separate pan, 4 minutes, and put it on the noodles.",
+      "Fish out the onion and ginger. Taste the broth — it should be a little too savoury on its own, because the noodles will flatten it.",
+      "Pour the boiling broth over. Carrot ribbons, a mountain of coriander, lemon at the table."
+    ]
+  },
+  "aubergines-miso-soja": {
+    "title": "Sticky glazed aubergine",
+    "cuisine": "japanese",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 8,
+    "cookMinutes": 22,
+    "serves": 2,
+    "tags": [
+      "no chilli",
+      "vegetarian",
+      "dairy-free"
+    ],
+    "short": "Aubergine roasted until genuinely collapsing, then glazed with sweet soy until it turns lacquered.",
+    "ingredients": [
+      {
+        "item": "aubergine",
+        "qty": "2, halved and scored",
+        "product": "Le Choix du Primeur Aubergines VIOLETTES",
+        "buy": {
+          "amount": 0.8,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "sweet soy",
+        "qty": "3 tbsp",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Saveur d'Asie - Sauce soja sucrée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "soy sauce",
+        "qty": "1 tbsp",
+        "product": "Kikkoman Sauce soja salée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "ginger",
+        "qty": "grated",
+        "product": "Gingembre frais",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.5
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "2 cloves",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "egg",
+        "qty": "2, soft-boiled",
+        "product": "already in the fridge",
+        "pantry": true
+      },
+      {
+        "item": "sushi rice",
+        "qty": "to serve",
+        "product": "Tanoshi Riz pour sushi Japonica",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      }
+    ],
+    "steps": [
+      "Oven to 220°C. Score the cut faces in a diamond pattern, about a centimetre deep, without cutting the skin.",
+      "Oil them generously — aubergine drinks it, and underoiled aubergine goes leathery rather than silky — and roast cut-side down for 15 minutes.",
+      "Mix the sweet soy, soy, grated ginger and crushed garlic.",
+      "Turn the halves over, spoon the glaze into the scored faces, and roast 7 minutes more until the tops are dark and bubbling.",
+      "Serve on rice with a soft egg, spooning the pan juices over."
+    ]
+  },
+  "gratin-courgettes": {
+    "title": "Courgette and emmental gratin",
+    "cuisine": "french",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 15,
+    "cookMinutes": 30,
+    "serves": 4,
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "vegetarian"
+    ],
+    "short": "Courgettes cooked down hard to drive off their water, bound with egg and emmental, baked till the top blisters. No cream.",
+    "ingredients": [
+      {
+        "item": "courgette",
+        "qty": "1 kg, sliced",
+        "product": "Petit prix Courgettes",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "emmental",
+        "qty": "200 g, grated",
+        "product": "Pâturages, une marque Intermarché Emmental français au lait français",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "egg",
+        "qty": "3",
+        "product": "already in the fridge",
+        "pantry": true
+      },
+      {
+        "item": "onion",
+        "qty": "2, sliced",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "3 cloves",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "rice",
+        "qty": "150 g cooked, stirred in",
+        "product": "Taureau Ailé Riz Basmati",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      }
+    ],
+    "steps": [
+      "Oven to 200°C. Slice the courgettes into rounds and salt them in a colander for 10 minutes while the oven heats.",
+      "Soften the onion in a wide pan, 6 minutes. Add the courgettes, squeezed dry, and the garlic.",
+      "Now cook them hard for 12 minutes on a high heat, stirring occasionally. You want them collapsing and starting to brown, with no liquid left in the pan. A watery gratin is a gratin that went into the oven too soon.",
+      "Off the heat, stir in the cooked rice and two-thirds of the emmental, then the beaten eggs. Season well.",
+      "Into a baking dish, the rest of the cheese on top.",
+      "30 minutes until set and blistered. Let it stand 10 minutes before cutting — it slices instead of slumping."
+    ]
+  },
+  "gnocchi-pesto": {
+    "title": "Pan-fried gnocchi with pesto rosso",
+    "cuisine": "italian",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 5,
+    "cookMinutes": 12,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli",
+      "vegetarian"
+    ],
+    "short": "Gnocchi crisped in a dry pan rather than boiled, tossed with pesto rosso and burst cherry tomatoes.",
+    "ingredients": [
+      {
+        "item": "gnocchi",
+        "qty": "1 pack",
+        "product": "Lustucru Sélection Gnocchi à poêler croustillant et moelleux format XXL",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "pesto rosso",
+        "qty": "half a jar",
+        "product": "Barilla Sauce pesto rosso",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "cherry tomatoes",
+        "qty": "250 g",
+        "product": "Petit prix Tomates cerises allongées",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "mozzarella",
+        "qty": "1 ball, torn",
+        "product": "Pâturages, une marque Intermarché Mozzarella",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "2 cloves",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      }
+    ],
+    "steps": [
+      "Gnocchi straight into a hot pan with oil, no boiling, no water. Spread them in one layer.",
+      "Leave them 4 minutes untouched so a crust forms, then shake and give them 3 more.",
+      "Push to one side, cherry tomatoes into the space, 3 minutes until they split and weep.",
+      "Garlic, 30 seconds, then toss everything together with the pesto rosso and a splash of water to loosen it.",
+      "Off the heat, tear the mozzarella over so it softens without turning to rubber."
+    ]
+  },
+  "farfalles-pesto-poulet": {
+    "title": "Farfalle with pesto and chicken",
+    "cuisine": "italian",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 5,
+    "cookMinutes": 15,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli"
+    ],
+    "short": "Weeknight pasta, done properly: pasta water in the sauce, cheese off the heat.",
+    "ingredients": [
+      {
+        "item": "farfalle",
+        "qty": "250 g",
+        "product": "Fiorini, une marque Intermarché Pâtes farfalles",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "chicken",
+        "qty": "250 g aiguillettes",
+        "product": "La Nouvelle Agriculture Aiguillette de poulet",
+        "buy": {
+          "amount": 0.25,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "pesto rosso",
+        "qty": "half a jar",
+        "product": "Barilla Sauce pesto rosso",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "parmesan",
+        "qty": "a handful, grated",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Parmigiano Reggiano AOP râpé",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "cherry tomatoes",
+        "qty": "250 g, halved",
+        "product": "Petit prix Tomates cerises allongées",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      }
+    ],
+    "steps": [
+      "Pasta into well-salted boiling water. Set a timer a minute under the packet time.",
+      "Meanwhile brown the chicken in a wide pan, 3 minutes a side, and cut it into pieces.",
+      "Tomatoes into the chicken pan, 3 minutes until they collapse.",
+      "Lift the pasta straight across with a spider or tongs, dripping wet, plus a ladle of the water. Do not drain it into the sink — that starchy water is what makes the sauce cling.",
+      "Pesto in off the heat, toss hard for a minute until it goes glossy rather than oily.",
+      "Parmesan at the table."
+    ]
+  },
+  "pizza-maison": {
+    "title": "Tomato and mozzarella pizza",
+    "cuisine": "italian",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "serves": 2,
+    "tags": [
+      "no chilli",
+      "vegetarian"
+    ],
+    "short": "Bought dough, but everything on top is yours. The trick is the hottest oven you have and a preheated tray.",
+    "ingredients": [
+      {
+        "item": "pizza dough",
+        "qty": "1 roll",
+        "product": "Croustipate Pâte à pizza qualité comme à la pizzeria",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "tomato sauce",
+        "qty": "half a jar",
+        "product": "Panzani Sauce Tomates Cuisinées ingrédients origine naturelle",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "mozzarella",
+        "qty": "2 balls",
+        "product": "Pâturages, une marque Intermarché Mozzarella",
+        "buy": {
+          "amount": 2,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "cherry tomatoes",
+        "qty": "a handful",
+        "product": "Petit prix Tomates cerises allongées",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "1 clove",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      }
+    ],
+    "steps": [
+      "Oven as hot as it goes, with the baking tray already inside. A cold tray is why home pizza goes soggy underneath.",
+      "Tear the mozzarella and leave it on kitchen paper for 10 minutes. Wet mozzarella floods the pizza.",
+      "Sauce over the dough, thin — a bare spoonful spread to the edges. Grate the garlic into it.",
+      "Slide the dough onto the hot tray, mozzarella and halved cherry tomatoes over.",
+      "12 to 15 minutes until the edge is blistered and the base lifts stiff off the tray."
+    ]
+  },
+  "poulet-roti-legumes": {
+    "title": "Roast chicken legs with lemon",
+    "cuisine": "french",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 45,
+    "serves": 4,
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "weekend"
+    ],
+    "short": "One tray, forty-five minutes, no attention. Potatoes cook in the chicken fat underneath.",
+    "ingredients": [
+      {
+        "item": "chicken drumsticks",
+        "qty": "1 kg",
+        "product": "Plukon Pilons de poulet",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "potatoes",
+        "qty": "1 kg, in chunks",
+        "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "lemon",
+        "qty": "1, in wedges",
+        "product": "Le Choix du Primeur Citrons JAUNES",
+        "buy": {
+          "amount": 0.28,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "a whole head, cloves unpeeled",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "2, in wedges",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "green beans",
+        "qty": "to serve",
+        "product": "Le Choix du Primeur Haricots VERTS EBOUTES",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      }
+    ],
+    "steps": [
+      "Oven to 200°C. Potatoes, onion wedges and unpeeled garlic cloves in a big roasting tin with oil and salt.",
+      "Sit the drumsticks on top so the fat drips down into the potatoes, and tuck the lemon wedges between them.",
+      "45 minutes, turning the potatoes once at the half hour.",
+      "The chicken is done when the skin is genuinely crisp and the thickest part gives no pink juice.",
+      "Green beans boiled for 6 minutes at the very end. Squeeze the roasted garlic out of its skins over everything."
+    ]
+  },
+  "tortilla-pommes-terre": {
+    "title": "Potato tortilla",
+    "cuisine": "spanish",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 30,
+    "serves": 4,
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "vegetarian",
+      "uses eggs"
+    ],
+    "short": "Potatoes poached soft in oil, then set with eggs into a thick, just-runny cake. Good hot, better at room temperature.",
+    "ingredients": [
+      {
+        "item": "potatoes",
+        "qty": "600 g, sliced thin",
+        "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "egg",
+        "qty": "6",
+        "product": "already in the fridge",
+        "pantry": true
+      },
+      {
+        "item": "onion",
+        "qty": "1 large, sliced",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "salad",
+        "qty": "to serve",
+        "product": "Le Choix du Primeur Laitue FEUILLES DE CHENES BLONDE",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      }
+    ],
+    "steps": [
+      "Slice the potatoes about 3 mm thick. Warm a generous amount of oil in a 24 cm pan over medium-low heat.",
+      "Potatoes and onion into the oil. You are poaching, not frying — they should barely sizzle. 18 minutes, turning gently, until a slice crushes against the pan.",
+      "Drain them, keeping a spoonful of the oil. Beat the eggs with plenty of salt and fold the hot potatoes in. Let it sit 5 minutes; the potato drinks the egg and that is what holds it together.",
+      "Reserved oil in the pan on medium. Everything in, flatten the top, 4 minutes until the edge sets.",
+      "The flip: plate over the pan, invert with confidence rather than care, slide it back in.",
+      "3 minutes more. The centre should still wobble slightly. Rest 10 minutes before cutting."
+    ]
+  },
+  "saucisses-lentilles": {
+    "title": "Chipolatas with lentils",
+    "cuisine": "french",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 5,
+    "cookMinutes": 20,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli"
+    ],
+    "short": "Sausages browned properly, lentils warmed through in the pan they came out of. A twenty-minute plate of real food.",
+    "ingredients": [
+      {
+        "item": "chipolatas",
+        "qty": "6",
+        "product": "Jean Rozé, une marque Intermarché Chipolata supérieure aux herbes",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "lentils",
+        "qty": "2 tins",
+        "product": "Saint Eloi, une marque Intermarché Lentilles préparées",
+        "buy": {
+          "amount": 2,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "carrot",
+        "qty": "2, diced",
+        "product": "Le Choix du Primeur Carottes",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "celery",
+        "qty": "2 sticks, diced",
+        "product": "Le Choix du Primeur Céleri BRANCHE VERT",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "1, diced",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.15,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "cornichons",
+        "qty": "to serve",
+        "product": "Maille Cornichons extra-fins L'Original",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      }
+    ],
+    "steps": [
+      "Chipolatas into a cold pan with a little oil, then medium heat. Starting cold renders the fat instead of splitting the skins. 10 minutes, turning, until browned all over. Out onto a plate.",
+      "Carrot, celery and onion into the sausage fat. 8 minutes until soft and just catching.",
+      "Drained lentils in with a splash of water, 3 minutes to warm through and pick up everything in the pan.",
+      "Season hard — lentils are flat without enough salt and a good grind of pepper.",
+      "Sausages back on top, cornichons on the side for the sharpness."
+    ]
+  },
+  "bolognaise-maison": {
+    "title": "Slow-ish bolognese",
+    "cuisine": "italian",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 35,
+    "serves": 4,
+    "tags": [
+      "batch cook",
+      "no chilli"
+    ],
+    "short": "Mince browned properly, softened vegetables, tomatoes given long enough to stop tasting of tin.",
+    "ingredients": [
+      {
+        "item": "beef mince",
+        "qty": "350 g",
+        "product": "Jean Rozé, une marque Intermarché Viande hachée vrac pur BŒUF 5% MG",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "lardons",
+        "qty": "150 g",
+        "product": "Herta Lardons nature",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "tomato sauce",
+        "qty": "1 jar",
+        "product": "Panzani Sauce Tomates Cuisinées ingrédients origine naturelle",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "carrot",
+        "qty": "2, finely diced",
+        "product": "Le Choix du Primeur Carottes",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "celery",
+        "qty": "2 sticks",
+        "product": "Le Choix du Primeur Céleri BRANCHE VERT",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "1",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.15,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "farfalle",
+        "qty": "300 g",
+        "product": "Fiorini, une marque Intermarché Pâtes farfalles",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "parmesan",
+        "qty": "to serve",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Parmigiano Reggiano AOP râpé",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      }
+    ],
+    "steps": [
+      "Lardons into a cold heavy pot, medium heat, 5 minutes until the fat runs.",
+      "Carrot, celery and onion in, 8 minutes until soft. This is the base; if it is still crunchy the sauce will taste thin no matter how long you cook it.",
+      "Push aside, mince into the space, and leave it to brown for 4 minutes before breaking it up.",
+      "Tomato sauce plus half a jar of water. Simmer, lid ajar, 20 minutes.",
+      "Taste. If it is sharp, a pinch of sugar; if it is flat, more salt.",
+      "Pasta cooked a minute under, finished in the sauce with a splash of its water. Parmesan at the table."
+    ]
+  },
+  "parmigiana-aubergines": {
+    "title": "Aubergine parmigiana",
+    "cuisine": "italian",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 20,
+    "cookMinutes": 35,
+    "serves": 4,
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "vegetarian",
+      "weekend"
+    ],
+    "short": "Roast the aubergine rather than frying it, layer with tomato and mozzarella, bake until the edges catch.",
+    "ingredients": [
+      {
+        "item": "aubergine",
+        "qty": "3, sliced lengthways",
+        "product": "Le Choix du Primeur Aubergines VIOLETTES",
+        "buy": {
+          "amount": 1.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "tomato sauce",
+        "qty": "1 jar",
+        "product": "Panzani Sauce Tomates Cuisinées ingrédients origine naturelle",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "mozzarella",
+        "qty": "2 balls",
+        "product": "Pâturages, une marque Intermarché Mozzarella",
+        "buy": {
+          "amount": 2,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "parmesan",
+        "qty": "a good handful",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Parmigiano Reggiano AOP râpé",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "3 cloves",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "baguette",
+        "qty": "to serve",
+        "product": "Cuit sur place Baguette La Généreuse",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      }
+    ],
+    "steps": [
+      "Oven to 220°C. Slice the aubergines lengthways about 1 cm thick, brush both sides with oil, spread on two trays.",
+      "Roast 20 minutes until browned and floppy. Roasting rather than frying is the difference between a parmigiana you can eat and one swimming in oil.",
+      "Warm the tomato sauce with the crushed garlic for 5 minutes.",
+      "Layer in a dish: sauce, aubergine, torn mozzarella, a little parmesan. Repeat, finishing with sauce and all the remaining parmesan.",
+      "Bake 15 minutes at 200°C until the top is bubbling and dark at the corners.",
+      "Rest 10 minutes. Bread to wipe the dish."
+    ]
+  },
+  "tartine-mortadelle": {
+    "title": "Grilled mortadella and mozzarella tartine",
+    "cuisine": "italian",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 5,
+    "cookMinutes": 10,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli"
+    ],
+    "short": "Split baguette under the grill with mozzarella, mortadella folded on at the end so it stays soft.",
+    "ingredients": [
+      {
+        "item": "baguette",
+        "qty": "1",
+        "product": "Cuit sur place Baguette La Généreuse",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "mortadella",
+        "qty": "1 pack",
+        "product": "Montorsi Mortadelle",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "mozzarella",
+        "qty": "1 ball",
+        "product": "Pâturages, une marque Intermarché Mozzarella",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "cherry tomatoes",
+        "qty": "a handful",
+        "product": "Petit prix Tomates cerises allongées",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "salad",
+        "qty": "alongside",
+        "product": "Le Choix du Primeur Laitue FEUILLES DE CHENES BLONDE",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      }
+    ],
+    "steps": [
+      "Grill on high. Split the baguette lengthways and toast the cut faces for 2 minutes.",
+      "Torn mozzarella and halved cherry tomatoes over, back under for 5 minutes until the cheese is molten and blistered in spots.",
+      "Out of the grill, then drape the mortadella over in loose folds. It should warm from the bread, not cook — grilled mortadella goes tough and loses its point.",
+      "Black pepper, olive oil, and the salad alongside."
+    ]
+  },
+  "soupe-legumes": {
+    "title": "Winter vegetable soup",
+    "cuisine": "french",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "serves": 4,
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "vegetarian"
+    ],
+    "short": "Everything in the drawer, softened in butter first so it tastes of more than hot water.",
+    "ingredients": [
+      {
+        "item": "potatoes",
+        "qty": "500 g",
+        "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "carrot",
+        "qty": "4",
+        "product": "Le Choix du Primeur Carottes",
+        "buy": {
+          "amount": 0.4,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "celery",
+        "qty": "3 sticks",
+        "product": "Le Choix du Primeur Céleri BRANCHE VERT",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "courgette",
+        "qty": "2",
+        "product": "Petit prix Courgettes",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "2",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "butter",
+        "qty": "a knob",
+        "product": "Pâturages, une marque Intermarché Beurre moulé demi-sel",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "baguette",
+        "qty": "to serve",
+        "product": "Cuit sur place Baguette La Généreuse",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      }
+    ],
+    "steps": [
+      "Everything chopped roughly the same size so it cooks evenly. Precision is not the point; consistency is.",
+      "Butter in a big pot, onion and celery, 8 minutes on medium without browning.",
+      "Carrot, potato and courgette, another 3 minutes, stirring so they take on some of the butter.",
+      "Water to just cover — no more, or you dilute it. Simmer 20 minutes until the potato falls apart against the spoon.",
+      "Blend, or leave it chunky. Season hard, and a final knob of butter stirred in off the heat.",
+      "Bread on the side."
+    ]
+  },
+  "onigiri-oeuf": {
+    "title": "Egg and nori onigiri",
+    "cuisine": "japanese",
+    "slot": "lunch",
+    "kind": "recipe",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "serves": 1,
+    "tags": [
+      "make ahead",
+      "no chilli",
+      "uses eggs"
+    ],
+    "short": "Sushi rice pressed around a soy-seasoned egg, wrapped in nori. Better at room temperature than cold.",
+    "ingredients": [
+      {
+        "item": "sushi rice",
+        "qty": "150 g dry",
+        "product": "Tanoshi Riz pour sushi Japonica",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "egg",
+        "qty": "2",
+        "product": "already in the fridge",
+        "pantry": true
+      },
+      {
+        "item": "nori",
+        "qty": "2 sheets",
+        "product": "Tanoshi Feuilles d'algues nori grillées pour sushi",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "soy sauce",
+        "qty": "1 tbsp",
+        "product": "Kikkoman Sauce soja salée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "cucumber",
+        "qty": "batons alongside",
+        "product": "Le Choix du Primeur Concombre",
+        "buy": {
+          "amount": 2,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      }
+    ],
+    "steps": [
+      "Rinse the rice in cold water until it runs almost clear — four or five changes. This is what stops the onigiri turning gluey.",
+      "Cook it, then let it sit off the heat with the lid on for 10 minutes. Season with the soy while warm, fanning as you fold.",
+      "Hard-boil the eggs, 9 minutes. Cool, peel, chop roughly.",
+      "Wet your hands. Flatten a handful of rice in your palm, a spoonful of egg in the middle, close the rice over it.",
+      "Press into a triangle by cupping one hand at a right angle and turning a third at a time. Three turns, firm but not crushing.",
+      "A band of nori round the base of each. They keep until lunchtime at room temperature."
+    ]
+  },
+  "bun-vermicelles": {
+    "title": "Bún noodle salad with peanuts",
+    "cuisine": "vietnamese",
+    "slot": "lunch",
+    "kind": "recipe",
+    "prepMinutes": 15,
+    "cookMinutes": 5,
+    "serves": 1,
+    "tags": [
+      "make ahead",
+      "no chilli",
+      "dairy-free"
+    ],
+    "short": "Vermicelli softened in hot water, raw vegetables and herbs piled on, sweet soy and lemon dressing, crushed peanuts.",
+    "ingredients": [
+      {
+        "item": "rice vermicelli",
+        "qty": "80 g",
+        "product": "Suzi Wan Vermicelles de riz",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "cucumber",
+        "qty": "half, matchsticked",
+        "product": "Le Choix du Primeur Concombre",
+        "buy": {
+          "amount": 2,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "carrot",
+        "qty": "1, matchsticked",
+        "product": "Le Choix du Primeur Carottes",
+        "buy": {
+          "amount": 0.1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "coriander",
+        "qty": "a handful",
+        "product": "Le Choix du Primeur Coriandre",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "peanuts",
+        "qty": "2 tbsp, crushed",
+        "product": "Menguy's Cacahuètes grillées et salées",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "sweet soy",
+        "qty": "2 tbsp",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Saveur d'Asie - Sauce soja sucrée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "lemon",
+        "qty": "half, juiced",
+        "product": "Le Choix du Primeur Citrons JAUNES",
+        "buy": {
+          "amount": 0.28,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      }
+    ],
+    "steps": [
+      "Cover the vermicelli with just-boiled water, 4 minutes, then drain and rinse under cold water until completely cool. Warm noodles wilt the herbs.",
+      "Whisk sweet soy, lemon juice, grated garlic and 2 tbsp water. It should taste sharper than you expect — the noodles flatten it.",
+      "Noodles in the bottom of the box. Cucumber and carrot in separate piles, coriander over everything.",
+      "Crush the peanuts under the flat of a knife and scatter.",
+      "If it is travelling, keep the dressing in a jar and pour it at the table."
+    ]
+  },
+  "salade-mache-oeuf": {
+    "title": "Mâche and egg salad, sesame-soy",
+    "cuisine": "japanese",
+    "slot": "lunch",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 7,
+    "serves": 1,
+    "tags": [
+      "no chilli",
+      "uses eggs"
+    ],
+    "short": "Soft eggs on a pile of mâche with a soy and lemon dressing. Ten minutes, most of it waiting for the eggs.",
+    "ingredients": [
+      {
+        "item": "mâche",
+        "qty": "half the punnet",
+        "product": "Le Choix du Primeur Salade MACHE BIO",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "egg",
+        "qty": "2",
+        "product": "already in the fridge",
+        "pantry": true
+      },
+      {
+        "item": "cucumber",
+        "qty": "a third",
+        "product": "Le Choix du Primeur Concombre",
+        "buy": {
+          "amount": 2,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "carrot",
+        "qty": "half, grated",
+        "product": "Le Choix du Primeur Carottes",
+        "buy": {
+          "amount": 0.05,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "soy sauce",
+        "qty": "1 tbsp",
+        "product": "Kikkoman Sauce soja salée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "peanuts",
+        "qty": "1 tbsp, crushed",
+        "product": "Menguy's Cacahuètes grillées et salées",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      }
+    ],
+    "steps": [
+      "Six-and-a-half-minute eggs, from the fridge into boiling water, then straight into cold.",
+      "Dressing: soy, a squeeze of lemon, a spoonful of oil, whisked until it thickens slightly.",
+      "Mâche in the bowl — dress it at the very last moment, it collapses fast.",
+      "Cucumber and grated carrot over the top.",
+      "Peel and halve the eggs, set them on, crushed peanuts, a grind of pepper."
+    ]
+  },
+  "baguette-boursin": {
+    "title": "Baguette, Boursin and cucumber",
+    "cuisine": "french",
+    "slot": "lunch",
+    "kind": "recipe",
+    "prepMinutes": 5,
+    "cookMinutes": 0,
+    "serves": 1,
+    "tags": [
+      "no chilli",
+      "make ahead"
+    ],
+    "short": "The one lunch that is not a project. Good bread, garlic cheese, cold cucumber.",
+    "ingredients": [
+      {
+        "item": "baguette",
+        "qty": "half",
+        "product": "Cuit sur place Baguette La Généreuse",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "Boursin",
+        "qty": "generously",
+        "product": "Boursin Fromage à tartiner ail et fines herbes",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "cucumber",
+        "qty": "a third, sliced thin",
+        "product": "Le Choix du Primeur Concombre",
+        "buy": {
+          "amount": 2,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "mâche",
+        "qty": "a handful",
+        "product": "Le Choix du Primeur Salade MACHE BIO",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      }
+    ],
+    "steps": [
+      "Split the baguette lengthways but not all the way through.",
+      "Boursin on both cut faces, thickly.",
+      "Cucumber in overlapping slices, mâche pressed in on top.",
+      "Wrap tightly in paper and leave it half an hour if you can — better once the bread has softened against the cheese."
+    ]
+  },
+  "salade-pois-chiches": {
+    "title": "Chickpea and brebis salad",
+    "cuisine": "greek",
+    "slot": "lunch",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 0,
+    "serves": 1,
+    "tags": [
+      "no cook",
+      "no chilli",
+      "vegetarian",
+      "make ahead"
+    ],
+    "short": "Chickpeas, cucumber, tomato and sheep's cheese. Improves in the fridge, so make it the night before.",
+    "ingredients": [
+      {
+        "item": "chickpeas",
+        "qty": "1 tin",
+        "product": "Saint Eloi, une marque Intermarché Pois chiches français",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "brebis cheese",
+        "qty": "a few cubes",
+        "product": "Salakis Fromage 100% brebis herbes de Provence",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "cucumber",
+        "qty": "half, diced",
+        "product": "Le Choix du Primeur Concombre",
+        "buy": {
+          "amount": 2,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "tomatoes",
+        "qty": "2, in wedges",
+        "product": "Le Choix du Primeur Tomate RONDE en GRAPPE",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "a little red, sliced thin",
+        "product": "Le Choix du Primeur Oignons ROUGES",
+        "buy": {
+          "amount": 0.1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "lemon",
+        "qty": "half",
+        "product": "Le Choix du Primeur Citrons JAUNES",
+        "buy": {
+          "amount": 0.28,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      }
+    ],
+    "steps": [
+      "Drain and rinse the chickpeas properly — the tinning liquid is what makes chickpea salads taste dull.",
+      "Cucumber and tomato in rough chunks, not neat dice. Salt the tomato now and let it sit; it draws out juice that becomes half the dressing.",
+      "Red onion sliced as thin as you can, rinsed under cold water for 10 seconds to take the raw edge off.",
+      "Everything together with the oil from the cheese jar, lemon juice and plenty of pepper.",
+      "Cheese cubes folded through last so they keep their shape."
+    ]
+  },
+  "salade-lentilles": {
+    "title": "Lentil and cornichon salad",
+    "cuisine": "french",
+    "slot": "lunch",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 0,
+    "serves": 1,
+    "tags": [
+      "no cook",
+      "no chilli",
+      "make ahead"
+    ],
+    "short": "Tinned lentils turned into something worth eating by mustard, cornichons and enough acid.",
+    "ingredients": [
+      {
+        "item": "lentils",
+        "qty": "1 tin",
+        "product": "Saint Eloi, une marque Intermarché Lentilles préparées",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "cornichons",
+        "qty": "6, chopped",
+        "product": "Maille Cornichons extra-fins L'Original",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "carrot",
+        "qty": "1, grated",
+        "product": "Le Choix du Primeur Carottes",
+        "buy": {
+          "amount": 0.1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "celery",
+        "qty": "1 stick, sliced thin",
+        "product": "Le Choix du Primeur Céleri BRANCHE VERT",
+        "buy": {
+          "amount": 0.1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "egg",
+        "qty": "1, hard-boiled",
+        "product": "already in the fridge",
+        "pantry": true
+      },
+      {
+        "item": "mâche",
+        "qty": "a handful",
+        "product": "Le Choix du Primeur Salade MACHE BIO",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      }
+    ],
+    "steps": [
+      "Drain the lentils and rinse them. Tip them into the bowl while you make the dressing so they drain fully.",
+      "Dressing: a heaped teaspoon of mustard, a spoonful of the cornichon vinegar, two of oil. Whisk until it goes thick and pale.",
+      "Lentils, grated carrot, celery and chopped cornichons folded through.",
+      "Season generously and leave it 10 minutes — lentils absorb dressing and taste under-seasoned straight away.",
+      "Mâche and a halved egg on top at the last moment."
+    ]
+  },
+  "sandwich-mortadelle": {
+    "title": "Mortadella and cornichon sandwich",
+    "cuisine": "italian",
+    "slot": "lunch",
+    "kind": "recipe",
+    "prepMinutes": 5,
+    "cookMinutes": 0,
+    "serves": 1,
+    "tags": [
+      "no cook",
+      "no chilli",
+      "make ahead"
+    ],
+    "short": "Folded mortadella, sharp cornichons, butter not mayonnaise. Five minutes.",
+    "ingredients": [
+      {
+        "item": "baguette",
+        "qty": "half",
+        "product": "Cuit sur place Baguette La Généreuse",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "mortadella",
+        "qty": "4 slices",
+        "product": "Montorsi Mortadelle",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "cornichons",
+        "qty": "5, sliced lengthways",
+        "product": "Maille Cornichons extra-fins L'Original",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "butter",
+        "qty": "a thick layer",
+        "product": "Pâturages, une marque Intermarché Beurre moulé demi-sel",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "salad",
+        "qty": "a few leaves",
+        "product": "Le Choix du Primeur Laitue FEUILLES DE CHENES BLONDE",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      }
+    ],
+    "steps": [
+      "Butter both faces of the split baguette, properly thick. Butter and not mayonnaise: it waterproofs the bread so the sandwich survives to lunchtime.",
+      "Mortadella folded into loose ruffles rather than laid flat — it eats better with air in it.",
+      "Cornichons sliced lengthways along the length of the sandwich so every bite gets one.",
+      "Lettuce, close it, press it firmly, wrap in paper."
+    ]
+  },
+  "riz-saute-restes": {
+    "title": "Leftovers fried rice",
+    "cuisine": "chinese",
+    "slot": "lunch",
+    "kind": "recipe",
+    "prepMinutes": 5,
+    "cookMinutes": 8,
+    "serves": 1,
+    "tags": [
+      "fast",
+      "no chilli",
+      "uses eggs"
+    ],
+    "short": "Whatever is left, cold rice, one egg, soy. The most useful ten minutes in the week.",
+    "ingredients": [
+      {
+        "item": "basmati rice",
+        "qty": "200 g cooked, cold",
+        "product": "Taureau Ailé Riz Basmati",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "egg",
+        "qty": "1",
+        "product": "already in the fridge",
+        "pantry": true
+      },
+      {
+        "item": "carrot",
+        "qty": "1, diced",
+        "product": "Le Choix du Primeur Carottes",
+        "buy": {
+          "amount": 0.05,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "half",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.05,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "soy sauce",
+        "qty": "1 tbsp",
+        "product": "Kikkoman Sauce soja salée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      }
+    ],
+    "steps": [
+      "Hot pan, oil, onion and carrot for 3 minutes.",
+      "Cold rice in, broken up, spread flat and left for a minute at a time so it toasts — 3 minutes total.",
+      "Push aside, egg beaten into the space, 20 seconds, then folded through.",
+      "Soy round the edge of the pan, one toss, done. Add any leftover meat or vegetables with the rice."
+    ]
+  },
+  "salade-avocat-oeuf": {
+    "title": "Avocado, egg and mâche",
+    "cuisine": "french",
+    "slot": "lunch",
+    "kind": "recipe",
+    "prepMinutes": 8,
+    "cookMinutes": 7,
+    "serves": 1,
+    "tags": [
+      "no cook",
+      "no chilli",
+      "uses eggs"
+    ],
+    "short": "Three good things and a sharp dressing. Assemble at the last minute or the avocado turns.",
+    "ingredients": [
+      {
+        "item": "avocado",
+        "qty": "1",
+        "product": "Le Choix du Primeur Avocat AFFINE",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "egg",
+        "qty": "2",
+        "product": "already in the fridge",
+        "pantry": true
+      },
+      {
+        "item": "mâche",
+        "qty": "a big handful",
+        "product": "Le Choix du Primeur Salade MACHE BIO",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "cherry tomatoes",
+        "qty": "a handful",
+        "product": "Petit prix Tomates cerises allongées",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "lemon",
+        "qty": "half",
+        "product": "Le Choix du Primeur Citrons JAUNES",
+        "buy": {
+          "amount": 0.28,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "baguette",
+        "qty": "alongside",
+        "product": "Cuit sur place Baguette La Généreuse",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      }
+    ],
+    "steps": [
+      "Six-and-a-half-minute eggs, then into cold water.",
+      "Avocado sliced in the skin and scooped out in one piece with a spoon — cleaner than peeling it.",
+      "Lemon over the avocado immediately, before anything else. That is what keeps it green.",
+      "Mâche, halved tomatoes, avocado, halved eggs. Olive oil, salt, a lot of pepper.",
+      "Bread on the side."
+    ]
+  },
+  "salade-tomates-mozzarella": {
+    "title": "Tomato and mozzarella",
+    "cuisine": "italian",
+    "slot": "lunch",
+    "kind": "recipe",
+    "prepMinutes": 8,
+    "cookMinutes": 0,
+    "serves": 1,
+    "tags": [
+      "no cook",
+      "no chilli",
+      "vegetarian"
+    ],
+    "short": "Three ingredients, so all of it rests on salting the tomatoes early and using enough oil.",
+    "ingredients": [
+      {
+        "item": "tomatoes",
+        "qty": "3 good ones",
+        "product": "Le Choix du Primeur Tomates RONDES CHARNUES",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "mozzarella",
+        "qty": "1 ball",
+        "product": "Pâturages, une marque Intermarché Mozzarella",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "baguette",
+        "qty": "half",
+        "product": "Cuit sur place Baguette La Généreuse",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "salad",
+        "qty": "a few leaves",
+        "product": "Le Choix du Primeur Laitue FEUILLES DE CHENES BLONDE",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      }
+    ],
+    "steps": [
+      "Thick tomato slices onto the plate, salted, and left for 10 minutes. They release juice that mixes with the oil into a dressing you did not have to make.",
+      "Tear the mozzarella rather than slicing it — the ragged edges hold the oil.",
+      "Olive oil, black pepper. No vinegar; the tomato is acid enough.",
+      "Bread to mop the plate."
+    ]
+  }
+}

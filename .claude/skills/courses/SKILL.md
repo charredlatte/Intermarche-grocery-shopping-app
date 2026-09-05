@@ -13,9 +13,10 @@ Drive Méré basket so she only has to review and confirm.
 Nothing persists on her machine. Set up first:
 
 ```bash
-gh repo clone charredlatte/intermarche-grocery-data data   # if data/ is missing
-node scripts/parse-invoices.mjs                            # if the history is stale
+node scripts/parse-invoices.mjs   # only if the history is stale
 ```
+
+`data/` is committed in this repo — there is nothing to clone.
 
 Then read `data/preferences.json` and `data/purchase-history.json`. The history
 is older than the newest Intermarché invoice in Gmail if a `Votre facture est

@@ -74,14 +74,9 @@ Claude in Chrome, on my PC, with my Intermarché session already logged in. It g
 
 ## Where the data lives
 
-My disk is full, so nothing is checked out permanently. There are two repos:
+My disk is full, so nothing is checked out permanently — each session clones this repo, works, pushes, and throws the copy away.
 
-| | |
-| --- | --- |
-| this one | public — the code and the skill |
-| `intermarche-grocery-data` | private — invoices, purchase history, preferences |
-
-The private one is cloned into `data/`, which is gitignored here, so the layout on disk is exactly what the parser expects and the public repo can't leak anything. `preferences.example.json` documents the config shape without any of my details in it.
+Everything lives here, `data/` included: the invoices, the purchase history, my preferences, the recipe library and the week's plan. This repo is public, so all of that is public too. That is a deliberate choice, made knowing it publishes a year of my receipts. `preferences.example.json` is still here as a template for anyone who wants to run this for their own store.
 
 ## Phone vs PC
 
@@ -114,7 +109,6 @@ The library is 32 dishes now, roughly half Asian and half European. Ready-made t
 ## Setup
 
 ```bash
-gh repo clone charredlatte/intermarche-grocery-data data
 npm run parse       # invoices -> purchase history
 npm run build:week  # plans + recipes -> artifact/week.html
 ```

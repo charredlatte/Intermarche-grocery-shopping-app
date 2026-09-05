@@ -8,22 +8,24 @@ Charlotte only has to review and confirm.
 ## Nothing lives on the machine
 
 Her disk is full, so there is no permanent checkout. Every session clones, works,
-pushes, and is thrown away. Two repos:
+pushes, and is thrown away.
 
-| | |
-| --- | --- |
-| `charredlatte/Intermarche-grocery-shopping-app` | **public** — this repo. Code, the skill, no personal data. |
-| `charredlatte/intermarche-grocery-data` | **private** — invoices, purchase history, preferences. Cloned into `data/`, which is gitignored here. |
+**One repo now.** `charredlatte/Intermarche-grocery-shopping-app` holds the code
+*and* `data/` — invoices, purchase history, preferences, recipes, plans. Charlotte
+asked for that on 2026-09-05, having been shown that the repo is public and that
+`data/` therefore publishes a year of her receipts and the IBS note in
+`preferences.json`. It was her call; don't quietly re-split it.
+
+`charredlatte/intermarche-grocery-data` still exists and still holds the same
+files, but it is now a stale duplicate. Nothing reads from it.
 
 **First thing in a fresh session:**
 
 ```bash
-gh repo clone charredlatte/intermarche-grocery-data data
+gh repo clone charredlatte/Intermarche-grocery-shopping-app app
 ```
 
-That puts `data/preferences.json`, `data/invoices/` and
-`data/purchase-history.json` exactly where the parser and the skill expect them.
-Push both repos when you're done; the scratch copy is disposable.
+Everything the parser, the build and the skill need is already in `data/`.
 
 ## The three pieces
 

@@ -1,0 +1,1084 @@
+<title>Méré Kitchen Week</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+  /* ---- tokens: complete light palette on bare :root ---- */
+  :root {
+    --paper:      #F4F6F1;
+    --card:       #FFFFFF;
+    --card-sunk:  #FAFBF8;
+    --ink:        #1B211A;
+    --ink-2:      #56604F;
+    --ink-3:      #8A9284;
+    --rule:       #DCE2D5;
+    --rule-soft:  #E9EDE4;
+    --herb:       #40602A;
+    --herb-soft:  #E6EEDA;
+    --yuzu:       #9C6E04;
+    --yuzu-soft:  #F8EFD6;
+    --clay:       #8F4429;
+    --clay-soft:  #F6E5DE;
+    --shadow:     0 1px 2px rgba(27,33,26,.05), 0 8px 24px -16px rgba(27,33,26,.22);
+    --focus:      #2F6F3E;
+
+    --f-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+    --f-body:    "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --f-mono:    "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:     #14180F;
+      --card:      #1D2218;
+      --card-sunk: #191E14;
+      --ink:       #E9EDE3;
+      --ink-2:     #A7B29D;
+      --ink-3:     #77826D;
+      --rule:      #2F3728;
+      --rule-soft: #262D20;
+      --herb:      #9CC072;
+      --herb-soft: #26311B;
+      --yuzu:      #E0B24C;
+      --yuzu-soft: #322913;
+      --clay:      #D08768;
+      --clay-soft: #35211A;
+      --shadow:    0 1px 2px rgba(0,0,0,.3), 0 8px 24px -16px rgba(0,0,0,.6);
+      --focus:     #9CC072;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:     #14180F;
+    --card:      #1D2218;
+    --card-sunk: #191E14;
+    --ink:       #E9EDE3;
+    --ink-2:     #A7B29D;
+    --ink-3:     #77826D;
+    --rule:      #2F3728;
+    --rule-soft: #262D20;
+    --herb:      #9CC072;
+    --herb-soft: #26311B;
+    --yuzu:      #E0B24C;
+    --yuzu-soft: #322913;
+    --clay:      #D08768;
+    --clay-soft: #35211A;
+    --shadow:    0 1px 2px rgba(0,0,0,.3), 0 8px 24px -16px rgba(0,0,0,.6);
+    --focus:     #9CC072;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 16px/1.55 var(--f-body);
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 42rem; margin: 0 auto; padding: 0 1.15rem 4rem; }
+
+  /* ---- masthead ---- */
+  .masthead { padding: 2.1rem 0 1.15rem; }
+  .eyebrow {
+    font: 500 .68rem/1 var(--f-mono);
+    letter-spacing: .13em; text-transform: uppercase;
+    color: var(--herb);
+  }
+  h1 {
+    font: 700 clamp(2rem, 8vw, 2.9rem)/1.05 var(--f-display);
+    font-variation-settings: "opsz" 120;
+    margin: .5rem 0 0; letter-spacing: -.015em; text-wrap: balance;
+  }
+  .strapline { color: var(--ink-2); margin: .5rem 0 0; max-width: 34rem; }
+
+  /* the receipt tally under the title */
+  .tally {
+    display: flex; flex-wrap: wrap; gap: .35rem 1.4rem;
+    margin-top: 1.1rem; padding-top: .85rem;
+    border-top: 1.5px solid var(--ink);
+    font: 500 .8rem/1.4 var(--f-mono);
+    font-variant-numeric: tabular-nums;
+  }
+  .tally b { color: var(--ink); font-weight: 600; }
+  .tally span { color: var(--ink-3); }
+
+  /* ---- tabs ---- */
+  .tabs {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; gap: .1rem;
+    margin: 1.4rem 0 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    padding-top: .3rem;
+  }
+  .tab {
+    flex: 1; appearance: none; border: 0; background: none; cursor: pointer;
+    padding: .8rem .3rem .65rem;
+    font: 500 .78rem/1 var(--f-mono);
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink-3);
+    border-bottom: 2.5px solid transparent;
+    margin-bottom: -1px;
+    transition: color .15s;
+  }
+  .tab:hover { color: var(--ink-2); }
+  .tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--herb); }
+
+  /* ---- controls ---- */
+  .controls { padding: 1.25rem 0 .3rem; display: flex; flex-direction: column; gap: .95rem; }
+  .ctl-label {
+    font: 500 .66rem/1 var(--f-mono);
+    letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
+    display: block; margin-bottom: .45rem;
+  }
+  .seg { display: flex; border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+  .seg button {
+    flex: 1; appearance: none; border: 0; cursor: pointer;
+    background: var(--card); color: var(--ink-2);
+    padding: .55rem .4rem;
+    font: 500 .78rem/1.2 var(--f-body);
+    border-right: 1px solid var(--rule);
+    transition: background .15s, color .15s;
+  }
+  .seg button:last-child { border-right: 0; }
+  .seg button:hover { background: var(--card-sunk); }
+  .seg button[aria-pressed="true"] { background: var(--herb); color: var(--card); }
+
+  .slider-row { display: flex; align-items: center; gap: .8rem; }
+  input[type=range] { flex: 1; accent-color: var(--herb); height: 1.6rem; }
+  .slider-val {
+    font: 600 .82rem/1 var(--f-mono); color: var(--ink);
+    font-variant-numeric: tabular-nums; min-width: 5.4rem; text-align: right;
+  }
+
+  details.chipbox { border: 1px solid var(--rule); border-radius: 3px; background: var(--card); }
+  details.chipbox > summary {
+    cursor: pointer; list-style: none; padding: .6rem .75rem;
+    font: 500 .78rem/1.2 var(--f-body); color: var(--ink-2);
+    display: flex; justify-content: space-between; align-items: center; gap: .5rem;
+  }
+  details.chipbox > summary::-webkit-details-marker { display: none; }
+  details.chipbox > summary::after { content: "+"; font: 500 1rem/1 var(--f-mono); color: var(--ink-3); }
+  details.chipbox[open] > summary::after { content: "–"; }
+  .chips { display: flex; flex-wrap: wrap; gap: .35rem; padding: 0 .75rem .75rem; }
+  .chip {
+    appearance: none; cursor: pointer;
+    border: 1px solid var(--rule); border-radius: 100px; background: var(--card-sunk);
+    color: var(--ink-2); padding: .32rem .68rem;
+    font: 400 .78rem/1.3 var(--f-body);
+    transition: background .12s, color .12s, border-color .12s;
+  }
+  .chip:hover { border-color: var(--ink-3); }
+  .chip[aria-pressed="true"] {
+    background: var(--herb-soft); border-color: var(--herb); color: var(--herb); font-weight: 500;
+  }
+
+  .active-filters {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+    font: 400 .8rem/1.4 var(--f-body); color: var(--ink-2);
+    padding: .1rem 0 .2rem;
+  }
+  .linkbtn {
+    appearance: none; border: 0; background: none; cursor: pointer; padding: 0;
+    font: 500 .8rem/1.4 var(--f-body); color: var(--herb);
+    text-decoration: underline; text-underline-offset: 2px;
+  }
+
+  /* ---- group headings ---- */
+  .group-head {
+    display: flex; align-items: baseline; gap: .6rem;
+    margin: 1.9rem 0 .7rem;
+  }
+  .group-head:first-of-type { margin-top: 1.1rem; }
+  .group-head h2 {
+    margin: 0;
+    font: 500 .72rem/1 var(--f-mono);
+    letter-spacing: .14em; text-transform: uppercase; color: var(--ink);
+    white-space: nowrap;
+  }
+  .leader { flex: 1; border-bottom: 1px dotted var(--rule); transform: translateY(-.22em); }
+  .group-count { font: 400 .72rem/1 var(--f-mono); color: var(--ink-3); }
+
+  /* ---- meal / recipe cards ---- */
+  .cards { display: flex; flex-direction: column; gap: .7rem; }
+  .card {
+    background: var(--card); border: 1px solid var(--rule); border-radius: 4px;
+    box-shadow: var(--shadow); overflow: hidden;
+  }
+  .card.is-lunch { background: var(--card-sunk); }
+  .card-top {
+    display: flex; align-items: baseline; gap: .55rem;
+    padding: .8rem .95rem .1rem;
+    font: 500 .7rem/1.2 var(--f-mono);
+    letter-spacing: .1em; text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+  }
+  .card-day { color: var(--herb); white-space: nowrap; }
+  .card-slot { color: var(--ink-3); }
+  .card-time { color: var(--yuzu); white-space: nowrap; }
+  .card-body { padding: .1rem .95rem 1rem; }
+  .card h3 {
+    margin: .3rem 0 .1rem;
+    font: 600 1.28rem/1.2 var(--f-display);
+    font-variation-settings: "opsz" 36;
+    letter-spacing: -.01em; text-wrap: balance;
+  }
+  .card-meta {
+    font: 400 .76rem/1.4 var(--f-mono); color: var(--ink-3);
+    margin-bottom: .5rem;
+  }
+  .card-short { margin: 0 0 .7rem; color: var(--ink-2); font-size: .93rem; }
+  .card-note {
+    margin: 0 0 .7rem; padding: .5rem .65rem;
+    background: var(--herb-soft); border-radius: 3px;
+    font-size: .86rem; color: var(--ink-2);
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: .3rem; margin-bottom: .75rem; }
+  .tag {
+    font: 500 .68rem/1 var(--f-mono); letter-spacing: .05em;
+    padding: .3rem .5rem; border-radius: 2px;
+    background: var(--rule-soft); color: var(--ink-2);
+  }
+  .tag.is-batch { background: var(--herb-soft); color: var(--herb); }
+  .tag.is-fast  { background: var(--yuzu-soft); color: var(--yuzu); }
+
+  .expand {
+    appearance: none; width: 100%; cursor: pointer; text-align: left;
+    border: 1px solid var(--rule); border-radius: 3px; background: var(--card-sunk);
+    color: var(--ink-2); padding: .52rem .7rem;
+    font: 500 .8rem/1.2 var(--f-body);
+    display: flex; justify-content: space-between; align-items: center;
+    transition: background .13s;
+  }
+  .expand:hover { background: var(--rule-soft); }
+  .expand .caret { font: 400 .8rem/1 var(--f-mono); color: var(--ink-3); }
+
+  .drawer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .22s ease; }
+  .drawer > div { overflow: hidden; }
+  .card.open .drawer { grid-template-rows: 1fr; }
+  @media (prefers-reduced-motion: reduce) { .drawer { transition: none; } }
+
+  .drawer-inner { padding-top: 1rem; }
+  .sub {
+    font: 500 .66rem/1 var(--f-mono); letter-spacing: .13em; text-transform: uppercase;
+    color: var(--ink-3); margin: 0 0 .55rem;
+  }
+  .ing { list-style: none; margin: 0 0 1.2rem; padding: 0; }
+  .ing li { padding: .3rem 0; border-bottom: 1px dotted var(--rule); }
+  .ing li:last-child { border-bottom: 0; }
+  .ing-row { display: flex; align-items: baseline; gap: .5rem; }
+  .ing-name { font-size: .92rem; }
+  .ing-qty {
+    font: 500 .8rem/1.4 var(--f-mono); color: var(--ink-2);
+    font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .ing-product { font: 400 .72rem/1.4 var(--f-mono); color: var(--ink-3); margin-top: .05rem; }
+  .flag {
+    font: 500 .62rem/1 var(--f-mono); letter-spacing: .07em; text-transform: uppercase;
+    padding: .2rem .35rem; border-radius: 2px; margin-left: .35rem;
+    background: var(--yuzu-soft); color: var(--yuzu); white-space: nowrap;
+  }
+  .flag.pantry { background: var(--rule-soft); color: var(--ink-3); }
+
+  ol.steps { margin: 0; padding: 0; list-style: none; counter-reset: s; }
+  ol.steps li {
+    counter-increment: s; position: relative;
+    padding: 0 0 .85rem 2.1rem; font-size: .93rem; color: var(--ink-2);
+  }
+  ol.steps li::before {
+    content: counter(s); position: absolute; left: 0; top: .05rem;
+    font: 600 .72rem/1.55rem var(--f-mono); color: var(--herb);
+    width: 1.55rem; height: 1.55rem; text-align: center;
+    background: var(--herb-soft); border-radius: 100px;
+  }
+  ol.steps li:last-child { padding-bottom: 0; }
+
+  /* ---- shopping ---- */
+  .meter { margin: 1.3rem 0 .4rem; }
+  .meter-bar {
+    height: 8px; border-radius: 100px; background: var(--rule-soft);
+    overflow: hidden; border: 1px solid var(--rule);
+  }
+  .meter-fill { height: 100%; background: var(--herb); }
+  .meter-fill.over { background: var(--clay); }
+  .meter-row {
+    display: flex; justify-content: space-between; gap: 1rem; margin-top: .5rem;
+    font: 500 .78rem/1.4 var(--f-mono); font-variant-numeric: tabular-nums; color: var(--ink-2);
+  }
+  .shop-sec { margin-top: 1.7rem; }
+  .shop-list { list-style: none; margin: .55rem 0 0; padding: 0; }
+  .shop-list li { padding: .5rem 0; border-bottom: 1px dotted var(--rule); }
+  .shop-line { display: flex; align-items: baseline; gap: .45rem; }
+  .shop-name { font-size: .9rem; }
+  .shop-dots { flex: 1; border-bottom: 1px dotted var(--rule); transform: translateY(-.25em); min-width: 1rem; }
+  .shop-cost {
+    font: 600 .84rem/1.4 var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .shop-sub {
+    font: 400 .73rem/1.45 var(--f-mono); color: var(--ink-3); margin-top: .1rem;
+    display: flex; flex-wrap: wrap; gap: .1rem .6rem;
+  }
+  .shop-total {
+    display: flex; justify-content: space-between; gap: 1rem;
+    margin-top: 1.5rem; padding-top: .8rem; border-top: 1.5px solid var(--ink);
+    font: 600 1rem/1.3 var(--f-mono); font-variant-numeric: tabular-nums;
+  }
+
+  .search {
+    width: 100%; padding: .6rem .75rem;
+    border: 1px solid var(--rule); border-radius: 3px;
+    background: var(--card); color: var(--ink);
+    font: 400 .92rem/1.3 var(--f-body);
+  }
+  .search::placeholder { color: var(--ink-3); }
+
+  .served { font: 400 .73rem/1.4 var(--f-mono); color: var(--ink-3); margin-top: .5rem; }
+  .empty {
+    text-align: center; padding: 3rem 1rem; color: var(--ink-3);
+    font-size: .95rem; border: 1px dashed var(--rule); border-radius: 4px; margin-top: 1.2rem;
+  }
+  .foot {
+    margin-top: 2.8rem; padding-top: 1rem; border-top: 1px solid var(--rule);
+    font: 400 .74rem/1.6 var(--f-mono); color: var(--ink-3);
+  }
+  [hidden] { display: none !important; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 2px; }
+</style>
+<style>
+  /* ---- additions for the app: sync, swap, toolbar ---- */
+  .syncline {
+    display: flex; align-items: center; gap: .45rem;
+    font: 400 .72rem/1.4 var(--f-mono); color: var(--ink-3);
+    margin-top: .6rem;
+  }
+  .dot { width: .5rem; height: .5rem; border-radius: 100px; background: var(--ink-3); flex: none; }
+  .dot.live { background: var(--herb); }
+  .dot.off  { background: var(--yuzu); }
+
+  .toolbar { display: flex; gap: .4rem; flex-wrap: wrap; }
+  .btn {
+    appearance: none; cursor: pointer;
+    border: 1px solid var(--rule); border-radius: 3px; background: var(--card);
+    color: var(--ink-2); padding: .5rem .7rem;
+    font: 500 .78rem/1.2 var(--f-body);
+    transition: background .13s, border-color .13s;
+  }
+  .btn:hover { background: var(--card-sunk); border-color: var(--ink-3); }
+  .btn.primary { background: var(--herb); border-color: var(--herb); color: var(--card); }
+  .btn.primary:hover { filter: brightness(1.08); background: var(--herb); }
+  .btn:disabled { opacity: .5; cursor: default; }
+
+  .card-actions { display: flex; gap: .4rem; margin-top: .1rem; }
+  .card-actions .expand { flex: 1; }
+  .swapbtn { white-space: nowrap; }
+
+  .tag.is-pack { background: var(--clay-soft); color: var(--clay); }
+  .packnote {
+    margin: 0 0 .7rem; padding: .5rem .65rem;
+    background: var(--clay-soft); border-radius: 3px;
+    font-size: .86rem; color: var(--ink-2);
+  }
+  .swapped {
+    font: 500 .66rem/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase;
+    color: var(--yuzu);
+  }
+
+  /* ---- swap sheet ---- */
+  dialog.sheet {
+    border: 0; padding: 0; background: transparent;
+    width: min(34rem, 100vw); max-width: 100vw;
+    margin: auto auto 0; /* bottom sheet on phones */
+  }
+  dialog.sheet::backdrop { background: rgba(10, 14, 8, .55); }
+  .sheet-inner {
+    background: var(--card); color: var(--ink);
+    border: 1px solid var(--rule); border-radius: 8px 8px 0 0;
+    padding: 1.1rem 1.1rem 1.4rem;
+    max-height: 86vh; overflow-y: auto;
+  }
+  @media (min-width: 40rem) {
+    dialog.sheet { margin: auto; }
+    .sheet-inner { border-radius: 6px; }
+  }
+  .sheet-head { display: flex; align-items: baseline; gap: .6rem; margin-bottom: .3rem; }
+  .sheet-head h2 {
+    margin: 0; font: 600 1.15rem/1.2 var(--f-display); font-variation-settings: "opsz" 36;
+  }
+  .sheet-sub { font: 400 .78rem/1.4 var(--f-mono); color: var(--ink-3); margin-bottom: .9rem; }
+  .alts { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .9rem; }
+  .alt {
+    appearance: none; cursor: pointer; text-align: left; width: 100%;
+    border: 1px solid var(--rule); border-radius: 3px; background: var(--card-sunk);
+    padding: .6rem .7rem; color: var(--ink);
+    display: flex; align-items: baseline; gap: .5rem;
+    transition: border-color .12s, background .12s;
+  }
+  .alt:hover { border-color: var(--herb); background: var(--herb-soft); }
+  .alt-name { font: 500 .93rem/1.3 var(--f-body); }
+  .alt-meta { font: 400 .74rem/1.3 var(--f-mono); color: var(--ink-3); white-space: nowrap; }
+  .sheet-foot { display: flex; gap: .4rem; flex-wrap: wrap; }
+  .genstate {
+    font: 400 .8rem/1.5 var(--f-body); color: var(--ink-2);
+    padding: .7rem; background: var(--herb-soft); border-radius: 3px; margin-bottom: .7rem;
+  }
+  .genstate.err { background: var(--clay-soft); color: var(--clay); }
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="eyebrow" id="store-line"></div>
+    <h1 id="week-title"></h1>
+    <p class="strapline" id="strapline"></p>
+    <div class="tally" id="tally"></div>
+    <div class="syncline"><span class="dot" id="sync-dot"></span><span id="sync-text">Connecting…</span></div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button class="tab" role="tab" id="tab-week"    aria-controls="panel-week"    aria-selected="true">Week</button>
+    <button class="tab" role="tab" id="tab-recipes" aria-controls="panel-recipes" aria-selected="false">Recipes</button>
+    <button class="tab" role="tab" id="tab-shop"    aria-controls="panel-shop"    aria-selected="false">Shopping</button>
+  </nav>
+
+  <section id="panel-week" role="tabpanel" aria-labelledby="tab-week">
+    <div class="controls">
+      <div>
+        <span class="ctl-label">Order by</span>
+        <div class="seg" id="orderby">
+          <button data-v="day" aria-pressed="true">Day</button>
+          <button data-v="time" aria-pressed="false">Quickest first</button>
+          <button data-v="cuisine" aria-pressed="false">Cuisine</button>
+        </div>
+      </div>
+      <div>
+        <span class="ctl-label">Show</span>
+        <div class="seg" id="slotfilter">
+          <button data-v="all" aria-pressed="true">Everything</button>
+          <button data-v="dinner" aria-pressed="false">Dinners</button>
+          <button data-v="lunch" aria-pressed="false">Lunches</button>
+        </div>
+      </div>
+      <div>
+        <span class="ctl-label">Time I have</span>
+        <div class="slider-row">
+          <input type="range" id="timemax" min="10" max="60" step="5" value="60" aria-label="Maximum total time in minutes">
+          <span class="slider-val" id="timeval">any</span>
+        </div>
+      </div>
+      <details class="chipbox" id="ingbox">
+        <summary>Filter by ingredient</summary>
+        <div class="chips" id="ingchips"></div>
+      </details>
+      <div class="active-filters">
+        <span id="week-count"></span>
+        <button class="linkbtn" id="week-clear" hidden>Clear filters</button>
+      </div>
+      <div class="toolbar">
+        <button class="btn" id="shuffle">Shuffle the week</button>
+        <button class="btn" id="resetweek" hidden>Back to the planned week</button>
+      </div>
+    </div>
+    <div id="week-out"></div>
+  </section>
+
+  <section id="panel-recipes" role="tabpanel" aria-labelledby="tab-recipes" hidden>
+    <div class="controls">
+      <input class="search" id="rsearch" type="search" placeholder="Search dishes, ingredients, methods…" aria-label="Search recipes">
+      <div>
+        <span class="ctl-label">Course</span>
+        <div class="seg" id="rslot">
+          <button data-v="all" aria-pressed="true">All</button>
+          <button data-v="dinner" aria-pressed="false">Dinners</button>
+          <button data-v="lunch" aria-pressed="false">Lunches</button>
+        </div>
+      </div>
+      <div>
+        <span class="ctl-label">Cuisine</span>
+        <div class="chips" id="rcuisine" style="padding:0"></div>
+      </div>
+      <div class="active-filters">
+        <span id="rec-count"></span>
+        <button class="linkbtn" id="rec-clear" hidden>Clear filters</button>
+      </div>
+    </div>
+    <div id="rec-out"></div>
+  </section>
+
+  <section id="panel-shop" role="tabpanel" aria-labelledby="tab-shop" hidden>
+    <div id="shop-out"></div>
+  </section>
+
+  <footer class="foot" id="foot"></footer>
+</div>
+
+<dialog class="sheet" id="sheet">
+  <div class="sheet-inner">
+    <div class="sheet-head"><h2 id="sheet-title">Swap</h2></div>
+    <div class="sheet-sub" id="sheet-sub"></div>
+    <div id="gen-state"></div>
+    <div class="alts" id="sheet-alts"></div>
+    <div class="sheet-foot">
+      <button class="btn primary" id="gen-btn" hidden>Something else entirely</button>
+      <button class="btn" id="sheet-restore" hidden>Put the original back</button>
+      <button class="btn" id="sheet-close">Close</button>
+    </div>
+  </div>
+</dialog>
+<script>
+const DATA = {"recipes":{"curry-coco-poulet":{"title":"Coconut chicken curry","cuisine":"thai","slot":"dinner","kind":"recipe","prepMinutes":15,"cookMinutes":35,"serves":4,"tags":["batch cook","no chilli","dairy-free"],"short":"Brown the thighs, soften the aromatics, simmer it all in coconut milk for half an hour. Makes enough for three meals.","ingredients":[{"item":"chicken thighs","qty":"1 kg (4 pieces)","product":"Volaé, une marque Intermarché Cuisse de poulet jaune x4","buy":{"amount":1,"mode":"sum","section":"Proteins"}},{"item":"coconut milk","qty":"2 tins (800 ml)","product":"Lait de coco","guess":true,"buy":{"amount":2,"mode":"sum","section":"Best guesses","price":2.5}},{"item":"onion","qty":"2 medium","product":"Le Choix du Primeur Oignons JAUNES","buy":{"amount":0.3,"mode":"sum","section":"Vegetables"}},{"item":"garlic","qty":"4 cloves","product":"Le Choix du Primeur Ail BLANC","buy":{"amount":0.1,"mode":"once","section":"Vegetables"}},{"item":"ginger","qty":"a thumb, grated","product":"Gingembre frais","guess":true,"buy":{"amount":1,"mode":"once","section":"Best guesses","price":1.5}},{"item":"carrot","qty":"2, in coins","product":"Le Choix du Primeur Carottes","buy":{"amount":0.2,"mode":"sum","section":"Vegetables"}},{"item":"red pepper","qty":"1, in strips","product":"Le Choix du Primeur Poivron ROUGE","buy":{"amount":0.2,"mode":"sum","section":"Vegetables"}},{"item":"soy sauce","qty":"2 tbsp","product":"Kikkoman Sauce soja salée","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"coriander","qty":"half a bunch","product":"Le Choix du Primeur Coriandre","buy":{"amount":1,"mode":"once","section":"Vegetables"}},{"item":"lemon","qty":"half, juiced","product":"Le Choix du Primeur Citrons JAUNES","buy":{"amount":0.28,"mode":"once","section":"Vegetables"}},{"item":"basmati rice","qty":"to serve","product":"Taureau Ailé Riz Basmati","buy":{"amount":1,"mode":"once","section":"Store cupboard"}}],"steps":["Pat the thighs dry and season. Brown them skin-down in a dry casserole over medium-high heat, 6 minutes, until the skin releases easily. Turn, 3 minutes more, then lift out.","Pour off all but a spoonful of the fat. Soften the sliced onion in it for 5 minutes without letting it colour.","Add the garlic and grated ginger, 1 minute, until it smells like the inside of a good takeaway.","Return the chicken. Pour in both tins of coconut milk and the soy. Bring to a bare simmer — do not let it boil hard or the coconut splits.","Lid on, 20 minutes. Add the carrot coins, 10 minutes more. Add the pepper strips for the last 5 so they keep some bite.","Off the heat, squeeze in the lemon and stir through most of the coriander. Taste for salt.","Serve a third over basmati. The rest is another dinner and a lunch — cool it uncovered before it goes in the fridge."]},"boeuf-poivrons":{"title":"Beef and green pepper stir-fry","cuisine":"chinese","slot":"dinner","kind":"recipe","prepMinutes":8,"cookMinutes":12,"serves":2,"tags":["fast","no chilli","dairy-free"],"short":"Get the pan properly hot, brown the mince hard without stirring, then peppers, then both soys.","ingredients":[{"item":"beef mince","qty":"350 g","product":"Jean Rozé, une marque Intermarché Viande hachée vrac pur BŒUF 5% MG","buy":{"amount":1,"mode":"sum","section":"Proteins"}},{"item":"green pepper","qty":"2, in squares","product":"Le Choix du Primeur Poivrons VERTS","buy":{"amount":0.4,"mode":"sum","section":"Vegetables"}},{"item":"onion","qty":"1, in wedges","product":"Le Choix du Primeur Oignons JAUNES","buy":{"amount":0.15,"mode":"sum","section":"Vegetables"}},{"item":"garlic","qty":"3 cloves, sliced","product":"Le Choix du Primeur Ail BLANC","buy":{"amount":0.1,"mode":"once","section":"Vegetables"}},{"item":"ginger","qty":"a thumb, matchsticked","product":"Gingembre frais","guess":true,"buy":{"amount":1,"mode":"once","section":"Best guesses","price":1.5}},{"item":"soy sauce","qty":"2 tbsp","product":"Kikkoman Sauce soja salée","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"sweet soy","qty":"1 tbsp","product":"Itinéraire des Saveurs, une marque Intermarché Saveur d'Asie - Sauce soja sucrée","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"basmati rice","qty":"to serve","product":"Taureau Ailé Riz Basmati","buy":{"amount":1,"mode":"once","section":"Store cupboard"}}],"steps":["Start the rice first — everything else takes twelve minutes and will not wait for it.","Get a wide pan very hot with a little oil. Add the mince, then leave it alone for 3 minutes. Resisting the urge to stir is the whole dish; that dark crust is the flavour.","Break it up, another 2 minutes, then push it to one side of the pan.","Onion wedges into the clear side, 2 minutes. Garlic and ginger, 30 seconds.","Peppers in, toss everything together, 3 minutes — they should still squeak.","Both soys down the hot side of the pan so they sizzle and catch, toss once, off the heat."]},"yakisoba-dinde":{"title":"Turkey yakisoba","cuisine":"japanese","slot":"dinner","kind":"recipe","prepMinutes":10,"cookMinutes":15,"serves":2,"tags":["fast","no chilli","dairy-free"],"short":"Sear the turkey, steam the broccoli bright green, then fold the precooked ramen through soy and sweet soy.","ingredients":[{"item":"turkey escalope","qty":"260 g, sliced thin","product":"Le Gaulois Escalope de dinde","buy":{"amount":0.26,"mode":"sum","section":"Proteins"}},{"item":"ramen noodles","qty":"1 pack","product":"Tanoshi Nouilles japonaises précuites Ramen assaisonnement bœuf","buy":{"amount":1,"mode":"sum","section":"Store cupboard"}},{"item":"broccoli","qty":"half a head","product":"Le Choix du Primeur Brocolis","buy":{"amount":0.25,"mode":"sum","section":"Vegetables"}},{"item":"carrot","qty":"1, ribboned","product":"Le Choix du Primeur Carottes","buy":{"amount":0.1,"mode":"sum","section":"Vegetables"}},{"item":"onion","qty":"half, sliced","product":"Le Choix du Primeur Oignons JAUNES","buy":{"amount":0.08,"mode":"sum","section":"Vegetables"}},{"item":"garlic","qty":"2 cloves","product":"Le Choix du Primeur Ail BLANC","buy":{"amount":0.1,"mode":"once","section":"Vegetables"}},{"item":"soy sauce","qty":"2 tbsp","product":"Kikkoman Sauce soja salée","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"sweet soy","qty":"1 tbsp","product":"Itinéraire des Saveurs, une marque Intermarché Saveur d'Asie - Sauce soja sucrée","buy":{"amount":1,"mode":"once","section":"Store cupboard"}}],"steps":["Slice the turkey across the grain as thinly as you can manage — it cooks in about ninety seconds that way and stays tender.","Very hot pan, oil, turkey in a single layer. 90 seconds a side, then out onto a plate. It finishes later; do not cook it through now.","Same pan: onion 2 minutes, then broccoli florets and a splash of water, lid on, 3 minutes to steam them bright green.","Lid off, carrot ribbons and garlic, 1 minute.","Loosen the noodles under the tap and add them with their sachet, plus the turkey and any juices.","Both soys, then toss hard for 2 minutes until everything is glossy."]},"donburi-teriyaki":{"title":"Chicken teriyaki donburi","cuisine":"japanese","slot":"dinner","kind":"recipe","prepMinutes":10,"cookMinutes":15,"serves":2,"tags":["fast","no chilli","uses eggs"],"short":"Chicken glazed in yakitori sauce over rice, with a soft egg broken across the top.","ingredients":[{"item":"chicken","qty":"220 g aiguillettes","product":"La Nouvelle Agriculture Aiguillette de poulet","buy":{"amount":0.22,"mode":"sum","section":"Proteins"}},{"item":"egg","qty":"2","product":"already in the fridge","pantry":true},{"item":"yakitori sauce","qty":"4 tbsp","product":"Itinéraire des Saveurs, une marque Intermarché Sauce Yakitori assaisonnement à base de sauce soja, saké et mirin","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"basmati rice","qty":"2 portions","product":"Taureau Ailé Riz Basmati","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"broccoli","qty":"a few florets","product":"Le Choix du Primeur Brocolis","buy":{"amount":0.12,"mode":"sum","section":"Vegetables"}},{"item":"nori","qty":"1 sheet, snipped","product":"Tanoshi Feuilles d'algues nori grillées pour sushi","buy":{"amount":1,"mode":"once","section":"Store cupboard"}}],"steps":["Rice on. Bring a small pan of water to the boil for the eggs.","Six-and-a-half-minute eggs: from the fridge into boiling water, then into cold. The yolk should still be liquid at the centre.","Meanwhile, hot pan, chicken in a single layer, 3 minutes without moving it, turn, 2 minutes.","Pour in the yakitori sauce. It thickens fast — turn the chicken through it for a minute until lacquered, then off before the sugar catches.","Blanch the broccoli in the egg water for 2 minutes.","Rice into deep bowls, chicken and all the pan sauce over, broccoli alongside. Halve the eggs on top, scatter the nori."]},"gyoza-brocoli":{"title":"Gyoza with garlic-ginger broccoli","cuisine":"japanese","slot":"dinner","kind":"assembly","prepMinutes":5,"cookMinutes":12,"serves":2,"tags":["fast","no chilli","from the freezer"],"packNote":"The gyoza are shop-bought and cook straight from frozen — follow the pack, roughly 3 minutes in oil, 5 under a lid with a splash of water, 2 more with the lid off. There is no recipe to give you for that.","short":"A no-cooking night. The gyoza come from a packet; the only real cooking is the broccoli beside them.","ingredients":[{"item":"gyoza","qty":"1 pack (400 g)","product":"Ajinomoto Gyoza poulet et légumes raviolis à poêler","buy":{"amount":1,"mode":"sum","section":"Proteins"}},{"item":"broccoli","qty":"half a head","product":"Le Choix du Primeur Brocolis","buy":{"amount":0.25,"mode":"sum","section":"Vegetables"}},{"item":"garlic","qty":"3 cloves, sliced","product":"Le Choix du Primeur Ail BLANC","buy":{"amount":0.1,"mode":"once","section":"Vegetables"}},{"item":"ginger","qty":"a thumb, matchsticked","product":"Gingembre frais","guess":true,"buy":{"amount":1,"mode":"once","section":"Best guesses","price":1.5}},{"item":"soy sauce","qty":"for dipping","product":"Kikkoman Sauce soja salée","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"lemon","qty":"a wedge","product":"Le Choix du Primeur Citrons JAUNES","buy":{"amount":0.28,"mode":"once","section":"Vegetables"}},{"item":"basmati rice","qty":"to serve","product":"Taureau Ailé Riz Basmati","buy":{"amount":1,"mode":"once","section":"Store cupboard"}}],"steps":["The broccoli, which is the part worth doing properly: cut it into florets and get a pan hot with a film of oil.","Florets in, cut face down, and leave them 2 minutes to char in patches. That browning is the whole point of cooking broccoli in a pan rather than boiling it.","Add the sliced garlic, the ginger and a splash of water, clamp a lid on, 3 minutes.","Lid off, a squeeze of lemon, and let any remaining water go.","Serve with the gyoza and rice, soy for dipping."]},"porc-soja-gingembre":{"title":"Sweet soy and ginger pork chops","cuisine":"chinese","slot":"dinner","kind":"recipe","prepMinutes":10,"cookMinutes":20,"serves":2,"tags":["no chilli","dairy-free"],"short":"Marinate the chops while the rice cooks, sear them hard, then finish them in the reduced marinade.","ingredients":[{"item":"pork chops","qty":"2 of the 4-pack","product":"Terroirs, une marque Intermarché Côtes de PORC","buy":{"amount":1,"mode":"sum","section":"Proteins"}},{"item":"sweet soy","qty":"3 tbsp","product":"Itinéraire des Saveurs, une marque Intermarché Saveur d'Asie - Sauce soja sucrée","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"soy sauce","qty":"1 tbsp","product":"Kikkoman Sauce soja salée","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"ginger","qty":"a thumb, grated","product":"Gingembre frais","guess":true,"buy":{"amount":1,"mode":"once","section":"Best guesses","price":1.5}},{"item":"garlic","qty":"2 cloves, crushed","product":"Le Choix du Primeur Ail BLANC","buy":{"amount":0.1,"mode":"once","section":"Vegetables"}},{"item":"red pepper","qty":"1, in strips","product":"Le Choix du Primeur Poivron ROUGE","buy":{"amount":0.2,"mode":"sum","section":"Vegetables"}},{"item":"onion","qty":"1, in wedges","product":"Le Choix du Primeur Oignons JAUNES","buy":{"amount":0.15,"mode":"sum","section":"Vegetables"}},{"item":"basmati rice","qty":"to serve","product":"Taureau Ailé Riz Basmati","buy":{"amount":1,"mode":"once","section":"Store cupboard"}}],"steps":["Mix both soys, the grated ginger and the crushed garlic in a shallow dish. Turn the chops through it and leave them while the rice cooks — 20 minutes is plenty, and much longer makes the surface too sweet to sear cleanly.","Lift the chops out and scrape the marinade back into the dish. Keep it.","Very hot pan, a little oil. Chops in, 4 minutes without touching them, until deeply browned. Turn, 3 minutes.","Out onto a warm plate to rest.","Same pan, heat down: onion and pepper, 4 minutes, scraping up everything stuck to the base.","Pour in the reserved marinade and 3 tbsp water. Bubble 2 minutes until syrupy.","Chops back in with any resting juices, turn once to coat, serve over rice."]},"riz-saute-lardons":{"title":"Egg fried rice with lardons","cuisine":"chinese","slot":"dinner","kind":"recipe","prepMinutes":8,"cookMinutes":12,"serves":2,"tags":["fast","no chilli","uses eggs"],"short":"Yesterday's rice, a very hot pan, lardons for fat and salt, egg scrambled through at the end.","ingredients":[{"item":"basmati rice","qty":"400 g cooked, cold","product":"Taureau Ailé Riz Basmati","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"lardons","qty":"150 g","product":"Herta Lardons nature","buy":{"amount":1,"mode":"sum","section":"Proteins"}},{"item":"egg","qty":"3","product":"already in the fridge","pantry":true},{"item":"carrot","qty":"1, diced small","product":"Le Choix du Primeur Carottes","buy":{"amount":0.1,"mode":"sum","section":"Vegetables"}},{"item":"onion","qty":"1, diced","product":"Le Choix du Primeur Oignons JAUNES","buy":{"amount":0.15,"mode":"sum","section":"Vegetables"}},{"item":"garlic","qty":"2 cloves","product":"Le Choix du Primeur Ail BLANC","buy":{"amount":0.1,"mode":"once","section":"Vegetables"}},{"item":"soy sauce","qty":"2 tbsp","product":"Kikkoman Sauce soja salée","buy":{"amount":1,"mode":"once","section":"Store cupboard"}}],"steps":["Cold rice is not a suggestion. Warm rice steams and clumps; if you have not got leftovers, cook it an hour ahead and spread it on a tray to cool.","Lardons into a cold wide pan, heat to medium. Let the fat render out for 4 minutes until they are golden, then lift them out and leave the fat behind.","Carrot and onion into that fat, 4 minutes on high. Garlic, 30 seconds.","Rice in, breaking up the clumps with the back of a spatula. Spread it out and leave it a full minute at a time so it toasts rather than steams — 4 minutes in total.","Push everything aside, beat the eggs into the clear space, let them set for 20 seconds, then fold them through.","Lardons back in, soy round the edge of the pan, one more toss."]},"poulet-citron-gingembre":{"title":"Lemon and ginger chicken","cuisine":"chinese","slot":"dinner","kind":"recipe","prepMinutes":10,"cookMinutes":15,"serves":2,"tags":["fast","no chilli","dairy-free"],"short":"Chicken strips in a sharp lemon-soy glaze that thickens in the pan. Brighter than teriyaki.","ingredients":[{"item":"chicken","qty":"300 g fillet, in strips","product":"Le Gaulois Filet de poulet extra tendre","buy":{"amount":0.3,"mode":"sum","section":"Proteins"}},{"item":"lemon","qty":"2, juice and zest","product":"Le Choix du Primeur Citrons JAUNES","buy":{"amount":0.28,"mode":"once","section":"Vegetables"}},{"item":"ginger","qty":"a large thumb","product":"Gingembre frais","guess":true,"buy":{"amount":1,"mode":"once","section":"Best guesses","price":1.5}},{"item":"garlic","qty":"2 cloves","product":"Le Choix du Primeur Ail BLANC","buy":{"amount":0.1,"mode":"once","section":"Vegetables"}},{"item":"soy sauce","qty":"2 tbsp","product":"Kikkoman Sauce soja salée","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"broccoli","qty":"half a head","product":"Le Choix du Primeur Brocolis","buy":{"amount":0.25,"mode":"sum","section":"Vegetables"}},{"item":"basmati rice","qty":"to serve","product":"Taureau Ailé Riz Basmati","buy":{"amount":1,"mode":"once","section":"Store cupboard"}}],"steps":["Zest both lemons before you juice them — it is the zest, not the juice, that carries the perfume.","Toss the chicken strips with a spoonful of flour and a pinch of salt. The flour is what thickens the sauce later.","Hot pan, oil, chicken in one layer. 3 minutes, turn, 2 minutes, then out.","Ginger and garlic in the same pan, 30 seconds.","Lemon juice, soy, a teaspoon of sugar and 100 ml water. Scrape the base and let it bubble down for 2 minutes until it coats a spoon.","Chicken and zest back in, turn to coat. Broccoli steamed alongside, rice underneath."]},"dahl-lentilles-coco":{"title":"Coconut lentil dahl","cuisine":"indian","slot":"dinner","kind":"recipe","prepMinutes":10,"cookMinutes":25,"serves":4,"tags":["batch cook","no chilli","vegetarian","dairy-free"],"short":"Tinned lentils, coconut milk and warm spices, simmered until it thickens. Mild by design — the warmth is cumin and coriander, never heat.","ingredients":[{"item":"lentils","qty":"2 tins","product":"Saint Eloi, une marque Intermarché Lentilles préparées","buy":{"amount":2,"mode":"sum","section":"Store cupboard"}},{"item":"coconut milk","qty":"1 tin","product":"Lait de coco","guess":true,"buy":{"amount":1,"mode":"sum","section":"Best guesses","price":2.5}},{"item":"onion","qty":"2, finely chopped","product":"Le Choix du Primeur Oignons JAUNES","buy":{"amount":0.3,"mode":"sum","section":"Vegetables"}},{"item":"garlic","qty":"4 cloves","product":"Le Choix du Primeur Ail BLANC","buy":{"amount":0.1,"mode":"once","section":"Vegetables"}},{"item":"ginger","qty":"a thumb","product":"Gingembre frais","guess":true,"buy":{"amount":1,"mode":"once","section":"Best guesses","price":1.5}},{"item":"tomatoes","qty":"3, chopped","product":"Le Choix du Primeur Tomate RONDE en GRAPPE","buy":{"amount":0.35,"mode":"sum","section":"Vegetables"}},{"item":"curry powder","qty":"2 tsp mild","product":"already in the cupboard — the mild tandoori","pantry":true},{"item":"coriander","qty":"a handful","product":"Le Choix du Primeur Coriandre","buy":{"amount":1,"mode":"once","section":"Vegetables"}},{"item":"basmati rice","qty":"to serve","product":"Taureau Ailé Riz Basmati","buy":{"amount":1,"mode":"once","section":"Store cupboard"}}],"steps":["Soften the onion in oil over medium heat for a full 8 minutes. Rushing this is the difference between a dahl that tastes sweet and one that tastes raw.","Garlic, ginger and the curry powder, 1 minute, stirring — the spices need the hot oil to open up.","Tomatoes in, cook them down for 5 minutes until they collapse and the oil separates out at the edges.","Drained lentils and the coconut milk. Simmer uncovered, 12 minutes, stirring now and then so it does not catch.","It should be thick enough to hold a furrow when you drag the spoon through. Loosen with water if it goes past that.","Salt properly — lentils take more than you expect — and stir the coriander through at the end."]},"pho-express-boeuf":{"title":"Quick beef noodle soup","cuisine":"vietnamese","slot":"dinner","kind":"recipe","prepMinutes":10,"cookMinutes":20,"serves":2,"tags":["no chilli","dairy-free"],"short":"A cheat's phở: charred onion and ginger in the broth for twenty minutes, then raw beef cooked by the heat of it in the bowl.","ingredients":[{"item":"beef mince","qty":"250 g, or thin steak","product":"Jean Rozé, une marque Intermarché Viande hachée vrac pur BŒUF 5% MG","buy":{"amount":1,"mode":"sum","section":"Proteins"}},{"item":"rice vermicelli","qty":"160 g","product":"Suzi Wan Vermicelles de riz","buy":{"amount":1,"mode":"sum","section":"Store cupboard"}},{"item":"onion","qty":"1, halved","product":"Le Choix du Primeur Oignons JAUNES","buy":{"amount":0.15,"mode":"sum","section":"Vegetables"}},{"item":"ginger","qty":"a big piece, halved","product":"Gingembre frais","guess":true,"buy":{"amount":1,"mode":"once","section":"Best guesses","price":1.5}},{"item":"soy sauce","qty":"3 tbsp","product":"Kikkoman Sauce soja salée","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"coriander","qty":"a big handful","product":"Le Choix du Primeur Coriandre","buy":{"amount":1,"mode":"once","section":"Vegetables"}},{"item":"lemon","qty":"1, in wedges","product":"Le Choix du Primeur Citrons JAUNES","buy":{"amount":0.28,"mode":"once","section":"Vegetables"}},{"item":"carrot","qty":"1, ribboned","product":"Le Choix du Primeur Carottes","buy":{"amount":0.1,"mode":"sum","section":"Vegetables"}}],"steps":["Char the onion and ginger halves cut-side down in a dry pan for 4 minutes, until properly blackened in patches. This is where the whole flavour of the broth comes from, so let them go further than feels right.","Add 1.2 litres of water, the soy, a cinnamon stick if you have one, and a teaspoon of sugar. Simmer 20 minutes.","Meanwhile soak the vermicelli in just-boiled water for 4 minutes, drain, and divide between two deep bowls.","Brown the beef hard in a separate pan, 4 minutes, and put it on the noodles.","Fish out the onion and ginger. Taste the broth — it should be a little too savoury on its own, because the noodles will flatten it.","Pour the boiling broth over. Carrot ribbons, a mountain of coriander, lemon at the table."]},"aubergines-miso-soja":{"title":"Sticky glazed aubergine","cuisine":"japanese","slot":"dinner","kind":"recipe","prepMinutes":8,"cookMinutes":22,"serves":2,"tags":["no chilli","vegetarian","dairy-free"],"short":"Aubergine roasted until genuinely collapsing, then glazed with sweet soy until it turns lacquered.","ingredients":[{"item":"aubergine","qty":"2, halved and scored","product":"Le Choix du Primeur Aubergines VIOLETTES","buy":{"amount":0.8,"mode":"sum","section":"Vegetables"}},{"item":"sweet soy","qty":"3 tbsp","product":"Itinéraire des Saveurs, une marque Intermarché Saveur d'Asie - Sauce soja sucrée","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"soy sauce","qty":"1 tbsp","product":"Kikkoman Sauce soja salée","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"ginger","qty":"grated","product":"Gingembre frais","guess":true,"buy":{"amount":1,"mode":"once","section":"Best guesses","price":1.5}},{"item":"garlic","qty":"2 cloves","product":"Le Choix du Primeur Ail BLANC","buy":{"amount":0.1,"mode":"once","section":"Vegetables"}},{"item":"egg","qty":"2, soft-boiled","product":"already in the fridge","pantry":true},{"item":"sushi rice","qty":"to serve","product":"Tanoshi Riz pour sushi Japonica","buy":{"amount":1,"mode":"once","section":"Store cupboard"}}],"steps":["Oven to 220°C. Score the cut faces in a diamond pattern, about a centimetre deep, without cutting the skin.","Oil them generously — aubergine drinks it, and underoiled aubergine goes leathery rather than silky — and roast cut-side down for 15 minutes.","Mix the sweet soy, soy, grated ginger and crushed garlic.","Turn the halves over, spoon the glaze into the scored faces, and roast 7 minutes more until the tops are dark and bubbling.","Serve on rice with a soft egg, spooning the pan juices over."]},"gratin-courgettes":{"title":"Courgette and emmental gratin","cuisine":"french","slot":"dinner","kind":"recipe","prepMinutes":15,"cookMinutes":30,"serves":4,"tags":["batch cook","no chilli","vegetarian"],"short":"Courgettes cooked down hard to drive off their water, bound with egg and emmental, baked till the top blisters. No cream.","ingredients":[{"item":"courgette","qty":"1 kg, sliced","product":"Petit prix Courgettes","buy":{"amount":1,"mode":"sum","section":"Vegetables"}},{"item":"emmental","qty":"200 g, grated","product":"Pâturages, une marque Intermarché Emmental français au lait français","buy":{"amount":1,"mode":"sum","section":"Bread and cheese"}},{"item":"egg","qty":"3","product":"already in the fridge","pantry":true},{"item":"onion","qty":"2, sliced","product":"Le Choix du Primeur Oignons JAUNES","buy":{"amount":0.3,"mode":"sum","section":"Vegetables"}},{"item":"garlic","qty":"3 cloves","product":"Le Choix du Primeur Ail BLANC","buy":{"amount":0.1,"mode":"once","section":"Vegetables"}},{"item":"rice","qty":"150 g cooked, stirred in","product":"Taureau Ailé Riz Basmati","buy":{"amount":1,"mode":"once","section":"Store cupboard"}}],"steps":["Oven to 200°C. Slice the courgettes into rounds and salt them in a colander for 10 minutes while the oven heats.","Soften the onion in a wide pan, 6 minutes. Add the courgettes, squeezed dry, and the garlic.","Now cook them hard for 12 minutes on a high heat, stirring occasionally. You want them collapsing and starting to brown, with no liquid left in the pan. A watery gratin is a gratin that went into the oven too soon.","Off the heat, stir in the cooked rice and two-thirds of the emmental, then the beaten eggs. Season well.","Into a baking dish, the rest of the cheese on top.","30 minutes until set and blistered. Let it stand 10 minutes before cutting — it slices instead of slumping."]},"gnocchi-pesto":{"title":"Pan-fried gnocchi with pesto rosso","cuisine":"italian","slot":"dinner","kind":"recipe","prepMinutes":5,"cookMinutes":12,"serves":2,"tags":["fast","no chilli","vegetarian"],"short":"Gnocchi crisped in a dry pan rather than boiled, tossed with pesto rosso and burst cherry tomatoes.","ingredients":[{"item":"gnocchi","qty":"1 pack","product":"Lustucru Sélection Gnocchi à poêler croustillant et moelleux format XXL","buy":{"amount":1,"mode":"sum","section":"Store cupboard"}},{"item":"pesto rosso","qty":"half a jar","product":"Barilla Sauce pesto rosso","buy":{"amount":1,"mode":"sum","section":"Store cupboard"}},{"item":"cherry tomatoes","qty":"250 g","product":"Petit prix Tomates cerises allongées","buy":{"amount":1,"mode":"once","section":"Vegetables"}},{"item":"mozzarella","qty":"1 ball, torn","product":"Pâturages, une marque Intermarché Mozzarella","buy":{"amount":1,"mode":"sum","section":"Bread and cheese"}},{"item":"garlic","qty":"2 cloves","product":"Le Choix du Primeur Ail BLANC","buy":{"amount":0.1,"mode":"once","section":"Vegetables"}}],"steps":["Gnocchi straight into a hot pan with oil, no boiling, no water. Spread them in one layer.","Leave them 4 minutes untouched so a crust forms, then shake and give them 3 more.","Push to one side, cherry tomatoes into the space, 3 minutes until they split and weep.","Garlic, 30 seconds, then toss everything together with the pesto rosso and a splash of water to loosen it.","Off the heat, tear the mozzarella over so it softens without turning to rubber."]},"farfalles-pesto-poulet":{"title":"Farfalle with pesto and chicken","cuisine":"italian","slot":"dinner","kind":"recipe","prepMinutes":5,"cookMinutes":15,"serves":2,"tags":["fast","no chilli"],"short":"Weeknight pasta, done properly: pasta water in the sauce, cheese off the heat.","ingredients":[{"item":"farfalle","qty":"250 g","product":"Fiorini, une marque Intermarché Pâtes farfalles","buy":{"amount":1,"mode":"sum","section":"Store cupboard"}},{"item":"chicken","qty":"250 g aiguillettes","product":"La Nouvelle Agriculture Aiguillette de poulet","buy":{"amount":0.25,"mode":"sum","section":"Proteins"}},{"item":"pesto rosso","qty":"half a jar","product":"Barilla Sauce pesto rosso","buy":{"amount":1,"mode":"sum","section":"Store cupboard"}},{"item":"parmesan","qty":"a handful, grated","product":"Itinéraire des Saveurs, une marque Intermarché Parmigiano Reggiano AOP râpé","buy":{"amount":1,"mode":"sum","section":"Bread and cheese"}},{"item":"cherry tomatoes","qty":"250 g, halved","product":"Petit prix Tomates cerises allongées","buy":{"amount":1,"mode":"once","section":"Vegetables"}}],"steps":["Pasta into well-salted boiling water. Set a timer a minute under the packet time.","Meanwhile brown the chicken in a wide pan, 3 minutes a side, and cut it into pieces.","Tomatoes into the chicken pan, 3 minutes until they collapse.","Lift the pasta straight across with a spider or tongs, dripping wet, plus a ladle of the water. Do not drain it into the sink — that starchy water is what makes the sauce cling.","Pesto in off the heat, toss hard for a minute until it goes glossy rather than oily.","Parmesan at the table."]},"pizza-maison":{"title":"Tomato and mozzarella pizza","cuisine":"italian","slot":"dinner","kind":"recipe","prepMinutes":10,"cookMinutes":15,"serves":2,"tags":["no chilli","vegetarian"],"short":"Bought dough, but everything on top is yours. The trick is the hottest oven you have and a preheated tray.","ingredients":[{"item":"pizza dough","qty":"1 roll","product":"Croustipate Pâte à pizza qualité comme à la pizzeria","buy":{"amount":1,"mode":"sum","section":"Store cupboard"}},{"item":"tomato sauce","qty":"half a jar","product":"Panzani Sauce Tomates Cuisinées ingrédients origine naturelle","buy":{"amount":1,"mode":"sum","section":"Store cupboard"}},{"item":"mozzarella","qty":"2 balls","product":"Pâturages, une marque Intermarché Mozzarella","buy":{"amount":2,"mode":"sum","section":"Bread and cheese"}},{"item":"cherry tomatoes","qty":"a handful","product":"Petit prix Tomates cerises allongées","buy":{"amount":1,"mode":"once","section":"Vegetables"}},{"item":"garlic","qty":"1 clove","product":"Le Choix du Primeur Ail BLANC","buy":{"amount":0.1,"mode":"once","section":"Vegetables"}}],"steps":["Oven as hot as it goes, with the baking tray already inside. A cold tray is why home pizza goes soggy underneath.","Tear the mozzarella and leave it on kitchen paper for 10 minutes. Wet mozzarella floods the pizza.","Sauce over the dough, thin — a bare spoonful spread to the edges. Grate the garlic into it.","Slide the dough onto the hot tray, mozzarella and halved cherry tomatoes over.","12 to 15 minutes until the edge is blistered and the base lifts stiff off the tray."]},"poulet-roti-legumes":{"title":"Roast chicken legs with lemon","cuisine":"french","slot":"dinner","kind":"recipe","prepMinutes":10,"cookMinutes":45,"serves":4,"tags":["batch cook","no chilli","weekend"],"short":"One tray, forty-five minutes, no attention. Potatoes cook in the chicken fat underneath.","ingredients":[{"item":"chicken drumsticks","qty":"1 kg","product":"Plukon Pilons de poulet","buy":{"amount":1,"mode":"sum","section":"Proteins"}},{"item":"potatoes","qty":"1 kg, in chunks","product":"Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif","buy":{"amount":1,"mode":"sum","section":"Vegetables"}},{"item":"lemon","qty":"1, in wedges","product":"Le Choix du Primeur Citrons JAUNES","buy":{"amount":0.28,"mode":"once","section":"Vegetables"}},{"item":"garlic","qty":"a whole head, cloves unpeeled","product":"Le Choix du Primeur Ail BLANC","buy":{"amount":0.1,"mode":"once","section":"Vegetables"}},{"item":"onion","qty":"2, in wedges","product":"Le Choix du Primeur Oignons JAUNES","buy":{"amount":0.3,"mode":"sum","section":"Vegetables"}},{"item":"green beans","qty":"to serve","product":"Le Choix du Primeur Haricots VERTS EBOUTES","buy":{"amount":1,"mode":"sum","section":"Vegetables"}}],"steps":["Oven to 200°C. Potatoes, onion wedges and unpeeled garlic cloves in a big roasting tin with oil and salt.","Sit the drumsticks on top so the fat drips down into the potatoes, and tuck the lemon wedges between them.","45 minutes, turning the potatoes once at the half hour.","The chicken is done when the skin is genuinely crisp and the thickest part gives no pink juice.","Green beans boiled for 6 minutes at the very end. Squeeze the roasted garlic out of its skins over everything."]},"tortilla-pommes-terre":{"title":"Potato tortilla","cuisine":"spanish","slot":"dinner","kind":"recipe","prepMinutes":10,"cookMinutes":30,"serves":4,"tags":["batch cook","no chilli","vegetarian","uses eggs"],"short":"Potatoes poached soft in oil, then set with eggs into a thick, just-runny cake. Good hot, better at room temperature.","ingredients":[{"item":"potatoes","qty":"600 g, sliced thin","product":"Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif","buy":{"amount":1,"mode":"sum","section":"Vegetables"}},{"item":"egg","qty":"6","product":"already in the fridge","pantry":true},{"item":"onion","qty":"1 large, sliced","product":"Le Choix du Primeur Oignons JAUNES","buy":{"amount":0.2,"mode":"sum","section":"Vegetables"}},{"item":"salad","qty":"to serve","product":"Le Choix du Primeur Laitue FEUILLES DE CHENES BLONDE","buy":{"amount":1,"mode":"once","section":"Vegetables"}}],"steps":["Slice the potatoes about 3 mm thick. Warm a generous amount of oil in a 24 cm pan over medium-low heat.","Potatoes and onion into the oil. You are poaching, not frying — they should barely sizzle. 18 minutes, turning gently, until a slice crushes against the pan.","Drain them, keeping a spoonful of the oil. Beat the eggs with plenty of salt and fold the hot potatoes in. Let it sit 5 minutes; the potato drinks the egg and that is what holds it together.","Reserved oil in the pan on medium. Everything in, flatten the top, 4 minutes until the edge sets.","The flip: plate over the pan, invert with confidence rather than care, slide it back in.","3 minutes more. The centre should still wobble slightly. Rest 10 minutes before cutting."]},"saucisses-lentilles":{"title":"Chipolatas with lentils","cuisine":"french","slot":"dinner","kind":"recipe","prepMinutes":5,"cookMinutes":20,"serves":2,"tags":["fast","no chilli"],"short":"Sausages browned properly, lentils warmed through in the pan they came out of. A twenty-minute plate of real food.","ingredients":[{"item":"chipolatas","qty":"6","product":"Jean Rozé, une marque Intermarché Chipolata supérieure aux herbes","buy":{"amount":1,"mode":"sum","section":"Proteins"}},{"item":"lentils","qty":"2 tins","product":"Saint Eloi, une marque Intermarché Lentilles préparées","buy":{"amount":2,"mode":"sum","section":"Store cupboard"}},{"item":"carrot","qty":"2, diced","product":"Le Choix du Primeur Carottes","buy":{"amount":0.2,"mode":"sum","section":"Vegetables"}},{"item":"celery","qty":"2 sticks, diced","product":"Le Choix du Primeur Céleri BRANCHE VERT","buy":{"amount":0.2,"mode":"sum","section":"Vegetables"}},{"item":"onion","qty":"1, diced","product":"Le Choix du Primeur Oignons JAUNES","buy":{"amount":0.15,"mode":"sum","section":"Vegetables"}},{"item":"cornichons","qty":"to serve","product":"Maille Cornichons extra-fins L'Original","buy":{"amount":1,"mode":"once","section":"Store cupboard"}}],"steps":["Chipolatas into a cold pan with a little oil, then medium heat. Starting cold renders the fat instead of splitting the skins. 10 minutes, turning, until browned all over. Out onto a plate.","Carrot, celery and onion into the sausage fat. 8 minutes until soft and just catching.","Drained lentils in with a splash of water, 3 minutes to warm through and pick up everything in the pan.","Season hard — lentils are flat without enough salt and a good grind of pepper.","Sausages back on top, cornichons on the side for the sharpness."]},"bolognaise-maison":{"title":"Slow-ish bolognese","cuisine":"italian","slot":"dinner","kind":"recipe","prepMinutes":10,"cookMinutes":35,"serves":4,"tags":["batch cook","no chilli"],"short":"Mince browned properly, softened vegetables, tomatoes given long enough to stop tasting of tin.","ingredients":[{"item":"beef mince","qty":"350 g","product":"Jean Rozé, une marque Intermarché Viande hachée vrac pur BŒUF 5% MG","buy":{"amount":1,"mode":"sum","section":"Proteins"}},{"item":"lardons","qty":"150 g","product":"Herta Lardons nature","buy":{"amount":1,"mode":"sum","section":"Proteins"}},{"item":"tomato sauce","qty":"1 jar","product":"Panzani Sauce Tomates Cuisinées ingrédients origine naturelle","buy":{"amount":1,"mode":"sum","section":"Store cupboard"}},{"item":"carrot","qty":"2, finely diced","product":"Le Choix du Primeur Carottes","buy":{"amount":0.2,"mode":"sum","section":"Vegetables"}},{"item":"celery","qty":"2 sticks","product":"Le Choix du Primeur Céleri BRANCHE VERT","buy":{"amount":0.2,"mode":"sum","section":"Vegetables"}},{"item":"onion","qty":"1","product":"Le Choix du Primeur Oignons JAUNES","buy":{"amount":0.15,"mode":"sum","section":"Vegetables"}},{"item":"farfalle","qty":"300 g","product":"Fiorini, une marque Intermarché Pâtes farfalles","buy":{"amount":1,"mode":"sum","section":"Store cupboard"}},{"item":"parmesan","qty":"to serve","product":"Itinéraire des Saveurs, une marque Intermarché Parmigiano Reggiano AOP râpé","buy":{"amount":1,"mode":"sum","section":"Bread and cheese"}}],"steps":["Lardons into a cold heavy pot, medium heat, 5 minutes until the fat runs.","Carrot, celery and onion in, 8 minutes until soft. This is the base; if it is still crunchy the sauce will taste thin no matter how long you cook it.","Push aside, mince into the space, and leave it to brown for 4 minutes before breaking it up.","Tomato sauce plus half a jar of water. Simmer, lid ajar, 20 minutes.","Taste. If it is sharp, a pinch of sugar; if it is flat, more salt.","Pasta cooked a minute under, finished in the sauce with a splash of its water. Parmesan at the table."]},"parmigiana-aubergines":{"title":"Aubergine parmigiana","cuisine":"italian","slot":"dinner","kind":"recipe","prepMinutes":20,"cookMinutes":35,"serves":4,"tags":["batch cook","no chilli","vegetarian","weekend"],"short":"Roast the aubergine rather than frying it, layer with tomato and mozzarella, bake until the edges catch.","ingredients":[{"item":"aubergine","qty":"3, sliced lengthways","product":"Le Choix du Primeur Aubergines VIOLETTES","buy":{"amount":1.2,"mode":"sum","section":"Vegetables"}},{"item":"tomato sauce","qty":"1 jar","product":"Panzani Sauce Tomates Cuisinées ingrédients origine naturelle","buy":{"amount":1,"mode":"sum","section":"Store cupboard"}},{"item":"mozzarella","qty":"2 balls","product":"Pâturages, une marque Intermarché Mozzarella","buy":{"amount":2,"mode":"sum","section":"Bread and cheese"}},{"item":"parmesan","qty":"a good handful","product":"Itinéraire des Saveurs, une marque Intermarché Parmigiano Reggiano AOP râpé","buy":{"amount":1,"mode":"sum","section":"Bread and cheese"}},{"item":"garlic","qty":"3 cloves","product":"Le Choix du Primeur Ail BLANC","buy":{"amount":0.1,"mode":"once","section":"Vegetables"}},{"item":"baguette","qty":"to serve","product":"Cuit sur place Baguette La Généreuse","buy":{"amount":1,"mode":"sum","section":"Bread and cheese"}}],"steps":["Oven to 220°C. Slice the aubergines lengthways about 1 cm thick, brush both sides with oil, spread on two trays.","Roast 20 minutes until browned and floppy. Roasting rather than frying is the difference between a parmigiana you can eat and one swimming in oil.","Warm the tomato sauce with the crushed garlic for 5 minutes.","Layer in a dish: sauce, aubergine, torn mozzarella, a little parmesan. Repeat, finishing with sauce and all the remaining parmesan.","Bake 15 minutes at 200°C until the top is bubbling and dark at the corners.","Rest 10 minutes. Bread to wipe the dish."]},"tartine-mortadelle":{"title":"Grilled mortadella and mozzarella tartine","cuisine":"italian","slot":"dinner","kind":"recipe","prepMinutes":5,"cookMinutes":10,"serves":2,"tags":["fast","no chilli"],"short":"Split baguette under the grill with mozzarella, mortadella folded on at the end so it stays soft.","ingredients":[{"item":"baguette","qty":"1","product":"Cuit sur place Baguette La Généreuse","buy":{"amount":1,"mode":"sum","section":"Bread and cheese"}},{"item":"mortadella","qty":"1 pack","product":"Montorsi Mortadelle","buy":{"amount":1,"mode":"sum","section":"Proteins"}},{"item":"mozzarella","qty":"1 ball","product":"Pâturages, une marque Intermarché Mozzarella","buy":{"amount":1,"mode":"sum","section":"Bread and cheese"}},{"item":"cherry tomatoes","qty":"a handful","product":"Petit prix Tomates cerises allongées","buy":{"amount":1,"mode":"once","section":"Vegetables"}},{"item":"salad","qty":"alongside","product":"Le Choix du Primeur Laitue FEUILLES DE CHENES BLONDE","buy":{"amount":1,"mode":"once","section":"Vegetables"}}],"steps":["Grill on high. Split the baguette lengthways and toast the cut faces for 2 minutes.","Torn mozzarella and halved cherry tomatoes over, back under for 5 minutes until the cheese is molten and blistered in spots.","Out of the grill, then drape the mortadella over in loose folds. It should warm from the bread, not cook — grilled mortadella goes tough and loses its point.","Black pepper, olive oil, and the salad alongside."]},"soupe-legumes":{"title":"Winter vegetable soup","cuisine":"french","slot":"dinner","kind":"recipe","prepMinutes":15,"cookMinutes":25,"serves":4,"tags":["batch cook","no chilli","vegetarian"],"short":"Everything in the drawer, softened in butter first so it tastes of more than hot water.","ingredients":[{"item":"potatoes","qty":"500 g","product":"Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif","buy":{"amount":1,"mode":"sum","section":"Vegetables"}},{"item":"carrot","qty":"4","product":"Le Choix du Primeur Carottes","buy":{"amount":0.4,"mode":"sum","section":"Vegetables"}},{"item":"celery","qty":"3 sticks","product":"Le Choix du Primeur Céleri BRANCHE VERT","buy":{"amount":0.3,"mode":"sum","section":"Vegetables"}},{"item":"courgette","qty":"2","product":"Petit prix Courgettes","buy":{"amount":1,"mode":"sum","section":"Vegetables"}},{"item":"onion","qty":"2","product":"Le Choix du Primeur Oignons JAUNES","buy":{"amount":0.3,"mode":"sum","section":"Vegetables"}},{"item":"butter","qty":"a knob","product":"Pâturages, une marque Intermarché Beurre moulé demi-sel","buy":{"amount":1,"mode":"once","section":"Bread and cheese"}},{"item":"baguette","qty":"to serve","product":"Cuit sur place Baguette La Généreuse","buy":{"amount":1,"mode":"sum","section":"Bread and cheese"}}],"steps":["Everything chopped roughly the same size so it cooks evenly. Precision is not the point; consistency is.","Butter in a big pot, onion and celery, 8 minutes on medium without browning.","Carrot, potato and courgette, another 3 minutes, stirring so they take on some of the butter.","Water to just cover — no more, or you dilute it. Simmer 20 minutes until the potato falls apart against the spoon.","Blend, or leave it chunky. Season hard, and a final knob of butter stirred in off the heat.","Bread on the side."]},"onigiri-oeuf":{"title":"Egg and nori onigiri","cuisine":"japanese","slot":"lunch","kind":"recipe","prepMinutes":15,"cookMinutes":15,"serves":1,"tags":["make ahead","no chilli","uses eggs"],"short":"Sushi rice pressed around a soy-seasoned egg, wrapped in nori. Better at room temperature than cold.","ingredients":[{"item":"sushi rice","qty":"150 g dry","product":"Tanoshi Riz pour sushi Japonica","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"egg","qty":"2","product":"already in the fridge","pantry":true},{"item":"nori","qty":"2 sheets","product":"Tanoshi Feuilles d'algues nori grillées pour sushi","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"soy sauce","qty":"1 tbsp","product":"Kikkoman Sauce soja salée","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"cucumber","qty":"batons alongside","product":"Le Choix du Primeur Concombre","buy":{"amount":2,"mode":"once","section":"Vegetables"}}],"steps":["Rinse the rice in cold water until it runs almost clear — four or five changes. This is what stops the onigiri turning gluey.","Cook it, then let it sit off the heat with the lid on for 10 minutes. Season with the soy while warm, fanning as you fold.","Hard-boil the eggs, 9 minutes. Cool, peel, chop roughly.","Wet your hands. Flatten a handful of rice in your palm, a spoonful of egg in the middle, close the rice over it.","Press into a triangle by cupping one hand at a right angle and turning a third at a time. Three turns, firm but not crushing.","A band of nori round the base of each. They keep until lunchtime at room temperature."]},"bun-vermicelles":{"title":"Bún noodle salad with peanuts","cuisine":"vietnamese","slot":"lunch","kind":"recipe","prepMinutes":15,"cookMinutes":5,"serves":1,"tags":["make ahead","no chilli","dairy-free"],"short":"Vermicelli softened in hot water, raw vegetables and herbs piled on, sweet soy and lemon dressing, crushed peanuts.","ingredients":[{"item":"rice vermicelli","qty":"80 g","product":"Suzi Wan Vermicelles de riz","buy":{"amount":1,"mode":"sum","section":"Store cupboard"}},{"item":"cucumber","qty":"half, matchsticked","product":"Le Choix du Primeur Concombre","buy":{"amount":2,"mode":"once","section":"Vegetables"}},{"item":"carrot","qty":"1, matchsticked","product":"Le Choix du Primeur Carottes","buy":{"amount":0.1,"mode":"sum","section":"Vegetables"}},{"item":"coriander","qty":"a handful","product":"Le Choix du Primeur Coriandre","buy":{"amount":1,"mode":"once","section":"Vegetables"}},{"item":"peanuts","qty":"2 tbsp, crushed","product":"Menguy's Cacahuètes grillées et salées","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"sweet soy","qty":"2 tbsp","product":"Itinéraire des Saveurs, une marque Intermarché Saveur d'Asie - Sauce soja sucrée","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"lemon","qty":"half, juiced","product":"Le Choix du Primeur Citrons JAUNES","buy":{"amount":0.28,"mode":"once","section":"Vegetables"}}],"steps":["Cover the vermicelli with just-boiled water, 4 minutes, then drain and rinse under cold water until completely cool. Warm noodles wilt the herbs.","Whisk sweet soy, lemon juice, grated garlic and 2 tbsp water. It should taste sharper than you expect — the noodles flatten it.","Noodles in the bottom of the box. Cucumber and carrot in separate piles, coriander over everything.","Crush the peanuts under the flat of a knife and scatter.","If it is travelling, keep the dressing in a jar and pour it at the table."]},"salade-mache-oeuf":{"title":"Mâche and egg salad, sesame-soy","cuisine":"japanese","slot":"lunch","kind":"recipe","prepMinutes":10,"cookMinutes":7,"serves":1,"tags":["no chilli","uses eggs"],"short":"Soft eggs on a pile of mâche with a soy and lemon dressing. Ten minutes, most of it waiting for the eggs.","ingredients":[{"item":"mâche","qty":"half the punnet","product":"Le Choix du Primeur Salade MACHE BIO","buy":{"amount":1,"mode":"once","section":"Vegetables"}},{"item":"egg","qty":"2","product":"already in the fridge","pantry":true},{"item":"cucumber","qty":"a third","product":"Le Choix du Primeur Concombre","buy":{"amount":2,"mode":"once","section":"Vegetables"}},{"item":"carrot","qty":"half, grated","product":"Le Choix du Primeur Carottes","buy":{"amount":0.05,"mode":"sum","section":"Vegetables"}},{"item":"soy sauce","qty":"1 tbsp","product":"Kikkoman Sauce soja salée","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"peanuts","qty":"1 tbsp, crushed","product":"Menguy's Cacahuètes grillées et salées","buy":{"amount":1,"mode":"once","section":"Store cupboard"}}],"steps":["Six-and-a-half-minute eggs, from the fridge into boiling water, then straight into cold.","Dressing: soy, a squeeze of lemon, a spoonful of oil, whisked until it thickens slightly.","Mâche in the bowl — dress it at the very last moment, it collapses fast.","Cucumber and grated carrot over the top.","Peel and halve the eggs, set them on, crushed peanuts, a grind of pepper."]},"baguette-boursin":{"title":"Baguette, Boursin and cucumber","cuisine":"french","slot":"lunch","kind":"recipe","prepMinutes":5,"cookMinutes":0,"serves":1,"tags":["no chilli","make ahead"],"short":"The one lunch that is not a project. Good bread, garlic cheese, cold cucumber.","ingredients":[{"item":"baguette","qty":"half","product":"Cuit sur place Baguette La Généreuse","buy":{"amount":1,"mode":"sum","section":"Bread and cheese"}},{"item":"Boursin","qty":"generously","product":"Boursin Fromage à tartiner ail et fines herbes","buy":{"amount":1,"mode":"sum","section":"Bread and cheese"}},{"item":"cucumber","qty":"a third, sliced thin","product":"Le Choix du Primeur Concombre","buy":{"amount":2,"mode":"once","section":"Vegetables"}},{"item":"mâche","qty":"a handful","product":"Le Choix du Primeur Salade MACHE BIO","buy":{"amount":1,"mode":"once","section":"Vegetables"}}],"steps":["Split the baguette lengthways but not all the way through.","Boursin on both cut faces, thickly.","Cucumber in overlapping slices, mâche pressed in on top.","Wrap tightly in paper and leave it half an hour if you can — better once the bread has softened against the cheese."]},"salade-pois-chiches":{"title":"Chickpea and brebis salad","cuisine":"greek","slot":"lunch","kind":"recipe","prepMinutes":10,"cookMinutes":0,"serves":1,"tags":["no cook","no chilli","vegetarian","make ahead"],"short":"Chickpeas, cucumber, tomato and sheep's cheese. Improves in the fridge, so make it the night before.","ingredients":[{"item":"chickpeas","qty":"1 tin","product":"Saint Eloi, une marque Intermarché Pois chiches français","buy":{"amount":1,"mode":"sum","section":"Store cupboard"}},{"item":"brebis cheese","qty":"a few cubes","product":"Salakis Fromage 100% brebis herbes de Provence","buy":{"amount":1,"mode":"sum","section":"Bread and cheese"}},{"item":"cucumber","qty":"half, diced","product":"Le Choix du Primeur Concombre","buy":{"amount":2,"mode":"once","section":"Vegetables"}},{"item":"tomatoes","qty":"2, in wedges","product":"Le Choix du Primeur Tomate RONDE en GRAPPE","buy":{"amount":0.2,"mode":"sum","section":"Vegetables"}},{"item":"onion","qty":"a little red, sliced thin","product":"Le Choix du Primeur Oignons ROUGES","buy":{"amount":0.1,"mode":"sum","section":"Vegetables"}},{"item":"lemon","qty":"half","product":"Le Choix du Primeur Citrons JAUNES","buy":{"amount":0.28,"mode":"once","section":"Vegetables"}}],"steps":["Drain and rinse the chickpeas properly — the tinning liquid is what makes chickpea salads taste dull.","Cucumber and tomato in rough chunks, not neat dice. Salt the tomato now and let it sit; it draws out juice that becomes half the dressing.","Red onion sliced as thin as you can, rinsed under cold water for 10 seconds to take the raw edge off.","Everything together with the oil from the cheese jar, lemon juice and plenty of pepper.","Cheese cubes folded through last so they keep their shape."]},"salade-lentilles":{"title":"Lentil and cornichon salad","cuisine":"french","slot":"lunch","kind":"recipe","prepMinutes":10,"cookMinutes":0,"serves":1,"tags":["no cook","no chilli","make ahead"],"short":"Tinned lentils turned into something worth eating by mustard, cornichons and enough acid.","ingredients":[{"item":"lentils","qty":"1 tin","product":"Saint Eloi, une marque Intermarché Lentilles préparées","buy":{"amount":1,"mode":"sum","section":"Store cupboard"}},{"item":"cornichons","qty":"6, chopped","product":"Maille Cornichons extra-fins L'Original","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"carrot","qty":"1, grated","product":"Le Choix du Primeur Carottes","buy":{"amount":0.1,"mode":"sum","section":"Vegetables"}},{"item":"celery","qty":"1 stick, sliced thin","product":"Le Choix du Primeur Céleri BRANCHE VERT","buy":{"amount":0.1,"mode":"sum","section":"Vegetables"}},{"item":"egg","qty":"1, hard-boiled","product":"already in the fridge","pantry":true},{"item":"mâche","qty":"a handful","product":"Le Choix du Primeur Salade MACHE BIO","buy":{"amount":1,"mode":"once","section":"Vegetables"}}],"steps":["Drain the lentils and rinse them. Tip them into the bowl while you make the dressing so they drain fully.","Dressing: a heaped teaspoon of mustard, a spoonful of the cornichon vinegar, two of oil. Whisk until it goes thick and pale.","Lentils, grated carrot, celery and chopped cornichons folded through.","Season generously and leave it 10 minutes — lentils absorb dressing and taste under-seasoned straight away.","Mâche and a halved egg on top at the last moment."]},"sandwich-mortadelle":{"title":"Mortadella and cornichon sandwich","cuisine":"italian","slot":"lunch","kind":"recipe","prepMinutes":5,"cookMinutes":0,"serves":1,"tags":["no cook","no chilli","make ahead"],"short":"Folded mortadella, sharp cornichons, butter not mayonnaise. Five minutes.","ingredients":[{"item":"baguette","qty":"half","product":"Cuit sur place Baguette La Généreuse","buy":{"amount":1,"mode":"sum","section":"Bread and cheese"}},{"item":"mortadella","qty":"4 slices","product":"Montorsi Mortadelle","buy":{"amount":1,"mode":"sum","section":"Proteins"}},{"item":"cornichons","qty":"5, sliced lengthways","product":"Maille Cornichons extra-fins L'Original","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"butter","qty":"a thick layer","product":"Pâturages, une marque Intermarché Beurre moulé demi-sel","buy":{"amount":1,"mode":"once","section":"Bread and cheese"}},{"item":"salad","qty":"a few leaves","product":"Le Choix du Primeur Laitue FEUILLES DE CHENES BLONDE","buy":{"amount":1,"mode":"once","section":"Vegetables"}}],"steps":["Butter both faces of the split baguette, properly thick. Butter and not mayonnaise: it waterproofs the bread so the sandwich survives to lunchtime.","Mortadella folded into loose ruffles rather than laid flat — it eats better with air in it.","Cornichons sliced lengthways along the length of the sandwich so every bite gets one.","Lettuce, close it, press it firmly, wrap in paper."]},"riz-saute-restes":{"title":"Leftovers fried rice","cuisine":"chinese","slot":"lunch","kind":"recipe","prepMinutes":5,"cookMinutes":8,"serves":1,"tags":["fast","no chilli","uses eggs"],"short":"Whatever is left, cold rice, one egg, soy. The most useful ten minutes in the week.","ingredients":[{"item":"basmati rice","qty":"200 g cooked, cold","product":"Taureau Ailé Riz Basmati","buy":{"amount":1,"mode":"once","section":"Store cupboard"}},{"item":"egg","qty":"1","product":"already in the fridge","pantry":true},{"item":"carrot","qty":"1, diced","product":"Le Choix du Primeur Carottes","buy":{"amount":0.05,"mode":"sum","section":"Vegetables"}},{"item":"onion","qty":"half","product":"Le Choix du Primeur Oignons JAUNES","buy":{"amount":0.05,"mode":"sum","section":"Vegetables"}},{"item":"soy sauce","qty":"1 tbsp","product":"Kikkoman Sauce soja salée","buy":{"amount":1,"mode":"once","section":"Store cupboard"}}],"steps":["Hot pan, oil, onion and carrot for 3 minutes.","Cold rice in, broken up, spread flat and left for a minute at a time so it toasts — 3 minutes total.","Push aside, egg beaten into the space, 20 seconds, then folded through.","Soy round the edge of the pan, one toss, done. Add any leftover meat or vegetables with the rice."]},"salade-avocat-oeuf":{"title":"Avocado, egg and mâche","cuisine":"french","slot":"lunch","kind":"recipe","prepMinutes":8,"cookMinutes":7,"serves":1,"tags":["no cook","no chilli","uses eggs"],"short":"Three good things and a sharp dressing. Assemble at the last minute or the avocado turns.","ingredients":[{"item":"avocado","qty":"1","product":"Le Choix du Primeur Avocat AFFINE","buy":{"amount":1,"mode":"sum","section":"Vegetables"}},{"item":"egg","qty":"2","product":"already in the fridge","pantry":true},{"item":"mâche","qty":"a big handful","product":"Le Choix du Primeur Salade MACHE BIO","buy":{"amount":1,"mode":"once","section":"Vegetables"}},{"item":"cherry tomatoes","qty":"a handful","product":"Petit prix Tomates cerises allongées","buy":{"amount":1,"mode":"once","section":"Vegetables"}},{"item":"lemon","qty":"half","product":"Le Choix du Primeur Citrons JAUNES","buy":{"amount":0.28,"mode":"once","section":"Vegetables"}},{"item":"baguette","qty":"alongside","product":"Cuit sur place Baguette La Généreuse","buy":{"amount":1,"mode":"sum","section":"Bread and cheese"}}],"steps":["Six-and-a-half-minute eggs, then into cold water.","Avocado sliced in the skin and scooped out in one piece with a spoon — cleaner than peeling it.","Lemon over the avocado immediately, before anything else. That is what keeps it green.","Mâche, halved tomatoes, avocado, halved eggs. Olive oil, salt, a lot of pepper.","Bread on the side."]},"salade-tomates-mozzarella":{"title":"Tomato and mozzarella","cuisine":"italian","slot":"lunch","kind":"recipe","prepMinutes":8,"cookMinutes":0,"serves":1,"tags":["no cook","no chilli","vegetarian"],"short":"Three ingredients, so all of it rests on salting the tomatoes early and using enough oil.","ingredients":[{"item":"tomatoes","qty":"3 good ones","product":"Le Choix du Primeur Tomates RONDES CHARNUES","buy":{"amount":0.3,"mode":"sum","section":"Vegetables"}},{"item":"mozzarella","qty":"1 ball","product":"Pâturages, une marque Intermarché Mozzarella","buy":{"amount":1,"mode":"sum","section":"Bread and cheese"}},{"item":"baguette","qty":"half","product":"Cuit sur place Baguette La Généreuse","buy":{"amount":1,"mode":"sum","section":"Bread and cheese"}},{"item":"salad","qty":"a few leaves","product":"Le Choix du Primeur Laitue FEUILLES DE CHENES BLONDE","buy":{"amount":1,"mode":"once","section":"Vegetables"}}],"steps":["Thick tomato slices onto the plate, salted, and left for 10 minutes. They release juice that mixes with the oil into a dressing you did not have to make.","Tear the mozzarella rather than slicing it — the ragged edges hold the oil.","Olive oil, black pepper. No vinegar; the tomato is acid enough.","Bread to mop the plate."]}},"plans":[{"weekOf":"2026-09-06","label":"Week of 6 September","store":"Intermarché Drive Méré","notes":["Eggs are not on the list — you said you have plenty, and six dishes lean on them.","The basket is derived from whatever meals are currently picked, so it follows every swap."],"meals":[{"id":"sunday-dinner","day":"sunday","slot":"dinner","recipe":"curry-coco-poulet","note":"Batch cook. Makes Wednesday's dinner and one lunch as well."},{"id":"monday-dinner","day":"monday","slot":"dinner","recipe":"boeuf-poivrons"},{"id":"tuesday-dinner","day":"tuesday","slot":"dinner","recipe":"yakisoba-dinde"},{"id":"wednesday-dinner","day":"wednesday","slot":"dinner","recipe":"curry-coco-poulet","minutesOverride":10,"note":"Sunday's curry, reheated. Cucumber and coriander on the side to freshen it.","leftovers":true},{"id":"thursday-dinner","day":"thursday","slot":"dinner","recipe":"donburi-teriyaki"},{"id":"friday-dinner","day":"friday","slot":"dinner","recipe":"gyoza-brocoli"},{"id":"saturday-dinner","day":"saturday","slot":"dinner","recipe":"saucisses-lentilles"},{"id":"monday-lunch","day":"monday","slot":"lunch","recipe":"onigiri-oeuf","note":"Roll them Sunday evening while the curry is cooling."},{"id":"tuesday-lunch","day":"tuesday","slot":"lunch","recipe":"bun-vermicelles"},{"id":"wednesday-lunch","day":"wednesday","slot":"lunch","recipe":"curry-coco-poulet","minutesOverride":5,"note":"The last of Sunday's pot, over rice.","leftovers":true},{"id":"thursday-lunch","day":"thursday","slot":"lunch","recipe":"salade-mache-oeuf"},{"id":"friday-lunch","day":"friday","slot":"lunch","recipe":"baguette-boursin"}]}],"pricebook":{"Cuit sur place Baguette La Généreuse":{"unit":"unit","price":0.89},"Jean Rozé, une marque Intermarché Chipolata supérieure aux herbes":{"unit":"unit","price":3.3},"Le Choix du Primeur Poivrons VERTS":{"unit":"kg","price":4.49},"Pâturages, une marque Intermarché Beurre moulé demi-sel":{"unit":"unit","price":4.99},"Look, une marque Intermarché Limonade aux arômes naturels d'agrumes":{"unit":"unit","price":0.94},"Le Choix du Primeur Poivron ROUGE":{"unit":"kg","price":4.99},"Barilla Sauce pesto rosso":{"unit":"unit","price":2.09},"Le Choix du Primeur Oignons JAUNES":{"unit":"kg","price":3.09},"Jean Rozé, une marque Intermarché Viande hachée vrac pur BŒUF 5% MG":{"unit":"unit","price":6.15},"Terroirs, une marque Intermarché Côtes de PORC":{"unit":"unit","price":4.79},"Le Choix du Primeur Tomate RONDE en GRAPPE":{"unit":"kg","price":4.99},"Brets Chips saveur sel & vinaigre":{"unit":"unit","price":1.19},"Le Choix du Primeur Céleri BRANCHE VERT":{"unit":"kg","price":2.99},"Fermiers de Loué Aiguillettes de poulet jaune":{"unit":"kg","price":29.99},"Le Choix du Primeur Concombre":{"unit":"unit","price":1.39},"Panzani Sauce Tomates Cuisinées ingrédients origine naturelle":{"unit":"unit","price":2.59},"Alpro Boisson végétale lait d'amande saveur vanille":{"unit":"unit","price":3.37},"Bjorg Boisson végétale Lait d'amande vanille BIO":{"unit":"unit","price":2.57},"Le Choix du Primeur Poivrons JAUNES":{"unit":"kg","price":4.99},"Boursin Fromage à tartiner ail et fines herbes":{"unit":"unit","price":2.17},"Montorsi Mortadelle":{"unit":"unit","price":2.5},"Le Choix du Primeur Brocolis":{"unit":"kg","price":4.89},"Volaé, une marque Intermarché Œufs frais de poules élevées au sol":{"unit":"unit","price":4.47},"Nature Valley Barres Crunchy avoine & miel":{"unit":"unit","price":2.6},"Chabrior, une marque Intermarché Pains à burgers Géant":{"unit":"unit","price":0.87},"KitKat Céréales au chocolat":{"unit":"unit","price":3.96},"Lustucru Gnocchi à poêler croustillant et moelleux format XXL":{"unit":"unit","price":2.92},"Le Gaulois Filet de poulet extra tendre":{"unit":"kg","price":19.5},"Saint Eloi, une marque Intermarché Riz long grain de qualité supérieure basmati origine Inde ou Pakistan naturellement parfumé":{"unit":"unit","price":1.35},"Le Choix du Primeur Haricots VERTS EBOUTES":{"unit":"unit","price":3.99},"Le Choix du Primeur Bananes":{"unit":"kg","price":1.99},"Saint Eloi, une marque Intermarché Haricots rouges":{"unit":"unit","price":1.37},"Saint Eloi, une marque Intermarché Lentilles préparées":{"unit":"unit","price":1.15},"Lustucru Sélection Gnocchi à poêler croustillant et moelleux format XXL":{"unit":"unit","price":2.84},"Taureau Ailé Riz Basmati":{"unit":"unit","price":2.18},"Le Choix du Primeur Pommes GRANNY SMITH":{"unit":"kg","price":3.99},"Le Choix du Primeur Ail BLANC":{"unit":"kg","price":15.99},"Ultima croquettes pour chat stérilisé adulte poulet":{"unit":"unit","price":7.03},"Fiorini, une marque Intermarché Coquillettes":{"unit":"unit","price":1.36},"Pâturages, une marque Intermarché Mozzarella":{"unit":"unit","price":0.93},"Le Gaulois Escalope de dinde":{"unit":"kg","price":22.5},"Canaillou, une marque Intermarché Litière végétale agglomérante à base de bois pour animaux familiers":{"unit":"unit","price":6.12},"Fiorini, une marque Intermarché Pâtes farfalles":{"unit":"unit","price":1.27},"Suzi Wan Vermicelles de riz":{"unit":"unit","price":2.25},"Maille Cornichons extra-fins L'Original":{"unit":"unit","price":3.37},"Menguy's Beurre de cacahuètes creamy":{"unit":"unit","price":4.5},"Petit prix Courgettes":{"unit":"unit","price":1.59},"Bouton d’Or, une marque Intermarché Mayonnaise":{"unit":"unit","price":1.75},"Le Choix du Primeur Carottes":{"unit":"kg","price":1.69},"Le Choix du Primeur Tomates RONDES CHARNUES":{"unit":"kg","price":5.99},"Le Choix du Primeur Aubergines VIOLETTES":{"unit":"kg","price":2.59},"Fermiers de Loué Filets de poulet blanc sans peau":{"unit":"kg","price":30.35},"Tanoshi Nouilles japonaises précuites Ramen assaisonnement bœuf":{"unit":"unit","price":3.18},"Plukon Pilons de poulet":{"unit":"unit","price":5.51},"Salakis Fromage 100% brebis herbes de Provence":{"unit":"unit","price":3.37},"Top Budget Farine de blé Type 55":{"unit":"unit","price":0.54},"Le Choix du Primeur Avocat AFFINE":{"unit":"unit","price":1.29},"Petit prix Tomates cerises allongées":{"unit":"unit","price":0.99},"Le Choix du Primeur Laitue FEUILLES DE CHENES BLONDE":{"unit":"unit","price":1.19},"Croustipate Pâte à pizza qualité comme à la pizzeria":{"unit":"unit","price":2.42},"Pâturages, une marque Intermarché Cheddar Les Tranchettes":{"unit":"unit","price":2.68},"Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif":{"unit":"unit","price":4.99},"Le Choix du Primeur Courgettes LONGUES":{"unit":"kg","price":2.59},"Jean Rozé, une marque Intermarché Chipolatas supérieures":{"unit":"unit","price":6.99},"Mon Marché Plaisir Bio Bananes BIO":{"unit":"unit","price":2.19},"Jean Rozé, une marque Intermarché Viande hachée vrac pur BŒUF 15% MG":{"unit":"unit","price":7.5},"Producteurs & Commerçants Baguette BIO":{"unit":"unit","price":1.19},"Pâturages, une marque Intermarché Emmental français au lait français":{"unit":"unit","price":4.03},"Apta, une marque Intermarché Tablettes lave-vaisselle tout en 1 - protection des verres, dégraissant, brillance de l'inox":{"unit":"unit","price":3.4},"Tanoshi Riz pour sushi Japonica":{"unit":"unit","price":3.5},"Nuii Glace salted caramel & Australian macadamia":{"unit":"unit","price":4.73},"Tanoshi Feuilles d'algues nori grillées pour sushi":{"unit":"unit","price":3.29},"Little Moons Mochi framboise d'été fondant à la crème glacée":{"unit":"unit","price":5.39},"Fiorini, une marque Intermarché Pâtes coquillages":{"unit":"unit","price":1.19},"Panzani Pâtes Coquillettes":{"unit":"unit","price":0.9},"Lotus Papier toilette Confort":{"unit":"unit","price":4.05},"Kikkoman Sauce soja salée":{"unit":"unit","price":4.93},"Pâturages, une marque Intermarché Lait demi-écrémé stérilisé UHT BIO - issu de l'agriculture biologique,":{"unit":"unit","price":1.08},"Alpro Boisson végétale lait d'amande grillée, sans sucres":{"unit":"unit","price":2.36},"Saint Eloi, une marque Intermarché Pois chiches français":{"unit":"unit","price":0.75},"Pâturages, une marque Intermarché 3 fromages râpés":{"unit":"unit","price":1.77},"Herta Lardons nature":{"unit":"unit","price":1.92},"Tanoshi Nouilles ramen précuites au poulet teriyaki":{"unit":"unit","price":3.3},"Fackelmann Bac à glaçons avec couvercle":{"unit":"unit","price":5.49},"Boursin Fromage à tartiner ail & fines herbes":{"unit":"unit","price":3.59},"Le Choix du Primeur Salade MACHE BIO":{"unit":"unit","price":2.99},"Negroni Assortiment de charcuterie":{"unit":"unit","price":6.03},"Volaé, une marque Intermarché Escalopes de dinde extra fines x2":{"unit":"kg","price":15.25},"La Nouvelle Agriculture Aiguillette de poulet":{"unit":"kg","price":20.55},"Itinéraire des Saveurs, une marque Intermarché Parmigiano Reggiano AOP râpé":{"unit":"unit","price":1.1},"Apta, une marque Intermarché Vitres - Nettoyant vitres":{"unit":"unit","price":1.35},"Spontex Eponges efficace et lavable Re-belle":{"unit":"unit","price":4.57},"Nutella Pâte à tartiner aux noisettes et au cacao":{"unit":"unit","price":6.69},"Extrême L'Original - glace menthe chocolat pépites de chocolat":{"unit":"unit","price":3.91},"Paquito, une marque Intermarché Sirop de fraise":{"unit":"unit","price":2.69},"Teisseire Sirop pêche":{"unit":"unit","price":3.76},"Panzani Sauce Tomates Basilic ingrédients origine naturelle":{"unit":"unit","price":2.7},"Garnier Ultra-Doux - Shampoing nutrition intense huile d'avocat & beurre de karité cheveux bouclés à frisés, sans silicone":{"unit":"unit","price":2.68},"Panzani Sauce Tomates Provençale ingrédients origine naturelle":{"unit":"unit","price":2.46},"Barilla Sauce pesto alla genovese basilic frais":{"unit":"unit","price":2.16},"Suzi Wan Nouilles ramen précuites saveur bœuf Korean barbecue":{"unit":"unit","price":3.29},"Petit navire Saumon fumé de Norvège":{"unit":"unit","price":5.62},"Andros Pâtes à tartiner cacahuètes croquantes Be Nuts":{"unit":"unit","price":3.69},"Apta, une marque Intermarché Sacs poubelle haute avec liens coulissants 80% recyclé anti-fuites":{"unit":"unit","price":2.04},"Vahiné Pépites de chocolat noir":{"unit":"unit","price":2.15},"Apta, une marque Intermarché Tablettes lave-vaisselle tout en 1 - Parfum citron":{"unit":"unit","price":3.41},"Apta, une marque Intermarché Sacs poubelle ultra résistants avec liens coulissants anti-fuites 80% recyclé":{"unit":"unit","price":3.94},"Saint Eloi, une marque Intermarché Mélange de salades mâche et roquette prêt à l'emploi":{"unit":"unit","price":2.54},"Atelier Blini Houmous":{"unit":"unit","price":2.86},"Bjorg Boisson végétale Lait d'amande sans sucres ajoutés BIO":{"unit":"unit","price":1.82},"Ducros Sel au céleri":{"unit":"unit","price":2.23},"Bouton d’Or, une marque Intermarché Cannelle moulue":{"unit":"unit","price":0.85},"Ducros Paprika doux moulu":{"unit":"unit","price":1.9},"Bouton d’Or, une marque Intermarché Paprika doux moulu":{"unit":"unit","price":0.57},"Chabrior, une marque Intermarché Arôme naturel de vanille Bourbon liquide":{"unit":"unit","price":1.24},"Bouton d’Or, une marque Intermarché Ras el Hanout couscous - Assaisonnement à base d'épices":{"unit":"unit","price":2.89},"Ducros Curry tandoori medium N°3":{"unit":"unit","price":2.8},"Volaé, une marque Intermarché Cuisse de poulet jaune déjointée":{"unit":"kg","price":6.05},"Saint Eloi, une marque Intermarché Basmati de l'Himalaya":{"unit":"unit","price":1.91},"Le Choix du Primeur Citrons JAUNES":{"unit":"kg","price":3.49},"Top Budget Essuie-tout compact":{"unit":"unit","price":2.29},"Regain, une marque Intermarché Boisson à base d'amande BIO":{"unit":"unit","price":1.52},"Pâturages, une marque Intermarché Ricotta":{"unit":"unit","price":1.3},"Panier d'Emilie Œufs frais calibre moyen-gros":{"unit":"unit","price":3.9},"Le Choix du Primeur Coriandre":{"unit":"unit","price":1.09},"Itinéraire des Saveurs, une marque Intermarché Tzatziki":{"unit":"unit","price":1.9},"Itinéraire des Saveurs, une marque Intermarché Parmigiano Reggiano AOP":{"unit":"unit","price":6.44},"Barilla Pâtes Lasagne aux œufs - Collezione":{"unit":"unit","price":2.13},"Daddy Sucre en poudre":{"unit":"unit","price":1.57},"Itinéraire des Saveurs, une marque Intermarché Mozzarella di Bufala Campana AOP":{"unit":"unit","price":1.75},"Volaé, une marque Intermarché Œufs frais de poules élevées en plein air":{"unit":"unit","price":4.29},"Notre Sélection Filet de truite":{"unit":"unit","price":7.27},"Ducros Coriandre feuillles de France":{"unit":"unit","price":1.79},"Menguy's Cacahuètes grillées et salées":{"unit":"unit","price":4.14},"Fiorini, une marque Intermarché Sauce pesto au basilic bio":{"unit":"unit","price":1.91},"La Compagnie du Mochi Mochis glacés fruit du dragon":{"unit":"unit","price":5.9},"Heinz Sauce Worcester":{"unit":"unit","price":1.77},"Barilla Sauce pesto avec fromage ricotta et noix":{"unit":"unit","price":3.18},"Ajinomoto Gyoza poulet et légumes raviolis à poêler":{"unit":"unit","price":5.49},"Ajinomoto Gyoza bœuf et légumes":{"unit":"unit","price":5.49},"Salakis Fromage 100% brebis basilic":{"unit":"unit","price":3.5},"Bouton d’Or, une marque Intermarché Poivre noir moulu":{"unit":"unit","price":1.15},"Bouton d’Or, une marque Intermarché Huile d'olive vierge extra BIO - issue de l'agriculture biologique":{"unit":"unit","price":7.55},"Itinéraire des Saveurs, une marque Intermarché Sauce Yakitori assaisonnement à base de sauce soja, saké et mirin":{"unit":"unit","price":4.11},"Itinéraire des Saveurs, une marque Intermarché Saveur d'Asie - Sauce soja sucrée":{"unit":"unit","price":3.1},"Panzani Pâtes Coquilllettes":{"unit":"unit","price":1.69},"Jardin Bio étic Sauce tomate pour pizza, pâtes et riz BIO":{"unit":"unit","price":2.07},"Pâturages, une marque Intermarché Emmental français râpé":{"unit":"unit","price":4.03},"Odyssée, une marque Intermarché Saumon fumé d'Ecosse":{"unit":"unit","price":11.65},"Nature Valley Barres Protein cacahuètes & chocolat sans gluten":{"unit":"unit","price":2.7},"Bouton d’Or, une marque Intermarché Cacahuètes grillées à l'huile et salées":{"unit":"unit","price":1.4},"Lesieur Mayonnaise classique à l'huile de colza":{"unit":"unit","price":0.83},"Le Choix du Primeur Patates DOUCES":{"unit":"kg","price":2.99},"Apta, une marque Intermarché Essuie tout maxi absorbant":{"unit":"unit","price":2.49},"Le Choix du Primeur Salade MACHE":{"unit":"unit","price":0.99},"Omo Lessive capsules 3 en 1 rose et lilas blanc - 29 Lavages":{"unit":"unit","price":10.3},"Le Choix du Primeur Oignons ROUGES":{"unit":"kg","price":5.09},"Saint Eloi, une marque Intermarché Roquette prête à l'emploi déjà lavée":{"unit":"unit","price":1.54},"Ajinomoto Oyaki Bun à la japonaise sucré-salé au bœuf cuisiné dans une sauce soja":{"unit":"unit","price":3.85},"Volaé, une marque Intermarché Cuisse de poulet jaune x4":{"unit":"kg","price":4.99},"Maddy's Cheddar rouge mature":{"unit":"unit","price":3.74},"Pastificio Liguori Pâtes fusilli":{"unit":"unit","price":2.21},"Puget Vinaigrette moutarde & miel":{"unit":"unit","price":2.81},"Nature Valley Barres Protein caramel salé & cacahuètes sans gluten":{"unit":"unit","price":3.04},"Puget Vinaigrette légère vinaigre balsamique ciboulette échalotes":{"unit":"unit","price":2.51},"Apta, une marque Intermarché Essuie tout Classic décor":{"unit":"unit","price":3.78},"Signal Dentifrice complet prébiotique Integral 8":{"unit":"unit","price":1.74},"Le Choix du Primeur Laitue COEUR DE ROMAINE":{"unit":"unit","price":3.29},"Labell, une marque Intermarché Papier toilette rose Le Classique":{"unit":"unit","price":2.88},"Chabrior, une marque Intermarché Pains à burgers classiques":{"unit":"unit","price":0.93}},"staples":[{"name":"Ultima croquettes pour chat stérilisé adulte poulet","quantity":2,"note":"Two cats. History shows a single 1,5 kg sac per order, which runs out.","price":7.03,"unit":"unit"},{"name":"Canaillou, une marque Intermarché Litière végétale agglomérante à base de bois pour animaux familiers","quantity":2,"note":"Ordered in pairs every time it appears.","price":6.12,"unit":"unit"}],"config":{"budgetCeiling":150,"store":"Intermarché Drive Méré","constraints":{"banned":["piment","chili","capsaïcine","harissa","sauce piquante"],"bannedReason":"IBS. No heat at all — this is a constraint, not a preference. Aromatics carry the flavour instead: gingembre, ail, oignon vert, sésame, soja, vinaigre, miso.","limited":["lait","crème fraîche","crème entière"],"limitedReason":"Mildly lactose intolerant. Cheese is fine. Coconut milk is not dairy and is unrestricted.","maxWeeknightMinutes":30}}};
+const LIB = DATA.recipes, PRICES = DATA.pricebook, STAPLES = DATA.staples, CONF = DATA.config;
+const plan = [...DATA.plans].sort((a, b) => b.weekOf.localeCompare(a.weekOf))[0];
+
+/* ---------- helpers ---------- */
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
+  ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const eur = (n) => n.toFixed(2).replace(".", ",") + " €";
+const cap = (s) => String(s).charAt(0).toUpperCase() + String(s).slice(1);
+const DAYS = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+
+/* ---------- state ----------
+   `baseline` is what the build shipped. `picks` is what is on the menu now.
+   `extra` holds dishes generated at runtime — they live in the shared document
+   too, or a swap would render as a blank card on the other person's phone. */
+const baseline = Object.fromEntries(plan.meals.map((m) => [m.id, m.recipe]));
+let picks = { ...baseline };
+let extra = {};
+let db = null, weekRef = null, sample = null;
+
+const all = () => ({ ...LIB, ...extra });
+const dishFor = (mealId) => all()[picks[mealId]];
+const mealById = (id) => plan.meals.find((m) => m.id === id);
+const minutesOf = (m, r) => m.minutesOverride ?? (r.prepMinutes + r.cookMinutes);
+const changed = () => Object.keys(picks).filter((k) => picks[k] !== baseline[k]);
+
+/* Every meal, resolved. Skips a pick whose dish has gone missing. */
+function meals() {
+  return plan.meals.map((m) => {
+    const r = dishFor(m.id);
+    if (!r) return null;
+    return { ...m, r, minutes: minutesOf(m, r), leftovers: !!m.leftovers,
+             ingredients: (r.ingredients || []).map((i) => i.item.toLowerCase()),
+             isSwapped: picks[m.id] !== baseline[m.id] };
+  }).filter(Boolean);
+}
+
+/* ---------- the basket, derived from whatever is on the menu ---------- */
+function basket() {
+  const acc = new Map();
+  // A batch dish is cooked once and eaten three times. Counting its ingredients
+  // per serving bought six tins of coconut milk for one pot, so a meal flagged
+  // as leftovers eats from a pot already paid for and buys nothing. A dish
+  // genuinely cooked twice in a week is not flagged, and does count twice.
+  const cooked = meals().filter((m) => !m.leftovers);
+  for (const m of cooked) {
+    for (const i of m.r.ingredients || []) {
+      if (!i.buy) continue;
+      let e = acc.get(i.product);
+      if (!e) acc.set(i.product, (e = {
+        product: i.product, amount: 0, mode: i.buy.mode, section: i.buy.section,
+        guess: !!i.guess, guessPrice: i.buy.price, dishes: new Set(),
+      }));
+      // "sum" adds up across dishes (produce, meat); "once" is a bottle or a bag
+      // that covers the week however many dishes reach for it.
+      e.amount = e.mode === "sum" ? e.amount + i.buy.amount : Math.max(e.amount, i.buy.amount);
+      e.dishes.add(m.r.title);
+    }
+  }
+
+  const lines = [];
+  for (const e of acc.values()) {
+    const pb = PRICES[e.product];
+    let amount = e.amount, unit = pb ? pb.unit : "unit", cost;
+    if (unit !== "kg") amount = Math.max(1, Math.ceil(amount));   // you cannot buy 1.4 jars
+    if (e.guess || !pb) { cost = (e.guessPrice ?? 3) * amount; unit = "unit"; }
+    else cost = pb.price * amount;
+    lines.push({
+      name: e.product, section: e.section, guess: e.guess || !pb, cost,
+      amount: unit === "kg" ? amount.toFixed(2).replace(".", ",") + " kg" : "x" + amount,
+      for: [...e.dishes].join(", "),
+    });
+  }
+
+  for (const s of STAPLES) {
+    lines.push({
+      name: s.name, section: "Standing order", guess: false,
+      cost: s.price * s.quantity, amount: "x" + s.quantity,
+      for: s.note || "always on the order",
+    });
+  }
+
+  const order = ["Proteins", "Vegetables", "Store cupboard", "Bread and cheese", "Standing order", "Best guesses"];
+  lines.sort((a, b) => (order.indexOf(a.section) - order.indexOf(b.section)) || a.name.localeCompare(b.name));
+  return { lines, total: lines.reduce((t, l) => t + l.cost, 0) };
+}
+
+/* ---------- shared state ---------- */
+function setSync(kind, text) {
+  const d = $("#sync-dot");
+  d.className = "dot" + (kind === "live" ? " live" : kind === "off" ? " off" : "");
+  $("#sync-text").textContent = text;
+}
+
+async function persist() {
+  if (!weekRef) return;
+  const diff = {};
+  for (const k of changed()) diff[k] = picks[k];
+  try {
+    await weekRef.set({ picks: diff, extra, updatedAt: Date.now() });
+  } catch (e) {
+    setSync("off", "Change saved on this phone only — " + (e && e.code ? e.code : "not saved"));
+  }
+}
+
+function applyRemote(d) {
+  if (!d) return;
+  extra = { ...extra, ...(d.extra || {}) };
+  picks = { ...baseline, ...(d.picks || {}) };
+  renderAll();
+}
+
+(async () => {
+  // Never available on the first synchronous run — render first, light up after.
+  if (!(window.claude && typeof window.claude.use === "function")) {
+    return setSync("off", "Preview — changes are not shared");
+  }
+  db = await claude.use("db");
+  if (!db) return setSync("off", "Changes stay on this phone");
+  weekRef = db.doc("weeks/" + plan.weekOf);
+  weekRef.onSnapshot(
+    (snap) => { applyRemote(snap.data()); setSync("live", "Shared — you and your partner see the same week"); },
+    (err) => setSync("off", "Sync stopped (" + err.code + ") — changes stay on this phone"),
+  );
+  setSync("live", "Shared — you and your partner see the same week");
+})();
+
+(async () => {
+  if (!(window.claude && typeof window.claude.use === "function")) return;
+  sample = await claude.use("sample");
+  if (sample) $("#gen-btn").hidden = false;
+})();
+
+/* ---------- cards ---------- */
+const tagClass = (t) =>
+  t === "batch cook" ? " is-batch"
+  : t === "fast" || t === "make ahead" || t === "no cook" ? " is-fast"
+  : t === "from the freezer" ? " is-pack" : "";
+
+function ingredientList(r) {
+  return `<p class="sub">Ingredients &middot; serves ${r.serves}</p>
+    <ul class="ing">${(r.ingredients || []).map((i) => `
+      <li><div class="ing-row">
+        <span class="ing-name">${esc(cap(i.item))}${i.guess ? '<span class="flag">guess</span>' : ""}${i.pantry ? '<span class="flag pantry">have it</span>' : ""}</span>
+        <span class="leader"></span><span class="ing-qty">${esc(i.qty)}</span>
+      </div><div class="ing-product">${esc(i.product)}</div></li>`).join("")}</ul>`;
+}
+
+function card(o) {
+  const r = o.r;
+  const isPack = r.kind === "assembly";
+  return `<article class="card${o.slot === "lunch" ? " is-lunch" : ""}" data-card="${esc(o.key)}">
+    <div class="card-top">
+      <span class="card-day">${esc(o.day ? cap(o.day) : cap(r.cuisine))}</span>
+      <span class="card-slot">${esc(o.slot)}</span>
+      ${o.isSwapped ? '<span class="swapped">swapped</span>' : ""}
+      <span class="leader"></span>
+      <span class="card-time">${o.minutes} min</span>
+    </div>
+    <div class="card-body">
+      <h3>${esc(r.title)}</h3>
+      <div class="card-meta">${esc(cap(r.cuisine))} &middot; serves ${r.serves} &middot; ${r.prepMinutes} prep + ${r.cookMinutes} cook</div>
+      ${o.leftovers ? '<div class="tags"><span class="tag is-batch">from an earlier pot &middot; nothing to buy</span></div>' : ""}
+      ${o.note ? `<p class="card-note">${esc(o.note)}</p>` : ""}
+      ${isPack ? `<p class="packnote">${esc(r.packNote)}</p>` : ""}
+      <p class="card-short">${esc(r.short)}</p>
+      <div class="tags">${(r.tags || []).map((t) => `<span class="tag${tagClass(t)}">${esc(t)}</span>`).join("")}</div>
+      ${o.served ? `<div class="served">Served: ${esc(o.served)}</div>` : ""}
+      <div class="card-actions">
+        <button class="expand" type="button" aria-expanded="false">
+          <span>${isPack ? "What you actually cook" : "Ingredients &amp; method"}</span><span class="caret">▾</span>
+        </button>
+        ${o.mealId ? `<button class="btn swapbtn" type="button" data-swap="${esc(o.mealId)}">Swap</button>` : ""}
+      </div>
+      <div class="drawer"><div><div class="drawer-inner">
+        ${ingredientList(r)}
+        <p class="sub">${isPack ? "The part you cook" : "Method"}</p>
+        <ol class="steps">${(r.steps || []).map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
+      </div></div></div>
+    </div>
+  </article>`;
+}
+
+const groupBlock = (title, count, inner) =>
+  `<div class="group-head"><h2>${esc(title)}</h2><span class="leader"></span><span class="group-count">${count}</span></div>
+   <div class="cards">${inner}</div>`;
+
+/* ---------- week tab ---------- */
+const state = { order: "day", slot: "all", maxTime: 60, ings: new Set() };
+
+function renderIngChips() {
+  const list = [...new Set(meals().flatMap((m) => m.ingredients))].sort();
+  $("#ingchips").innerHTML = list.map((i) =>
+    `<button class="chip" type="button" data-ing="${esc(i)}" aria-pressed="${state.ings.has(i)}">${esc(cap(i))}</button>`).join("");
+}
+
+function renderWeek() {
+  const list = meals().filter((m) =>
+    (state.slot === "all" || m.slot === state.slot) &&
+    (state.maxTime >= 60 || m.minutes <= state.maxTime) &&
+    (state.ings.size === 0 || m.ingredients.some((i) => state.ings.has(i))));
+
+  const filtered = state.slot !== "all" || state.maxTime < 60 || state.ings.size > 0;
+  $("#week-count").textContent = filtered
+    ? `${list.length} of ${meals().length} meals`
+    : `${meals().length} meals this week`;
+  $("#week-clear").hidden = !filtered;
+  $("#resetweek").hidden = changed().length === 0;
+
+  if (!list.length) {
+    $("#week-out").innerHTML = `<div class="empty">Nothing this week matches that. Try a longer time, or clear the ingredient filters.</div>`;
+    return;
+  }
+
+  const asCard = (m) => card({
+    key: m.id, mealId: m.id, r: m.r, slot: m.slot, minutes: m.minutes,
+    note: m.note, isSwapped: m.isSwapped, leftovers: m.leftovers,
+    day: state.order === "day" ? null : m.day,
+  });
+
+  let html = "";
+  if (state.order === "day") {
+    for (const d of DAYS) {
+      const g = list.filter((m) => m.day === d)
+                    .sort((a, b) => (a.slot === "lunch" ? 0 : 1) - (b.slot === "lunch" ? 0 : 1));
+      if (g.length) html += groupBlock(cap(d), g.length + (g.length > 1 ? " meals" : " meal"), g.map(asCard).join(""));
+    }
+  } else if (state.order === "time") {
+    const g = [...list].sort((a, b) => a.minutes - b.minutes);
+    html += groupBlock("Quickest first", g[0].minutes + "–" + g[g.length - 1].minutes + " min", g.map(asCard).join(""));
+  } else {
+    for (const c of [...new Set(list.map((m) => m.r.cuisine))].sort()) {
+      const g = list.filter((m) => m.r.cuisine === c);
+      html += groupBlock(cap(c), g.length, g.map(asCard).join(""));
+    }
+  }
+  $("#week-out").innerHTML = html;
+}
+
+/* ---------- recipes tab ---------- */
+const rstate = { q: "", slot: "all", cuisines: new Set() };
+
+function renderCuisineChips() {
+  const cs = [...new Set(Object.values(all()).map((r) => r.cuisine))].sort();
+  $("#rcuisine").innerHTML = cs.map((c) =>
+    `<button class="chip" type="button" data-cuisine="${esc(c)}" aria-pressed="${rstate.cuisines.has(c)}">${esc(cap(c))}</button>`).join("");
+}
+
+function renderRecipes() {
+  const lib = all();
+  const servedIn = {};
+  for (const p of DATA.plans) for (const m of p.meals) (servedIn[m.recipe] ??= []).push(p.label || p.weekOf);
+  for (const [id, slug] of Object.entries(picks)) {
+    if (slug !== baseline[id]) (servedIn[slug] ??= []).push(plan.label || plan.weekOf);
+  }
+
+  const q = rstate.q.trim().toLowerCase();
+  const list = Object.entries(lib).filter(([, r]) =>
+    (rstate.slot === "all" || r.slot === rstate.slot) &&
+    (rstate.cuisines.size === 0 || rstate.cuisines.has(r.cuisine)) &&
+    (!q || (r.title + " " + r.short + " " + r.cuisine + " " + (r.tags || []).join(" ") + " " +
+            (r.ingredients || []).map((i) => i.item).join(" ") + " " + (r.steps || []).join(" ")).toLowerCase().includes(q)))
+    .sort((a, b) => a[1].title.localeCompare(b[1].title));
+
+  const total = Object.keys(lib).length;
+  const filtered = !!q || rstate.slot !== "all" || rstate.cuisines.size > 0;
+  $("#rec-count").textContent = filtered ? `${list.length} of ${total} dishes` : `${total} dishes in the library`;
+  $("#rec-clear").hidden = !filtered;
+
+  if (!list.length) {
+    $("#rec-out").innerHTML = `<div class="empty">No dish matches that yet. The library grows every week.</div>`;
+    return;
+  }
+  const inner = list.map(([k, r]) => {
+    const uniq = [...new Set(servedIn[k] || [])];
+    return card({ key: "r-" + k, r, day: null, slot: r.slot,
+                  minutes: r.prepMinutes + r.cookMinutes,
+                  served: uniq.length ? uniq.join(", ") : null });
+  }).join("");
+  $("#rec-out").innerHTML = `<div class="cards" style="margin-top:1.2rem">${inner}</div>`;
+}
+
+/* ---------- shopping tab ---------- */
+function renderShop() {
+  const { lines, total } = basket();
+  const ceiling = CONF.budgetCeiling;
+  const pct = Math.min(100, (total / ceiling) * 100);
+  const over = total > ceiling;
+
+  let html = `<div class="meter">
+      <div class="meter-bar"><div class="meter-fill${over ? " over" : ""}" style="width:${pct.toFixed(1)}%"></div></div>
+      <div class="meter-row"><span>${eur(total)} estimated</span><span>${eur(ceiling)} ceiling</span></div>
+    </div>`;
+  if (over) html += `<div class="empty" style="margin-top:.9rem;border-color:var(--clay);color:var(--clay)">Over the ceiling by ${eur(total - ceiling)}. Swap something out, or raise it.</div>`;
+
+  const secs = [];
+  for (const l of lines) {
+    let s = secs.find((x) => x.name === l.section);
+    if (!s) secs.push((s = { name: l.section, lines: [] }));
+    s.lines.push(l);
+  }
+  for (const s of secs) {
+    const sub = s.lines.reduce((a, b) => a + b.cost, 0);
+    html += `<div class="shop-sec">
+      <div class="group-head" style="margin:0"><h2>${esc(s.name)}</h2><span class="leader"></span><span class="group-count">${eur(sub)}</span></div>
+      <ul class="shop-list">${s.lines.map((l) => `
+        <li><div class="shop-line">
+            <span class="shop-name">${esc(l.name)}${l.guess ? '<span class="flag">guess</span>' : ""}</span>
+            <span class="shop-dots"></span><span class="shop-cost">${eur(l.cost)}</span>
+          </div>
+          <div class="shop-sub"><span>${esc(l.amount)}</span><span>${esc(l.for)}</span></div></li>`).join("")}</ul>
+    </div>`;
+  }
+  html += `<div class="shop-total"><span>Estimated total</span><span>${eur(total)}</span></div>`;
+  const cookCount = meals().filter((m) => !m.leftovers).length;
+  html += `<div class="foot" style="margin-top:1.6rem">Rebuilt from the ${cookCount} meals actually cooked this week — ${meals().length - cookCount} more come out of an earlier pot and cost nothing extra. Follows every swap.<br>${(plan.notes || []).map(esc).join("<br>")}</div>`;
+  $("#shop-out").innerHTML = html;
+}
+
+/* ---------- swap sheet ---------- */
+let swapTarget = null;
+
+function alternatives(mealId) {
+  const m = mealById(mealId), cur = picks[mealId];
+  const lib = all();
+  const budget = m.slot === "dinner" ? 999 : 30;
+  return Object.entries(lib)
+    .filter(([slug, r]) => slug !== cur && r.slot === m.slot && (r.prepMinutes + r.cookMinutes) <= budget)
+    .sort((a, b) => (a[1].prepMinutes + a[1].cookMinutes) - (b[1].prepMinutes + b[1].cookMinutes));
+}
+
+function openSwap(mealId) {
+  swapTarget = mealId;
+  const m = mealById(mealId);
+  $("#sheet-title").textContent = "Swap " + cap(m.day) + " " + m.slot;
+  $("#sheet-sub").textContent = "Currently " + all()[picks[mealId]].title + ". Pick another, or ask for something new.";
+  $("#gen-state").innerHTML = "";
+  $("#sheet-restore").hidden = picks[mealId] === baseline[mealId];
+  $("#sheet-alts").innerHTML = alternatives(mealId).map(([slug, r]) =>
+    `<button class="alt" type="button" data-pick="${esc(slug)}">
+       <span class="alt-name">${esc(r.title)}</span><span class="leader"></span>
+       <span class="alt-meta">${cap(r.cuisine)} &middot; ${r.prepMinutes + r.cookMinutes} min</span>
+     </button>`).join("");
+  $("#sheet").showModal();
+}
+
+function setPick(mealId, slug) {
+  picks[mealId] = slug;
+  renderAll();
+  persist();
+}
+
+/* ---------- generating a new dish ---------- */
+function generatePrompt(meal) {
+  const c = CONF.constraints;
+  const products = Object.keys(PRICES).join("\n");
+  const already = Object.values(all()).map((r) => r.title).join("; ");
+  return `Invent one ${meal.slot} dish for a household of two in France who shop at Intermarché.
+
+HARD RULES, no exceptions:
+- No chilli, no capsaicin, nothing hot. ${c.bannedReason}
+- Minimise ${c.limited.join(", ")}. ${c.limitedReason} Cheese is fine. Coconut milk is fine.
+- It must be a dish that is genuinely COOKED. Never a recipe for reheating a ready-made or frozen product.
+- Total time at most ${meal.slot === "dinner" ? c.maxWeeknightMinutes + 15 : 20} minutes.
+- Do not repeat any of these existing dishes: ${already}
+
+Every ingredient that must be bought needs a "product" chosen EXACTLY, character for character, from this list of things they actually buy. If nothing in the list fits, set "guess": true and give buy.price as a euro estimate.
+
+${products}
+
+Reply with JSON only, this exact shape:
+{"title":"","cuisine":"italian|french|spanish|greek|japanese|chinese|thai|vietnamese|indian",
+ "slot":"${meal.slot}","kind":"recipe","prepMinutes":0,"cookMinutes":0,"serves":${meal.slot === "dinner" ? 2 : 1},
+ "tags":["no chilli"],"short":"one sentence a cook can read at the hob",
+ "ingredients":[{"item":"plain name","qty":"how much","product":"exact name from the list",
+   "buy":{"amount":0.3,"mode":"sum","section":"Proteins|Vegetables|Store cupboard|Bread and cheese"}}],
+ "steps":["numbered method, 4 to 7 steps, specific about heat and timing"]}
+
+buy.mode is "sum" for produce and meat, "once" for a bottle or bag that lasts the week. Omit "buy" entirely for salt, pepper, oil or eggs.`;
+}
+
+function sanitise(r, slot) {
+  if (!r || typeof r !== "object" || !r.title || !Array.isArray(r.steps)) throw new Error("shape");
+  r.slot = slot;
+  r.kind = "recipe";
+  r.serves = r.serves || (slot === "dinner" ? 2 : 1);
+  r.prepMinutes = +r.prepMinutes || 10;
+  r.cookMinutes = +r.cookMinutes || 15;
+  r.tags = Array.isArray(r.tags) ? r.tags : [];
+  if (!r.tags.includes("no chilli")) r.tags.push("no chilli");
+  r.tags.push("invented");
+  r.short = r.short || "";
+  r.ingredients = (r.ingredients || []).map((i) => {
+    const o = { item: String(i.item || "something"), qty: String(i.qty || ""), product: String(i.product || "") };
+    if (i.buy && i.buy.amount != null) {
+      const known = !!PRICES[o.product];
+      o.guess = !known;
+      o.buy = {
+        amount: +i.buy.amount || 1,
+        mode: i.buy.mode === "once" ? "once" : "sum",
+        section: i.buy.section || (known ? "Store cupboard" : "Best guesses"),
+      };
+      // A product the pricebook has never seen still has to cost something, or
+      // the basket would quietly under-report.
+      if (!known) { o.buy.price = +i.buy.price || 3; o.buy.section = "Best guesses"; }
+    } else o.pantry = true;
+    return o;
+  });
+  return r;
+}
+
+async function generate() {
+  if (!sample || !swapTarget) return;
+  const meal = mealById(swapTarget);
+  const btn = $("#gen-btn");
+  btn.disabled = true;
+  $("#gen-state").innerHTML = `<div class="genstate">Asking Claude for something new… this takes a few seconds.</div>`;
+  try {
+    const raw = await sample.json(generatePrompt(meal), { modelTier: "default" });
+    const r = sanitise(raw, meal.slot);
+    const slug = "new-" + r.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) + "-" + Date.now().toString(36).slice(-4);
+    extra[slug] = r;
+    $("#sheet").close();
+    setPick(swapTarget, slug);
+  } catch (e) {
+    const code = e && e.code ? e.code : "failed";
+    $("#gen-state").innerHTML = `<div class="genstate err">${esc(
+      code === "not_granted" ? "Claude isn't available on this view — pick from the list instead."
+      : code === "rate_limited" ? "Too many requests just now. Try again in a minute."
+      : "That didn't come back usable. Try again, or pick from the list.")}</div>`;
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+/* ---------- render all ---------- */
+function renderAll() {
+  renderIngChips();
+  renderCuisineChips();
+  renderWeek();
+  renderRecipes();
+  renderShop();
+  renderMasthead();
+}
+
+function renderMasthead() {
+  const { total } = basket();
+  $("#store-line").textContent = CONF.store || plan.store || "";
+  $("#week-title").textContent = plan.label || ("Week of " + plan.weekOf);
+  const d = plan.meals.filter((m) => m.slot === "dinner").length;
+  const l = plan.meals.filter((m) => m.slot === "lunch").length;
+  $("#strapline").textContent =
+    `${d} dinners and ${l} lunches. Swap anything you don't fancy — the basket follows. No chilli anywhere.`;
+  $("#tally").innerHTML = [
+    ["Meals", plan.meals.length],
+    ["Library", Object.keys(all()).length],
+    ["Basket", eur(total)],
+    ["Ceiling", eur(CONF.budgetCeiling)],
+  ].map(([k, v]) => `<span>${k}</span>&nbsp;<b>${v}</b>`).join("");
+  $("#foot").innerHTML =
+    `${Object.keys(all()).length} dishes, ${Object.keys(PRICES).length} products priced from a year of your own receipts. ` +
+    `Estimates, not quotes.<br>Product names are the exact Intermarché ones, so each resolves to a single search result at the Drive.`;
+}
+
+/* ---------- wiring ---------- */
+function segment(sel, onchange) {
+  $(sel).addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-v]");
+    if (!b) return;
+    $$("button", $(sel)).forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    onchange(b.dataset.v);
+  });
+}
+segment("#orderby", (v) => { state.order = v; renderWeek(); });
+segment("#slotfilter", (v) => { state.slot = v; renderWeek(); });
+segment("#rslot", (v) => { rstate.slot = v; renderRecipes(); });
+
+$("#timemax").addEventListener("input", (e) => {
+  state.maxTime = +e.target.value;
+  $("#timeval").textContent = state.maxTime >= 60 ? "any" : "≤ " + state.maxTime + " min";
+  renderWeek();
+});
+$("#ingchips").addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-ing]"); if (!b) return;
+  const v = b.dataset.ing;
+  state.ings.has(v) ? state.ings.delete(v) : state.ings.add(v);
+  b.setAttribute("aria-pressed", String(state.ings.has(v)));
+  renderWeek();
+});
+$("#rcuisine").addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-cuisine]"); if (!b) return;
+  const v = b.dataset.cuisine;
+  rstate.cuisines.has(v) ? rstate.cuisines.delete(v) : rstate.cuisines.add(v);
+  b.setAttribute("aria-pressed", String(rstate.cuisines.has(v)));
+  renderRecipes();
+});
+$("#rsearch").addEventListener("input", (e) => { rstate.q = e.target.value; renderRecipes(); });
+
+$("#week-clear").addEventListener("click", () => {
+  state.slot = "all"; state.maxTime = 60; state.ings.clear();
+  $$("#slotfilter button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.v === "all")));
+  $("#timemax").value = 60; $("#timeval").textContent = "any";
+  renderIngChips(); renderWeek();
+});
+$("#rec-clear").addEventListener("click", () => {
+  rstate.q = ""; rstate.slot = "all"; rstate.cuisines.clear();
+  $("#rsearch").value = "";
+  $$("#rslot button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.v === "all")));
+  renderCuisineChips(); renderRecipes();
+});
+
+$("#shuffle").addEventListener("click", () => {
+  const lib = all();
+  const used = new Set();
+  for (const m of plan.meals) {
+    const opts = Object.entries(lib).filter(([s, r]) => r.slot === m.slot && !used.has(s));
+    if (!opts.length) continue;
+    const [slug] = opts[Math.floor(Math.random() * opts.length)];
+    picks[m.id] = slug;
+    used.add(slug);
+  }
+  renderAll(); persist();
+});
+$("#resetweek").addEventListener("click", () => { picks = { ...baseline }; renderAll(); persist(); });
+
+document.addEventListener("click", (e) => {
+  const sw = e.target.closest("button[data-swap]");
+  if (sw) return openSwap(sw.dataset.swap);
+  const alt = e.target.closest("button[data-pick]");
+  if (alt) { $("#sheet").close(); return setPick(swapTarget, alt.dataset.pick); }
+  const btn = e.target.closest(".expand");
+  if (!btn) return;
+  const c = btn.closest(".card");
+  const open = c.classList.toggle("open");
+  btn.setAttribute("aria-expanded", String(open));
+  btn.querySelector(".caret").textContent = open ? "▴" : "▾";
+});
+
+$("#gen-btn").addEventListener("click", generate);
+$("#sheet-close").addEventListener("click", () => $("#sheet").close());
+$("#sheet-restore").addEventListener("click", () => {
+  $("#sheet").close(); setPick(swapTarget, baseline[swapTarget]);
+});
+
+const PANELS = { "tab-week": "panel-week", "tab-recipes": "panel-recipes", "tab-shop": "panel-shop" };
+$$(".tab").forEach((t) => t.addEventListener("click", () => {
+  $$(".tab").forEach((x) => {
+    const on = x === t;
+    x.setAttribute("aria-selected", String(on));
+    $("#" + PANELS[x.id]).hidden = !on;
+  });
+  window.scrollTo({ top: 0, behavior: "instant" });
+}));
+
+setSync("", "Checking for your partner's changes…");
+renderAll();
+</script>
