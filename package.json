@@ -5,6 +5,7 @@
   "type": "module",
   "description": "Weekly meal planning that ends with a pre-filled Intermarche Drive basket.",
   "scripts": {
-    "parse": "node scripts/parse-invoices.mjs"
+    "parse": "node scripts/parse-invoices.mjs",
+    "build:week": "node scripts/build-week.mjs"
   }
 }

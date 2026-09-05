@@ -1,0 +1,741 @@
+<title>Méré Kitchen Week</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+  /* ---- tokens: complete light palette on bare :root ---- */
+  :root {
+    --paper:      #F4F6F1;
+    --card:       #FFFFFF;
+    --card-sunk:  #FAFBF8;
+    --ink:        #1B211A;
+    --ink-2:      #56604F;
+    --ink-3:      #8A9284;
+    --rule:       #DCE2D5;
+    --rule-soft:  #E9EDE4;
+    --herb:       #40602A;
+    --herb-soft:  #E6EEDA;
+    --yuzu:       #9C6E04;
+    --yuzu-soft:  #F8EFD6;
+    --clay:       #8F4429;
+    --clay-soft:  #F6E5DE;
+    --shadow:     0 1px 2px rgba(27,33,26,.05), 0 8px 24px -16px rgba(27,33,26,.22);
+    --focus:      #2F6F3E;
+
+    --f-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+    --f-body:    "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --f-mono:    "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:     #14180F;
+      --card:      #1D2218;
+      --card-sunk: #191E14;
+      --ink:       #E9EDE3;
+      --ink-2:     #A7B29D;
+      --ink-3:     #77826D;
+      --rule:      #2F3728;
+      --rule-soft: #262D20;
+      --herb:      #9CC072;
+      --herb-soft: #26311B;
+      --yuzu:      #E0B24C;
+      --yuzu-soft: #322913;
+      --clay:      #D08768;
+      --clay-soft: #35211A;
+      --shadow:    0 1px 2px rgba(0,0,0,.3), 0 8px 24px -16px rgba(0,0,0,.6);
+      --focus:     #9CC072;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:     #14180F;
+    --card:      #1D2218;
+    --card-sunk: #191E14;
+    --ink:       #E9EDE3;
+    --ink-2:     #A7B29D;
+    --ink-3:     #77826D;
+    --rule:      #2F3728;
+    --rule-soft: #262D20;
+    --herb:      #9CC072;
+    --herb-soft: #26311B;
+    --yuzu:      #E0B24C;
+    --yuzu-soft: #322913;
+    --clay:      #D08768;
+    --clay-soft: #35211A;
+    --shadow:    0 1px 2px rgba(0,0,0,.3), 0 8px 24px -16px rgba(0,0,0,.6);
+    --focus:     #9CC072;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 16px/1.55 var(--f-body);
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 42rem; margin: 0 auto; padding: 0 1.15rem 4rem; }
+
+  /* ---- masthead ---- */
+  .masthead { padding: 2.1rem 0 1.15rem; }
+  .eyebrow {
+    font: 500 .68rem/1 var(--f-mono);
+    letter-spacing: .13em; text-transform: uppercase;
+    color: var(--herb);
+  }
+  h1 {
+    font: 700 clamp(2rem, 8vw, 2.9rem)/1.05 var(--f-display);
+    font-variation-settings: "opsz" 120;
+    margin: .5rem 0 0; letter-spacing: -.015em; text-wrap: balance;
+  }
+  .strapline { color: var(--ink-2); margin: .5rem 0 0; max-width: 34rem; }
+
+  /* the receipt tally under the title */
+  .tally {
+    display: flex; flex-wrap: wrap; gap: .35rem 1.4rem;
+    margin-top: 1.1rem; padding-top: .85rem;
+    border-top: 1.5px solid var(--ink);
+    font: 500 .8rem/1.4 var(--f-mono);
+    font-variant-numeric: tabular-nums;
+  }
+  .tally b { color: var(--ink); font-weight: 600; }
+  .tally span { color: var(--ink-3); }
+
+  /* ---- tabs ---- */
+  .tabs {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; gap: .1rem;
+    margin: 1.4rem 0 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    padding-top: .3rem;
+  }
+  .tab {
+    flex: 1; appearance: none; border: 0; background: none; cursor: pointer;
+    padding: .8rem .3rem .65rem;
+    font: 500 .78rem/1 var(--f-mono);
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink-3);
+    border-bottom: 2.5px solid transparent;
+    margin-bottom: -1px;
+    transition: color .15s;
+  }
+  .tab:hover { color: var(--ink-2); }
+  .tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--herb); }
+
+  /* ---- controls ---- */
+  .controls { padding: 1.25rem 0 .3rem; display: flex; flex-direction: column; gap: .95rem; }
+  .ctl-label {
+    font: 500 .66rem/1 var(--f-mono);
+    letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
+    display: block; margin-bottom: .45rem;
+  }
+  .seg { display: flex; border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+  .seg button {
+    flex: 1; appearance: none; border: 0; cursor: pointer;
+    background: var(--card); color: var(--ink-2);
+    padding: .55rem .4rem;
+    font: 500 .78rem/1.2 var(--f-body);
+    border-right: 1px solid var(--rule);
+    transition: background .15s, color .15s;
+  }
+  .seg button:last-child { border-right: 0; }
+  .seg button:hover { background: var(--card-sunk); }
+  .seg button[aria-pressed="true"] { background: var(--herb); color: var(--card); }
+
+  .slider-row { display: flex; align-items: center; gap: .8rem; }
+  input[type=range] { flex: 1; accent-color: var(--herb); height: 1.6rem; }
+  .slider-val {
+    font: 600 .82rem/1 var(--f-mono); color: var(--ink);
+    font-variant-numeric: tabular-nums; min-width: 5.4rem; text-align: right;
+  }
+
+  details.chipbox { border: 1px solid var(--rule); border-radius: 3px; background: var(--card); }
+  details.chipbox > summary {
+    cursor: pointer; list-style: none; padding: .6rem .75rem;
+    font: 500 .78rem/1.2 var(--f-body); color: var(--ink-2);
+    display: flex; justify-content: space-between; align-items: center; gap: .5rem;
+  }
+  details.chipbox > summary::-webkit-details-marker { display: none; }
+  details.chipbox > summary::after { content: "+"; font: 500 1rem/1 var(--f-mono); color: var(--ink-3); }
+  details.chipbox[open] > summary::after { content: "–"; }
+  .chips { display: flex; flex-wrap: wrap; gap: .35rem; padding: 0 .75rem .75rem; }
+  .chip {
+    appearance: none; cursor: pointer;
+    border: 1px solid var(--rule); border-radius: 100px; background: var(--card-sunk);
+    color: var(--ink-2); padding: .32rem .68rem;
+    font: 400 .78rem/1.3 var(--f-body);
+    transition: background .12s, color .12s, border-color .12s;
+  }
+  .chip:hover { border-color: var(--ink-3); }
+  .chip[aria-pressed="true"] {
+    background: var(--herb-soft); border-color: var(--herb); color: var(--herb); font-weight: 500;
+  }
+
+  .active-filters {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+    font: 400 .8rem/1.4 var(--f-body); color: var(--ink-2);
+    padding: .1rem 0 .2rem;
+  }
+  .linkbtn {
+    appearance: none; border: 0; background: none; cursor: pointer; padding: 0;
+    font: 500 .8rem/1.4 var(--f-body); color: var(--herb);
+    text-decoration: underline; text-underline-offset: 2px;
+  }
+
+  /* ---- group headings ---- */
+  .group-head {
+    display: flex; align-items: baseline; gap: .6rem;
+    margin: 1.9rem 0 .7rem;
+  }
+  .group-head:first-of-type { margin-top: 1.1rem; }
+  .group-head h2 {
+    margin: 0;
+    font: 500 .72rem/1 var(--f-mono);
+    letter-spacing: .14em; text-transform: uppercase; color: var(--ink);
+    white-space: nowrap;
+  }
+  .leader { flex: 1; border-bottom: 1px dotted var(--rule); transform: translateY(-.22em); }
+  .group-count { font: 400 .72rem/1 var(--f-mono); color: var(--ink-3); }
+
+  /* ---- meal / recipe cards ---- */
+  .cards { display: flex; flex-direction: column; gap: .7rem; }
+  .card {
+    background: var(--card); border: 1px solid var(--rule); border-radius: 4px;
+    box-shadow: var(--shadow); overflow: hidden;
+  }
+  .card.is-lunch { background: var(--card-sunk); }
+  .card-top {
+    display: flex; align-items: baseline; gap: .55rem;
+    padding: .8rem .95rem .1rem;
+    font: 500 .7rem/1.2 var(--f-mono);
+    letter-spacing: .1em; text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+  }
+  .card-day { color: var(--herb); white-space: nowrap; }
+  .card-slot { color: var(--ink-3); }
+  .card-time { color: var(--yuzu); white-space: nowrap; }
+  .card-body { padding: .1rem .95rem 1rem; }
+  .card h3 {
+    margin: .3rem 0 .1rem;
+    font: 600 1.28rem/1.2 var(--f-display);
+    font-variation-settings: "opsz" 36;
+    letter-spacing: -.01em; text-wrap: balance;
+  }
+  .card-meta {
+    font: 400 .76rem/1.4 var(--f-mono); color: var(--ink-3);
+    margin-bottom: .5rem;
+  }
+  .card-short { margin: 0 0 .7rem; color: var(--ink-2); font-size: .93rem; }
+  .card-note {
+    margin: 0 0 .7rem; padding: .5rem .65rem;
+    background: var(--herb-soft); border-radius: 3px;
+    font-size: .86rem; color: var(--ink-2);
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: .3rem; margin-bottom: .75rem; }
+  .tag {
+    font: 500 .68rem/1 var(--f-mono); letter-spacing: .05em;
+    padding: .3rem .5rem; border-radius: 2px;
+    background: var(--rule-soft); color: var(--ink-2);
+  }
+  .tag.is-batch { background: var(--herb-soft); color: var(--herb); }
+  .tag.is-fast  { background: var(--yuzu-soft); color: var(--yuzu); }
+
+  .expand {
+    appearance: none; width: 100%; cursor: pointer; text-align: left;
+    border: 1px solid var(--rule); border-radius: 3px; background: var(--card-sunk);
+    color: var(--ink-2); padding: .52rem .7rem;
+    font: 500 .8rem/1.2 var(--f-body);
+    display: flex; justify-content: space-between; align-items: center;
+    transition: background .13s;
+  }
+  .expand:hover { background: var(--rule-soft); }
+  .expand .caret { font: 400 .8rem/1 var(--f-mono); color: var(--ink-3); }
+
+  .drawer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .22s ease; }
+  .drawer > div { overflow: hidden; }
+  .card.open .drawer { grid-template-rows: 1fr; }
+  @media (prefers-reduced-motion: reduce) { .drawer { transition: none; } }
+
+  .drawer-inner { padding-top: 1rem; }
+  .sub {
+    font: 500 .66rem/1 var(--f-mono); letter-spacing: .13em; text-transform: uppercase;
+    color: var(--ink-3); margin: 0 0 .55rem;
+  }
+  .ing { list-style: none; margin: 0 0 1.2rem; padding: 0; }
+  .ing li { padding: .3rem 0; border-bottom: 1px dotted var(--rule); }
+  .ing li:last-child { border-bottom: 0; }
+  .ing-row { display: flex; align-items: baseline; gap: .5rem; }
+  .ing-name { font-size: .92rem; }
+  .ing-qty {
+    font: 500 .8rem/1.4 var(--f-mono); color: var(--ink-2);
+    font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .ing-product { font: 400 .72rem/1.4 var(--f-mono); color: var(--ink-3); margin-top: .05rem; }
+  .flag {
+    font: 500 .62rem/1 var(--f-mono); letter-spacing: .07em; text-transform: uppercase;
+    padding: .2rem .35rem; border-radius: 2px; margin-left: .35rem;
+    background: var(--yuzu-soft); color: var(--yuzu); white-space: nowrap;
+  }
+  .flag.pantry { background: var(--rule-soft); color: var(--ink-3); }
+
+  ol.steps { margin: 0; padding: 0; list-style: none; counter-reset: s; }
+  ol.steps li {
+    counter-increment: s; position: relative;
+    padding: 0 0 .85rem 2.1rem; font-size: .93rem; color: var(--ink-2);
+  }
+  ol.steps li::before {
+    content: counter(s); position: absolute; left: 0; top: .05rem;
+    font: 600 .72rem/1.55rem var(--f-mono); color: var(--herb);
+    width: 1.55rem; height: 1.55rem; text-align: center;
+    background: var(--herb-soft); border-radius: 100px;
+  }
+  ol.steps li:last-child { padding-bottom: 0; }
+
+  /* ---- shopping ---- */
+  .meter { margin: 1.3rem 0 .4rem; }
+  .meter-bar {
+    height: 8px; border-radius: 100px; background: var(--rule-soft);
+    overflow: hidden; border: 1px solid var(--rule);
+  }
+  .meter-fill { height: 100%; background: var(--herb); }
+  .meter-fill.over { background: var(--clay); }
+  .meter-row {
+    display: flex; justify-content: space-between; gap: 1rem; margin-top: .5rem;
+    font: 500 .78rem/1.4 var(--f-mono); font-variant-numeric: tabular-nums; color: var(--ink-2);
+  }
+  .shop-sec { margin-top: 1.7rem; }
+  .shop-list { list-style: none; margin: .55rem 0 0; padding: 0; }
+  .shop-list li { padding: .5rem 0; border-bottom: 1px dotted var(--rule); }
+  .shop-line { display: flex; align-items: baseline; gap: .45rem; }
+  .shop-name { font-size: .9rem; }
+  .shop-dots { flex: 1; border-bottom: 1px dotted var(--rule); transform: translateY(-.25em); min-width: 1rem; }
+  .shop-cost {
+    font: 600 .84rem/1.4 var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .shop-sub {
+    font: 400 .73rem/1.45 var(--f-mono); color: var(--ink-3); margin-top: .1rem;
+    display: flex; flex-wrap: wrap; gap: .1rem .6rem;
+  }
+  .shop-total {
+    display: flex; justify-content: space-between; gap: 1rem;
+    margin-top: 1.5rem; padding-top: .8rem; border-top: 1.5px solid var(--ink);
+    font: 600 1rem/1.3 var(--f-mono); font-variant-numeric: tabular-nums;
+  }
+
+  .search {
+    width: 100%; padding: .6rem .75rem;
+    border: 1px solid var(--rule); border-radius: 3px;
+    background: var(--card); color: var(--ink);
+    font: 400 .92rem/1.3 var(--f-body);
+  }
+  .search::placeholder { color: var(--ink-3); }
+
+  .served { font: 400 .73rem/1.4 var(--f-mono); color: var(--ink-3); margin-top: .5rem; }
+  .empty {
+    text-align: center; padding: 3rem 1rem; color: var(--ink-3);
+    font-size: .95rem; border: 1px dashed var(--rule); border-radius: 4px; margin-top: 1.2rem;
+  }
+  .foot {
+    margin-top: 2.8rem; padding-top: 1rem; border-top: 1px solid var(--rule);
+    font: 400 .74rem/1.6 var(--f-mono); color: var(--ink-3);
+  }
+  [hidden] { display: none !important; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 2px; }
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="eyebrow" id="store-line"></div>
+    <h1 id="week-title"></h1>
+    <p class="strapline" id="strapline"></p>
+    <div class="tally" id="tally"></div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button class="tab" role="tab" id="tab-week"    aria-controls="panel-week"    aria-selected="true">Week</button>
+    <button class="tab" role="tab" id="tab-recipes" aria-controls="panel-recipes" aria-selected="false">Recipes</button>
+    <button class="tab" role="tab" id="tab-shop"    aria-controls="panel-shop"    aria-selected="false">Shopping</button>
+  </nav>
+
+  <section id="panel-week" role="tabpanel" aria-labelledby="tab-week">
+    <div class="controls">
+      <div>
+        <span class="ctl-label">Group by</span>
+        <div class="seg" id="groupby">
+          <button data-v="day" aria-pressed="true">Day</button>
+          <button data-v="time" aria-pressed="false">Prep time</button>
+          <button data-v="cuisine" aria-pressed="false">Cuisine</button>
+        </div>
+      </div>
+      <div>
+        <span class="ctl-label">Show</span>
+        <div class="seg" id="slotfilter">
+          <button data-v="all" aria-pressed="true">Everything</button>
+          <button data-v="dinner" aria-pressed="false">Dinners</button>
+          <button data-v="lunch" aria-pressed="false">Lunches</button>
+        </div>
+      </div>
+      <div>
+        <span class="ctl-label">Time I have</span>
+        <div class="slider-row">
+          <input type="range" id="timemax" min="10" max="60" step="5" value="60" aria-label="Maximum total time in minutes">
+          <span class="slider-val" id="timeval">any</span>
+        </div>
+      </div>
+      <details class="chipbox" id="ingbox">
+        <summary>Filter by ingredient</summary>
+        <div class="chips" id="ingchips"></div>
+      </details>
+      <div class="active-filters">
+        <span id="week-count"></span>
+        <button class="linkbtn" id="week-clear" hidden>Clear filters</button>
+      </div>
+    </div>
+    <div id="week-out"></div>
+  </section>
+
+  <section id="panel-recipes" role="tabpanel" aria-labelledby="tab-recipes" hidden>
+    <div class="controls">
+      <input class="search" id="rsearch" type="search" placeholder="Search dishes, ingredients, methods…" aria-label="Search recipes">
+      <div>
+        <span class="ctl-label">Course</span>
+        <div class="seg" id="rslot">
+          <button data-v="all" aria-pressed="true">All</button>
+          <button data-v="dinner" aria-pressed="false">Dinners</button>
+          <button data-v="lunch" aria-pressed="false">Lunches</button>
+        </div>
+      </div>
+      <div>
+        <span class="ctl-label">Cuisine</span>
+        <div class="chips" id="rcuisine" style="padding:0"></div>
+      </div>
+      <div class="active-filters">
+        <span id="rec-count"></span>
+        <button class="linkbtn" id="rec-clear" hidden>Clear filters</button>
+      </div>
+    </div>
+    <div id="rec-out"></div>
+  </section>
+
+  <section id="panel-shop" role="tabpanel" aria-labelledby="tab-shop" hidden>
+    <div id="shop-out"></div>
+  </section>
+
+  <footer class="foot" id="foot"></footer>
+</div>
+
+<script>
+const DATA = /*__DATA__*/ null;
+
+/* ---------- helpers ---------- */
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
+  ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const eur = (n) => n.toFixed(2).replace(".", ",") + " €";
+const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+const DAYS = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
+
+const plan = [...DATA.plans].sort((a, b) => b.weekOf.localeCompare(a.weekOf))[0];
+const recipes = DATA.recipes;
+
+/* Every meal in the current week, flattened with its recipe. */
+const meals = plan.meals.map((m, i) => {
+  const r = recipes[m.recipe];
+  const minutes = m.minutesOverride ?? (r.prepMinutes + r.cookMinutes);
+  return { ...m, id: "m" + i, r, minutes,
+           ingredients: r.ingredients.map((x) => x.item.toLowerCase()) };
+});
+
+/* Which weeks each recipe has been served, for the library tab. */
+const servedIn = {};
+for (const p of DATA.plans) {
+  for (const m of p.meals) (servedIn[m.recipe] ??= []).push(p.label || p.weekOf);
+}
+
+/* ---------- shared card rendering ---------- */
+function tagClass(t) {
+  if (t === "batch cook") return " is-batch";
+  if (t === "fast" || t === "make ahead") return " is-fast";
+  return "";
+}
+
+function ingredientList(r) {
+  return `<p class="sub">Ingredients &middot; serves ${r.serves}</p>
+    <ul class="ing">${r.ingredients.map((i) => `
+      <li>
+        <div class="ing-row">
+          <span class="ing-name">${esc(cap(i.item))}${i.guess ? '<span class="flag">guess</span>' : ""}${i.pantry ? '<span class="flag pantry">have it</span>' : ""}</span>
+          <span class="leader"></span>
+          <span class="ing-qty">${esc(i.qty)}</span>
+        </div>
+        <div class="ing-product">${esc(i.product)}</div>
+      </li>`).join("")}</ul>`;
+}
+
+function stepList(r) {
+  return `<p class="sub">Method</p>
+    <ol class="steps">${r.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>`;
+}
+
+function card(o) {
+  // o: { key, r, day?, slot, minutes, note?, served? }
+  const r = o.r;
+  return `<article class="card${o.slot === "lunch" ? " is-lunch" : ""}" data-card="${o.key}">
+    <div class="card-top">
+      <span class="card-day">${esc(o.day ? cap(o.day) : cap(r.cuisine))}</span>
+      <span class="card-slot">${esc(o.slot)}</span>
+      <span class="leader"></span>
+      <span class="card-time">${o.minutes} min</span>
+    </div>
+    <div class="card-body">
+      <h3>${esc(r.title)}</h3>
+      <div class="card-meta">${esc(cap(r.cuisine))} &middot; serves ${r.serves} &middot; ${r.prepMinutes} prep + ${r.cookMinutes} cook</div>
+      ${o.note ? `<p class="card-note">${esc(o.note)}</p>` : ""}
+      <p class="card-short">${esc(r.short)}</p>
+      <div class="tags">${r.tags.map((t) => `<span class="tag${tagClass(t)}">${esc(t)}</span>`).join("")}</div>
+      ${o.served ? `<div class="served">Served: ${esc(o.served)}</div>` : ""}
+      <button class="expand" type="button" aria-expanded="false">
+        <span>Ingredients &amp; method</span><span class="caret">▾</span>
+      </button>
+      <div class="drawer"><div><div class="drawer-inner">
+        ${ingredientList(r)}${stepList(r)}
+      </div></div></div>
+    </div>
+  </article>`;
+}
+
+function groupBlock(title, count, inner) {
+  return `<div class="group-head"><h2>${esc(title)}</h2><span class="leader"></span><span class="group-count">${count}</span></div>
+          <div class="cards">${inner}</div>`;
+}
+
+/* ---------- week tab ---------- */
+const state = { group: "day", slot: "all", maxTime: 60, ings: new Set() };
+
+const allIngs = [...new Set(meals.flatMap((m) => m.ingredients))].sort();
+$("#ingchips").innerHTML = allIngs.map((i) =>
+  `<button class="chip" type="button" data-ing="${esc(i)}" aria-pressed="false">${esc(cap(i))}</button>`).join("");
+
+function timeBucket(min) {
+  if (min <= 15) return "15 minutes or less";
+  if (min <= 30) return "16 to 30 minutes";
+  return "More than 30 minutes";
+}
+const BUCKETS = ["15 minutes or less", "16 to 30 minutes", "More than 30 minutes"];
+
+function renderWeek() {
+  let list = meals.filter((m) =>
+    (state.slot === "all" || m.slot === state.slot) &&
+    (state.maxTime >= 60 || m.minutes <= state.maxTime) &&
+    (state.ings.size === 0 || m.ingredients.some((i) => state.ings.has(i))));
+
+  const filtered = state.slot !== "all" || state.maxTime < 60 || state.ings.size > 0;
+  $("#week-count").textContent = filtered
+    ? `${list.length} of ${meals.length} meals`
+    : `${meals.length} meals this week`;
+  $("#week-clear").hidden = !filtered;
+
+  if (!list.length) {
+    $("#week-out").innerHTML = `<div class="empty">Nothing this week matches that. Try a longer time, or clear the ingredient filters.</div>`;
+    return;
+  }
+
+  let html = "";
+  if (state.group === "day") {
+    for (const d of DAYS) {
+      const g = list.filter((m) => m.day === d).sort((a, b) => (a.slot === "lunch" ? 0 : 1) - (b.slot === "lunch" ? 0 : 1));
+      if (g.length) html += groupBlock(cap(d), g.length + (g.length > 1 ? " meals" : " meal"),
+        g.map((m) => card({ key: m.id, r: m.r, day: null, slot: m.slot, minutes: m.minutes, note: m.note })).join(""));
+    }
+  } else if (state.group === "time") {
+    for (const b of BUCKETS) {
+      const g = list.filter((m) => timeBucket(m.minutes) === b).sort((a, b2) => a.minutes - b2.minutes);
+      if (g.length) html += groupBlock(b, g.length,
+        g.map((m) => card({ key: m.id, r: m.r, day: m.day, slot: m.slot, minutes: m.minutes, note: m.note })).join(""));
+    }
+  } else {
+    const cuisines = [...new Set(list.map((m) => m.r.cuisine))].sort();
+    for (const c of cuisines) {
+      const g = list.filter((m) => m.r.cuisine === c);
+      if (g.length) html += groupBlock(cap(c), g.length,
+        g.map((m) => card({ key: m.id, r: m.r, day: m.day, slot: m.slot, minutes: m.minutes, note: m.note })).join(""));
+    }
+  }
+  $("#week-out").innerHTML = html;
+}
+
+/* ---------- recipes tab ---------- */
+const rstate = { q: "", slot: "all", cuisines: new Set() };
+const allCuisines = [...new Set(Object.values(recipes).map((r) => r.cuisine))].sort();
+$("#rcuisine").innerHTML = allCuisines.map((c) =>
+  `<button class="chip" type="button" data-cuisine="${esc(c)}" aria-pressed="false">${esc(cap(c))}</button>`).join("");
+
+function renderRecipes() {
+  const q = rstate.q.trim().toLowerCase();
+  let list = Object.entries(recipes).filter(([, r]) =>
+    (rstate.slot === "all" || r.slot === rstate.slot) &&
+    (rstate.cuisines.size === 0 || rstate.cuisines.has(r.cuisine)) &&
+    (!q || (r.title + " " + r.short + " " + r.cuisine + " " + r.tags.join(" ") + " " +
+            r.ingredients.map((i) => i.item).join(" ") + " " + r.steps.join(" ")).toLowerCase().includes(q)));
+
+  list.sort((a, b) => a[1].title.localeCompare(b[1].title));
+  const total = Object.keys(recipes).length;
+  const filtered = !!q || rstate.slot !== "all" || rstate.cuisines.size > 0;
+  $("#rec-count").textContent = filtered ? `${list.length} of ${total} dishes` : `${total} dishes in the library`;
+  $("#rec-clear").hidden = !filtered;
+
+  if (!list.length) {
+    $("#rec-out").innerHTML = `<div class="empty">No dish matches that yet. The library grows by one week at a time.</div>`;
+    return;
+  }
+  const inner = list.map(([k, r]) => {
+    const weeks = servedIn[k] || [];
+    const uniq = [...new Set(weeks)];
+    const served = uniq.length
+      ? uniq.join(", ") + (weeks.length > uniq.length ? ` (${weeks.length} meals)` : "")
+      : null;
+    return card({ key: "r-" + k, r, day: null, slot: r.slot,
+                  minutes: r.prepMinutes + r.cookMinutes, served });
+  }).join("");
+  $("#rec-out").innerHTML = `<div class="cards" style="margin-top:1.2rem">${inner}</div>`;
+}
+
+/* ---------- shopping tab ---------- */
+function renderShop() {
+  const secs = [];
+  for (const line of plan.shopping) {
+    let s = secs.find((x) => x.name === line.section);
+    if (!s) secs.push((s = { name: line.section, lines: [] }));
+    s.lines.push(line);
+  }
+  const total = plan.shopping.reduce((a, b) => a + b.cost, 0);
+  const pct = Math.min(100, (total / plan.budgetCeiling) * 100);
+  const over = total > plan.budgetCeiling;
+
+  let html = `<div class="meter">
+      <div class="meter-bar"><div class="meter-fill${over ? " over" : ""}" style="width:${pct.toFixed(1)}%"></div></div>
+      <div class="meter-row"><span>${eur(total)} estimated</span><span>${eur(plan.budgetCeiling)} ceiling</span></div>
+    </div>`;
+
+  for (const s of secs) {
+    const sub = s.lines.reduce((a, b) => a + b.cost, 0);
+    html += `<div class="shop-sec">
+      <div class="group-head" style="margin:0"><h2>${esc(s.name)}</h2><span class="leader"></span><span class="group-count">${eur(sub)}</span></div>
+      <ul class="shop-list">${s.lines.map((l) => `
+        <li>
+          <div class="shop-line">
+            <span class="shop-name">${esc(l.name)}${l.guess ? '<span class="flag">guess</span>' : ""}</span>
+            <span class="shop-dots"></span>
+            <span class="shop-cost">${eur(l.cost)}</span>
+          </div>
+          <div class="shop-sub"><span>${esc(l.amount)}</span><span>${esc(l.for)}</span></div>
+        </li>`).join("")}</ul>
+    </div>`;
+  }
+  html += `<div class="shop-total"><span>Estimated total</span><span>${eur(total)}</span></div>`;
+  if (plan.notes?.length) {
+    html += `<div class="foot" style="margin-top:1.6rem">${plan.notes.map(esc).join("<br>")}</div>`;
+  }
+  $("#shop-out").innerHTML = html;
+}
+
+/* ---------- masthead ---------- */
+$("#store-line").textContent = plan.store || "";
+$("#week-title").textContent = plan.label || ("Week of " + plan.weekOf);
+$("#strapline").textContent =
+  `${plan.meals.filter((m) => m.slot === "dinner").length} dinners and ` +
+  `${plan.meals.filter((m) => m.slot === "lunch").length} lunches, built from what the receipts say you actually buy. No chilli anywhere.`;
+const shopTotal = plan.shopping.reduce((a, b) => a + b.cost, 0);
+$("#tally").innerHTML = [
+  ["Meals", plan.meals.length],
+  ["Dishes", new Set(plan.meals.map((m) => m.recipe)).size],
+  ["Basket", eur(shopTotal)],
+  ["Ceiling", eur(plan.budgetCeiling)],
+].map(([k, v]) => `<span>${k}</span>&nbsp;<b>${v}</b>`).join("");
+$("#foot").innerHTML =
+  `Generated from ${DATA.plans.length} week${DATA.plans.length > 1 ? "s" : ""} of plans and ` +
+  `${Object.keys(recipes).length} dishes. Prices are estimates from past receipts, not quotes.<br>` +
+  `Product names are the exact Intermarché ones, so they resolve to a single search result at the Drive.`;
+
+/* ---------- wiring ---------- */
+function segment(sel, key, onchange) {
+  $(sel).addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-v]");
+    if (!b) return;
+    $$("button", $(sel)).forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    onchange(b.dataset.v);
+  });
+}
+segment("#groupby", "group", (v) => { state.group = v; renderWeek(); });
+segment("#slotfilter", "slot", (v) => { state.slot = v; renderWeek(); });
+segment("#rslot", "slot", (v) => { rstate.slot = v; renderRecipes(); });
+
+$("#timemax").addEventListener("input", (e) => {
+  state.maxTime = +e.target.value;
+  $("#timeval").textContent = state.maxTime >= 60 ? "any" : "≤ " + state.maxTime + " min";
+  renderWeek();
+});
+
+$("#ingchips").addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-ing]");
+  if (!b) return;
+  const v = b.dataset.ing;
+  state.ings.has(v) ? state.ings.delete(v) : state.ings.add(v);
+  b.setAttribute("aria-pressed", String(state.ings.has(v)));
+  renderWeek();
+});
+
+$("#rcuisine").addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-cuisine]");
+  if (!b) return;
+  const v = b.dataset.cuisine;
+  rstate.cuisines.has(v) ? rstate.cuisines.delete(v) : rstate.cuisines.add(v);
+  b.setAttribute("aria-pressed", String(rstate.cuisines.has(v)));
+  renderRecipes();
+});
+
+$("#rsearch").addEventListener("input", (e) => { rstate.q = e.target.value; renderRecipes(); });
+
+$("#week-clear").addEventListener("click", () => {
+  state.slot = "all"; state.maxTime = 60; state.ings.clear();
+  $$("#slotfilter button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.v === "all")));
+  $$("#ingchips button").forEach((b) => b.setAttribute("aria-pressed", "false"));
+  $("#timemax").value = 60; $("#timeval").textContent = "any";
+  renderWeek();
+});
+$("#rec-clear").addEventListener("click", () => {
+  rstate.q = ""; rstate.slot = "all"; rstate.cuisines.clear();
+  $("#rsearch").value = "";
+  $$("#rslot button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.v === "all")));
+  $$("#rcuisine button").forEach((b) => b.setAttribute("aria-pressed", "false"));
+  renderRecipes();
+});
+
+/* card expansion, delegated so re-renders keep working */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".expand");
+  if (!btn) return;
+  const c = btn.closest(".card");
+  const open = c.classList.toggle("open");
+  btn.setAttribute("aria-expanded", String(open));
+  btn.querySelector(".caret").textContent = open ? "▴" : "▾";
+  btn.querySelector("span").textContent = open ? "Hide method" : "Ingredients & method";
+});
+
+/* tabs */
+const PANELS = { "tab-week": "panel-week", "tab-recipes": "panel-recipes", "tab-shop": "panel-shop" };
+$$(".tab").forEach((t) => t.addEventListener("click", () => {
+  $$(".tab").forEach((x) => {
+    const on = x === t;
+    x.setAttribute("aria-selected", String(on));
+    $("#" + PANELS[x.id]).hidden = !on;
+  });
+  window.scrollTo({ top: 0, behavior: "instant" });
+}));
+
+renderWeek();
+renderRecipes();
+renderShop();
+</script>

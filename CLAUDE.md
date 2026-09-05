@@ -47,8 +47,13 @@ questions, then a plan, then a line-item list, then the basket.
 ## Commands
 
 ```bash
-npm run parse    # data/invoices/*.txt -> data/purchase-history.json
+npm run parse       # data/invoices/*.txt -> data/purchase-history.json
+npm run build:week  # data/recipes.json + data/plans/*.json -> artifact/week.html
 ```
+
+The built page is republished to the artifact URL in `data/artifact-url.txt`.
+**Always pass that URL** — a publish without it creates a second artifact and
+breaks the link she has bookmarked.
 
 No dependencies; `npm install` is a no-op. Node 18+.
 

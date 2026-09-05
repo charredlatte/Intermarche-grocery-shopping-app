@@ -96,6 +96,12 @@ The handoff is the plan itself. Answer on the couch Sunday morning, run the bask
 - [x] Preference file
 - [x] Weekly planning skill
 - [x] Recurring Sunday reminder
+### 5. The page on my phone
+
+`artifact/template.html` plus `scripts/build-week.mjs` turn the plan data into a published page — three tabs: the week, a growing recipe library, and the shopping list. The week sorts by day, by prep time or by cuisine, and filters by ingredient or by how long I've got.
+
+It is generated, not hand-written, so next Sunday is a new plan file and `npm run build:week`. The URL never changes because the build republishes to the one recorded in `data/artifact-url.txt` — publishing without it would create a second artifact and orphan the bookmark.
+
 - [ ] Browser automation step — documented in the skill, not yet run against a real plan
 - [ ] The budget question — a 7-dinner, 5-lunch week with a pantry restock prices out around 139 €, comfortably over the normal 100 € ceiling. First real run will settle whether the ceiling moves or the lunches go back to being leftovers.
 - [ ] Pantry state — knowing the 20-egg pack from last week is half gone
@@ -104,7 +110,8 @@ The handoff is the plan itself. Answer on the couch Sunday morning, run the bask
 
 ```bash
 gh repo clone charredlatte/intermarche-grocery-data data
-npm run parse
+npm run parse       # invoices -> purchase history
+npm run build:week  # plans + recipes -> artifact/week.html
 ```
 
 No dependencies — the parser uses only the Node standard library, so there is nothing to `npm install`. Node 18 or newer.

@@ -134,6 +134,30 @@ PC you can do this now; if she is on her phone, it waits.
   silently cut it yourself.
 - Nothing chilli reaches the list. Check before showing it.
 
+## Publishing the week to her phone
+
+The plan is not delivered until it is on the page she actually opens. After she
+approves a plan, before or after filling the basket:
+
+1. **Add any new dish to `data/recipes.json`** — slug, title, cuisine, slot,
+   prep and cook minutes, serves, tags, ingredients and full steps. An
+   ingredient is `{ item, qty, product }`: `item` is the plain name the filter
+   groups on ("broccoli"), `product` is the exact Intermarché string. Add
+   `"guess": true` when the product has never appeared on a receipt, and
+   `"pantry": true` for something she already has.
+2. **Write `data/plans/<weekOf>.json`** — the meals (day, slot, recipe slug,
+   optional `note` and `minutesOverride` for a reheat) and every shopping line.
+   `estimatedTotal` must equal the shopping lines summed, or the build refuses.
+3. **`npm run build:week`** — emits `artifact/week.html`.
+4. **Republish to the URL in `data/artifact-url.txt`.** Pass it as the Artifact
+   tool's `url`. Publishing without it creates a second artifact and breaks the
+   bookmark on her phone. Do not change the favicon or the title.
+5. Commit both repos.
+
+Reuse a slug rather than writing a near-duplicate — that is what makes the
+Recipes tab a library worth re-picking from, and it shows her which weeks a dish
+has already appeared in.
+
 ## After she confirms
 
 Save the week's plan if she wants it kept, commit and push the data repo, and
