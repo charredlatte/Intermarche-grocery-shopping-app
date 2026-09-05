@@ -53,7 +53,13 @@ npm run build:week  # data/recipes.json + data/plans/*.json -> artifact/week.htm
 
 The built page is republished to the artifact URL in `data/artifact-url.txt`.
 **Always pass that URL** — a publish without it creates a second artifact and
-breaks the link she has bookmarked.
+breaks the link she has bookmarked. **Omit `capabilities` on a redeploy** so the
+stored `db` and `sample` grants carry forward.
+
+The page is an app, not a printout: Charlotte and her partner swap meals, the
+picks live in a shared database under `weeks/<weekOf>`, and the shopping basket
+is derived from whatever is currently picked. Nothing they do writes back to the
+repo — the plan file is only the starting point.
 
 No dependencies; `npm install` is a no-op. Node 18+.
 

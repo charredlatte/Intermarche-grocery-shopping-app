@@ -95,12 +95,17 @@ The handoff is the plan itself. Answer on the couch Sunday morning, run the bask
 - [x] Invoice parser — 22 orders, 208 distinct products
 - [x] Preference file
 - [x] Weekly planning skill
+- [x] Swap a meal you don't fancy, shared with my partner
 - [x] Recurring Sunday reminder
-### 5. The page on my phone
+### 5. The app
 
 `artifact/template.html` plus `scripts/build-week.mjs` turn the plan data into a published page — three tabs: the week, a growing recipe library, and the shopping list. The week sorts by day, by prep time or by cuisine, and filters by ingredient or by how long I've got.
 
 It is generated, not hand-written, so next Sunday is a new plan file and `npm run build:week`. The URL never changes because the build republishes to the one recorded in `data/artifact-url.txt` — publishing without it would create a second artifact and orphan the bookmark.
+
+It is also a two-person app. Any meal can be swapped — either for another dish from the library, or for something new invented on the spot — and the picks live in a shared database, so my partner and I see the same week on our own phones. The shopping list is derived from whatever is currently picked, so the total follows every swap. A dish eaten out of an earlier batch is marked as leftovers and buys nothing, which is the only reason the numbers come out right: counting the Sunday curry three times bought six tins of coconut milk for one pot.
+
+The library is 32 dishes now, roughly half Asian and half European. Ready-made things like the gyoza are still on the menu but marked as assemblies — a note about the packet, and a real recipe only for the part that is actually cooked.
 
 - [ ] Browser automation step — documented in the skill, not yet run against a real plan
 - [ ] The budget question — a 7-dinner, 5-lunch week with a pantry restock prices out around 139 €, comfortably over the normal 100 € ceiling. First real run will settle whether the ceiling moves or the lunches go back to being leftovers.

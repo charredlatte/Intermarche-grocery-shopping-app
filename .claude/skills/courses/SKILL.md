@@ -140,19 +140,38 @@ The plan is not delivered until it is on the page she actually opens. After she
 approves a plan, before or after filling the basket:
 
 1. **Add any new dish to `data/recipes.json`** — slug, title, cuisine, slot,
-   prep and cook minutes, serves, tags, ingredients and full steps. An
-   ingredient is `{ item, qty, product }`: `item` is the plain name the filter
-   groups on ("broccoli"), `product` is the exact Intermarché string. Add
-   `"guess": true` when the product has never appeared on a receipt, and
-   `"pantry": true` for something she already has.
-2. **Write `data/plans/<weekOf>.json`** — the meals (day, slot, recipe slug,
-   optional `note` and `minutesOverride` for a reheat) and every shopping line.
-   `estimatedTotal` must equal the shopping lines summed, or the build refuses.
+   `kind`, prep and cook minutes, serves, tags, ingredients and full steps.
+   - `kind: "recipe"` for something cooked. `kind: "assembly"` for a night built
+     on a ready-made product; it needs a `packNote` saying what comes out of a
+     packet, and its `steps` must cover only what is genuinely cooked. **Never
+     write a numbered method for reheating a bought product.**
+   - An ingredient is `{ item, qty, product, buy }`. `item` is the plain name
+     the filter groups on ("broccoli"); `product` is the exact Intermarché
+     string; `buy` is what to put in the basket:
+     `{ amount, mode, section }`. `mode: "sum"` adds up across dishes (meat,
+     the vegetables a dish really consumes); `mode: "once"` is a thing bought
+     once for the week however many dishes use it — **every aromatic, salad and
+     citrus belongs here**, or three dishes wanting garlic buy three heads.
+   - Omit `buy` for anything already in the cupboard, and add `"pantry": true`.
+   - `"guess": true` plus `buy.price` when the product has never been on a
+     receipt. The build rejects a non-guess product missing from the pricebook.
+2. **Write `data/plans/<weekOf>.json`** — the meals, each with a stable `id`
+   (swaps are keyed on it), day, slot, recipe slug, and optional `note`.
+   A portion eaten out of an earlier batch gets `"leftovers": true` and a
+   `minutesOverride`; the basket skips it, because that pot is already paid for.
+   **There is no shopping array any more** — the basket is derived from whatever
+   meals are picked, so it survives her swapping things.
 3. **`npm run build:week`** — emits `artifact/week.html`.
 4. **Republish to the URL in `data/artifact-url.txt`.** Pass it as the Artifact
    tool's `url`. Publishing without it creates a second artifact and breaks the
-   bookmark on her phone. Do not change the favicon or the title.
-5. Commit both repos.
+   bookmark on her phone. Do not change the favicon or the title, and **omit
+   `capabilities` so the stored `db` and `sample` grants carry forward** —
+   restating a partial set would revoke the other.
+5. **Her swaps live in the shared database, not in the plan file.** The page
+   reads `weeks/<weekOf>` and overlays those picks on the plan you shipped. A
+   new week means a new `weekOf`, so it starts clean without touching hers. If
+   she asks to keep a swapped-in dish permanently, move it into the plan file.
+6. Commit both repos.
 
 Reuse a slug rather than writing a near-duplicate — that is what makes the
 Recipes tab a library worth re-picking from, and it shows her which weeks a dish
