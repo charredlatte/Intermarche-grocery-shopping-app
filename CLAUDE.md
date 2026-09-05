@@ -16,8 +16,8 @@ asked for that on 2026-09-05, having been shown that the repo is public and that
 `data/` therefore publishes a year of her receipts and the IBS note in
 `preferences.json`. It was her call; don't quietly re-split it.
 
-`charredlatte/intermarche-grocery-data` still exists and still holds the same
-files, but it is now a stale duplicate. Nothing reads from it.
+There was a separate private `intermarche-grocery-data` repo until 2026-09-05.
+It has been retired — everything it held is in `data/` here. Do not recreate it.
 
 **First thing in a fresh session:**
 
