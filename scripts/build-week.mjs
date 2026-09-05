@@ -10,6 +10,9 @@
  * republished to the URL in data/artifact-url.txt. Never a fresh publish, or
  * the bookmark on her phone stops pointing at the current week.
  *
+ * data/ lives in this repo rather than a private one, so everything it reads is
+ * public. Nothing secret may be added to it.
+ *
  * The pricebook is the only part of the purchase history that ships. Weighed
  * goods keep their price per kilo and packaged goods their price per unit; the
  * page multiplies by the amount a dish actually calls for. Shipping unit price
@@ -69,7 +72,7 @@ for (const [slug, r] of Object.entries(recipes)) {
 const planDir = join(DATA, "plans");
 let planFiles;
 try { planFiles = readdirSync(planDir).filter((f) => f.endsWith(".json")).sort(); }
-catch { die(`no ${planDir}. Clone the private data repo into data/ first.`); }
+catch { die(`no ${planDir}. It is committed in this repo — check the clone is complete.`); }
 if (!planFiles.length) die("no plans in data/plans/.");
 
 const plans = planFiles.map((f) => read(join(planDir, f)));
@@ -90,8 +93,10 @@ if (problems.length) {
 }
 
 /* ---- staples and config ------------------------------------------------- */
-// Only what the page needs travels from preferences; the store address and the
-// full dietary notes stay out of the published HTML.
+// Only what the page needs travels from preferences — not the store phone
+// number, not the budget note. The dietary constraints DO ship, including the
+// reason text, because the dish generator needs to know it is a health rule
+// rather than a taste. That text is therefore in the published page.
 const staples = (prefs.staples?.alwaysInclude ?? []).map((s) => ({
   name: s.name,
   quantity: s.quantity ?? 1,

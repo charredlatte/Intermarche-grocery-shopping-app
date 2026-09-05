@@ -1,5 +1,5 @@
 {
-  "_comment": "Template. The real file lives in the private data repo as data/preferences.json and is gitignored here. Copy this, fill in your own store and household.",
+  "_comment": "Template for anyone running this against their own store. Charlotte's real file is data/preferences.json, committed alongside it. Copy this, fill in your own store, household and constraints.",
   "household": {
     "adults": 0,
     "cats": 0,

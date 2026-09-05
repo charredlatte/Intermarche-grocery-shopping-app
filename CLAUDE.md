@@ -5,7 +5,7 @@ Charlotte only has to review and confirm.
 
 `README.md` is the reasoning. This file is the operating brief.
 
-## Nothing lives on the machine
+## One repo, nothing kept on the machine
 
 Her disk is full, so there is no permanent checkout. Every session clones, works,
 pushes, and is thrown away.
@@ -81,8 +81,16 @@ parser. The filename supplies the year — the email body never states it.
   to what Méré stocks is decided up front and reported; substituting an
   out-of-stock item is not something to do silently.
 - **Budget is a ceiling, not a target.**
-- **Nothing personal goes in the public repo.** `data/` is gitignored; check with
-  `git status --ignored --short` before pushing.
+- **Everything in this repo is public, `data/` included.** That is deliberate and
+  Charlotte's decision — do not re-add a `.gitignore` for it, do not re-split the
+  repo, and do not treat committing an invoice as a mistake. The weekly run adds
+  a new receipt to `data/invoices/` and publishes it; that is the intended
+  behaviour.
+- **What must still never be committed:** her Intermarché password or session
+  cookie, any order-tracking or invoice-download URL from the emails (those carry
+  access tokens), and any payment detail. The invoice parser is fed the plain-text
+  email body with the `click.news.intermarche.com` links stripped for exactly this
+  reason — keep stripping them.
 
 ## Phone vs PC
 

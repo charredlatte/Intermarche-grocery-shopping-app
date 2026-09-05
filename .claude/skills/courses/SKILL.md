@@ -16,7 +16,10 @@ Nothing persists on her machine. Set up first:
 node scripts/parse-invoices.mjs   # only if the history is stale
 ```
 
-`data/` is committed in this repo — there is nothing to clone.
+`data/` is committed in this repo — there is nothing to clone, and nothing to
+gitignore. Adding this week's invoice therefore publishes it, which is intended.
+Strip the `click.news.intermarche.com` tracking links out of the email body
+before saving it: they carry access tokens.
 
 Then read `data/preferences.json` and `data/purchase-history.json`. The history
 is older than the newest Intermarché invoice in Gmail if a `Votre facture est
