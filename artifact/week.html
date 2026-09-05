@@ -198,6 +198,22 @@
   .leader { flex: 1; border-bottom: 1px dotted var(--rule); transform: translateY(-.22em); }
   .group-count { font: 400 .72rem/1 var(--f-mono); color: var(--ink-3); }
 
+  /* one drawn icon per shopping section, so the list scans as a basket rather
+     than a ledger. Tinted from the existing palette, never a flat emoji. */
+  /* the heading row is baseline-aligned, which would hang the badge below the
+     cap height; centring the row instead puts it beside the words. */
+  .group-head.has-icon { align-items: center; }
+  .sec-icon {
+    flex: none;
+    width: 1.6rem; height: 1.6rem; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--herb-soft); color: var(--herb);
+  }
+  .sec-icon svg { width: 1rem; height: 1rem; display: block; }
+  .sec-icon.is-clay  { background: var(--clay-soft); color: var(--clay); }
+  .sec-icon.is-yuzu  { background: var(--yuzu-soft); color: var(--yuzu); }
+  .sec-icon.is-quiet { background: var(--rule-soft); color: var(--ink-3); }
+
   /* ---- meal / recipe cards ---- */
   .cards { display: flex; flex-direction: column; gap: .7rem; }
   .card {
@@ -808,6 +824,51 @@ function renderRecipes() {
 }
 
 /* ---------- shopping tab ---------- */
+// Drawn in the same weight as the rest of the page: one stroke, currentColor,
+// so each icon takes its tint from the badge around it and works in either
+// theme. A section the generator invents falls back to the paper bag.
+const ico = (body) =>
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">${body}</svg>`;
+
+const SECTION_ICONS = {
+  // a fish, tail to the left
+  "Proteins": { tint: "is-clay", svg: ico(
+    `<path d="M20.5 12c0 3-3.4 5.5-7.6 5.5-2.7 0-5.1-1-6.5-2.6l-3.4 2.3 1-5.2-1-5.2 3.4 2.3c1.4-1.6 3.8-2.6 6.5-2.6 4.2 0 7.6 2.5 7.6 5.5Z"/>
+     <circle cx="16.8" cy="10.5" r=".9" fill="currentColor" stroke="none"/>`) },
+  // a leaf with its vein
+  "Vegetables": { tint: "", svg: ico(
+    `<path d="M20 4c0 9-5 15.5-10.5 15.5A5.5 5.5 0 0 1 4 14C4 8.5 11 4 20 4Z"/>
+     <path d="M4.6 19.9 13 11.5"/>`) },
+  // a lidded jar with a label line
+  "Store cupboard": { tint: "is-yuzu", svg: ico(
+    `<rect x="7.5" y="3.6" width="9" height="3.2" rx="1.1"/>
+     <path d="M6.2 9.3a2.5 2.5 0 0 1 2.5-2.5h6.6a2.5 2.5 0 0 1 2.5 2.5v8.6a2.5 2.5 0 0 1-2.5 2.5H8.7a2.5 2.5 0 0 1-2.5-2.5V9.3Z"/>
+     <path d="M9.4 12.6h5.2"/>`) },
+  // a wedge of cheese, holes and all
+  "Bread and cheese": { tint: "is-yuzu", svg: ico(
+    `<path d="M4 18.4v-5.1c0-.6.3-1.1.8-1.4l12.4-6.6a1.5 1.5 0 0 1 2.3 1.3v11.8c0 .8-.7 1.5-1.5 1.5H5.5c-.8 0-1.5-.7-1.5-1.5Z"/>
+     <circle cx="9" cy="15.6" r="1.1"/><circle cx="14.6" cy="13.3" r="1"/>`) },
+  // the market basket that goes out every week
+  "Standing order": { tint: "", svg: ico(
+    `<path d="M3.6 9h16.8l-1.6 8.9a2.2 2.2 0 0 1-2.2 1.8H7.4a2.2 2.2 0 0 1-2.2-1.8L3.6 9Z"/>
+     <path d="M8.7 9 11.1 4.3M15.3 9 12.9 4.3"/>
+     <path d="M9.6 12.5v4M14.4 12.5v4"/>`) },
+  // sparkles: pretty, and honest that the price is a guess
+  "Best guesses": { tint: "is-quiet", svg: ico(
+    `<path d="M10.5 3.4 12.2 8.3 17.1 10 12.2 11.7 10.5 16.6 8.8 11.7 3.9 10 8.8 8.3 10.5 3.4Z"/>
+     <path d="M17.4 15.2 18.2 17.4 20.4 18.2 18.2 19 17.4 21.2 16.6 19 14.4 18.2 16.6 17.4 17.4 15.2Z"/>`) },
+  // anything a newly generated dish invents
+  _default: { tint: "is-quiet", svg: ico(
+    `<path d="M5.6 8.6h12.8l.9 10.6a2 2 0 0 1-2 2.2H6.7a2 2 0 0 1-2-2.2l.9-10.6Z"/>
+     <path d="M9 8.6V7a3 3 0 0 1 6 0v1.6"/>`) },
+};
+
+const sectionIcon = (name) => {
+  const i = SECTION_ICONS[name] || SECTION_ICONS._default;
+  return `<span class="sec-icon${i.tint ? " " + i.tint : ""}" aria-hidden="true">${i.svg}</span>`;
+};
+
 function renderShop() {
   const { lines, total } = basket();
   const ceiling = CONF.budgetCeiling;
@@ -829,7 +890,7 @@ function renderShop() {
   for (const s of secs) {
     const sub = s.lines.reduce((a, b) => a + b.cost, 0);
     html += `<div class="shop-sec">
-      <div class="group-head" style="margin:0"><h2>${esc(s.name)}</h2><span class="leader"></span><span class="group-count">${eur(sub)}</span></div>
+      <div class="group-head has-icon" style="margin:0">${sectionIcon(s.name)}<h2>${esc(s.name)}</h2><span class="leader"></span><span class="group-count">${eur(sub)}</span></div>
       <ul class="shop-list">${s.lines.map((l) => `
         <li><div class="shop-line">
             <span class="shop-name">${esc(l.name)}${l.guess ? '<span class="flag">guess</span>' : ""}</span>
@@ -1082,3 +1143,4 @@ $$(".tab").forEach((t) => t.addEventListener("click", () => {
 setSync("", "Checking for your partner's changes…");
 renderAll();
 </script>
+
