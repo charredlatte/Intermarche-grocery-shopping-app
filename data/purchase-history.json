@@ -1,22 +1,23 @@
 {
-  "generatedAt": "2026-09-04T20:07:50.507Z",
-  "ordersParsed": 22,
-  "averageBasket": 85.1,
+  "generatedAt": "2026-09-05T18:10:11.343Z",
+  "ordersParsed": 23,
+  "averageBasket": 86.03,
   "averageItemCount": 29,
   "staples": [
     "Cuit sur place Baguette La Généreuse",
     "Jean Rozé, une marque Intermarché Chipolata supérieure aux herbes",
-    "Le Choix du Primeur Poivrons VERTS",
     "Pâturages, une marque Intermarché Beurre moulé demi-sel",
+    "Le Choix du Primeur Poivrons VERTS",
     "Look, une marque Intermarché Limonade aux arômes naturels d'agrumes",
-    "Le Choix du Primeur Poivron ROUGE"
+    "Le Choix du Primeur Poivron ROUGE",
+    "Jean Rozé, une marque Intermarché Viande hachée vrac pur BŒUF 5% MG"
   ],
   "products": [
     {
       "name": "Cuit sur place Baguette La Généreuse",
       "packaging": "la baguette cuiss...",
-      "timesOrdered": 17,
-      "totalQuantity": 32,
+      "timesOrdered": 18,
+      "totalQuantity": 33,
       "unit": "unit",
       "lastPrice": 0.89,
       "lineTotals": [
@@ -32,9 +33,10 @@
         1.78,
         1.78,
         1.78,
-        1.78
+        1.78,
+        0.89
       ],
-      "lastLineTotal": 1.78,
+      "lastLineTotal": 0.89,
       "typicalLineTotal": 1.78,
       "timesUnavailable": 4,
       "nameTruncated": false,
@@ -55,14 +57,15 @@
         "959185275",
         "863727172",
         "091373279",
-        "362261931"
+        "362261931",
+        "877243131"
       ]
     },
     {
       "name": "Jean Rozé, une marque Intermarché Chipolata supérieure aux herbes",
       "packaging": "Les 6 pièces de 5...",
-      "timesOrdered": 16,
-      "totalQuantity": 16,
+      "timesOrdered": 17,
+      "totalQuantity": 17,
       "unit": "unit",
       "lastPrice": 3.3,
       "lineTotals": [
@@ -80,6 +83,7 @@
         3.55,
         3.55,
         3.55,
+        3.3,
         3.3,
         3.3
       ],
@@ -103,7 +107,52 @@
         "959185275",
         "863727172",
         "145148438",
-        "362261931"
+        "362261931",
+        "877243131"
+      ]
+    },
+    {
+      "name": "Pâturages, une marque Intermarché Beurre moulé demi-sel",
+      "packaging": "la plaquette de 5...",
+      "timesOrdered": 14,
+      "totalQuantity": 14,
+      "unit": "unit",
+      "lastPrice": 4.99,
+      "lineTotals": [
+        4.95,
+        5.02,
+        5.08,
+        5.08,
+        4.99,
+        4.99,
+        4.99,
+        4.99,
+        4.99,
+        4.99,
+        4.99,
+        4.99,
+        4.99,
+        4.99
+      ],
+      "lastLineTotal": 4.99,
+      "typicalLineTotal": 4.99,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "926433152",
+        "276831991",
+        "216030011",
+        "207115061",
+        "716617122",
+        "176573740",
+        "741558701",
+        "893661981",
+        "410699522",
+        "246195976",
+        "860136286",
+        "670411596",
+        "091373279",
+        "877243131"
       ]
     },
     {
@@ -147,48 +196,6 @@
         "860136286",
         "959185275",
         "863727172",
-        "091373279"
-      ]
-    },
-    {
-      "name": "Pâturages, une marque Intermarché Beurre moulé demi-sel",
-      "packaging": "la plaquette de 5...",
-      "timesOrdered": 13,
-      "totalQuantity": 13,
-      "unit": "unit",
-      "lastPrice": 4.99,
-      "lineTotals": [
-        4.95,
-        5.02,
-        5.08,
-        5.08,
-        4.99,
-        4.99,
-        4.99,
-        4.99,
-        4.99,
-        4.99,
-        4.99,
-        4.99,
-        4.99
-      ],
-      "lastLineTotal": 4.99,
-      "typicalLineTotal": 4.99,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "926433152",
-        "276831991",
-        "216030011",
-        "207115061",
-        "716617122",
-        "176573740",
-        "741558701",
-        "893661981",
-        "410699522",
-        "246195976",
-        "860136286",
-        "670411596",
         "091373279"
       ]
     },
@@ -275,6 +282,46 @@
       ]
     },
     {
+      "name": "Jean Rozé, une marque Intermarché Viande hachée vrac pur BŒUF 5% MG",
+      "packaging": "la barquette de 350 g",
+      "timesOrdered": 12,
+      "totalQuantity": 14,
+      "unit": "unit",
+      "lastPrice": 6.09,
+      "lineTotals": [
+        6.4,
+        13.6,
+        6.8,
+        6.8,
+        6.8,
+        6.8,
+        6.15,
+        6.15,
+        12.3,
+        6.15,
+        6.15,
+        6.09
+      ],
+      "lastLineTotal": 6.09,
+      "typicalLineTotal": 6.6,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "773767057",
+        "039374711",
+        "741558701",
+        "893661981",
+        "410699522",
+        "246195976",
+        "860136286",
+        "959185275",
+        "863727172",
+        "145148438",
+        "362261931",
+        "877243131"
+      ]
+    },
+    {
       "name": "Barilla Sauce pesto rosso",
       "packaging": "le pot de 200g",
       "timesOrdered": 11,
@@ -347,44 +394,6 @@
         "959185275",
         "670411596",
         "863727172"
-      ]
-    },
-    {
-      "name": "Jean Rozé, une marque Intermarché Viande hachée vrac pur BŒUF 5% MG",
-      "packaging": "la barquette de 350 g",
-      "timesOrdered": 11,
-      "totalQuantity": 13,
-      "unit": "unit",
-      "lastPrice": 6.15,
-      "lineTotals": [
-        6.4,
-        13.6,
-        6.8,
-        6.8,
-        6.8,
-        6.8,
-        6.15,
-        6.15,
-        12.3,
-        6.15,
-        6.15
-      ],
-      "lastLineTotal": 6.15,
-      "typicalLineTotal": 6.8,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "773767057",
-        "039374711",
-        "741558701",
-        "893661981",
-        "410699522",
-        "246195976",
-        "860136286",
-        "959185275",
-        "863727172",
-        "145148438",
-        "362261931"
       ]
     },
     {
@@ -532,6 +541,73 @@
       ]
     },
     {
+      "name": "Panzani Sauce Tomates Cuisinées ingrédients origine naturelle",
+      "packaging": "Le pot de 425g",
+      "timesOrdered": 9,
+      "totalQuantity": 9,
+      "unit": "unit",
+      "lastPrice": 2.59,
+      "lineTotals": [
+        1.81,
+        1.81,
+        2.67,
+        2.67,
+        2.67,
+        2.67,
+        2.59,
+        2.59,
+        2.59
+      ],
+      "lastLineTotal": 2.59,
+      "typicalLineTotal": 2.59,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "276831991",
+        "216030011",
+        "716617122",
+        "714549480",
+        "176573740",
+        "893661981",
+        "670411596",
+        "091373279",
+        "877243131"
+      ]
+    },
+    {
+      "name": "Bjorg Boisson végétale Lait d'amande vanille BIO",
+      "packaging": "la brique de 1l",
+      "timesOrdered": 9,
+      "totalQuantity": 11,
+      "unit": "unit",
+      "lastPrice": 2.6,
+      "lineTotals": [
+        5.32,
+        2.57,
+        2.57,
+        2.57,
+        2.57,
+        2.57,
+        5.14,
+        2.6
+      ],
+      "lastLineTotal": 2.6,
+      "typicalLineTotal": 2.57,
+      "timesUnavailable": 1,
+      "nameTruncated": false,
+      "orders": [
+        "773767057",
+        "741558701",
+        "893661981",
+        "410699522",
+        "246195976",
+        "860136286",
+        "670411596",
+        "091373279",
+        "877243131"
+      ]
+    },
+    {
       "name": "Fermiers de Loué Aiguillettes de poulet jaune",
       "packaging": "la barquette de 6 - 200 g",
       "timesOrdered": 9,
@@ -599,38 +675,6 @@
       ]
     },
     {
-      "name": "Panzani Sauce Tomates Cuisinées ingrédients origine naturelle",
-      "packaging": "Le pot de 425g",
-      "timesOrdered": 8,
-      "totalQuantity": 8,
-      "unit": "unit",
-      "lastPrice": 2.59,
-      "lineTotals": [
-        1.81,
-        1.81,
-        2.67,
-        2.67,
-        2.67,
-        2.67,
-        2.59,
-        2.59
-      ],
-      "lastLineTotal": 2.59,
-      "typicalLineTotal": 2.63,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "276831991",
-        "216030011",
-        "716617122",
-        "714549480",
-        "176573740",
-        "893661981",
-        "670411596",
-        "091373279"
-      ]
-    },
-    {
       "name": "Alpro Boisson végétale lait d'amande saveur vanille",
       "packaging": "la brique de 1l",
       "timesOrdered": 8,
@@ -662,34 +706,65 @@
       ]
     },
     {
-      "name": "Bjorg Boisson végétale Lait d'amande vanille BIO",
-      "packaging": "la brique de 1l",
+      "name": "Montorsi Mortadelle",
+      "packaging": "la barquette de 120g",
       "timesOrdered": 8,
-      "totalQuantity": 10,
+      "totalQuantity": 8,
       "unit": "unit",
-      "lastPrice": 2.57,
+      "lastPrice": 2.55,
       "lineTotals": [
-        5.32,
-        2.57,
-        2.57,
-        2.57,
-        2.57,
-        2.57,
-        5.14
+        2.52,
+        2.6,
+        2.6,
+        2.6,
+        2.6,
+        2.5,
+        2.5,
+        2.55
       ],
-      "lastLineTotal": 5.14,
-      "typicalLineTotal": 2.57,
-      "timesUnavailable": 1,
+      "lastLineTotal": 2.55,
+      "typicalLineTotal": 2.58,
+      "timesUnavailable": 0,
       "nameTruncated": false,
       "orders": [
         "773767057",
+        "517088600",
+        "716617122",
+        "039374711",
         "741558701",
-        "893661981",
-        "410699522",
         "246195976",
-        "860136286",
         "670411596",
-        "091373279"
+        "877243131"
+      ]
+    },
+    {
+      "name": "Le Gaulois Filet de poulet extra tendre",
+      "packaging": "la barquette de 2...",
+      "timesOrdered": 7,
+      "totalQuantity": 2.383,
+      "unit": "kg",
+      "lastPrice": 19.89,
+      "lineTotals": [
+        8.11,
+        5.87,
+        5.42,
+        7.18,
+        7.12,
+        6.4,
+        6.5
+      ],
+      "lastLineTotal": 6.5,
+      "typicalLineTotal": 6.5,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "543905473",
+        "773767057",
+        "741558701",
+        "246195976",
+        "959185275",
+        "863727172",
+        "877243131"
       ]
     },
     {
@@ -753,36 +828,6 @@
       ]
     },
     {
-      "name": "Montorsi Mortadelle",
-      "packaging": "la barquette de 120g",
-      "timesOrdered": 7,
-      "totalQuantity": 7,
-      "unit": "unit",
-      "lastPrice": 2.5,
-      "lineTotals": [
-        2.52,
-        2.6,
-        2.6,
-        2.6,
-        2.6,
-        2.5,
-        2.5
-      ],
-      "lastLineTotal": 2.5,
-      "typicalLineTotal": 2.6,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "773767057",
-        "517088600",
-        "716617122",
-        "039374711",
-        "741558701",
-        "246195976",
-        "670411596"
-      ]
-    },
-    {
       "name": "Le Choix du Primeur Brocolis",
       "packaging": "en vrac - à partir de 500 gr (soit 1 bouquet)",
       "timesOrdered": 7,
@@ -837,6 +882,36 @@
         "863727172",
         "091373279",
         "362261931"
+      ]
+    },
+    {
+      "name": "Saint Eloi, une marque Intermarché Lentilles préparées",
+      "packaging": "la boite de 530 g net égoutté",
+      "timesOrdered": 7,
+      "totalQuantity": 7,
+      "unit": "unit",
+      "lastPrice": 0.67,
+      "lineTotals": [
+        1.15,
+        1.15,
+        1.15,
+        1.15,
+        1.15,
+        1.15,
+        0.67
+      ],
+      "lastLineTotal": 0.67,
+      "typicalLineTotal": 1.15,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "517088600",
+        "716617122",
+        "176573740",
+        "893661981",
+        "410699522",
+        "246195976",
+        "877243131"
       ]
     },
     {
@@ -954,22 +1029,22 @@
       ]
     },
     {
-      "name": "Le Gaulois Filet de poulet extra tendre",
-      "packaging": "la barquette de 2...",
+      "name": "Ultima croquettes pour chat stérilisé adulte poulet",
+      "packaging": "le sac de 1,5 kg",
       "timesOrdered": 6,
-      "totalQuantity": 2.056,
-      "unit": "kg",
-      "lastPrice": 19.5,
+      "totalQuantity": 6,
+      "unit": "unit",
+      "lastPrice": 7.11,
       "lineTotals": [
-        8.11,
-        5.87,
-        5.42,
-        7.18,
-        7.12,
-        6.4
+        12.72,
+        7.03,
+        12.72,
+        7.03,
+        7.03,
+        7.11
       ],
-      "lastLineTotal": 6.4,
-      "typicalLineTotal": 6.76,
+      "lastLineTotal": 7.11,
+      "typicalLineTotal": 7.07,
       "timesUnavailable": 0,
       "nameTruncated": false,
       "orders": [
@@ -977,8 +1052,8 @@
         "773767057",
         "741558701",
         "246195976",
-        "959185275",
-        "863727172"
+        "362261931",
+        "877243131"
       ]
     },
     {
@@ -1007,6 +1082,34 @@
         "959185275",
         "863727172",
         "091373279"
+      ]
+    },
+    {
+      "name": "Pâturages, une marque Intermarché Mozzarella",
+      "packaging": "le sachet de 250 g net égoutté",
+      "timesOrdered": 6,
+      "totalQuantity": 11,
+      "unit": "unit",
+      "lastPrice": 0.93,
+      "lineTotals": [
+        1.88,
+        1.86,
+        0.92,
+        1.86,
+        1.86,
+        1.86
+      ],
+      "lastLineTotal": 1.86,
+      "typicalLineTotal": 1.86,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "207115061",
+        "860136286",
+        "863727172",
+        "145148438",
+        "362261931",
+        "877243131"
       ]
     },
     {
@@ -1090,34 +1193,6 @@
         "893661981",
         "410699522",
         "362261931"
-      ]
-    },
-    {
-      "name": "Saint Eloi, une marque Intermarché Lentilles préparées",
-      "packaging": "la boite de 530 g net égoutté",
-      "timesOrdered": 6,
-      "totalQuantity": 6,
-      "unit": "unit",
-      "lastPrice": 1.15,
-      "lineTotals": [
-        1.15,
-        1.15,
-        1.15,
-        1.15,
-        1.15,
-        1.15
-      ],
-      "lastLineTotal": 1.15,
-      "typicalLineTotal": 1.15,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "517088600",
-        "716617122",
-        "176573740",
-        "893661981",
-        "410699522",
-        "246195976"
       ]
     },
     {
@@ -1231,32 +1306,6 @@
       ]
     },
     {
-      "name": "Ultima croquettes pour chat stérilisé adulte poulet",
-      "packaging": "le sac de 1,5 kg",
-      "timesOrdered": 5,
-      "totalQuantity": 5,
-      "unit": "unit",
-      "lastPrice": 7.03,
-      "lineTotals": [
-        12.72,
-        7.03,
-        12.72,
-        7.03,
-        7.03
-      ],
-      "lastLineTotal": 7.03,
-      "typicalLineTotal": 7.03,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "543905473",
-        "773767057",
-        "741558701",
-        "246195976",
-        "362261931"
-      ]
-    },
-    {
       "name": "Fiorini, une marque Intermarché Coquillettes",
       "packaging": "le paquet de 1 kg",
       "timesOrdered": 5,
@@ -1280,32 +1329,6 @@
         "714549480",
         "741558701",
         "246195976"
-      ]
-    },
-    {
-      "name": "Pâturages, une marque Intermarché Mozzarella",
-      "packaging": "le sachet de 250 g net égoutté",
-      "timesOrdered": 5,
-      "totalQuantity": 9,
-      "unit": "unit",
-      "lastPrice": 0.93,
-      "lineTotals": [
-        1.88,
-        1.86,
-        0.92,
-        1.86,
-        1.86
-      ],
-      "lastLineTotal": 1.86,
-      "typicalLineTotal": 1.86,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "207115061",
-        "860136286",
-        "863727172",
-        "145148438",
-        "362261931"
       ]
     },
     {
@@ -1770,6 +1793,30 @@
       ]
     },
     {
+      "name": "Croustipate Pâte à pizza qualité comme à la pizzeria",
+      "packaging": "la boîte de 500g",
+      "timesOrdered": 4,
+      "totalQuantity": 5,
+      "unit": "unit",
+      "lastPrice": 2.43,
+      "lineTotals": [
+        2.42,
+        2.42,
+        2.42,
+        4.86
+      ],
+      "lastLineTotal": 4.86,
+      "typicalLineTotal": 2.42,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "863727172",
+        "145148438",
+        "362261931",
+        "877243131"
+      ]
+    },
+    {
       "name": "Tanoshi Nouilles japonaises précuites Ramen assaisonnement bœuf",
       "packaging": "la boite de 360g",
       "timesOrdered": 3,
@@ -2011,6 +2058,28 @@
       ]
     },
     {
+      "name": "Saint Eloi, une marque Intermarché Pois chiches français",
+      "packaging": "la boîte de 530 g net égoutté",
+      "timesOrdered": 3,
+      "totalQuantity": 4,
+      "unit": "unit",
+      "lastPrice": 1.2,
+      "lineTotals": [
+        1.2,
+        1.5,
+        1.2
+      ],
+      "lastLineTotal": 1.2,
+      "typicalLineTotal": 1.2,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "860136286",
+        "670411596",
+        "877243131"
+      ]
+    },
+    {
       "name": "Le Choix du Primeur Laitue FEUILLES DE CHENES BLONDE",
       "packaging": "vendu à la pièce",
       "timesOrdered": 3,
@@ -2030,28 +2099,6 @@
         "959185275",
         "670411596",
         "863727172"
-      ]
-    },
-    {
-      "name": "Croustipate Pâte à pizza qualité comme à la pizzeria",
-      "packaging": "la boîte de 500g",
-      "timesOrdered": 3,
-      "totalQuantity": 3,
-      "unit": "unit",
-      "lastPrice": 2.42,
-      "lineTotals": [
-        2.42,
-        2.42,
-        2.42
-      ],
-      "lastLineTotal": 2.42,
-      "typicalLineTotal": 2.42,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "863727172",
-        "145148438",
-        "362261931"
       ]
     },
     {
@@ -2633,23 +2680,23 @@
       ]
     },
     {
-      "name": "Saint Eloi, une marque Intermarché Pois chiches français",
-      "packaging": "la boîte de 530 g net égoutté",
+      "name": "Regain, une marque Intermarché Boisson à base d'amande BIO",
+      "packaging": "la brique de 1l",
       "timesOrdered": 2,
-      "totalQuantity": 3,
+      "totalQuantity": 2,
       "unit": "unit",
-      "lastPrice": 0.75,
+      "lastPrice": 1.52,
       "lineTotals": [
-        1.2,
-        1.5
+        1.52,
+        1.52
       ],
-      "lastLineTotal": 1.5,
-      "typicalLineTotal": 1.35,
+      "lastLineTotal": 1.52,
+      "typicalLineTotal": 1.52,
       "timesUnavailable": 0,
       "nameTruncated": false,
       "orders": [
         "860136286",
-        "670411596"
+        "877243131"
       ]
     },
     {
@@ -2693,6 +2740,26 @@
       ]
     },
     {
+      "name": "Barilla Sauce pesto avec fromage ricotta et noix",
+      "packaging": "le pot de 190g",
+      "timesOrdered": 2,
+      "totalQuantity": 4,
+      "unit": "unit",
+      "lastPrice": 3.19,
+      "lineTotals": [
+        6.36,
+        6.38
+      ],
+      "lastLineTotal": 6.38,
+      "typicalLineTotal": 6.37,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "670411596",
+        "877243131"
+      ]
+    },
+    {
       "name": "Tanoshi Nouilles ramen précuites au poulet teriyaki",
       "packaging": "le sachet de 360g",
       "timesOrdered": 2,
@@ -2733,6 +2800,46 @@
       ]
     },
     {
+      "name": "Bouton d’Or, une marque Intermarché Cacahuètes grillées à l'huile et salées",
+      "packaging": "le sachet de 500 g",
+      "timesOrdered": 2,
+      "totalQuantity": 3,
+      "unit": "unit",
+      "lastPrice": 1.4,
+      "lineTotals": [
+        1.4,
+        2.8
+      ],
+      "lastLineTotal": 2.8,
+      "typicalLineTotal": 2.1,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "091373279",
+        "877243131"
+      ]
+    },
+    {
+      "name": "Apta, une marque Intermarché Essuie tout maxi absorbant",
+      "packaging": "le paquet de 4 rouleaux",
+      "timesOrdered": 2,
+      "totalQuantity": 2,
+      "unit": "unit",
+      "lastPrice": 2.49,
+      "lineTotals": [
+        2.49,
+        2.49
+      ],
+      "lastLineTotal": 2.49,
+      "typicalLineTotal": 2.49,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "091373279",
+        "877243131"
+      ]
+    },
+    {
       "name": "Boursin Fromage à tartiner ail & fines herbes",
       "packaging": "la boite de 250 g",
       "timesOrdered": 2,
@@ -2770,6 +2877,26 @@
       "orders": [
         "145148438",
         "362261931"
+      ]
+    },
+    {
+      "name": "Maddy's Cheddar rouge mature",
+      "packaging": "le paquet de 200g",
+      "timesOrdered": 2,
+      "totalQuantity": 2,
+      "unit": "unit",
+      "lastPrice": 3.74,
+      "lineTotals": [
+        3.74,
+        3.74
+      ],
+      "lastLineTotal": 3.74,
+      "typicalLineTotal": 3.74,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "145148438",
+        "877243131"
       ]
     },
     {
@@ -3691,24 +3818,6 @@
       ]
     },
     {
-      "name": "Regain, une marque Intermarché Boisson à base d'amande BIO",
-      "packaging": "la brique de 1l",
-      "timesOrdered": 1,
-      "totalQuantity": 1,
-      "unit": "unit",
-      "lastPrice": 1.52,
-      "lineTotals": [
-        1.52
-      ],
-      "lastLineTotal": 1.52,
-      "typicalLineTotal": 1.52,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "860136286"
-      ]
-    },
-    {
       "name": "Pâturages, une marque Intermarché Ricotta",
       "packaging": "la boite de 250 g",
       "timesOrdered": 1,
@@ -3979,24 +4088,6 @@
       ]
     },
     {
-      "name": "Barilla Sauce pesto avec fromage ricotta et noix",
-      "packaging": "le pot de 190g",
-      "timesOrdered": 1,
-      "totalQuantity": 2,
-      "unit": "unit",
-      "lastPrice": 3.18,
-      "lineTotals": [
-        6.36
-      ],
-      "lastLineTotal": 6.36,
-      "typicalLineTotal": 6.36,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "670411596"
-      ]
-    },
-    {
       "name": "Ajinomoto Gyoza poulet et légumes raviolis à poêler",
       "packaging": "la barquette de 400 g - Maxi format",
       "timesOrdered": 1,
@@ -4213,24 +4304,6 @@
       ]
     },
     {
-      "name": "Bouton d’Or, une marque Intermarché Cacahuètes grillées à l'huile et salées",
-      "packaging": "le sachet de 500 g",
-      "timesOrdered": 1,
-      "totalQuantity": 1,
-      "unit": "unit",
-      "lastPrice": 1.4,
-      "lineTotals": [
-        1.4
-      ],
-      "lastLineTotal": 1.4,
-      "typicalLineTotal": 1.4,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "091373279"
-      ]
-    },
-    {
       "name": "Lesieur Mayonnaise classique à l'huile de colza",
       "packaging": "le flacon de 450 g",
       "timesOrdered": 1,
@@ -4260,24 +4333,6 @@
       ],
       "lastLineTotal": 2.99,
       "typicalLineTotal": 2.99,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "091373279"
-      ]
-    },
-    {
-      "name": "Apta, une marque Intermarché Essuie tout maxi absorbant",
-      "packaging": "le paquet de 4 rouleaux",
-      "timesOrdered": 1,
-      "totalQuantity": 1,
-      "unit": "unit",
-      "lastPrice": 2.49,
-      "lineTotals": [
-        2.49
-      ],
-      "lastLineTotal": 2.49,
-      "typicalLineTotal": 2.49,
       "timesUnavailable": 0,
       "nameTruncated": false,
       "orders": [
@@ -4388,24 +4443,6 @@
       "nameTruncated": false,
       "orders": [
         "091373279"
-      ]
-    },
-    {
-      "name": "Maddy's Cheddar rouge mature",
-      "packaging": "le paquet de 200g",
-      "timesOrdered": 1,
-      "totalQuantity": 1,
-      "unit": "unit",
-      "lastPrice": 3.74,
-      "lineTotals": [
-        3.74
-      ],
-      "lastLineTotal": 3.74,
-      "typicalLineTotal": 3.74,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "145148438"
       ]
     },
     {
@@ -4566,6 +4603,204 @@
       "nameTruncated": false,
       "orders": [
         "362261931"
+      ]
+    },
+    {
+      "name": "Panzani Pâtes Coquillettes - Les 3 minutes",
+      "packaging": "Le paquet de 1kg",
+      "timesOrdered": 1,
+      "totalQuantity": 1,
+      "unit": "unit",
+      "lastPrice": 2.15,
+      "lineTotals": [
+        2.15
+      ],
+      "lastLineTotal": 2.15,
+      "typicalLineTotal": 2.15,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "877243131"
+      ]
+    },
+    {
+      "name": "Chabrior, une marque Intermarché Demi baguettes précuites complètes",
+      "packaging": "le paquet de 2 - 300 g",
+      "timesOrdered": 1,
+      "totalQuantity": 1,
+      "unit": "unit",
+      "lastPrice": 0.91,
+      "lineTotals": [
+        0.91
+      ],
+      "lastLineTotal": 0.91,
+      "typicalLineTotal": 0.91,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "877243131"
+      ]
+    },
+    {
+      "name": "Itinéraire des Saveurs, une marque Intermarché Grana Padano AOP râpé",
+      "packaging": "le paquet de 100g",
+      "timesOrdered": 1,
+      "totalQuantity": 1,
+      "unit": "unit",
+      "lastPrice": 1.49,
+      "lineTotals": [
+        1.49
+      ],
+      "lastLineTotal": 1.49,
+      "typicalLineTotal": 1.49,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "877243131"
+      ]
+    },
+    {
+      "name": "Pâturages, une marque Intermarché Gouda Holland IGP",
+      "packaging": "le fromage de 250 g",
+      "timesOrdered": 1,
+      "totalQuantity": 1,
+      "unit": "unit",
+      "lastPrice": 3.51,
+      "lineTotals": [
+        3.51
+      ],
+      "lastLineTotal": 3.51,
+      "typicalLineTotal": 3.51,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "877243131"
+      ]
+    },
+    {
+      "name": "Jean Rozé, une marque Intermarché Côtes de PORC",
+      "packaging": "les 4 pièces de 140g - 560 g",
+      "timesOrdered": 1,
+      "totalQuantity": 1,
+      "unit": "unit",
+      "lastPrice": 4.79,
+      "lineTotals": [
+        4.79
+      ],
+      "lastLineTotal": 4.79,
+      "typicalLineTotal": 4.79,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "877243131"
+      ]
+    },
+    {
+      "name": "Chabrior, une marque Intermarché Demi-baguettes de campagne précuites BIO",
+      "packaging": "le paquet de 2 de 125g - 250g",
+      "timesOrdered": 1,
+      "totalQuantity": 1,
+      "unit": "unit",
+      "lastPrice": 2.62,
+      "lineTotals": [
+        2.62
+      ],
+      "lastLineTotal": 2.62,
+      "typicalLineTotal": 2.62,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "877243131"
+      ]
+    },
+    {
+      "name": "Saint Eloi, une marque Intermarché Riz long basmati BIO",
+      "packaging": "le sachet de 500 g",
+      "timesOrdered": 1,
+      "totalQuantity": 2,
+      "unit": "unit",
+      "lastPrice": 1.49,
+      "lineTotals": [
+        2.98
+      ],
+      "lastLineTotal": 2.98,
+      "typicalLineTotal": 2.98,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "877243131"
+      ]
+    },
+    {
+      "name": "Le Petit Marseillais Gel douche extra doux pêche nectarine",
+      "packaging": "Le flacon de 65cl",
+      "timesOrdered": 1,
+      "totalQuantity": 1,
+      "unit": "unit",
+      "lastPrice": 5.2,
+      "lineTotals": [
+        5.2
+      ],
+      "lastLineTotal": 5.2,
+      "typicalLineTotal": 5.2,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "877243131"
+      ]
+    },
+    {
+      "name": "Le Trèfle Papier hygiénique douceur fleur de coton",
+      "packaging": "Le paquet de 4 maxi rouleaux",
+      "timesOrdered": 1,
+      "totalQuantity": 1,
+      "unit": "unit",
+      "lastPrice": 3.95,
+      "lineTotals": [
+        3.95
+      ],
+      "lastLineTotal": 3.95,
+      "typicalLineTotal": 3.95,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "877243131"
+      ]
+    },
+    {
+      "name": "Canaillou, une marque Intermarché Griffoir pour chats",
+      "packaging": "le griffoir",
+      "timesOrdered": 1,
+      "totalQuantity": 3,
+      "unit": "unit",
+      "lastPrice": 3.12,
+      "lineTotals": [
+        9.36
+      ],
+      "lastLineTotal": 9.36,
+      "typicalLineTotal": 9.36,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "877243131"
+      ]
+    },
+    {
+      "name": "Notre Sélection Aiguillettes de poulet",
+      "packaging": "la barquette de 500g",
+      "timesOrdered": 1,
+      "totalQuantity": 1,
+      "unit": "unit",
+      "lastPrice": 7.37,
+      "lineTotals": [
+        7.37
+      ],
+      "lastLineTotal": 7.37,
+      "typicalLineTotal": 7.37,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "877243131"
       ]
     }
   ],
@@ -11143,6 +11378,308 @@
         }
       ],
       "total": 82.44
+    },
+    {
+      "orderNumber": "877243131",
+      "store": "Méré",
+      "date": {
+        "year": 2026,
+        "day": 5,
+        "month": 9
+      },
+      "items": [
+        {
+          "name": "Panzani Sauce Tomates Cuisinées ingrédients origine naturelle",
+          "truncated": false,
+          "packaging": "Le pot de 650g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 2.59,
+          "lineTotal": 2.59,
+          "unavailable": false
+        },
+        {
+          "name": "Bouton d’Or, une marque Intermarché Cacahuètes grillées à l'huile et salées",
+          "truncated": false,
+          "packaging": "le sachet de 500 g",
+          "quantity": 2,
+          "unit": "unit",
+          "unitPrice": 1.4,
+          "lineTotal": 2.8,
+          "unavailable": false
+        },
+        {
+          "name": "Croustipate Pâte à pizza qualité comme à la pizzeria",
+          "truncated": false,
+          "packaging": "la boîte de 500g",
+          "quantity": 2,
+          "unit": "unit",
+          "unitPrice": 2.43,
+          "lineTotal": 4.86,
+          "unavailable": false
+        },
+        {
+          "name": "Panzani Pâtes Coquillettes - Les 3 minutes",
+          "truncated": false,
+          "packaging": "Le paquet de 1kg",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 2.15,
+          "lineTotal": 2.15,
+          "unavailable": false
+        },
+        {
+          "name": "Jean Rozé, une marque Intermarché Viande hachée vrac pur BŒUF 5% MG",
+          "truncated": false,
+          "packaging": "la barquette de 350 g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 6.09,
+          "lineTotal": 6.09,
+          "unavailable": false
+        },
+        {
+          "name": "Apta, une marque Intermarché Essuie tout maxi absorbant",
+          "truncated": false,
+          "packaging": "le paquet de 4 rouleaux",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 2.49,
+          "lineTotal": 2.49,
+          "unavailable": false
+        },
+        {
+          "name": "Regain, une marque Intermarché Boisson à base d'amande BIO",
+          "truncated": false,
+          "packaging": "la brique de 1 L",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 1.52,
+          "lineTotal": 1.52,
+          "unavailable": false
+        },
+        {
+          "name": "Chabrior, une marque Intermarché Demi baguettes précuites complètes",
+          "truncated": false,
+          "packaging": "le paquet de 2 - 300 g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 0.91,
+          "lineTotal": 0.91,
+          "unavailable": false
+        },
+        {
+          "name": "Bjorg Boisson végétale Lait d'amande vanille BIO",
+          "truncated": false,
+          "packaging": "la brique de 1l",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 2.6,
+          "lineTotal": 2.6,
+          "unavailable": false
+        },
+        {
+          "name": "Itinéraire des Saveurs, une marque Intermarché Grana Padano AOP râpé",
+          "truncated": false,
+          "packaging": "le paquet de 100g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 1.49,
+          "lineTotal": 1.49,
+          "unavailable": false
+        },
+        {
+          "name": "Saint Eloi, une marque Intermarché Pois chiches français",
+          "truncated": false,
+          "packaging": "la boîte de 530 g net égoutté",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 1.2,
+          "lineTotal": 1.2,
+          "unavailable": false
+        },
+        {
+          "name": "Barilla Sauce pesto avec fromage ricotta et noix",
+          "truncated": false,
+          "packaging": "le pot de 190g",
+          "quantity": 2,
+          "unit": "unit",
+          "unitPrice": 3.19,
+          "lineTotal": 6.38,
+          "unavailable": false
+        },
+        {
+          "name": "Ultima croquettes pour chat stérilisé adulte poulet",
+          "truncated": false,
+          "packaging": "le sac de 1,5 kg",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 7.11,
+          "lineTotal": 7.11,
+          "unavailable": false
+        },
+        {
+          "name": "Pâturages, une marque Intermarché Gouda Holland IGP",
+          "truncated": false,
+          "packaging": "le fromage de 250 g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 3.51,
+          "lineTotal": 3.51,
+          "unavailable": false
+        },
+        {
+          "name": "Jean Rozé, une marque Intermarché Chipolata supérieure aux herbes",
+          "truncated": false,
+          "packaging": "Les 6 pièces de 55g - 330 g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 3.3,
+          "lineTotal": 3.3,
+          "unavailable": false
+        },
+        {
+          "name": "Jean Rozé, une marque Intermarché Côtes de PORC",
+          "truncated": false,
+          "packaging": "les 4 pièces de 140g - 560 g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 4.79,
+          "lineTotal": 4.79,
+          "unavailable": false
+        },
+        {
+          "name": "Chabrior, une marque Intermarché Demi-baguettes de campagne précuites BIO",
+          "truncated": false,
+          "packaging": "le paquet de 2 de 125g - 250g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 2.62,
+          "lineTotal": 2.62,
+          "unavailable": false
+        },
+        {
+          "name": "Cuit sur place Baguette La Généreuse",
+          "truncated": false,
+          "packaging": "la baguette de 300 g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 0.89,
+          "lineTotal": 0.89,
+          "unavailable": false
+        },
+        {
+          "name": "Montorsi Mortadelle",
+          "truncated": false,
+          "packaging": "la barquette de 120g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 2.55,
+          "lineTotal": 2.55,
+          "unavailable": false
+        },
+        {
+          "name": "Saint Eloi, une marque Intermarché Riz long basmati BIO",
+          "truncated": false,
+          "packaging": "le sachet de 500 g",
+          "quantity": 2,
+          "unit": "unit",
+          "unitPrice": 1.49,
+          "lineTotal": 2.98,
+          "unavailable": false
+        },
+        {
+          "name": "Le Petit Marseillais Gel douche extra doux pêche nectarine",
+          "truncated": false,
+          "packaging": "Le flacon de 65cl",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 5.2,
+          "lineTotal": 5.2,
+          "unavailable": false
+        },
+        {
+          "name": "Maddy's Cheddar rouge mature",
+          "truncated": false,
+          "packaging": "le paquet de 200g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 3.74,
+          "lineTotal": 3.74,
+          "unavailable": false
+        },
+        {
+          "name": "Le Trèfle Papier hygiénique douceur fleur de coton",
+          "truncated": false,
+          "packaging": "Le paquet de 4 maxi rouleaux",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 3.95,
+          "lineTotal": 3.95,
+          "unavailable": false
+        },
+        {
+          "name": "Saint Eloi, une marque Intermarché Lentilles préparées",
+          "truncated": false,
+          "packaging": "l'unité de 265g net égoutté",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 0.67,
+          "lineTotal": 0.67,
+          "unavailable": false
+        },
+        {
+          "name": "Canaillou, une marque Intermarché Griffoir pour chats",
+          "truncated": false,
+          "packaging": "le griffoir",
+          "quantity": 3,
+          "unit": "unit",
+          "unitPrice": 3.12,
+          "lineTotal": 9.36,
+          "unavailable": false
+        },
+        {
+          "name": "Pâturages, une marque Intermarché Beurre moulé demi-sel",
+          "truncated": false,
+          "packaging": "le paquet de 500g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 4.99,
+          "lineTotal": 4.99,
+          "unavailable": false
+        },
+        {
+          "name": "Notre Sélection Aiguillettes de poulet",
+          "truncated": false,
+          "packaging": "la barquette de 500g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 7.37,
+          "lineTotal": 7.37,
+          "unavailable": false
+        },
+        {
+          "name": "Pâturages, une marque Intermarché Mozzarella",
+          "truncated": false,
+          "packaging": "le sachet de 125 g net égoutté",
+          "quantity": 2,
+          "unit": "unit",
+          "unitPrice": 0.93,
+          "lineTotal": 1.86,
+          "unavailable": false
+        },
+        {
+          "name": "Le Gaulois Filet de poulet extra tendre",
+          "truncated": false,
+          "packaging": "la barquette de 2 - 280g",
+          "quantity": 0.327,
+          "unit": "kg",
+          "unitPrice": 19.89,
+          "lineTotal": 6.5,
+          "unavailable": false
+        }
+      ],
+      "total": 106.47
     }
   ]
 }

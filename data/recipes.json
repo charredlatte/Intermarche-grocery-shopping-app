@@ -2781,5 +2781,77 @@
       "Olive oil, black pepper. No vinegar; the tomato is acid enough.",
       "Bread to mop the plate."
     ]
+  },
+  "roules-cannelle": {
+    "title": "Cinnamon rolls from pizza dough",
+    "cuisine": "american",
+    "slot": "breakfast",
+    "kind": "recipe",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "serves": 10,
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "freezes"
+    ],
+    "short": "A rolled pizza dough, salted butter, cassonade and cinnamon, cut into ten and baked. Sunday morning's job, all week's breakfast.",
+    "ingredients": [
+      {
+        "item": "pizza dough",
+        "qty": "1 roll",
+        "product": "Croustipate Pâte à pizza qualité comme à la pizzeria",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "cassonade",
+        "qty": "80 g",
+        "product": "Cassonade",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 2
+        }
+      },
+      {
+        "item": "ground cinnamon",
+        "qty": "2 tsp",
+        "product": "Cannelle moulue",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 2.2
+        }
+      },
+      {
+        "item": "salted butter",
+        "qty": "60 g, very soft",
+        "product": "already in the fridge",
+        "pantry": true
+      },
+      {
+        "item": "almond milk",
+        "qty": "a splash, to brush",
+        "product": "already in the fridge",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Take the butter out an hour ahead. Cold butter tears the dough instead of spreading on it.",
+      "Heat the oven to 200 °C. Unroll the dough on its own paper, long side towards you, and leave it on the paper — it is what you will bake on.",
+      "Spread the soft butter right to the edges, then scatter the cassonade and cinnamon evenly over it. Press it in lightly with your palm so it does not all fall out when you roll.",
+      "Roll up from the long side, fairly snug but not tight, and pinch the seam shut. Roll the log seam-down.",
+      "Cut into 10 with a serrated knife, sawing rather than pressing, and lay them cut-side up with a good gap between — they spread. Squash each one down slightly.",
+      "Brush the tops with almond milk and bake 18–20 minutes, until the tops are set and the edges are properly brown. The pale ones are underdone in the middle.",
+      "Cool on the tray 5 minutes; the centres firm up as they go. Freeze what you will not eat in two days, and take one out the night before or give it 30 seconds in the microwave."
+    ]
   }
 }

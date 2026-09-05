@@ -3,89 +3,102 @@
   "label": "Week of 6 September",
   "store": "Intermarché Drive Méré",
   "notes": [
-    "Eggs are not on the list — you said you have plenty, and six dishes lean on them.",
-    "The basket is derived from whatever meals are currently picked, so it follows every swap."
+    "Saturday's Drive run already brought the proteins and the starch — aiguillettes de poulet, viande hachée, côtes de porc, chipolatas, riz basmati, deux pâtes à pizza, pesto, mozzarella, gouda, cheddar. The week is built around them.",
+    "The vegetables failed to go through on the Intermarché site, so this order is almost entirely produce. That is the gap, not a new week's shop.",
+    "The basket below is derived from the full recipes, so it re-lists the meat, rice and dough already sitting in the kitchen. Ignore those lines — the outstanding spend is about 72 €, not the total shown.",
+    "Chinese, Thai and French vegetable-forward, as asked. No chilli anywhere: no piment, harissa, gochujang or sauce piquante."
   ],
   "meals": [
+    {
+      "id": "sunday-breakfast",
+      "day": "sunday",
+      "slot": "breakfast",
+      "recipe": "roules-cannelle",
+      "note": "Uses one of the two pizza doughs. Makes ten — freeze what you won't eat by Tuesday."
+    },
     {
       "id": "sunday-dinner",
       "day": "sunday",
       "slot": "dinner",
       "recipe": "curry-coco-poulet",
-      "note": "Batch cook. Makes Wednesday's dinner and one lunch as well."
+      "note": "Batch cook, on Saturday's aiguillettes rather than thighs. Makes Tuesday's dinner too."
     },
     {
       "id": "monday-dinner",
       "day": "monday",
       "slot": "dinner",
-      "recipe": "boeuf-poivrons"
+      "recipe": "boeuf-poivrons",
+      "note": "The 350 g of viande hachée from Saturday."
     },
     {
       "id": "tuesday-dinner",
       "day": "tuesday",
       "slot": "dinner",
-      "recipe": "yakisoba-dinde"
+      "recipe": "curry-coco-poulet",
+      "minutesOverride": 10,
+      "note": "Sunday's curry, reheated. Cucumber and coriander alongside to freshen it.",
+      "leftovers": true
     },
     {
       "id": "wednesday-dinner",
       "day": "wednesday",
       "slot": "dinner",
-      "recipe": "curry-coco-poulet",
-      "minutesOverride": 10,
-      "note": "Sunday's curry, reheated. Cucumber and coriander on the side to freshen it.",
-      "leftovers": true
+      "recipe": "porc-soja-gingembre",
+      "note": "The côtes de porc from Saturday, with the broccoli."
     },
     {
       "id": "thursday-dinner",
       "day": "thursday",
       "slot": "dinner",
-      "recipe": "donburi-teriyaki"
+      "recipe": "aubergines-miso-soja",
+      "note": "Sweet soy and ginger, no miso — Méré doesn't stock the paste."
     },
     {
       "id": "friday-dinner",
       "day": "friday",
       "slot": "dinner",
-      "recipe": "gyoza-brocoli"
+      "recipe": "pizza-maison",
+      "note": "The second pizza dough, with the mozzarella already in the fridge."
     },
     {
       "id": "saturday-dinner",
       "day": "saturday",
       "slot": "dinner",
-      "recipe": "saucisses-lentilles"
+      "recipe": "saucisses-lentilles",
+      "note": "Saturday's chipolatas and the tin of lentils. Swap in the courgette gratin if you'd rather have the French vegetable night here."
     },
     {
       "id": "monday-lunch",
       "day": "monday",
       "slot": "lunch",
-      "recipe": "onigiri-oeuf",
-      "note": "Roll them Sunday evening while the curry is cooling."
+      "recipe": "bun-vermicelles",
+      "note": "On the Gaulois chicken fillets from Saturday."
     },
     {
       "id": "tuesday-lunch",
       "day": "tuesday",
       "slot": "lunch",
-      "recipe": "bun-vermicelles"
+      "recipe": "salade-pois-chiches",
+      "note": "The tin of chickpeas from Saturday."
     },
     {
       "id": "wednesday-lunch",
       "day": "wednesday",
       "slot": "lunch",
-      "recipe": "curry-coco-poulet",
-      "minutesOverride": 5,
-      "note": "The last of Sunday's pot, over rice.",
-      "leftovers": true
+      "recipe": "riz-saute-restes",
+      "note": "Whatever basmati is left from the curry, with an egg through it."
     },
     {
       "id": "thursday-lunch",
       "day": "thursday",
       "slot": "lunch",
-      "recipe": "salade-mache-oeuf"
+      "recipe": "baguette-boursin"
     },
     {
       "id": "friday-lunch",
       "day": "friday",
       "slot": "lunch",
-      "recipe": "baguette-boursin"
+      "recipe": "salade-mache-oeuf"
     }
   ]
 }
