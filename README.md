@@ -98,6 +98,8 @@ The handoff is the plan itself. Answer on the couch Sunday morning, run the bask
 
 It is generated, not hand-written, so next Sunday is a new plan file and `npm run build:week`. The URL never changes because the build republishes to the one recorded in `data/artifact-url.txt` — publishing without it would create a second artifact and orphan the bookmark.
 
+It goes back the other way too. `npm run sync:artifact` takes the published HTML, reverses the build, and hands back the template it came from — then rebuilds to prove that template reproduces the live page byte for byte. The weekly run checks that before it publishes, because the page has been rebuilt from outside a session before, and without the check the next build would republish over work that exists nowhere else.
+
 It is also a two-person app. Any meal can be swapped — either for another dish from the library, or for something new invented on the spot — and the picks live in a shared database, so my partner and I see the same week on our own phones. The shopping list is derived from whatever is currently picked, so the total follows every swap. A dish eaten out of an earlier batch is marked as leftovers and buys nothing, which is the only reason the numbers come out right: counting the Sunday curry three times bought six tins of coconut milk for one pot.
 
 The library is 32 dishes now, roughly half Asian and half European. Ready-made things like the gyoza are still on the menu but marked as assemblies — a note about the packet, and a real recipe only for the part that is actually cooked.

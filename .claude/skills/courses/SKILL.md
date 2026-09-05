@@ -166,16 +166,26 @@ approves a plan, before or after filling the basket:
    **There is no shopping array any more** — the basket is derived from whatever
    meals are picked, so it survives her swapping things.
 3. **`npm run build:week`** — emits `artifact/week.html`.
-4. **Republish to the URL in `data/artifact-url.txt`.** Pass it as the Artifact
+4. **Check the live page before you overwrite it.** `read` the artifact with the
+   Artifact tool — it saves the HTML to a file — and run
+   `npm run sync:artifact -- --check <that file>`. Exit 0 means the published page
+   is the one this repo builds and you may publish. Anything else means someone
+   rebuilt or edited it outside a session, and republishing would silently destroy
+   that: run the same command without `--check` to reverse the build and recover it
+   into `artifact/template.html`, commit that, then rebuild and carry on. If it
+   reports that the difference is in the injected data rather than the template,
+   the live page has recipes or a plan this repo has not got — stop and ask, don't
+   publish over it.
+5. **Republish to the URL in `data/artifact-url.txt`.** Pass it as the Artifact
    tool's `url`. Publishing without it creates a second artifact and breaks the
    bookmark on her phone. Do not change the favicon or the title, and **omit
    `capabilities` so the stored `db` and `sample` grants carry forward** —
    restating a partial set would revoke the other.
-5. **Her swaps live in the shared database, not in the plan file.** The page
+6. **Her swaps live in the shared database, not in the plan file.** The page
    reads `weeks/<weekOf>` and overlays those picks on the plan you shipped. A
    new week means a new `weekOf`, so it starts clean without touching hers. If
    she asks to keep a swapped-in dish permanently, move it into the plan file.
-6. Commit both repos.
+7. Commit — code and `data/` are one repo now.
 
 Reuse a slug rather than writing a near-duplicate — that is what makes the
 Recipes tab a library worth re-picking from, and it shows her which weeks a dish
@@ -183,6 +193,6 @@ has already appeared in.
 
 ## After she confirms
 
-Save the week's plan if she wants it kept, commit and push the data repo, and
-stop. The invoice email arrives within the hour; next week's parser run picks it
-up and the history improves on its own.
+Save the week's plan if she wants it kept, commit and push, and stop. The
+invoice email arrives within the hour; next week's parser run picks it up and the
+history improves on its own.

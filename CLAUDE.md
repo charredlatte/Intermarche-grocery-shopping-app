@@ -49,9 +49,26 @@ questions, then a plan, then a line-item list, then the basket.
 ## Commands
 
 ```bash
-npm run parse       # data/invoices/*.txt -> data/purchase-history.json
-npm run build:week  # data/recipes.json + data/plans/*.json -> artifact/week.html
+npm run parse         # data/invoices/*.txt -> data/purchase-history.json
+npm run build:week    # data/recipes.json + data/plans/*.json -> artifact/week.html
+npm run sync:artifact # the published page -> artifact/template.html + week.html
 ```
+
+`sync:artifact` runs the other way, and the weekly run passes through it before
+it publishes anything. The live page can be rebuilt from outside a session — that
+has happened, and the icons in the shopping list existed only in the published
+HTML until `d89307a` put them back by hand. So: `read` the artifact with the
+Artifact tool, which saves the HTML to a file, then
+
+```bash
+npm run sync:artifact -- --check <that file>   # 0 in sync, 1 drift, writes nothing
+npm run sync:artifact -- <that file>           # recover the drift into the repo
+```
+
+Recovery reverses the data injection and then rebuilds to prove the template
+reproduces the live page byte for byte; if it cannot, it writes nothing and says
+why. **Never republish over a failed `--check`** — that overwrites work that
+exists nowhere else.
 
 The built page is republished to the artifact URL in `data/artifact-url.txt`.
 **Always pass that URL** — a publish without it creates a second artifact and
