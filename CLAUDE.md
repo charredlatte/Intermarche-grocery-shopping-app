@@ -105,6 +105,17 @@ flagged in the page as such. Do not promise Charlotte a catalogue lookup, and do
 not log into her account: there is no browser session here, and the basket step
 is deliberately hers, on her PC.
 
+**`data/seen-in-app.json` is the one way round it.** When Charlotte sends a
+screenshot of the app, record what is *on screen* — exact name, packaging, price,
+unit, the date — and it joins the pricebook with `source: "app"` and stops being
+a guess. Record nothing you cannot see: no inferred pack sizes, no remembered
+prices. A receipt always outranks it.
+
+A guess being wrong is not hypothetical. Two recipes assumed fresh leeks; the
+screenshot of 2026-09-04 shows the Légumes aisle returning exactly one leek
+product, a **jar** of cooked leek whites at 6,23 €. Fresh poireaux are not
+stocked. Ask for a screenshot when a guessed product matters to a dish.
+
 ## Commands
 
 ```bash

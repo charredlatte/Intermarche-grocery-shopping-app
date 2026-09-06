@@ -1,0 +1,14 @@
+{
+  "_comment": "Products confirmed by looking at the Intermarché app or site, rather than by a receipt. Hand-edited, like preferences.json. This exists because their catalogue cannot be read from here (403, DataDome), so the only way a product Charlotte has never bought becomes exact is if she shows it to us. Anything in here joins the pricebook with its real name and price and stops being a guess. Record what was actually on screen and nothing more — no inferred sizes, no remembered prices.",
+  "products": [
+    {
+      "name": "Parole gourmande Blancs de poireaux",
+      "packaging": "l'unité de 395g net égoutté",
+      "price": 6.23,
+      "unit": "unit",
+      "seenOn": "2026-09-04",
+      "source": "screenshot of the Intermarché app, Rayons > Légumes, sent 2026-09-06",
+      "note": "The ONLY leek product the Légumes aisle returned — a jar of cooked leek whites, not fresh leeks. 9,44 €/kg on the gross weight. Fresh poireaux appear not to be stocked at Méré Drive; see preferences.pantry.notKnownToStock."
+    }
+  ]
+}

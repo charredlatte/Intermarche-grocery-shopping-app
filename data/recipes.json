@@ -3046,18 +3046,18 @@
     ]
   },
   "truite-amandes-poireaux": {
-    "title": "Trout with almonds and softened leeks",
+    "title": "Trout with almonds and leeks",
     "cuisine": "french",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 10,
-    "cookMinutes": 20,
+    "cookMinutes": 15,
     "serves": 2,
     "tags": [
       "fast",
       "no chilli"
     ],
-    "short": "Trout fillets crisped skin-side down, almonds browned in the pan butter, leeks melted underneath.",
+    "short": "Trout crisped skin-side down, almonds browned in the pan butter. Méré only sells leeks in a jar, already cooked — which for once saves you twelve minutes.",
     "ingredients": [
       {
         "item": "trout fillets",
@@ -3070,15 +3070,13 @@
         }
       },
       {
-        "item": "leeks",
-        "qty": "2, in fine rounds",
-        "product": "Poireaux",
-        "guess": true,
+        "item": "leek whites",
+        "qty": "1 jar, drained",
+        "product": "Parole gourmande Blancs de poireaux",
         "buy": {
           "amount": 1,
           "mode": "sum",
-          "section": "Best guesses",
-          "price": 2.6
+          "section": "Vegetables"
         }
       },
       {
@@ -3121,10 +3119,10 @@
       }
     ],
     "steps": [
-      "Potatoes on to boil first; everything else takes twenty minutes and will not wait.",
-      "Wash the leek rounds properly in a bowl of water and lift them out, leaving the grit behind. Rinsing them in a colander pours the grit back over them.",
-      "Melt a knob of butter in a wide pan over low heat. Leeks in with a pinch of salt and a splash of water, lid on, 12 minutes, until they collapse to a sweet green tangle. Low and slow — browned leeks turn bitter.",
-      "Push them aside. Pat the trout dry, season, and lay it skin-down in the hot part of the pan. 4 minutes without touching it, until the skin lifts away cleanly by itself.",
+      "Potatoes on to boil first; everything else takes fifteen minutes and will not wait.",
+      "Drain the leek whites well and pat them dry, then cut them into 2 cm lengths. They come out of the jar already cooked and quite wet — dry them or they will steam in the pan instead of colouring.",
+      "Melt a knob of butter in a wide pan over medium heat and lay the leeks in cut-side down. 4 minutes, undisturbed, until the cut faces catch and go gold. That browning is the only thing you can add to a jarred vegetable, so do not skip it.",
+      "Push them to one side. Pat the trout dry, season, and lay it skin-down in the hot part of the pan. 4 minutes without touching it, until the skin lifts away cleanly by itself.",
       "Turn, 90 seconds, then lift onto the plates.",
       "Almonds into the pan, 1 minute until they smell toasted and go pale gold, then the lemon juice, which will hiss and lift everything off the base.",
       "Spoon the almonds and pan juices over, leeks and potatoes alongside."
@@ -3455,94 +3453,6 @@
     ],
     "equipment": [
       "hob"
-    ]
-  },
-  "soupe-poireaux-pommes-terre": {
-    "title": "Leek and potato soup",
-    "cuisine": "french",
-    "slot": "lunch",
-    "kind": "recipe",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "serves": 4,
-    "tags": [
-      "batch cook",
-      "no chilli",
-      "vegetarian"
-    ],
-    "short": "Three ingredients and patience. No cream — the potato does the thickening.",
-    "ingredients": [
-      {
-        "item": "leeks",
-        "qty": "4, sliced",
-        "product": "Poireaux",
-        "guess": true,
-        "buy": {
-          "amount": 2,
-          "mode": "sum",
-          "section": "Best guesses",
-          "price": 2.6
-        }
-      },
-      {
-        "item": "potatoes",
-        "qty": "600 g, cubed",
-        "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
-        "buy": {
-          "amount": 1,
-          "mode": "sum",
-          "section": "Vegetables"
-        }
-      },
-      {
-        "item": "onion",
-        "qty": "1",
-        "product": "Le Choix du Primeur Oignons JAUNES",
-        "buy": {
-          "amount": 0.15,
-          "mode": "sum",
-          "section": "Vegetables"
-        }
-      },
-      {
-        "item": "vegetable stock",
-        "qty": "1.2 litres",
-        "product": "Bouillon de légumes en cubes",
-        "guess": true,
-        "buy": {
-          "amount": 1,
-          "mode": "once",
-          "section": "Best guesses",
-          "price": 1.6
-        }
-      },
-      {
-        "item": "baguette",
-        "qty": "to serve",
-        "product": "Cuit sur place Baguette La Généreuse",
-        "buy": {
-          "amount": 1,
-          "mode": "once",
-          "section": "Bread and cheese"
-        }
-      },
-      {
-        "item": "butter, salt, pepper",
-        "qty": "",
-        "product": "already in the kitchen",
-        "pantry": true
-      }
-    ],
-    "steps": [
-      "Wash the sliced leeks in a bowl of water and lift them out, leaving the grit at the bottom.",
-      "Butter in a large pan on low. Leeks and onion in with a pinch of salt, lid on, 10 minutes — you are sweating them, not colouring them. Any browning here and the soup turns grey-brown instead of pale green.",
-      "Potatoes and stock in. Simmer 15 minutes, until a knife slides through a cube with no resistance.",
-      "Blend about two-thirds of it and stir it back, so there is still something to chew.",
-      "Season properly — it will take more salt and pepper than you expect — and serve with the baguette."
-    ],
-    "equipment": [
-      "hob",
-      "blender"
     ]
   },
   "risotto-safran": {
@@ -5809,6 +5719,107 @@
       "Season the eggs, parmesan over the sauce but not the yolks, and into the oven.",
       "8–10 minutes. Pull it when the whites are just set and the yolks still move when you shake the dish; they carry on cooking in the hot sauce.",
       "Basil over, baguette to mop."
+    ]
+  },
+  "soupe-oignon-gratinee": {
+    "title": "Soupe à l'oignon gratinée",
+    "cuisine": "french",
+    "slot": "lunch",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 50,
+    "serves": 4,
+    "equipment": [
+      "hob",
+      "oven",
+      "casserole dish"
+    ],
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "vegetarian"
+    ],
+    "short": "Replaces the leek and potato soup, which Méré cannot supply. Forty minutes of browning onions and nothing else — there is no shortcut and no substitute for the time.",
+    "ingredients": [
+      {
+        "item": "onions",
+        "qty": "1 kg, sliced thin",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "baguette",
+        "qty": "1, in thick slices",
+        "product": "Cuit sur place Baguette La Généreuse",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "grated cheese",
+        "qty": "200 g",
+        "product": "Pâturages, une marque Intermarché Emmental français râpé",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "2 cloves",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "dry white wine",
+        "qty": "150 ml",
+        "product": "Vin blanc sec de cuisine",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 4.5
+        }
+      },
+      {
+        "item": "beef or vegetable stock",
+        "qty": "1.2 litres",
+        "product": "Bouillon de bœuf en cubes",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.6
+        }
+      },
+      {
+        "item": "butter",
+        "qty": "a good knob",
+        "product": "already in the fridge",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Slice the onions as thinly as you can manage. A kilo looks absurd in the pan and cooks down to almost nothing.",
+      "Butter and a little oil in a wide heavy pan on medium-low. Onions in with a good pinch of salt, and now give them 40 minutes, stirring every five. This is the entire recipe. Rushed onions taste sharp and the soup never recovers.",
+      "They are ready when they are deep brown and jammy, not blond. If they catch, a splash of water lifts the fond back into them.",
+      "Garlic, 1 minute. Wine in, and scrape the base clean while it bubbles down by half.",
+      "Stock in, simmer 15 minutes, season hard.",
+      "Toast the baguette slices. Ladle the soup into ovenproof bowls, float the bread, pile the cheese on top.",
+      "Under a hot grill or in a 220°C oven until the cheese blisters and runs down the sides, about 5 minutes."
     ]
   }
 }

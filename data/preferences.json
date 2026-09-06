@@ -133,8 +133,10 @@
       "pâte de curry thaï",
       "sauce poisson",
       "pâte miso",
-      "vinaigre de riz"
-    ]
+      "vinaigre de riz",
+      "poireaux frais (leeks — jarred only)"
+    ],
+    "stockFindings": "2026-09-06, from a screenshot of the app: the Légumes aisle returns exactly one leek product, Parole gourmande Blancs de poireaux in a jar at 6,23 €. No fresh poireaux. Two recipes assumed fresh leeks on a guess and were wrong. Anything Charlotte shows us goes into data/seen-in-app.json with its exact name and price and stops being a guess — that file is the only way to learn a product she has never bought, since the catalogue itself is unreadable from here."
   },
   "substitutions": {
     "_comment": "Two different things. A recipe adaptation is decided up front and reported. An out-of-stock item at basket time stops and asks.",

@@ -45,11 +45,24 @@ let equivalents = { groups: [] };
 try { equivalents = JSON.parse(readFileSync(join(DATA, "equivalents.json"), "utf8")); }
 catch { /* no equivalents file; exact names only */ }
 
+// Products confirmed by looking at the app rather than by a receipt. Their
+// catalogue cannot be read from here, so this is the only route by which
+// something she has never bought gets an exact name and a real price.
+let seenInApp = { products: [] };
+try { seenInApp = JSON.parse(readFileSync(join(DATA, "seen-in-app.json"), "utf8")); }
+catch { /* nothing observed yet */ }
+
 /* ---- pricebook ---------------------------------------------------------- */
 const pricebook = {};
 for (const p of history.products) {
   if (p.nameTruncated || p.lastPrice == null) continue;   // a cut-off name is not searchable
-  pricebook[p.name] = { unit: p.unit, price: p.lastPrice };
+  pricebook[p.name] = { unit: p.unit, price: p.lastPrice, source: "receipt" };
+}
+// A receipt always wins: it is what she was actually charged.
+for (const p of seenInApp.products ?? []) {
+  if (!p.name || typeof p.price !== "number") die(`seen-in-app: "${p.name}" needs a name and a numeric price`);
+  if (pricebook[p.name]) continue;
+  pricebook[p.name] = { unit: p.unit ?? "unit", price: p.price, source: "app" };
 }
 
 /* ---- validate ----------------------------------------------------------- */
@@ -199,7 +212,8 @@ writeFileSync(OUT, template.replace("/*__DATA__*/ null", json));
 const latest = plans[plans.length - 1];
 const dinners = Object.values(recipes).filter((r) => r.slot === "dinner").length;
 console.log(`Built ${OUT}`);
-console.log(`  ${Object.keys(recipes).length} dishes (${dinners} dinners), ${Object.keys(pricebook).length} priced products`);
+const fromApp = Object.values(pricebook).filter((p) => p.source === "app").length;
+console.log(`  ${Object.keys(recipes).length} dishes (${dinners} dinners), ${Object.keys(pricebook).length} priced products (${fromApp} confirmed in the app, the rest from receipts)`);
 console.log(`  ${plans.length} week(s); latest: ${latest.label ?? latest.weekOf}, ${latest.meals.length} meals`);
 console.log(`  ceiling ${config.budgetCeiling} EUR, ${staples.length} standing staples`);
 const d = onHand.from.date;
