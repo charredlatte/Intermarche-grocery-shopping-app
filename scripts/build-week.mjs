@@ -134,15 +134,23 @@ if (problems.length) {
 // number, not the budget note. The dietary constraints DO ship, including the
 // reason text, because the dish generator needs to know it is a health rule
 // rather than a taste. That text is therefore in the published page.
+// A staple normally has to be in the pricebook, so a typo cannot ship a
+// zero-cost line. The exception is a product whose name the receipt truncated —
+// the coffee capsules are cut off as "L'Or Capsules de café ..." — which can
+// never match. Those carry their own price and are flagged as a guess, exactly
+// like a guessed recipe ingredient, so the page says the name needs checking.
 const staples = (prefs.staples?.alwaysInclude ?? []).map((s) => ({
   name: s.name,
   quantity: s.quantity ?? 1,
   note: s.note ?? "",
-  price: pricebook[s.name]?.price ?? null,
+  price: pricebook[s.name]?.price ?? s.price ?? null,
   unit: pricebook[s.name]?.unit ?? "unit",
+  guess: !pricebook[s.name],
 }));
 for (const s of staples) {
-  if (s.price == null) die(`standing staple "${s.name}" is not in the pricebook.`);
+  if (s.price == null) {
+    die(`standing staple "${s.name}" is not in the pricebook and has no "price" of its own.`);
+  }
 }
 
 /* ---- what is already in the kitchen ------------------------------------- */

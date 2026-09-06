@@ -772,9 +772,9 @@ function basket() {
                   for: [...e.dishes].join(", "), kind: "dish" });
   }
   for (const s of STAPLES) {
-    wanted.push({ key: s.name, section: "Standing order", guess: false,
-                  required: s.quantity, for: s.note || "always on the order",
-                  kind: "staple" });
+    wanted.push({ key: s.name, section: "Standing order", guess: !!s.guess,
+                  guessPrice: s.price, required: s.quantity,
+                  for: s.note || "always on the order", kind: "staple" });
   }
   for (const [key, a] of Object.entries(added)) {
     wanted.push({ key, section: "Added by you", guess: !PRICES[a.name],

@@ -94,8 +94,23 @@
         "name": "Canaillou, une marque Intermarché Litière végétale agglomérante à base de bois pour animaux familiers",
         "quantity": 2,
         "note": "Ordered in pairs every time it appears."
+      },
+      {
+        "name": "L'Or Espresso capsules intensité 8 — boîte de 50",
+        "quantity": 1,
+        "price": 17.64,
+        "guess": true,
+        "note": "3 pods a day between the two of them. A box of 50 is about 17 days, so this is on every order and struck off when there is still a box in the cupboard."
+      },
+      {
+        "name": "L'Or Espresso Décaféiné capsules — boîte de 50",
+        "quantity": 1,
+        "price": 17.64,
+        "guess": true,
+        "note": "The decaf half of the 3-a-day. Lasts longer than the strength 8; strike it off most weeks."
       }
-    ]
+    ],
+    "coffeeNote": "Told to Claude 2026-09-06: L'Or capsules, strength 8, plus decaf, 3 pods a day. The only coffee in the receipts is one box on 2025-10-09 at 17,64 € — and the email truncated the name to \"L'Or Capsules de café ...\", so the variety was never captured and the exact Intermarché name is unknown. Both lines are therefore guesses at that same price, flagged in the page. Replace them with the exact names off the next receipt that includes coffee, and drop the guess flag."
   },
   "pantry": {
     "_comment": "Asian staples Méré is confirmed to stock, from the receipts. Use these exact names; they are known-good search terms.",
