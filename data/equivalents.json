@@ -71,6 +71,265 @@
           "kg": 0.5
         }
       ]
+    },
+    {
+      "id": "boursin",
+      "label": "Boursin ail et fines herbes",
+      "note": "The same tub. Intermarché relabelled it from \"et\" to \"&\" partway through the year, so both names are in the receipts at different prices.",
+      "members": [
+        {
+          "name": "Boursin Fromage à tartiner ail et fines herbes"
+        },
+        {
+          "name": "Boursin Fromage à tartiner ail & fines herbes"
+        }
+      ]
+    },
+    {
+      "id": "baguette",
+      "label": "Baguette",
+      "note": "Any of these makes the morning sandwich. The cuit-sur-place one is what she buys almost every week.",
+      "members": [
+        {
+          "name": "Cuit sur place Baguette La Généreuse"
+        },
+        {
+          "name": "Producteurs & Commerçants Baguette BIO"
+        },
+        {
+          "name": "Chabrior, une marque Intermarché Demi baguettes précuites complètes"
+        },
+        {
+          "name": "Chabrior, une marque Intermarché Demi-baguettes de campagne précuites BIO"
+        }
+      ]
+    },
+    {
+      "id": "charcuterie",
+      "label": "Sliced charcuterie",
+      "note": "For the morning sandwich. The Negroni assortment is several meats in one pack; the mortadella is the usual default.",
+      "members": [
+        {
+          "name": "Montorsi Mortadelle"
+        },
+        {
+          "name": "Negroni Assortiment de charcuterie"
+        }
+      ]
+    },
+    {
+      "id": "pesto-vert",
+      "label": "Green (basil) pesto",
+      "note": "Interchangeable in a pasta. Deliberately NOT grouped with the rosso — a red pesto makes a visibly different dish.",
+      "members": [
+        {
+          "name": "Barilla Sauce pesto alla genovese basilic frais"
+        },
+        {
+          "name": "Fiorini, une marque Intermarché Sauce pesto au basilic bio"
+        }
+      ]
+    },
+    {
+      "id": "oeufs",
+      "label": "Eggs",
+      "note": "Box sizes and welfare labels differ; for cooking they are eggs.",
+      "members": [
+        {
+          "name": "Volaé, une marque Intermarché Œufs frais de poules élevées au sol"
+        },
+        {
+          "name": "Volaé, une marque Intermarché Œufs frais de poules élevées en plein air"
+        },
+        {
+          "name": "Panier d'Emilie Œufs frais calibre moyen-gros"
+        }
+      ]
+    },
+    {
+      "id": "parmesan-dur",
+      "label": "Hard grating cheese — parmesan, grana padano",
+      "note": "Grana Padano is the cheaper, milder one; either finishes a risotto or a carbonara.",
+      "members": [
+        {
+          "name": "Itinéraire des Saveurs, une marque Intermarché Parmigiano Reggiano AOP"
+        },
+        {
+          "name": "Itinéraire des Saveurs, une marque Intermarché Grana Padano AOP râpé"
+        }
+      ]
+    },
+    {
+      "id": "coquillettes",
+      "label": "Coquillettes and short pasta",
+      "note": "Same shape under four labels — she has bought all of them.",
+      "members": [
+        {
+          "name": "Fiorini, une marque Intermarché Coquillettes"
+        },
+        {
+          "name": "Panzani Pâtes Coquillettes"
+        },
+        {
+          "name": "Panzani Pâtes Coquilllettes"
+        },
+        {
+          "name": "Panzani Pâtes Coquillettes - Les 3 minutes"
+        },
+        {
+          "name": "Fiorini, une marque Intermarché Pâtes coquillages"
+        }
+      ]
+    },
+    {
+      "id": "sauce-tomate",
+      "label": "Jarred tomato sauce",
+      "note": "Basilic, provençale and the bio one are all a cooked tomato base. Fine to swap in a lasagne or a pasta.",
+      "members": [
+        {
+          "name": "Panzani Sauce Tomates Cuisinées ingrédients origine naturelle"
+        },
+        {
+          "name": "Panzani Sauce Tomates Basilic ingrédients origine naturelle"
+        },
+        {
+          "name": "Panzani Sauce Tomates Provençale ingrédients origine naturelle"
+        },
+        {
+          "name": "Jardin Bio étic Sauce tomate pour pizza, pâtes et riz BIO"
+        }
+      ]
+    },
+    {
+      "id": "saumon-fume",
+      "label": "Smoked salmon",
+      "note": "The Odyssée one is the better, dearer pack.",
+      "members": [
+        {
+          "name": "Petit navire Saumon fumé de Norvège"
+        },
+        {
+          "name": "Odyssée, une marque Intermarché Saumon fumé d'Ecosse"
+        }
+      ]
+    },
+    {
+      "id": "roquette-salade",
+      "label": "Bagged rocket and leaves",
+      "note": "Ready-washed leaves. The mélange is rocket plus mâche.",
+      "members": [
+        {
+          "name": "Saint Eloi, une marque Intermarché Roquette prête à l'emploi déjà lavée"
+        },
+        {
+          "name": "Saint Eloi, une marque Intermarché Mélange de salades mâche et roquette prêt à l'emploi"
+        }
+      ]
+    },
+    {
+      "id": "mache",
+      "label": "Mâche",
+      "members": [
+        {
+          "name": "Le Choix du Primeur Salade MACHE"
+        },
+        {
+          "name": "Le Choix du Primeur Salade MACHE BIO"
+        }
+      ]
+    },
+    {
+      "id": "cheddar",
+      "label": "Cheddar",
+      "note": "The tranchettes are the sliced ones for the sandwich; Maddy's is a block to grate.",
+      "members": [
+        {
+          "name": "Pâturages, une marque Intermarché Cheddar Les Tranchettes"
+        },
+        {
+          "name": "Maddy's Cheddar rouge mature"
+        }
+      ]
+    },
+    {
+      "id": "emmental-rape",
+      "label": "Grated cheese for a gratin",
+      "members": [
+        {
+          "name": "Pâturages, une marque Intermarché Emmental français râpé"
+        },
+        {
+          "name": "Pâturages, une marque Intermarché Emmental français au lait français"
+        },
+        {
+          "name": "Pâturages, une marque Intermarché 3 fromages râpés"
+        }
+      ]
+    },
+    {
+      "id": "chipolatas",
+      "label": "Chipolatas",
+      "members": [
+        {
+          "name": "Jean Rozé, une marque Intermarché Chipolata supérieure aux herbes"
+        },
+        {
+          "name": "Jean Rozé, une marque Intermarché Chipolatas supérieures"
+        }
+      ]
+    },
+    {
+      "id": "viande-hachee",
+      "label": "Beef mince",
+      "note": "5% and 15% fat. The 15% browns better; the 5% is what she usually buys.",
+      "members": [
+        {
+          "name": "Jean Rozé, une marque Intermarché Viande hachée vrac pur BŒUF 5% MG"
+        },
+        {
+          "name": "Jean Rozé, une marque Intermarché Viande hachée vrac pur BŒUF 15% MG"
+        }
+      ]
+    },
+    {
+      "id": "mozzarella",
+      "label": "Mozzarella",
+      "note": "The bufala is softer and wetter — better torn over a finished dish than baked on a pizza.",
+      "members": [
+        {
+          "name": "Pâturages, une marque Intermarché Mozzarella"
+        },
+        {
+          "name": "Itinéraire des Saveurs, une marque Intermarché Mozzarella di Bufala Campana AOP"
+        }
+      ]
+    },
+    {
+      "id": "courgettes",
+      "label": "Courgettes",
+      "members": [
+        {
+          "name": "Le Choix du Primeur Courgettes LONGUES"
+        },
+        {
+          "name": "Petit prix Courgettes",
+          "kg": 1
+        }
+      ],
+      "note": "The Petit prix one is a 1 kg net, per its packaging line on the receipts; the Choix du Primeur ones are loose and priced by the kilo."
+    },
+    {
+      "id": "tomates-rondes",
+      "label": "Round tomatoes",
+      "note": "Cherry tomatoes are deliberately NOT in here — those are the sandwich ones and get bought separately.",
+      "members": [
+        {
+          "name": "Le Choix du Primeur Tomate RONDE en GRAPPE"
+        },
+        {
+          "name": "Le Choix du Primeur Tomates RONDES CHARNUES"
+        }
+      ]
     }
   ]
 }

@@ -514,9 +514,10 @@
       <div>
         <span class="ctl-label">Show</span>
         <div class="seg" id="slotfilter">
-          <button data-v="all" aria-pressed="true">Everything</button>
-          <button data-v="dinner" aria-pressed="false">Dinners</button>
+          <button data-v="all" aria-pressed="true">All</button>
+          <button data-v="breakfast" aria-pressed="false">Breakfast</button>
           <button data-v="lunch" aria-pressed="false">Lunches</button>
+          <button data-v="dinner" aria-pressed="false">Dinners</button>
         </div>
       </div>
       <div>
@@ -549,8 +550,9 @@
         <span class="ctl-label">Course</span>
         <div class="seg" id="rslot">
           <button data-v="all" aria-pressed="true">All</button>
-          <button data-v="dinner" aria-pressed="false">Dinners</button>
+          <button data-v="breakfast" aria-pressed="false">Breakfast</button>
           <button data-v="lunch" aria-pressed="false">Lunches</button>
+          <button data-v="dinner" aria-pressed="false">Dinners</button>
         </div>
       </div>
       <div>
@@ -601,6 +603,10 @@ const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
 const eur = (n) => n.toFixed(2).replace(".", ",") + " €";
 const cap = (s) => String(s).charAt(0).toUpperCase() + String(s).slice(1);
 const DAYS = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+/* The order a day is actually eaten in. Breakfast became a real slot when the
+   morning sandwich went into the plan — before that it was one Sunday pastry. */
+const SLOT_ORDER = ["breakfast", "lunch", "dinner"];
+const PLURAL = { breakfast: "breakfasts", lunch: "lunches", dinner: "dinners" };
 
 /* ---------- state ----------
    `baseline` is what the build shipped. `picks` is what is on the menu now.
@@ -870,7 +876,7 @@ function ingredientList(r) {
 function card(o) {
   const r = o.r;
   const isPack = r.kind === "assembly";
-  return `<article class="card${o.slot === "lunch" ? " is-lunch" : ""}" data-card="${esc(o.key)}">
+  return `<article class="card${o.slot === "dinner" ? "" : " is-lunch"}" data-card="${esc(o.key)}">
     <div class="card-top">
       <span class="card-day">${esc(o.day ? cap(o.day) : cap(r.cuisine))}</span>
       <span class="card-slot">${esc(o.slot)}</span>
@@ -943,7 +949,7 @@ function renderWeek() {
   if (state.order === "day") {
     for (const d of DAYS) {
       const g = list.filter((m) => m.day === d)
-                    .sort((a, b) => (a.slot === "lunch" ? 0 : 1) - (b.slot === "lunch" ? 0 : 1));
+                    .sort((a, b) => SLOT_ORDER.indexOf(a.slot) - SLOT_ORDER.indexOf(b.slot));
       if (g.length) html += groupBlock(cap(d), g.length + (g.length > 1 ? " meals" : " meal"), g.map(asCard).join(""));
     }
   } else if (state.order === "time") {
@@ -980,7 +986,8 @@ function renderRecipes() {
     (rstate.slot === "all" || r.slot === rstate.slot) &&
     (rstate.cuisines.size === 0 || rstate.cuisines.has(r.cuisine)) &&
     (!q || (r.title + " " + r.short + " " + r.cuisine + " " + (r.tags || []).join(" ") + " " +
-            (r.ingredients || []).map((i) => i.item).join(" ") + " " + (r.steps || []).join(" ")).toLowerCase().includes(q)))
+            (r.ingredients || []).map((i) => i.item + " " + i.product).join(" ") + " " +
+            (r.steps || []).join(" ")).toLowerCase().includes(q)))
     .sort((a, b) => a[1].title.localeCompare(b[1].title));
 
   const total = Object.keys(lib).length;
@@ -1470,10 +1477,13 @@ function renderMasthead() {
   const { total, saved } = basket();
   $("#store-line").textContent = CONF.store || plan.store || "";
   $("#week-title").textContent = plan.label || ("Week of " + plan.weekOf);
-  const d = plan.meals.filter((m) => m.slot === "dinner").length;
-  const l = plan.meals.filter((m) => m.slot === "lunch").length;
+  const count = (s) => plan.meals.filter((m) => m.slot === s).length;
+  const parts = SLOT_ORDER
+    .map((s) => [count(s), s])
+    .filter(([n]) => n > 0)
+    .map(([n, s]) => `${n} ${n > 1 ? PLURAL[s] : s}`);
   $("#strapline").textContent =
-    `${d} dinners and ${l} lunches. Swap a dish you don't fancy, or tell the Shopping tab what you already have — the basket follows both. No chilli anywhere.`;
+    `${andList(parts)}. Swap a dish you don't fancy, or tell the Shopping tab what you already have — the basket follows both. No chilli anywhere.`;
   $("#tally").innerHTML = [
     ["Meals", plan.meals.length],
     ["Library", Object.keys(all()).length],

@@ -6,7 +6,8 @@
     "dinnersPerWeek": 7,
     "lunchesPerWeek": 5,
     "lunchStyle": "separate",
-    "notes": "Dinners every night, plus five weekday lunches planned as their own light dishes — not dinner leftovers."
+    "notes": "Dinners every night, plus five weekday lunches planned as their own light dishes — not dinner leftovers. Breakfast is the same sandwich almost every morning: baguette, Boursin, charcuterie, a sliced cheese and cherry tomatoes. Plan it every day and put its ingredients on the order — it is the meal they eat most and it was missing entirely until 2026-09-06.",
+    "breakfastsPerWeek": 7
   },
   "store": {
     "name": "Intermarché Méré",
@@ -48,7 +49,7 @@
     ]
   },
   "cuisines": {
-    "weeklyShare": "most",
+    "weeklyShare": "half",
     "preferred": [
       "japonaise",
       "coréenne",
@@ -57,8 +58,14 @@
       "vietnamienne",
       "indienne"
     ],
-    "notes": "Indian means mild curry, never hot. Spring rolls are made often and are a favourite.",
-    "fallback": "french, vegetable-forward — the non-Asian nights should lean on vegetables rather than another gratin"
+    "notes": "Indian means mild curry, never hot. Spring rolls are made often and are a favourite. Half the dinners Asian, half European (French, Italian, Spanish) — Charlotte asked for 50/50 on 2026-09-06, having found the weeks were running about 70% Asian. The library was already half European; it was this field, previously \"most\", that skewed the plans.",
+    "fallback": "vegetable-forward, and vary it — the European half should not be another gratin every week. Spanish and Italian count towards it as much as French.",
+    "european": [
+      "française",
+      "italienne",
+      "espagnole"
+    ],
+    "varietyRule": "Don't repeat a dinner within a fortnight while there are unused dishes in the library, and prefer a dish never served over one already served this month."
   },
   "cooking": {
     "maxWeeknightMinutes": 30,
@@ -110,5 +117,19 @@
     "_comment": "Two different things. A recipe adaptation is decided up front and reported. An out-of-stock item at basket time stops and asks.",
     "autoAcceptSameProductDifferentBrand": false,
     "adaptRecipesToWhatMereStocks": true
+  },
+  "ingredients": {
+    "_comment": "How adventurous to be with products. Set by Charlotte on 2026-09-06.",
+    "useUnboughtProducts": true,
+    "note": "Actively use products she has not bought before — pancetta, saffron, anchovies, capers, olives, pine nuts, manchego, gambas, leeks, mushrooms, shallots, arborio rice. Intermarché's catalogue cannot be read (their bot protection blocks it), so these ship as guesses: an estimated name and price, landing in the Best guesses section, to be checked at the Drive. Anything already in the receipts should still use its exact name — that is what resolves to a single search result.",
+    "avoidDespiteBeingEuropean": [
+      "chorizo",
+      "piment d'Espelette",
+      "guindilla",
+      "peperoncino",
+      "'nduja",
+      "merguez"
+    ],
+    "avoidReason": "All carry heat. The IBS rule outranks authenticity — the recipes say where they depart from the original and why."
   }
 }

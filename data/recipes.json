@@ -2853,5 +2853,1441 @@
       "Brush the tops with almond milk and bake 18–20 minutes, until the tops are set and the edges are properly brown. The pale ones are underdone in the middle.",
       "Cool on the tray 5 minutes; the centres firm up as they go. Freeze what you will not eat in two days, and take one out the night before or give it 30 seconds in the microwave."
     ]
+  },
+  "sandwich-matin": {
+    "title": "The morning baguette",
+    "cuisine": "french",
+    "slot": "breakfast",
+    "kind": "assembly",
+    "prepMinutes": 6,
+    "cookMinutes": 0,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli",
+      "no cook"
+    ],
+    "packNote": "Nothing here is cooked — the baguette, the charcuterie and the Boursin all come as they are. The only real technique is warming the bread and salting the tomatoes.",
+    "short": "The sandwich you actually eat every morning: baguette, Boursin, charcuterie, cheese and cherry tomatoes.",
+    "ingredients": [
+      {
+        "item": "baguette",
+        "qty": "1, split",
+        "product": "Cuit sur place Baguette La Généreuse",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "Boursin",
+        "qty": "generously",
+        "product": "Boursin Fromage à tartiner ail et fines herbes",
+        "buy": {
+          "amount": 0.4,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "mortadella",
+        "qty": "4 slices",
+        "product": "Montorsi Mortadelle",
+        "buy": {
+          "amount": 0.5,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "cherry tomatoes",
+        "qty": "a handful, halved",
+        "product": "Petit prix Tomates cerises allongées",
+        "buy": {
+          "amount": 0.4,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "cheddar",
+        "qty": "2 slices",
+        "product": "Pâturages, une marque Intermarché Cheddar Les Tranchettes",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "salt and pepper",
+        "qty": "to taste",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Warm the baguette for 4 minutes in a hot oven if it is yesterday's. A revived crust is the difference between a sandwich and a chore.",
+      "Split it lengthways, not all the way through, so it holds together in your hand.",
+      "Boursin on the bottom half, right to the ends — it is the only thing keeping the tomatoes from soaking the bread.",
+      "Halve the cherry tomatoes, salt them on the board, and give them a minute. Salting first draws out the water that would otherwise run into the crumb.",
+      "Charcuterie in loose folds rather than flat sheets, cheese over, then the tomatoes cut-side down.",
+      "Plenty of black pepper, close, press gently, eat."
+    ]
+  },
+  "truite-amandes-poireaux": {
+    "title": "Trout with almonds and softened leeks",
+    "cuisine": "french",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli"
+    ],
+    "short": "Trout fillets crisped skin-side down, almonds browned in the pan butter, leeks melted underneath.",
+    "ingredients": [
+      {
+        "item": "trout fillets",
+        "qty": "2",
+        "product": "Notre Sélection Filet de truite",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "leeks",
+        "qty": "2, in fine rounds",
+        "product": "Poireaux",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Best guesses",
+          "price": 2.6
+        }
+      },
+      {
+        "item": "flaked almonds",
+        "qty": "a handful",
+        "product": "Amandes effilées",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 2.2
+        }
+      },
+      {
+        "item": "lemon",
+        "qty": "half, juiced",
+        "product": "Le Choix du Primeur Citrons JAUNES",
+        "buy": {
+          "amount": 0.28,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "potatoes",
+        "qty": "500 g, to serve",
+        "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "butter",
+        "qty": "a good knob",
+        "product": "already in the fridge",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Potatoes on to boil first; everything else takes twenty minutes and will not wait.",
+      "Wash the leek rounds properly in a bowl of water and lift them out, leaving the grit behind. Rinsing them in a colander pours the grit back over them.",
+      "Melt a knob of butter in a wide pan over low heat. Leeks in with a pinch of salt and a splash of water, lid on, 12 minutes, until they collapse to a sweet green tangle. Low and slow — browned leeks turn bitter.",
+      "Push them aside. Pat the trout dry, season, and lay it skin-down in the hot part of the pan. 4 minutes without touching it, until the skin lifts away cleanly by itself.",
+      "Turn, 90 seconds, then lift onto the plates.",
+      "Almonds into the pan, 1 minute until they smell toasted and go pale gold, then the lemon juice, which will hiss and lift everything off the base.",
+      "Spoon the almonds and pan juices over, leeks and potatoes alongside."
+    ]
+  },
+  "poulet-basquaise": {
+    "title": "Poulet basquaise",
+    "cuisine": "french",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 15,
+    "cookMinutes": 40,
+    "serves": 4,
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "dairy-free"
+    ],
+    "short": "Chicken braised with three colours of pepper, tomato and onion until it falls off the bone. The Basque original leans on piment d'Espelette; this one does not, and does not miss it.",
+    "ingredients": [
+      {
+        "item": "chicken thighs",
+        "qty": "1 kg",
+        "product": "Volaé, une marque Intermarché Cuisse de poulet jaune x4",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "red pepper",
+        "qty": "1",
+        "product": "Le Choix du Primeur Poivron ROUGE",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "yellow pepper",
+        "qty": "1",
+        "product": "Le Choix du Primeur Poivrons JAUNES",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "green pepper",
+        "qty": "1",
+        "product": "Le Choix du Primeur Poivrons VERTS",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "tomatoes",
+        "qty": "4, chopped",
+        "product": "Le Choix du Primeur Tomate RONDE en GRAPPE",
+        "buy": {
+          "amount": 0.5,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "2, sliced",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "4 cloves",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "dry white wine",
+        "qty": "150 ml",
+        "product": "Vin blanc sec de cuisine",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 4.5
+        }
+      },
+      {
+        "item": "thyme",
+        "qty": "a few sprigs",
+        "product": "Thym frais",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.9
+        }
+      },
+      {
+        "item": "rice",
+        "qty": "to serve",
+        "product": "Taureau Ailé Riz Basmati",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      }
+    ],
+    "steps": [
+      "Season the thighs and brown them skin-down in a dry casserole, 7 minutes, until the skin is properly gold. Do not crowd the pan — steam instead of colour and the whole dish stays pale.",
+      "Out onto a plate. Pour off all but a spoonful of the fat.",
+      "Onions in, 6 minutes on medium. Then all three peppers in strips, 8 minutes, until they slump and start to catch at the edges.",
+      "Garlic and thyme, 1 minute. Wine in, and scrape the base clean while it bubbles down by half.",
+      "Tomatoes in, chicken back on top with any juices, lid on, 25 minutes at a bare simmer.",
+      "Lid off for the last 5 to thicken the sauce. Taste hard for salt — peppers and tomato both swallow it.",
+      "Serve over rice. It is better the next day, so it seeds a second dinner."
+    ]
+  },
+  "gratin-patates-douces-chevre": {
+    "title": "Sweet potato and goat's cheese gratin",
+    "cuisine": "french",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 15,
+    "cookMinutes": 35,
+    "serves": 4,
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "vegetarian"
+    ],
+    "short": "Sweet potato sliced thin, layered with goat's cheese and thyme, baked till the edges caramelise. No cream in it.",
+    "ingredients": [
+      {
+        "item": "sweet potatoes",
+        "qty": "1 kg",
+        "product": "Le Choix du Primeur Patates DOUCES",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "goat's cheese log",
+        "qty": "150 g",
+        "product": "Bûche de chèvre",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Best guesses",
+          "price": 2.6
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "2, sliced",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "3 cloves",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "grated cheese",
+        "qty": "100 g",
+        "product": "Pâturages, une marque Intermarché 3 fromages râpés",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "thyme",
+        "qty": "a few sprigs",
+        "product": "Thym frais",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.9
+        }
+      },
+      {
+        "item": "rocket",
+        "qty": "to serve",
+        "product": "Saint Eloi, une marque Intermarché Roquette prête à l'emploi déjà lavée",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      }
+    ],
+    "steps": [
+      "Oven to 200°C. Slice the sweet potatoes into 3 mm rounds — thinner than feels necessary, or they will still be firm when the top is done.",
+      "Soften the onions in olive oil for 8 minutes with a good pinch of salt, then stir in the garlic and thyme leaves.",
+      "Layer into a dish: sweet potato, a scatter of onion, torn goat's cheese, seasoning. Repeat, finishing with sweet potato.",
+      "Grated cheese over the top, cover with foil, 25 minutes.",
+      "Foil off, 10 minutes more, until the top is blistered and the edges have gone dark and sweet. That caramelised rim is the best part of the dish; do not pull it early.",
+      "Stand 10 minutes before cutting, and serve with the rocket dressed in oil and lemon."
+    ]
+  },
+  "omelette-champignons": {
+    "title": "Mushroom and emmental omelette",
+    "cuisine": "french",
+    "slot": "lunch",
+    "kind": "recipe",
+    "prepMinutes": 5,
+    "cookMinutes": 10,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli",
+      "vegetarian",
+      "uses eggs"
+    ],
+    "short": "Mushrooms browned properly first, eggs barely set around them, still baveuse in the middle.",
+    "ingredients": [
+      {
+        "item": "eggs",
+        "qty": "5",
+        "product": "Volaé, une marque Intermarché Œufs frais de poules élevées au sol",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "chestnut mushrooms",
+        "qty": "250 g",
+        "product": "Champignons de Paris",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Best guesses",
+          "price": 2.4
+        }
+      },
+      {
+        "item": "emmental",
+        "qty": "60 g, grated",
+        "product": "Pâturages, une marque Intermarché Emmental français râpé",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "flat-leaf parsley",
+        "qty": "a handful",
+        "product": "Persil plat",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.1
+        }
+      },
+      {
+        "item": "salad",
+        "qty": "to serve",
+        "product": "Le Choix du Primeur Salade MACHE",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "butter",
+        "qty": "a knob",
+        "product": "already in the fridge",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Slice the mushrooms thickly and put them into a dry hot pan with no fat at all. They release their water; let it boil off, 4 minutes. Adding fat first makes them stew in it.",
+      "Once the pan is dry again, butter in, 2 minutes, until they are properly brown. Salt now, not before — salt early pulls out more water.",
+      "Beat the eggs with a fork just until the yolks break up. Over-beating makes a rubbery omelette.",
+      "Eggs over the mushrooms on a medium heat, and drag the setting edges into the middle with a spatula for about 90 seconds.",
+      "Emmental and parsley over one half while the top is still glossy and wet. Fold, slide onto a plate, and let the residual heat finish it."
+    ]
+  },
+  "soupe-poireaux-pommes-terre": {
+    "title": "Leek and potato soup",
+    "cuisine": "french",
+    "slot": "lunch",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 25,
+    "serves": 4,
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "vegetarian"
+    ],
+    "short": "Three ingredients and patience. No cream — the potato does the thickening.",
+    "ingredients": [
+      {
+        "item": "leeks",
+        "qty": "4, sliced",
+        "product": "Poireaux",
+        "guess": true,
+        "buy": {
+          "amount": 2,
+          "mode": "sum",
+          "section": "Best guesses",
+          "price": 2.6
+        }
+      },
+      {
+        "item": "potatoes",
+        "qty": "600 g, cubed",
+        "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "1",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.15,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "vegetable stock",
+        "qty": "1.2 litres",
+        "product": "Bouillon de légumes en cubes",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.6
+        }
+      },
+      {
+        "item": "baguette",
+        "qty": "to serve",
+        "product": "Cuit sur place Baguette La Généreuse",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "butter, salt, pepper",
+        "qty": "",
+        "product": "already in the kitchen",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Wash the sliced leeks in a bowl of water and lift them out, leaving the grit at the bottom.",
+      "Butter in a large pan on low. Leeks and onion in with a pinch of salt, lid on, 10 minutes — you are sweating them, not colouring them. Any browning here and the soup turns grey-brown instead of pale green.",
+      "Potatoes and stock in. Simmer 15 minutes, until a knife slides through a cube with no resistance.",
+      "Blend about two-thirds of it and stir it back, so there is still something to chew.",
+      "Season properly — it will take more salt and pepper than you expect — and serve with the baguette."
+    ]
+  },
+  "risotto-safran": {
+    "title": "Saffron risotto",
+    "cuisine": "italian",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 25,
+    "serves": 2,
+    "tags": [
+      "no chilli",
+      "vegetarian"
+    ],
+    "short": "Risotto alla milanese: rice, stock, saffron, parmesan. Twenty minutes of stirring and nothing to hide behind.",
+    "ingredients": [
+      {
+        "item": "arborio rice",
+        "qty": "200 g",
+        "product": "Riz Arborio pour risotto",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Best guesses",
+          "price": 2.6
+        }
+      },
+      {
+        "item": "saffron",
+        "qty": "a good pinch",
+        "product": "Safran en dosettes",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 4.5
+        }
+      },
+      {
+        "item": "vegetable stock",
+        "qty": "1 litre, hot",
+        "product": "Bouillon de légumes en cubes",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.6
+        }
+      },
+      {
+        "item": "dry white wine",
+        "qty": "100 ml",
+        "product": "Vin blanc sec de cuisine",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 4.5
+        }
+      },
+      {
+        "item": "shallots",
+        "qty": "2, very finely chopped",
+        "product": "Échalotes",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Best guesses",
+          "price": 2.1
+        }
+      },
+      {
+        "item": "parmesan",
+        "qty": "50 g, grated",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Parmigiano Reggiano AOP",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "butter",
+        "qty": "a knob, to finish",
+        "product": "already in the fridge",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Steep the saffron in a ladleful of the hot stock and leave it. Adding the threads dry gives you yellow streaks instead of an evenly perfumed pot.",
+      "Soften the shallots in butter on a low heat for 5 minutes without colouring them.",
+      "Rice in, and stir it for a full 2 minutes until the grains look translucent at the edges with a white dot at the centre. This toasting is what keeps them separate later.",
+      "Wine in, stir until it has all gone.",
+      "Now a ladle of hot stock at a time, stirring, waiting until each is nearly absorbed before the next. About 18 minutes. Add the saffron stock halfway.",
+      "When the rice is tender with the faintest bite, take it off the heat, beat in the butter and parmesan hard, and let it sit 2 minutes. That final beating is what makes it creamy, not cream.",
+      "It should spread slowly on the plate. If it stands up in a mound, loosen it with another splash of stock."
+    ]
+  },
+  "carbonara-pancetta": {
+    "title": "Carbonara, the Roman way",
+    "cuisine": "italian",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 5,
+    "cookMinutes": 15,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli",
+      "uses eggs"
+    ],
+    "short": "Egg yolks, pancetta, pecorino and pasta water. No cream anywhere near it — which is also why it sits well with you.",
+    "ingredients": [
+      {
+        "item": "pasta",
+        "qty": "200 g",
+        "product": "Pastificio Liguori Pâtes fusilli",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "pancetta",
+        "qty": "120 g, cubed",
+        "product": "Pancetta en dés",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Best guesses",
+          "price": 3.2
+        }
+      },
+      {
+        "item": "eggs",
+        "qty": "3 yolks + 1 whole",
+        "product": "Volaé, une marque Intermarché Œufs frais de poules élevées au sol",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "parmesan",
+        "qty": "60 g, finely grated",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Parmigiano Reggiano AOP",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "black pepper",
+        "qty": "a lot",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Pasta into well-salted boiling water. Time it — everything else is faster than the pasta.",
+      "Pancetta into a cold pan, heat to medium, and let the fat render out for 6 minutes until the cubes are crisp. Starting cold is what gets the fat out instead of burning the outside.",
+      "Beat the yolks, the whole egg, the parmesan and an aggressive amount of black pepper into a paste in a bowl.",
+      "Scoop out a mugful of pasta water before draining. This is the one step people skip and the one that matters.",
+      "Drain the pasta, tip it into the pancetta pan OFF THE HEAT, and toss for 30 seconds so the pan cools slightly.",
+      "Now the egg mixture, and toss hard, adding pasta water a splash at a time until it turns into a glossy sauce that coats every piece. Off the heat throughout — on the heat you get scrambled egg, and there is no coming back from it."
+    ]
+  },
+  "lasagnes-legumes-ricotta": {
+    "title": "Courgette and ricotta lasagne",
+    "cuisine": "italian",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 20,
+    "cookMinutes": 40,
+    "serves": 4,
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "vegetarian"
+    ],
+    "short": "Ricotta instead of béchamel — lighter, faster, and no milk sauce to split.",
+    "ingredients": [
+      {
+        "item": "lasagne sheets",
+        "qty": "1 box",
+        "product": "Barilla Pâtes Lasagne aux œufs - Collezione",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "ricotta",
+        "qty": "500 g",
+        "product": "Pâturages, une marque Intermarché Ricotta",
+        "buy": {
+          "amount": 2,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "courgettes",
+        "qty": "600 g, sliced",
+        "product": "Le Choix du Primeur Courgettes LONGUES",
+        "buy": {
+          "amount": 0.6,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "aubergine",
+        "qty": "1, cubed",
+        "product": "Le Choix du Primeur Aubergines VIOLETTES",
+        "buy": {
+          "amount": 0.4,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "tomato sauce",
+        "qty": "1 jar",
+        "product": "Panzani Sauce Tomates Basilic ingrédients origine naturelle",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "1",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.15,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "3 cloves",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "grated cheese",
+        "qty": "150 g",
+        "product": "Pâturages, une marque Intermarché Emmental français râpé",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "basil",
+        "qty": "a handful",
+        "product": "Basilic frais en pot",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 2.2
+        }
+      }
+    ],
+    "steps": [
+      "Oven to 190°C. Cook the courgette and aubergine hard in olive oil, in two batches so they brown rather than steam, 10 minutes in total. Crowding the pan here is what makes a watery lasagne.",
+      "Add the onion and garlic for the last 3 minutes, then the tomato sauce and a splash of water. Simmer 5 minutes.",
+      "Beat the ricotta with salt, pepper and half the basil until it is spreadable.",
+      "Layer: vegetables, sheets, ricotta spread thin, and repeat. Finish with vegetables, then the grated cheese.",
+      "40 minutes, until the top is brown and a knife goes through the sheets with no resistance.",
+      "Rest 15 minutes before cutting. Straight out of the oven it slumps; rested, it slices."
+    ]
+  },
+  "puttanesca-sans-piment": {
+    "title": "Puttanesca, without the heat",
+    "cuisine": "italian",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 5,
+    "cookMinutes": 15,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli",
+      "dairy-free"
+    ],
+    "short": "Anchovies melted into oil, olives, capers, tomato. The classic carries peperoncino; this one leaves it out and leans harder on the anchovy instead.",
+    "ingredients": [
+      {
+        "item": "pasta",
+        "qty": "200 g",
+        "product": "Pastificio Liguori Pâtes fusilli",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "anchovy fillets in oil",
+        "qty": "6",
+        "product": "Filets d'anchois à l'huile",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 2.3
+        }
+      },
+      {
+        "item": "black olives",
+        "qty": "a handful, pitted",
+        "product": "Olives noires dénoyautées",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 2.2
+        }
+      },
+      {
+        "item": "capers",
+        "qty": "2 tbsp, rinsed",
+        "product": "Câpres au vinaigre",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.9
+        }
+      },
+      {
+        "item": "tomato sauce",
+        "qty": "1 jar",
+        "product": "Panzani Sauce Tomates Provençale ingrédients origine naturelle",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "4 cloves, sliced",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "flat-leaf parsley",
+        "qty": "a handful",
+        "product": "Persil plat",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.1
+        }
+      }
+    ],
+    "steps": [
+      "Pasta on. Salt the water properly but go easy — anchovies, olives and capers are all salty and the sauce catches up fast.",
+      "Garlic into cold olive oil over a low heat, 2 minutes, until it just turns blond. Hot oil burns it in seconds and turns the whole dish bitter.",
+      "Anchovies in, and press them with a wooden spoon. They will dissolve completely in about a minute — that is the point, and why nobody eating it will identify them.",
+      "Olives and capers, 1 minute, then the tomato sauce. Simmer 8 minutes.",
+      "Drain the pasta a minute early, keeping a mugful of water, and finish it in the sauce for that last minute with a splash of the water.",
+      "Parsley through at the end. Taste before you add any salt at all."
+    ]
+  },
+  "salade-roquette-parmesan-pommes": {
+    "title": "Rocket, parmesan and green apple",
+    "cuisine": "italian",
+    "slot": "lunch",
+    "kind": "recipe",
+    "prepMinutes": 8,
+    "cookMinutes": 0,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli",
+      "no cook",
+      "vegetarian"
+    ],
+    "short": "Peppery rocket, sharp apple, salty parmesan shards and toasted pine nuts. Three minutes if the pine nuts are already done.",
+    "ingredients": [
+      {
+        "item": "rocket",
+        "qty": "1 bag",
+        "product": "Saint Eloi, une marque Intermarché Roquette prête à l'emploi déjà lavée",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "green apple",
+        "qty": "1, matchsticked",
+        "product": "Le Choix du Primeur Pommes GRANNY SMITH",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "parmesan",
+        "qty": "a wedge, shaved",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Parmigiano Reggiano AOP",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "pine nuts",
+        "qty": "2 tbsp",
+        "product": "Pignons de pin",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 3.9
+        }
+      },
+      {
+        "item": "balsamic vinegar",
+        "qty": "1 tbsp",
+        "product": "Vinaigre balsamique",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 2.8
+        }
+      },
+      {
+        "item": "baguette",
+        "qty": "to serve",
+        "product": "Cuit sur place Baguette La Généreuse",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "olive oil, salt, pepper",
+        "qty": "",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Toast the pine nuts in a dry pan for 2 minutes, shaking constantly. They go from pale to burnt in about fifteen seconds, so do not walk away.",
+      "Cut the apple into matchsticks at the last moment and toss them in a little of the balsamic, which stops them browning.",
+      "Dress the rocket with olive oil first, then a little balsamic, then salt. Oil before acid coats the leaves and stops them collapsing.",
+      "Shave the parmesan over with a peeler — shards, not gratings, so you get a proper salty hit now and then.",
+      "Pine nuts over, black pepper, and the baguette alongside."
+    ]
+  },
+  "pates-saumon-fume-citron": {
+    "title": "Smoked salmon and lemon pasta",
+    "cuisine": "italian",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 5,
+    "cookMinutes": 12,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli"
+    ],
+    "short": "The salmon never sees the pan — it goes in off the heat so it stays silky instead of turning to string.",
+    "ingredients": [
+      {
+        "item": "pasta",
+        "qty": "200 g",
+        "product": "Pastificio Liguori Pâtes fusilli",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "smoked salmon",
+        "qty": "1 pack",
+        "product": "Petit navire Saumon fumé de Norvège",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "lemon",
+        "qty": "1, zest and juice",
+        "product": "Le Choix du Primeur Citrons JAUNES",
+        "buy": {
+          "amount": 0.28,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "ricotta",
+        "qty": "150 g",
+        "product": "Pâturages, une marque Intermarché Ricotta",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "shallots",
+        "qty": "1, finely chopped",
+        "product": "Échalotes",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Best guesses",
+          "price": 2.1
+        }
+      },
+      {
+        "item": "dill or parsley",
+        "qty": "a handful",
+        "product": "Aneth frais",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.9
+        }
+      }
+    ],
+    "steps": [
+      "Pasta on. Zest the lemon before juicing it.",
+      "Soften the shallot in olive oil on a low heat, 4 minutes, no colour.",
+      "Loosen the ricotta in a bowl with the lemon zest, half the juice, black pepper and two spoonfuls of the pasta water.",
+      "Drain the pasta, keeping a mugful of water. Into the shallot pan, off the heat.",
+      "Ricotta mixture in, tossing and loosening with pasta water until it coats.",
+      "Only now tear in the salmon and fold it through the residual heat, with the herbs. Cook it properly and it seizes into salty threads; warmed like this it stays soft."
+    ]
+  },
+  "tortilla-patatas": {
+    "title": "Tortilla de patatas",
+    "cuisine": "spanish",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 15,
+    "cookMinutes": 30,
+    "serves": 4,
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "vegetarian",
+      "uses eggs"
+    ],
+    "short": "Potatoes poached soft in olive oil, then set in egg. Eaten hot, warm or cold, and better on day two.",
+    "ingredients": [
+      {
+        "item": "potatoes",
+        "qty": "700 g",
+        "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "eggs",
+        "qty": "6",
+        "product": "Volaé, une marque Intermarché Œufs frais de poules élevées au sol",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "1 large, sliced thin",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "olive oil",
+        "qty": "plenty",
+        "product": "Bouton d’Or, une marque Intermarché Huile d'olive vierge extra BIO - issue de l'agriculture biologique",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "salad",
+        "qty": "to serve",
+        "product": "Le Choix du Primeur Laitue COEUR DE ROMAINE",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      }
+    ],
+    "steps": [
+      "Slice the potatoes thin. Into a deep pan with enough olive oil to nearly cover them and a big pinch of salt.",
+      "Cook them on a low-medium heat for 20 minutes, turning gently now and then. They should never sizzle hard or brown — you are poaching them soft, not frying them. Add the onion halfway.",
+      "Drain them through a sieve set over a bowl, and keep that oil; it is now excellent and worth cooking with all week.",
+      "Beat the eggs with salt, tip in the hot potatoes, and leave the lot to sit for 10 minutes. This soak is what makes the tortilla hold together instead of falling apart.",
+      "Two tablespoons of the reserved oil into a 24 cm non-stick pan on medium. Mixture in, and cook 5 minutes, easing the edges in with a spatula.",
+      "Cover with a plate, flip the whole thing over — commit, do not hesitate — slide it back in and give it 3 more minutes. The middle should still be a little loose."
+    ]
+  },
+  "gambas-ail-persil": {
+    "title": "Gambas al ajillo, no chilli",
+    "cuisine": "spanish",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 8,
+    "cookMinutes": 8,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli",
+      "dairy-free"
+    ],
+    "short": "Prawns in garlicky oil, eight minutes start to finish. The Spanish version has a dried guindilla in it; this one has an extra clove of garlic instead.",
+    "ingredients": [
+      {
+        "item": "raw prawns",
+        "qty": "300 g, peeled",
+        "product": "Gambas crues décortiquées",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Best guesses",
+          "price": 7.5
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "6 cloves, sliced thin",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.15,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "olive oil",
+        "qty": "generous",
+        "product": "Bouton d’Or, une marque Intermarché Huile d'olive vierge extra BIO - issue de l'agriculture biologique",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "flat-leaf parsley",
+        "qty": "a big handful",
+        "product": "Persil plat",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.1
+        }
+      },
+      {
+        "item": "lemon",
+        "qty": "half",
+        "product": "Le Choix du Primeur Citrons JAUNES",
+        "buy": {
+          "amount": 0.28,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "baguette",
+        "qty": "1, for the oil",
+        "product": "Cuit sur place Baguette La Généreuse",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      }
+    ],
+    "steps": [
+      "Pat the prawns very dry and salt them. Wet prawns steam and go rubbery.",
+      "Garlic into cold olive oil in a small pan, then bring it up to a gentle heat over 3 minutes until the slices are pale gold and the oil smells of them. Never let them brown.",
+      "Heat up, prawns in one layer, 90 seconds.",
+      "Turn them, 60 seconds more, and take the pan off as soon as they have just turned opaque. They keep cooking in the hot oil, so pull them early.",
+      "Parsley and a squeeze of lemon in, swirl once.",
+      "Straight to the table in the pan, with the baguette. The oil is the point as much as the prawns."
+    ]
+  },
+  "pisto-manchego": {
+    "title": "Pisto with manchego and a fried egg",
+    "cuisine": "spanish",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 15,
+    "cookMinutes": 35,
+    "serves": 4,
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "vegetarian",
+      "uses eggs"
+    ],
+    "short": "Spain's ratatouille — courgette, aubergine, peppers and tomato cooked right down, with a fried egg broken over it.",
+    "ingredients": [
+      {
+        "item": "courgettes",
+        "qty": "2, cubed",
+        "product": "Le Choix du Primeur Courgettes LONGUES",
+        "buy": {
+          "amount": 0.5,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "aubergine",
+        "qty": "1, cubed",
+        "product": "Le Choix du Primeur Aubergines VIOLETTES",
+        "buy": {
+          "amount": 0.4,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "red pepper",
+        "qty": "1",
+        "product": "Le Choix du Primeur Poivron ROUGE",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "yellow pepper",
+        "qty": "1",
+        "product": "Le Choix du Primeur Poivrons JAUNES",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "tomatoes",
+        "qty": "5, chopped",
+        "product": "Le Choix du Primeur Tomates RONDES CHARNUES",
+        "buy": {
+          "amount": 0.6,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "2",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "4 cloves",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "eggs",
+        "qty": "4",
+        "product": "Volaé, une marque Intermarché Œufs frais de poules élevées au sol",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "manchego",
+        "qty": "100 g, shaved",
+        "product": "Manchego",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Best guesses",
+          "price": 4.5
+        }
+      },
+      {
+        "item": "baguette",
+        "qty": "to serve",
+        "product": "Cuit sur place Baguette La Généreuse",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Bread and cheese"
+        }
+      }
+    ],
+    "steps": [
+      "Cube everything to roughly the same size. Salt the aubergine in a colander while you do the rest.",
+      "Onions in olive oil, low, 10 minutes until sweet. Peppers in, 10 minutes more.",
+      "Aubergine squeezed dry and in with a good slug more oil — aubergine drinks it and under-oiled aubergine goes leathery — 8 minutes.",
+      "Courgette and garlic, 5 minutes, then the tomatoes.",
+      "Now leave it alone on a low heat for 15 minutes, stirring rarely, until it is jammy and the oil separates out at the edges. That separation is how you know it is done; before that it is just hot vegetables.",
+      "Fry the eggs hard in olive oil so the whites go lacy and crisp at the edges.",
+      "Pisto into bowls, egg on top, manchego shaved over, baguette to mop."
+    ]
   }
 }

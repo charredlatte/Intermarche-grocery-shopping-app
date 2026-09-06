@@ -61,6 +61,40 @@ taken twice (`preferences.pantry` = what Méré stocks; a recipe's `pantry: true
 **3. The weekly conversation.** `.claude/skills/courses/SKILL.md` — three
 questions, then a plan, then a line-item list, then the basket.
 
+## Planning rules that bit us once already
+
+- **Half the dinners European, half Asian.** `preferences.cuisines.weeklyShare`
+  was `"most"` until 2026-09-06, which quietly made every week ~70% Asian even
+  though the library was already half European. It is `"half"` now. The balance
+  to check is the *week's plan*, not the library.
+- **Breakfast is seven sandwiches a week**, not an afterthought — baguette,
+  Boursin, charcuterie, sliced cheese, cherry tomatoes (`sandwich-matin`). It is
+  the meal they eat most and it was missing from every plan and every order
+  until 2026-09-06. Cherry tomatoes are the sandwich ones; round tomatoes are for
+  cooking, which is why the two are not in the same equivalence group.
+- **Use products she has never bought.** `preferences.ingredients` says yes to
+  pancetta, saffron, anchovies, capers, manchego, gambas and the rest. They ship
+  as `guess: true` with an estimated price into "Best guesses" — see below for
+  why they cannot be looked up.
+- **Some European staples are still banned**: chorizo, piment d'Espelette,
+  guindilla, peperoncino, 'nduja, merguez. All carry heat, and the IBS rule
+  outranks authenticity. Where a recipe departs from the original for this
+  reason, it says so in its own text.
+
+## Intermarché's catalogue cannot be read
+
+Checked 2026-09-06: `intermarche.com` returns **403 with `x-datadome: protected`**
+to anything scripted. That is their bot protection, not the sandbox — the proxy
+connects fine and other sites return 200. So there is no way to list what Méré
+stocks, and no way to price or name-check a product she has not already bought.
+
+What that leaves: the 181 products in `data/purchase-history.json` are known-exact
+and known-priced, and **125 of them appear in no recipe** — that is the cheap
+variety headroom. Beyond it, a new product is a `guess` with an estimated price,
+flagged in the page as such. Do not promise Charlotte a catalogue lookup, and do
+not log into her account: there is no browser session here, and the basket step
+is deliberately hers, on her PC.
+
 ## Commands
 
 ```bash
