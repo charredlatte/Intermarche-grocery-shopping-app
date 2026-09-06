@@ -499,6 +499,68 @@
   .shop-list li.is-kitchen .shop-name,
   .shop-list li.is-kitchen .shop-cost { color: var(--ink-3); }
 
+  /* ---- approve, then the Drive checklist ---- */
+  .approvebar {
+    display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; justify-content: space-between;
+    margin-top: 1.8rem; padding: .95rem 1rem;
+    background: var(--card); border: 1px solid var(--rule); border-radius: 4px;
+    box-shadow: var(--shadow);
+  }
+  .approve-title { font: 600 .98rem/1.3 var(--f-body); color: var(--ink); }
+  .approve-sub { font: 400 .8rem/1.45 var(--f-body); color: var(--ink-2); margin-top: .15rem; max-width: 26rem; }
+
+  .drive-head { padding-top: .4rem; }
+  .drive-title {
+    margin: .4rem 0 0; font: 600 1.6rem/1.15 var(--f-display);
+    font-variation-settings: "opsz" 48; letter-spacing: -.01em;
+  }
+  .drive-sub { margin: .45rem 0 0; color: var(--ink-2); font-size: .9rem; max-width: 32rem; }
+  .drive-warn {
+    margin: .9rem 0 0; padding: .55rem .7rem;
+    background: var(--yuzu-soft); color: var(--yuzu); border-radius: 3px;
+    font: 500 .78rem/1.45 var(--f-body);
+  }
+
+  .drive-list { list-style: none; margin: .55rem 0 0; padding: 0; }
+  .drive-list li {
+    display: flex; align-items: flex-start; gap: .6rem;
+    padding: .6rem 0; border-bottom: 1px dotted var(--rule);
+  }
+  .drive-body { flex: 1; min-width: 0; }
+  .drive-name {
+    font: 400 .92rem/1.35 var(--f-body); color: var(--ink);
+    overflow-wrap: anywhere;
+  }
+  .drive-meta {
+    display: flex; flex-wrap: wrap; gap: .1rem .6rem; margin-top: .15rem;
+    font: 400 .74rem/1.45 var(--f-mono); color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+  }
+  .drive-qty { color: var(--ink-2); font-weight: 500; }
+
+  .tickbox {
+    flex: none; width: 1.55rem; height: 1.55rem; margin-top: .05rem;
+    appearance: none; cursor: pointer;
+    border: 1.5px solid var(--rule); border-radius: 4px; background: var(--card);
+    color: var(--card); font: 600 .9rem/1 var(--f-body);
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background .12s, border-color .12s;
+  }
+  .tickbox:hover { border-color: var(--herb); }
+  .tickbox[aria-pressed="true"] { background: var(--herb); border-color: var(--herb); color: var(--card); }
+
+  .copybtn {
+    flex: none; appearance: none; cursor: pointer;
+    border: 1px solid var(--rule); border-radius: 3px; background: var(--card-sunk);
+    color: var(--ink-2); padding: .3rem .6rem;
+    font: 500 .75rem/1.4 var(--f-body); white-space: nowrap;
+  }
+  .copybtn:hover { border-color: var(--ink-3); color: var(--ink); }
+  .copybtn.did { background: var(--herb-soft); border-color: var(--herb); color: var(--herb); }
+
+  .drive-list li.is-done .drive-name { text-decoration: line-through; color: var(--ink-3); }
+  .drive-list li.is-done .drive-meta { opacity: .65; }
+
   details.kitchenbox { margin-top: 1.8rem; }
   details.kitchenbox > summary { font: 500 .82rem/1.3 var(--f-body); color: var(--ink); }
   .kitchen-body { padding: 0 .75rem .8rem; }
@@ -657,6 +719,12 @@ let added   = {};               // key -> { name, qty, section } she added herse
 /* Favourites. Not week-scoped like the rest — a dish you love is still a dish
    you love next week — so they live in their own document and survive the plan
    changing underneath them. Shared, like everything else here. */
+/* The list is hers to approve. Nothing is "ready for the Drive" until she says
+   so — and once approved the page stops being an editor and becomes a checklist
+   to work through at intermarche.fr. Reopening it puts the editor back. */
+let approved = null;        // { at, total, count } once she has signed it off
+let inBasket = {};          // product -> already added at the Drive
+
 let favs = new Set();
 let favRef = null;
 const isFav = (slug) => favs.has(slug);
@@ -848,6 +916,7 @@ async function persist() {
   try {
     await weekRef.set({
       picks: diff, extra, have: haveDiff, qtyAdj, subs, dropped, added,
+      approved, inBasket,
       seededFrom: ONHAND.from ? ONHAND.from.order : null,
       updatedAt: Date.now(),
     });
@@ -867,6 +936,8 @@ function applyRemote(d) {
   subs = d.subs || {};
   dropped = d.dropped || {};
   added = d.added || {};
+  approved = d.approved || null;
+  inBasket = d.inBasket || {};
   renderAll();
 }
 
@@ -1195,7 +1266,68 @@ function shopLine(l, inKitchen) {
   </li>`;
 }
 
+/* The approved list, laid out for working through at intermarche.fr: one exact
+   product name per row to paste into their search, the quantity beside it, and
+   a tick as each one goes into the real basket. Ordered by aisle so it reads in
+   the order the Drive site is organised. */
+function renderDrive() {
+  const { lines, total } = basket();
+  const done = lines.filter((l) => inBasket[l.key]).length;
+  const pct = lines.length ? (done / lines.length) * 100 : 0;
+  const left = lines.filter((l) => !inBasket[l.key]).reduce((t, l) => t + l.cost, 0);
+
+  let html = `<div class="drive-head">
+      <div class="eyebrow">Approved list &middot; ${new Date(approved.at).toLocaleDateString("en-GB", { day: "numeric", month: "long" })}</div>
+      <h2 class="drive-title">Add these at the Drive</h2>
+      <p class="drive-sub">Copy a name, paste it into the search at intermarche.fr, add it, tick it off here.
+        The names are the exact ones off your receipts, so each should return a single result.</p>
+      <div class="meter" style="margin-top:1rem">
+        <div class="meter-bar"><div class="meter-fill" style="width:${pct.toFixed(1)}%"></div></div>
+        <div class="meter-row"><span>${done} of ${lines.length} added</span><span>${eur(left)} still to add</span></div>
+      </div>
+      <div class="toolbar" style="margin-top:.9rem">
+        <button class="btn" id="reopen">Reopen for editing</button>
+      </div>
+      <p class="drive-warn">Claude does not place this order. Filling the basket and confirming it stays with you.</p>
+    </div>`;
+
+  const secs = [];
+  for (const l of lines) {
+    let sec = secs.find((x) => x.name === l.section);
+    if (!sec) secs.push((sec = { name: l.section, lines: [] }));
+    sec.lines.push(l);
+  }
+  for (const sec of secs) {
+    html += `<div class="shop-sec">
+      <div class="group-head has-icon" style="margin:0">${sectionIcon(sec.name)}<h2>${esc(sec.name)}</h2><span class="leader"></span>
+        <span class="group-count">${sec.lines.filter((l) => inBasket[l.key]).length}/${sec.lines.length}</span></div>
+      <ul class="drive-list">${sec.lines.map((l) => `
+        <li class="${inBasket[l.key] ? "is-done" : ""}">
+          <button class="tickbox" type="button" data-tick="${esc(l.key)}"
+                  aria-pressed="${!!inBasket[l.key]}"
+                  aria-label="${inBasket[l.key] ? "Added" : "Mark added"}: ${esc(l.name)}">${inBasket[l.key] ? "✓" : ""}</button>
+          <div class="drive-body">
+            <div class="drive-name">${esc(l.name)}</div>
+            <div class="drive-meta">
+              <span class="drive-qty">${esc(l.amount)}</span>
+              <span>${eur(l.cost)}</span>
+              ${l.guess ? '<span class="flag">name unconfirmed — search for it</span>' : ""}
+            </div>
+          </div>
+          <button class="copybtn" type="button" data-copy="${esc(l.key)}" data-copy-name="${esc(l.name)}">Copy</button>
+        </li>`).join("")}</ul>
+    </div>`;
+  }
+  html += `<div class="shop-total"><span>${done === lines.length ? "All added" : "Still to add"}</span><span>${eur(left)}</span></div>`;
+  if (done === lines.length && lines.length) {
+    html += `<div class="empty" style="margin-top:1.1rem;border-color:var(--herb);color:var(--herb)">
+      That is the whole list in the basket. Check it over at the Drive and confirm it yourself.</div>`;
+  }
+  $("#shop-out").innerHTML = html;
+}
+
 function renderShop() {
+  if (approved) return renderDrive();
   const { lines, kitchen, total, saved } = basket();
   const ceiling = CONF.budgetCeiling;
   const pct = Math.min(100, (total / ceiling) * 100);
@@ -1244,6 +1376,14 @@ function renderShop() {
       </div>
     </details>`;
   }
+
+  html += `<div class="approvebar">
+      <div>
+        <div class="approve-title">Happy with this list?</div>
+        <div class="approve-sub">${lines.length} items, ${eur(total)}. Approving turns it into a checklist laid out for the Drive site — you can reopen it any time.</div>
+      </div>
+      <button class="btn primary" id="approve"${lines.length ? "" : " disabled"}>Approve the list</button>
+    </div>`;
 
   const cookCount = meals().filter((m) => !m.leftovers).length;
   html += `<div class="foot" style="margin-top:1.6rem">Rebuilt from the ${cookCount} meals actually cooked this week — ${meals().length - cookCount} more come out of an earlier pot and cost nothing extra. Follows every swap, and every quantity you correct.<br>${(plan.notes || []).map(esc).join("<br>")}</div>`;
@@ -1448,6 +1588,42 @@ function addProduct(name) {
   const key = "added:" + name;
   added[key] = { name, qty: (added[key]?.qty || 0) + 1 };
   commitShop();
+}
+
+function approveList() {
+  const { lines, total } = basket();
+  approved = { at: Date.now(), total, count: lines.length };
+  inBasket = {};
+  commitShop();
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+function reopenList() {
+  approved = null;
+  commitShop();
+}
+
+function toggleInBasket(key) {
+  if (inBasket[key]) delete inBasket[key]; else inBasket[key] = true;
+  commitShop();
+}
+
+/* The name is what you paste into the Drive search box, so it has to be the
+   exact string and nothing else — no quantity, no section, no bullet. */
+async function copyName(key, btn) {
+  const name = btn.dataset.copyName;
+  let ok = false;
+  try { await navigator.clipboard.writeText(name); ok = true; } catch (e) { /* blocked */ }
+  if (!ok) {
+    // Clipboard permission is not guaranteed inside the artifact frame. Falling
+    // back to selecting the text means she can still copy it by hand.
+    const el = btn.closest("li").querySelector(".drive-name");
+    const r = document.createRange(); r.selectNodeContents(el);
+    const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+  }
+  btn.textContent = ok ? "Copied" : "Selected — press copy";
+  btn.classList.add("did");
+  setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("did"); }, 1600);
 }
 
 function resetShop() {
@@ -1672,6 +1848,12 @@ document.addEventListener("click", (e) => {
   }
   const ap = e.target.closest("button[data-add-product]");
   if (ap) { $("#sheet").close(); return addProduct(ap.dataset.addProduct); }
+  const tick = e.target.closest("button[data-tick]");
+  if (tick) return toggleInBasket(tick.dataset.tick);
+  const cp = e.target.closest("button[data-copy]");
+  if (cp) return copyName(cp.dataset.copy, cp);
+  if (e.target.closest("#approve")) return approveList();
+  if (e.target.closest("#reopen")) return reopenList();
   if (e.target.closest("#additem")) return openAddItem();
   if (e.target.closest("#resetshop")) return resetShop();
 
