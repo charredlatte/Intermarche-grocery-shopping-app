@@ -561,6 +561,136 @@
   .drive-list li.is-done .drive-name { text-decoration: line-through; color: var(--ink-3); }
   .drive-list li.is-done .drive-meta { opacity: .65; }
 
+
+  /* ================= the quiz =================
+     One question a screen, a segmented bar showing how far along you are, and a
+     single green button that stays pale until the answer is good. Pastel until
+     you tap, saturated with a tick once you have. */
+  .q-wrap { padding: 1.4rem 0 2rem; }
+
+  /* On the quiz, the question owns the screen — the week's headline numbers are
+     about the other three tabs and only push it below the fold. */
+  body.on-cook .masthead { padding-bottom: .5rem; }
+  body.on-cook .strapline,
+  body.on-cook .tally,
+  body.on-cook .syncline { display: none; }
+  body.on-cook h1 { font-size: clamp(1.5rem, 6vw, 1.9rem); }
+
+  .q-bar { display: flex; align-items: center; gap: .5rem; margin-bottom: 1.7rem; }
+  .q-back {
+    appearance: none; border: 0; background: none; cursor: pointer;
+    color: var(--ink-3); font: 400 1.1rem/1 var(--f-mono); padding: .2rem .35rem .2rem 0;
+  }
+  .q-back:hover { color: var(--ink); }
+  .q-back[disabled] { opacity: .25; cursor: default; }
+  .q-segs { flex: 1; display: flex; gap: .3rem; }
+  .q-seg { flex: 1; height: 4px; border-radius: 100px; background: var(--rule); }
+  .q-seg.on { background: var(--herb); }
+  .q-count { font: 500 .72rem/1 var(--f-mono); color: var(--ink-3); white-space: nowrap; }
+
+  .q-title {
+    margin: 0; font: 600 clamp(1.35rem, 5.5vw, 1.7rem)/1.2 var(--f-body);
+    letter-spacing: -.015em; text-wrap: balance; text-transform: lowercase;
+  }
+  .q-sub { margin: .4rem 0 0; color: var(--ink-3); font-size: .85rem; }
+  .q-hint {
+    margin: 1.4rem 0 .6rem; font: 500 .7rem/1 var(--f-mono);
+    letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3);
+  }
+
+  /* card grid, three across on a phone like the original */
+  .q-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .55rem; }
+  @media (max-width: 24rem) { .q-grid { grid-template-columns: repeat(2, 1fr); } }
+  .q-card {
+    position: relative; appearance: none; cursor: pointer; text-align: center;
+    border: 1px solid var(--rule); border-radius: 10px;
+    background: var(--card); color: var(--ink-2);
+    padding: .95rem .5rem .8rem; min-height: 6.2rem;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .45rem;
+    font: 500 .78rem/1.25 var(--f-body);
+    transition: transform .12s, box-shadow .12s, background .12s, border-color .12s, color .12s;
+  }
+  .q-card:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+  .q-emoji { font-size: 1.35rem; line-height: 1; }
+  .q-card .q-tick {
+    position: absolute; top: .4rem; right: .4rem;
+    width: 1.1rem; height: 1.1rem; border-radius: 100px;
+    display: none; align-items: center; justify-content: center;
+    background: var(--card); color: var(--herb); font-size: .7rem; font-weight: 700;
+  }
+  .q-card[aria-pressed="true"] { color: var(--card); border-color: transparent; }
+  .q-card[aria-pressed="true"] .q-tick { display: inline-flex; }
+  /* a wash of colour per card while it is off, the full thing once it is on */
+  .q-card[data-tone="herb"]  { background: var(--herb-soft); }
+  .q-card[data-tone="yuzu"]  { background: var(--yuzu-soft); }
+  .q-card[data-tone="clay"]  { background: var(--clay-soft); }
+  .q-card[data-tone="herb"][aria-pressed="true"] { background: var(--herb); }
+  .q-card[data-tone="yuzu"][aria-pressed="true"] { background: var(--yuzu); }
+  .q-card[data-tone="clay"][aria-pressed="true"] { background: var(--clay); }
+  .q-card[data-locked="1"] { cursor: default; opacity: 1; }
+  .q-card[data-locked="1"]:hover { transform: none; box-shadow: none; }
+
+  .q-tally { text-align: center; margin: .9rem 0 0; font: 500 .78rem/1 var(--f-mono); color: var(--ink-3); }
+
+  /* the chips version, for the long ingredient list */
+  .q-chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .q-chip {
+    position: relative; appearance: none; cursor: pointer;
+    border: 1px solid var(--rule); border-radius: 100px;
+    background: var(--card); color: var(--ink-2);
+    padding: .45rem .8rem; font: 400 .84rem/1.3 var(--f-body);
+    transition: background .12s, border-color .12s, color .12s;
+  }
+  .q-chip:hover { border-color: var(--ink-3); }
+  .q-chip[aria-pressed="true"] {
+    background: var(--herb); border-color: var(--herb); color: var(--card); font-weight: 500;
+  }
+  .q-chip .dotmark {
+    display: inline-block; width: .38rem; height: .38rem; border-radius: 100px;
+    background: var(--herb); margin-right: .35rem; vertical-align: .08rem;
+  }
+  .q-chip[aria-pressed="true"] .dotmark { background: var(--card); }
+
+  /* the one button at the bottom */
+  .q-cta {
+    position: sticky; bottom: .8rem; margin-top: 1.6rem;
+    appearance: none; cursor: pointer; width: 100%;
+    border: 0; border-radius: 100px;
+    background: var(--herb); color: var(--card);
+    padding: .95rem 1rem; font: 600 .95rem/1.2 var(--f-body);
+    box-shadow: var(--shadow);
+    transition: filter .13s, opacity .13s;
+  }
+  .q-cta:hover { filter: brightness(1.08); }
+  .q-cta[disabled] { opacity: .38; cursor: default; filter: none; }
+
+  /* ---- the kitchen ---- */
+  .kitchen { width: 100%; border-radius: 10px; background: var(--card-sunk); border: 1px solid var(--rule); display: block; }
+  .kitchen .hot { cursor: pointer; }
+  .kitchen .hot .box { fill: transparent; stroke: var(--ink-3); stroke-width: 1.4; stroke-dasharray: 4 3; rx: 6; }
+  .kitchen .hot .badge-bg { fill: var(--herb); }
+  .kitchen .hot .badge-mk { fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; }
+  .kitchen .hot[aria-pressed="true"] .box { stroke: var(--herb); stroke-width: 2.4; stroke-dasharray: none; }
+  .kitchen .hot[aria-pressed="true"] .lab { fill: var(--herb); font-weight: 600; }
+  .kitchen .lab { font: 500 7px var(--f-body); fill: var(--ink-3); text-anchor: middle; }
+  .kitchen .ap-body { fill: var(--card); stroke: var(--ink-2); stroke-width: 1.5; stroke-linejoin: round; }
+  .kitchen .ap-warm { fill: var(--yuzu-soft); stroke: var(--ink-2); stroke-width: 1.2; }
+  .kitchen .ap-dark { fill: var(--ink-2); }
+  .kitchen .ap-clay { fill: var(--clay-soft); stroke: var(--clay); stroke-width: 1.4; }
+  .kitchen .counter { fill: var(--rule-soft); stroke: var(--rule); stroke-width: 1.2; }
+  .kitchen .leafy { fill: var(--herb-soft); stroke: var(--herb); stroke-width: 1.2; }
+
+  /* ---- results ---- */
+  .res-head { display: flex; align-items: baseline; gap: .6rem; margin: 1.5rem 0 .2rem; }
+  .res-head h2 { margin: 0; font: 600 1.15rem/1.2 var(--f-display); font-variation-settings: "opsz" 36; }
+  .why { display: flex; flex-wrap: wrap; gap: .3rem; margin: .55rem 0 0; }
+  .why span {
+    font: 500 .66rem/1 var(--f-mono); letter-spacing: .04em;
+    padding: .28rem .45rem; border-radius: 2px;
+    background: var(--herb-soft); color: var(--herb);
+  }
+  .why span.miss { background: var(--rule-soft); color: var(--ink-3); }
+
   details.kitchenbox { margin-top: 1.8rem; }
   details.kitchenbox > summary { font: 500 .82rem/1.3 var(--f-body); color: var(--ink); }
   .kitchen-body { padding: 0 .75rem .8rem; }
@@ -577,12 +707,17 @@
   </header>
 
   <nav class="tabs" role="tablist" aria-label="Sections">
-    <button class="tab" role="tab" id="tab-week"    aria-controls="panel-week"    aria-selected="true">Week</button>
+    <button class="tab" role="tab" id="tab-cook"    aria-controls="panel-cook"    aria-selected="true">Cook</button>
+    <button class="tab" role="tab" id="tab-week"    aria-controls="panel-week"    aria-selected="false">Week</button>
     <button class="tab" role="tab" id="tab-recipes" aria-controls="panel-recipes" aria-selected="false">Recipes</button>
     <button class="tab" role="tab" id="tab-shop"    aria-controls="panel-shop"    aria-selected="false">Shopping</button>
   </nav>
 
-  <section id="panel-week" role="tabpanel" aria-labelledby="tab-week">
+  <section id="panel-cook" role="tabpanel" aria-labelledby="tab-cook">
+    <div id="cook-out"></div>
+  </section>
+
+  <section id="panel-week" role="tabpanel" aria-labelledby="tab-week" hidden>
     <div class="controls">
       <div>
         <span class="ctl-label">Order by</span>
@@ -1715,10 +1850,279 @@ async function generate() {
   }
 }
 
+
+/* ================= the quiz =================
+   Modelled on the flow Charlotte pointed at: one question a screen, a segmented
+   progress bar, pastel cards that saturate with a tick when chosen, and a single
+   green button that stays pale until the answer is valid. Her palette, that
+   structure.
+
+   It answers the question the tabs never did — "what can I actually cook
+   tonight" — from the time she has, the appliance she feels like using, the mood
+   she is in, and what is already in the kitchen. */
+
+const QUIZ_STEPS = ["time", "kit", "mood", "have", "count"];
+let qStep = 0;
+let quiz = { time: null, kit: new Set(), mood: new Set(), have: new Set(), count: null };
+let qResults = null;
+
+const TIME_CHOICES = [
+  { v: 15, emoji: "⚡", label: "15 min", tone: "clay" },
+  { v: 30, emoji: "🕐", label: "30 min", tone: "yuzu" },
+  { v: 45, emoji: "🍳", label: "45 min", tone: "herb" },
+  { v: 999, emoji: "🌙", label: "no rush", tone: "herb" },
+];
+
+/* Moods map onto what the library actually records, so a pick really does filter
+   rather than just looking good. */
+const MOODS = [
+  { id: "fast",       emoji: "⚡", label: "Speedy",     tone: "clay", match: (r) => (r.tags || []).includes("fast") },
+  { id: "veg",        emoji: "🥗", label: "Veggie",     tone: "herb", match: (r) => (r.tags || []).includes("vegetarian") },
+  { id: "batch",      emoji: "🍲", label: "Batch cook", tone: "herb", match: (r) => (r.tags || []).includes("batch cook") },
+  { id: "asia",       emoji: "🍜", label: "Asian",      tone: "yuzu", match: (r) => ["japanese","chinese","thai","vietnamese","indian"].includes(r.cuisine) },
+  { id: "europe",     emoji: "🥖", label: "European",   tone: "yuzu", match: (r) => ["french","italian","spanish","greek"].includes(r.cuisine) },
+  { id: "protein",    emoji: "💪", label: "Protein",    tone: "clay", match: (r) => (r.ingredients || []).some((i) => i.buy && i.buy.section === "Proteins") },
+];
+
+/* Drawn rather than photographed, in the page's own palette. Each appliance is a
+   hit target: dashed and grey until tapped, then outlined green with a tick. */
+function kitchenSVG() {
+  const spots = [
+    { id: "air fryer",      x: 18,  y: 96,  w: 62, h: 58, label: "air fryer" },
+    { id: "hob",            x: 96,  y: 96,  w: 96, h: 44, label: "hob" },
+    { id: "casserole dish", x: 208, y: 100, w: 62, h: 52, label: "casserole" },
+    { id: "muffin tin",     x: 30,  y: 20,  w: 78, h: 44, label: "muffin tin" },
+    { id: "oven",           x: 112, y: 168, w: 96, h: 74, label: "oven" },
+  ];
+  const on = (id) => quiz.kit.has(id);
+  const spot = (s) => `
+    <g class="hot" role="button" tabindex="0" data-kitpick="${esc(s.id)}"
+       aria-pressed="${on(s.id)}" aria-label="${esc(s.label)}">
+      <rect class="box" x="${s.x}" y="${s.y}" width="${s.w}" height="${s.h}" rx="7"/>
+      <text class="lab" x="${s.x + s.w / 2}" y="${s.y + s.h + 11}">${esc(s.label)}</text>
+      <g transform="translate(${s.x + s.w - 9}, ${s.y + 9})">
+        <circle class="badge-bg" r="7.5" ${on(s.id) ? "" : 'fill="var(--ink-3)"'}/>
+        ${on(s.id)
+          ? '<path class="badge-mk" d="M-3.2 0.2 L-0.9 2.6 L3.4 -2.4"/>'
+          : '<path class="badge-mk" d="M-3.2 0 H3.2 M0 -3.2 V3.2"/>'}
+      </g>
+    </g>`;
+
+  return `<svg class="kitchen" viewBox="0 0 300 265" role="group" aria-label="Your kitchen">
+    <!-- shelf and muffin tin -->
+    <rect class="counter" x="24" y="64" width="90" height="5" rx="2"/>
+    <g>
+      <rect class="ap-body" x="36" y="30" width="66" height="30" rx="4"/>
+      ${[0,1,2].map((c) => [0,1].map((r) =>
+        `<circle class="ap-warm" cx="${50 + c * 19}" cy="${39 + r * 13}" r="6"/>`).join("")).join("")}
+    </g>
+    <!-- a plant, because the original had them everywhere -->
+    <g transform="translate(232,26)">
+      <path class="leafy" d="M8 34 C-6 26 -2 6 8 2 C18 6 22 26 8 34 Z"/>
+      <rect class="ap-body" x="1" y="34" width="14" height="12" rx="2"/>
+    </g>
+    <!-- worktop -->
+    <rect class="counter" x="8" y="152" width="284" height="10" rx="3"/>
+    <!-- air fryer -->
+    <g>
+      <rect class="ap-body" x="26" y="104" width="46" height="46" rx="7"/>
+      <rect class="ap-dark" x="34" y="132" width="30" height="4" rx="2"/>
+      <circle class="ap-clay" cx="49" cy="118" r="7"/>
+    </g>
+    <!-- two pans on the hob -->
+    <g>
+      <ellipse class="ap-clay" cx="126" cy="132" rx="21" ry="8"/>
+      <path class="ap-clay" d="M105 132 v-11 a21 6 0 0 1 42 0 v11 Z"/>
+      <rect class="ap-dark" x="120" y="110" width="12" height="4" rx="2"/>
+      <ellipse class="ap-body" cx="169" cy="134" rx="17" ry="7"/>
+      <path class="ap-body" d="M152 134 v-9 a17 5 0 0 1 34 0 v9 Z"/>
+    </g>
+    <!-- casserole dish -->
+    <g>
+      <path class="ap-clay" d="M216 150 v-24 a27 8 0 0 1 54 0 v24 Z"/>
+      <ellipse class="ap-clay" cx="243" cy="126" rx="27" ry="8"/>
+      <rect class="ap-dark" x="237" y="116" width="12" height="4" rx="2"/>
+      <path class="ap-dark" d="M212 138 h-6 M274 138 h6" stroke="var(--ink-2)" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <!-- the range, with the oven door lit -->
+    <g>
+      <rect class="ap-body" x="106" y="162" width="108" height="84" rx="5"/>
+      <rect class="ap-warm" x="118" y="182" width="84" height="52" rx="4"/>
+      <rect class="ap-dark" x="126" y="170" width="68" height="4" rx="2"/>
+      ${[0,1,2,3].map((i) => `<circle class="ap-dark" cx="${126 + i * 22}" cy="177" r="2.4"/>`).join("")}
+    </g>
+    ${spots.map(spot).join("")}
+  </svg>`;
+}
+
+/* The ingredients worth offering: what the library actually cooks with most,
+   with the ones already in the kitchen marked and floated to the front. */
+function ingredientChoices() {
+  const count = new Map();
+  const product = new Map();
+  for (const r of Object.values(all())) {
+    for (const i of r.ingredients || []) {
+      if (!i.buy) continue;
+      const k = i.item.toLowerCase();
+      count.set(k, (count.get(k) || 0) + 1);
+      if (!product.has(k)) product.set(k, i.product);
+    }
+  }
+  const hasIt = (k) => {
+    const p = product.get(k);
+    if (have[p] > 0) return true;
+    const g = GROUP_OF[p];
+    return !!(g && (g.members || []).some((m) => have[m.name] > 0));
+  };
+  return [...count.entries()]
+    .filter(([, n]) => n >= 2)
+    .map(([k, n]) => ({ item: k, n, have: hasIt(k) }))
+    .sort((a, b) => (b.have - a.have) || (b.n - a.n) || a.item.localeCompare(b.item))
+    .slice(0, 30);
+}
+
+/* ---------- scoring ---------- */
+function rankDishes() {
+  const lib = all();
+  const out = [];
+  for (const [slug, r] of Object.entries(lib)) {
+    if (r.slot === "breakfast" && quiz.count > 2) continue;   // breakfast is the sandwich
+    const mins = r.prepMinutes + r.cookMinutes;
+    if (quiz.time && mins > quiz.time) continue;
+    if (quiz.kit.size && !(r.equipment || []).some((e) => quiz.kit.has(e))) continue;
+
+    let score = 0;
+    const why = [];
+    for (const m of MOODS) {
+      if (quiz.mood.has(m.id) && m.match(r)) { score += 3; why.push(m.label.toLowerCase()); }
+    }
+    const items = (r.ingredients || []).map((i) => i.item.toLowerCase());
+    const hits = [...quiz.have].filter((h) => items.includes(h));
+    score += hits.length * 4;
+    if (hits.length) why.push(hits.length + " you have");
+    if (favs.has(slug)) { score += 2; why.push("a favourite"); }
+    if (quiz.time && quiz.time < 999 && mins <= quiz.time - 10) { score += 1; }
+    // nudge towards things not already on the menu this week
+    if (Object.values(picks).includes(slug)) score -= 2;
+    out.push({ slug, r, mins, score, why });
+  }
+  return out.sort((a, b) => b.score - a.score || a.mins - b.mins);
+}
+
+/* ---------- render ---------- */
+function renderCook() {
+  if (qResults) return renderResults();
+  const step = QUIZ_STEPS[qStep];
+  let title = "", sub = "", body = "", cta = "continue", ok = false;
+
+  if (step === "time") {
+    title = "how long have you got?";
+    sub = "Total, including the chopping.";
+    body = `<div class="q-grid">${TIME_CHOICES.map((t) => qCard({
+      key: t.v, on: quiz.time === t.v, emoji: t.emoji, label: t.label, tone: t.tone, kind: "time",
+    })).join("")}</div>`;
+    ok = quiz.time != null;
+  }
+
+  if (step === "kit") {
+    title = "what do you want to cook in?";
+    sub = "Tap what you feel like using. Nothing tapped means anything goes.";
+    body = kitchenSVG() + `<p class="q-tally">${quiz.kit.size} selected</p>`;
+    ok = true;
+  }
+
+  if (step === "mood") {
+    title = "what are you in the mood for?";
+    sub = "";
+    body = `<p class="q-hint">pick up to 3</p>
+      <div class="q-grid">${MOODS.map((m) => qCard({
+        key: m.id, on: quiz.mood.has(m.id), emoji: m.emoji, label: m.label, tone: m.tone, kind: "mood",
+      })).join("")}
+      ${qCard({ key: "nochilli", on: true, emoji: "🌱", label: "No chilli", tone: "herb", kind: "locked" })}</div>
+      <p class="q-tally">${quiz.mood.size}/3 &middot; no chilli is always on</p>`;
+    ok = true;
+  }
+
+  if (step === "have") {
+    const list = ingredientChoices();
+    const hadCount = list.filter((x) => x.have).length;
+    title = "what do you want to use up?";
+    sub = `The dotted ones are already in your kitchen, from ${onHandDate() || "your last order"}.`;
+    body = `<div class="q-chips">${list.map((x) => `
+      <button class="q-chip" type="button" data-qpick="have" data-key="${esc(x.item)}"
+              aria-pressed="${quiz.have.has(x.item)}">${x.have ? '<span class="dotmark"></span>' : ""}${esc(cap(x.item))}</button>`).join("")}</div>
+      <p class="q-tally">${quiz.have.size} chosen &middot; ${hadCount} of these are in the kitchen</p>`;
+    ok = true;
+  }
+
+  if (step === "count") {
+    title = "how many dishes?";
+    sub = "";
+    body = `<div class="q-grid">${[
+      { v: 1, emoji: "🍽️", label: "just tonight", tone: "clay" },
+      { v: 3, emoji: "📋", label: "3 dishes", tone: "yuzu" },
+      { v: 7, emoji: "🗓️", label: "a week", tone: "herb" },
+    ].map((c) => qCard({ key: c.v, on: quiz.count === c.v, emoji: c.emoji, label: c.label, tone: c.tone, kind: "count" })).join("")}</div>`;
+    cta = "find dishes";
+    ok = quiz.count != null;
+  }
+
+  $("#cook-out").innerHTML = `<div class="q-wrap">
+    <div class="q-bar">
+      <button class="q-back" type="button" id="qback" ${qStep === 0 ? "disabled" : ""} aria-label="Back">&lsaquo;</button>
+      <div class="q-segs">${QUIZ_STEPS.map((_, i) => `<span class="q-seg${i <= qStep ? " on" : ""}"></span>`).join("")}</div>
+      <span class="q-count">${qStep + 1} of ${QUIZ_STEPS.length}</span>
+    </div>
+    <h2 class="q-title">${esc(title)}</h2>
+    ${sub ? `<p class="q-sub">${esc(sub)}</p>` : ""}
+    <div style="margin-top:1.3rem">${body}</div>
+    <button class="q-cta" type="button" id="qnext" ${ok ? "" : "disabled"}>${esc(cta)}</button>
+  </div>`;
+}
+
+function qCard({ key, on, emoji, label, tone, kind }) {
+  const locked = kind === "locked";
+  return `<button class="q-card" type="button" ${locked ? 'data-locked="1" disabled' : `data-qpick="${kind}" data-key="${esc(key)}"`}
+          data-tone="${tone}" aria-pressed="${on}">
+      <span class="q-tick">✓</span>
+      <span class="q-emoji">${emoji}</span>
+      <span>${esc(label)}</span>
+    </button>`;
+}
+
+function renderResults() {
+  const top = qResults.slice(0, Math.max(6, quiz.count === 7 ? 12 : 8));
+  const asked = [
+    quiz.time === 999 ? "no time limit" : "under " + quiz.time + " min",
+    quiz.kit.size ? [...quiz.kit].join(", ") : "any appliance",
+    quiz.mood.size ? [...quiz.mood].map((m) => MOODS.find((x) => x.id === m).label.toLowerCase()).join(", ") : null,
+    quiz.have.size ? "using " + [...quiz.have].join(", ") : null,
+  ].filter(Boolean).join(" &middot; ");
+
+  let html = `<div class="q-wrap" style="padding-bottom:1rem">
+    <div class="res-head"><h2>${qResults.length ? top.length + " to cook" : "Nothing matches"}</h2><span class="leader"></span>
+      <button class="linkbtn" id="qrestart">Start again</button></div>
+    <p class="q-sub">${asked}</p>`;
+
+  if (!qResults.length) {
+    html += `<div class="empty" style="margin-top:1.2rem">Nothing in the library fits all of that.
+      Loosen the time, or pick another appliance.</div></div>`;
+    $("#cook-out").innerHTML = html;
+    return;
+  }
+  html += `</div><div class="cards">${top.map(({ slug, r, why }) => {
+    const c = card({ key: "q-" + slug, slug, r, day: null, slot: r.slot, minutes: r.prepMinutes + r.cookMinutes });
+    const badges = `<div class="why">${(why.length ? why : ["fits what you asked"]).map((w) => `<span>${esc(w)}</span>`).join("")}</div>`;
+    return c.replace('<div class="tags">', badges + '<div class="tags">');
+  }).join("")}</div>`;
+  $("#cook-out").innerHTML = html;
+}
+
 /* ---------- render all ---------- */
 function renderAll() {
   renderIngChips();
   renderCuisineChips();
+  renderCook();
   renderWeek();
   renderRecipes();
   renderShop();
@@ -1813,6 +2217,40 @@ $("#shuffle").addEventListener("click", () => {
 $("#resetweek").addEventListener("click", () => { picks = { ...baseline }; renderAll(); persist(); });
 
 document.addEventListener("click", (e) => {
+  // ---- the quiz ----
+  const qp = e.target.closest("[data-qpick]");
+  if (qp) {
+    const kind = qp.dataset.qpick, key = qp.dataset.key;
+    if (kind === "time") quiz.time = Number(key);
+    else if (kind === "count") quiz.count = Number(key);
+    else if (kind === "mood") {
+      if (quiz.mood.has(key)) quiz.mood.delete(key);
+      else if (quiz.mood.size < 3) quiz.mood.add(key);   // pick up to 3
+    } else if (kind === "have") {
+      quiz.have.has(key) ? quiz.have.delete(key) : quiz.have.add(key);
+    }
+    return renderCook();
+  }
+  const kp = e.target.closest("[data-kitpick]");
+  if (kp) {
+    const k = kp.dataset.kitpick;
+    quiz.kit.has(k) ? quiz.kit.delete(k) : quiz.kit.add(k);
+    return renderCook();
+  }
+  if (e.target.closest("#qback")) { qStep = Math.max(0, qStep - 1); return renderCook(); }
+  if (e.target.closest("#qnext")) {
+    if (qStep < QUIZ_STEPS.length - 1) { qStep += 1; return renderCook(); }
+    qResults = rankDishes();
+    window.scrollTo({ top: 0, behavior: "instant" });
+    return renderCook();
+  }
+  if (e.target.closest("#qrestart")) {
+    qResults = null; qStep = 0;
+    quiz = { time: null, kit: new Set(), mood: new Set(), have: new Set(), count: null };
+    window.scrollTo({ top: 0, behavior: "instant" });
+    return renderCook();
+  }
+
   const fav = e.target.closest("button[data-fav]");
   if (fav) return toggleFav(fav.dataset.fav);
   const kit = e.target.closest("button[data-kit]");
@@ -1874,15 +2312,30 @@ $("#sheet-restore").addEventListener("click", () => {
 });
 $("#sheet-search").addEventListener("input", renderProductAlts);
 
-const PANELS = { "tab-week": "panel-week", "tab-recipes": "panel-recipes", "tab-shop": "panel-shop" };
+// An <svg> <g> is not a button, so Enter and Space have to be wired by hand or
+// the kitchen is mouse-only.
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Enter" && e.key !== " ") return;
+  const hot = e.target.closest && e.target.closest("[data-kitpick]");
+  if (!hot) return;
+  e.preventDefault();
+  const k = hot.dataset.kitpick;
+  quiz.kit.has(k) ? quiz.kit.delete(k) : quiz.kit.add(k);
+  renderCook();
+});
+
+const PANELS = { "tab-cook": "panel-cook", "tab-week": "panel-week",
+                "tab-recipes": "panel-recipes", "tab-shop": "panel-shop" };
 $$(".tab").forEach((t) => t.addEventListener("click", () => {
   $$(".tab").forEach((x) => {
     const on = x === t;
     x.setAttribute("aria-selected", String(on));
     $("#" + PANELS[x.id]).hidden = !on;
   });
+  document.body.classList.toggle("on-cook", t.id === "tab-cook");
   window.scrollTo({ top: 0, behavior: "instant" });
 }));
+document.body.classList.add("on-cook");   // Cook is the tab it opens on
 
 setSync("", "Checking for your partner's changes…");
 renderAll();

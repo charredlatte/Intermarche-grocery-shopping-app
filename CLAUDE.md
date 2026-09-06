@@ -133,6 +133,19 @@ picks live in a shared database under `weeks/<weekOf>`, and the shopping basket
 is derived from whatever is currently picked. Nothing they do writes back to the
 repo — the plan file is only the starting point.
 
+**Four tabs, and Cook is the front door.** Cook is a five-step quiz — time,
+appliance, mood, what to use up, how many dishes — modelled on the Potto flow
+Charlotte sent on 2026-09-06: one question a screen, a segmented progress bar,
+pastel cards that saturate with a tick, and a single green pill that stays pale
+until the answer is valid. Her palette, that structure. The appliance step is a
+drawn kitchen (inline SVG, no assets) whose five appliances are hit targets.
+No-chilli shows as a locked, permanently-ticked card — it is a health rule, not
+a mood. Results are ranked and each carries badges saying *why* it matched.
+
+Week, Recipes and Shopping are unchanged behind it. Shopping has two states:
+the editor, and — once she presses Approve — a checklist laid out for the Drive
+site with a copy button per exact product name.
+
 No dependencies; `npm install` is a no-op. Node 18+.
 
 To add a new invoice: fetch the email body through the Gmail connector as plain
