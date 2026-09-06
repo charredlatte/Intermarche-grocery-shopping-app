@@ -43,6 +43,21 @@ intermarche.fr returns forty things; searching the exact name returns one.
 **2. Standing preferences.** `data/preferences.json` — household, budget, the
 dietary constraints, the confirmed-in-stock pantry. Hand-edited, never generated.
 
+**2b. What's already in the kitchen.** The build seeds an on-hand list from the
+**most recent invoice** and the page subtracts it, so the shopping list is what
+she still has to buy rather than what the recipes add up to. `data/equivalents.json`
+— hand-edited, like preferences — says which products stand in for one another,
+so the Jean Rozé pork chops on the receipt cover a recipe naming the Terroirs
+ones. Every match is printed on the line it covered: an equivalence is reported,
+never silent. Charlotte and her partner can correct any quantity, swap the
+product, strike a line off or add one, and all of it is shared.
+
+Deliberately week-scoped — each plan re-seeds from the newest receipt rather than
+carrying a running inventory forward, because an inventory nobody decrements
+under-orders, and under-ordering ends with no dinner. Note "pantry" is already
+taken twice (`preferences.pantry` = what Méré stocks; a recipe's `pantry: true`
+= salt, oil, eggs). This is "on hand".
+
 **3. The weekly conversation.** `.claude/skills/courses/SKILL.md` — three
 questions, then a plan, then a line-item list, then the basket.
 

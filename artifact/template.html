@@ -99,6 +99,7 @@
     font-variant-numeric: tabular-nums;
   }
   .tally b { color: var(--ink); font-weight: 600; }
+  .tally-pair { white-space: nowrap; }
   .tally span { color: var(--ink-3); }
 
   /* ---- tabs ---- */
@@ -437,6 +438,52 @@
     padding: .7rem; background: var(--herb-soft); border-radius: 3px; margin-bottom: .7rem;
   }
   .genstate.err { background: var(--clay-soft); color: var(--clay); }
+
+  /* ---- the ingredient layer: per-line controls on the shopping list ---- */
+  .savedline {
+    margin-top: .8rem; padding: .6rem .7rem;
+    background: var(--herb-soft); border-radius: 3px;
+    font: 400 .85rem/1.45 var(--f-body); color: var(--ink-2);
+  }
+
+  .line-ctl { display: flex; flex-wrap: wrap; gap: .3rem; align-items: center; margin-top: .45rem; }
+
+  .step { display: inline-flex; align-items: stretch; border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+  .stepbtn {
+    appearance: none; border: 0; cursor: pointer; background: var(--card);
+    color: var(--ink-2); padding: .2rem .5rem; min-width: 1.9rem;
+    font: 500 .95rem/1.4 var(--f-mono);
+  }
+  .stepbtn:hover { background: var(--rule-soft); color: var(--ink); }
+  .stepval {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 3.1rem; padding: .2rem .25rem;
+    border-left: 1px solid var(--rule); border-right: 1px solid var(--rule);
+    background: var(--card-sunk);
+    font: 500 .76rem/1.4 var(--f-mono); font-variant-numeric: tabular-nums; color: var(--ink);
+  }
+  /* nothing held yet — present, but not competing with the numbers that matter */
+  .step.is-zero .stepval { color: var(--ink-3); }
+
+  .minibtn {
+    appearance: none; cursor: pointer;
+    border: 1px solid var(--rule); border-radius: 3px; background: var(--card);
+    color: var(--ink-2); padding: .25rem .55rem;
+    font: 500 .74rem/1.45 var(--f-body);
+    transition: background .12s, border-color .12s, color .12s;
+  }
+  .minibtn:hover { background: var(--card-sunk); border-color: var(--ink-3); color: var(--ink); }
+  .minibtn.danger:hover { border-color: var(--clay); color: var(--clay); background: var(--clay-soft); }
+
+  /* struck through, but still legible — this is the audit trail, not a bin */
+  .shop-list li.is-kitchen .shop-name { text-decoration: line-through; text-decoration-color: var(--ink-3); }
+  .shop-list li.is-kitchen .shop-name,
+  .shop-list li.is-kitchen .shop-cost { color: var(--ink-3); }
+
+  details.kitchenbox { margin-top: 1.8rem; }
+  details.kitchenbox > summary { font: 500 .82rem/1.3 var(--f-body); color: var(--ink); }
+  .kitchen-body { padding: 0 .75rem .8rem; }
+  .kitchen-note { margin: 0 0 .3rem; font: 400 .78rem/1.5 var(--f-body); color: var(--ink-3); }
 </style>
 
 <div class="wrap">
@@ -529,6 +576,7 @@
   <div class="sheet-inner">
     <div class="sheet-head"><h2 id="sheet-title">Swap</h2></div>
     <div class="sheet-sub" id="sheet-sub"></div>
+    <input class="search" id="sheet-search" type="search" placeholder="Search the products you actually buy…" aria-label="Search products" hidden>
     <div id="gen-state"></div>
     <div class="alts" id="sheet-alts"></div>
     <div class="sheet-foot">
@@ -541,6 +589,8 @@
 <script>
 const DATA = /*__DATA__*/ null;
 const LIB = DATA.recipes, PRICES = DATA.pricebook, STAPLES = DATA.staples, CONF = DATA.config;
+const ONHAND = DATA.onHand || { from: null, items: [] };
+const EQUIV = DATA.equivalents || [];
 const plan = [...DATA.plans].sort((a, b) => b.weekOf.localeCompare(a.weekOf))[0];
 
 /* ---------- helpers ---------- */
@@ -561,11 +611,28 @@ let picks = { ...baseline };
 let extra = {};
 let db = null, weekRef = null, sample = null;
 
+/* The ingredient layer. The dishes decide what the week *needs*; these five
+   decide what actually has to be bought, and every one of them is hers to set
+   from the Shopping tab. They ride in the same shared document as `picks`, so
+   both phones agree on the basket as well as the menu. */
+const haveSeed = Object.fromEntries(ONHAND.items.map((i) => [i.product, i.quantity]));
+let have    = { ...haveSeed };  // product -> how much is already in the kitchen
+let qtyAdj  = {};               // product -> override what the recipes asked for
+let subs    = {};               // product -> buy this one instead
+let dropped = {};               // product -> struck off by hand
+let added   = {};               // key -> { name, qty, section } she added herself
+
 const all = () => ({ ...LIB, ...extra });
 const dishFor = (mealId) => all()[picks[mealId]];
 const mealById = (id) => plan.meals.find((m) => m.id === id);
 const minutesOf = (m, r) => m.minutesOverride ?? (r.prepMinutes + r.cookMinutes);
 const changed = () => Object.keys(picks).filter((k) => picks[k] !== baseline[k]);
+const sameHave = () => Object.keys({ ...have, ...haveSeed })
+  .every((k) => (have[k] || 0) === (haveSeed[k] || 0));
+/* Anything at all touched on the Shopping tab, so the reset button knows to
+   show itself. */
+const shopEdited = () => !sameHave() ||
+  [qtyAdj, subs, dropped, added].some((o) => Object.keys(o).length > 0);
 
 /* Every meal, resolved. Skips a pick whose dish has gone missing. */
 function meals() {
@@ -576,6 +643,63 @@ function meals() {
              ingredients: (r.ingredients || []).map((i) => i.item.toLowerCase()),
              isSwapped: picks[m.id] !== baseline[m.id] };
   }).filter(Boolean);
+}
+
+/* ---------- equivalences ----------
+   A curated map, shipped from data/equivalents.json. It exists so that the
+   Jean Rozé pork chops on Saturday's receipt count against a recipe that names
+   the Terroirs ones. Every match it makes is printed on the line that it
+   covered — an equivalence is reported, never silent, because quietly swapping
+   one product for another is exactly the thing this app must not do. */
+const GROUP_OF = {};
+for (const g of EQUIV) for (const m of g.members || []) GROUP_OF[m.name] = g;
+
+const unitOf = (product) => (PRICES[product] ? PRICES[product].unit : "unit");
+const memberIn = (g, name) => (g.members || []).find((m) => m.name === name);
+
+/* How much of `want` a quantity of `holding` is worth. Within a group priced
+   the same way this is one-for-one; where a group mixes a per-kilo product with
+   a tray sold by the unit, the tray's `kg` weight converts between them. */
+function convert(qty, holding, want) {
+  if (holding === want) return qty;
+  const g = GROUP_OF[holding];
+  if (!g || g !== GROUP_OF[want]) return 0;
+  const from = unitOf(holding), to = unitOf(want);
+  if (from === to) return qty;
+  const w = memberIn(g, from === "kg" ? want : holding).kg;
+  if (!w) return 0;                       // build validation should prevent this
+  return to === "kg" ? qty * w : qty / w;
+}
+
+/* The kitchen as a pool, so two dishes reaching for the same chicken cannot
+   both be told it is already covered. Drawn down line by line. */
+function pool() {
+  const p = new Map();
+  for (const [product, qty] of Object.entries(have)) {
+    if (qty > 0) p.set(product, qty);
+  }
+  return p;
+}
+
+/* Take up to `need` of `want` out of the pool, preferring an exact name match
+   before reaching for an equivalent. Returns what it took and what covered it. */
+function draw(p, want, need) {
+  let got = 0;
+  const from = [];
+  const order = [want, ...[...p.keys()].filter((k) => k !== want)];
+  for (const holding of order) {
+    if (got >= need - 1e-9) break;
+    const stock = p.get(holding);
+    if (!stock) continue;
+    const worth = convert(stock, holding, want);
+    if (worth <= 0) continue;
+    const take = Math.min(worth, need - got);
+    got += take;
+    p.set(holding, stock - convert(take, want, holding));
+    if (p.get(holding) <= 1e-9) p.delete(holding);
+    from.push({ product: holding, exact: holding === want });
+  }
+  return { got, from };
 }
 
 /* ---------- the basket, derived from whatever is on the menu ---------- */
@@ -601,31 +725,67 @@ function basket() {
     }
   }
 
-  const lines = [];
+  // Everything the week asks for, before a word about what is in the kitchen.
+  const wanted = [];
   for (const e of acc.values()) {
-    const pb = PRICES[e.product];
-    let amount = e.amount, unit = pb ? pb.unit : "unit", cost;
-    if (unit !== "kg") amount = Math.max(1, Math.ceil(amount));   // you cannot buy 1.4 jars
-    if (e.guess || !pb) { cost = (e.guessPrice ?? 3) * amount; unit = "unit"; }
-    else cost = pb.price * amount;
-    lines.push({
-      name: e.product, section: e.section, guess: e.guess || !pb, cost,
-      amount: unit === "kg" ? amount.toFixed(2).replace(".", ",") + " kg" : "x" + amount,
-      for: [...e.dishes].join(", "),
-    });
+    wanted.push({ key: e.product, section: e.section, guess: e.guess,
+                  guessPrice: e.guessPrice, required: e.amount,
+                  for: [...e.dishes].join(", "), kind: "dish" });
   }
-
   for (const s of STAPLES) {
+    wanted.push({ key: s.name, section: "Standing order", guess: false,
+                  required: s.quantity, for: s.note || "always on the order",
+                  kind: "staple" });
+  }
+  for (const [key, a] of Object.entries(added)) {
+    wanted.push({ key, section: "Added by you", guess: !PRICES[a.name],
+                  guessPrice: 3, required: a.qty, name: a.name,
+                  for: "you added this", kind: "added" });
+  }
+
+  const order = ["Proteins", "Vegetables", "Store cupboard", "Bread and cheese",
+                 "Standing order", "Best guesses", "Added by you"];
+  wanted.sort((a, b) => (order.indexOf(a.section) - order.indexOf(b.section)) ||
+                        a.key.localeCompare(b.key));
+
+  // Now the kitchen. One pool, drawn down in list order, so the same half-kilo
+  // of chicken cannot be counted against two different dinners.
+  const p = pool();
+  const lines = [];
+  for (const w of wanted) {
+    const name = w.name || subs[w.key] || w.key;
+    const pb = PRICES[name];
+    const unit = w.guess || !pb ? "unit" : pb.unit;
+    const price = w.guess || !pb ? (w.guessPrice ?? 3) : pb.price;
+
+    let required = qtyAdj[w.key] != null ? qtyAdj[w.key] : w.required;
+    if (unit !== "kg") required = Math.max(1, Math.ceil(required));  // you cannot buy 1.4 jars
+
+    const struck = !!dropped[w.key];
+    const { got, from } = struck ? { got: 0, from: [] } : draw(p, name, required);
+    let toBuy = Math.max(0, required - got);
+    if (unit !== "kg") toBuy = Math.ceil(toBuy - 1e-9);
+    if (struck) toBuy = 0;
+
+    const fmt = (n) => unit === "kg" ? n.toFixed(2).replace(".", ",") + " kg" : "x" + Math.round(n);
     lines.push({
-      name: s.name, section: "Standing order", guess: false,
-      cost: s.price * s.quantity, amount: "x" + s.quantity,
-      for: s.note || "always on the order",
+      key: w.key, name, section: w.section, kind: w.kind, guess: w.guess || !pb,
+      unit, price, required, covered: Math.min(got, required), toBuy, struck,
+      renamed: name !== w.key ? w.key : null,
+      coveredBy: from, for: w.for,
+      cost: price * toBuy, fullCost: price * required,
+      amount: fmt(toBuy), requiredLabel: fmt(required), coveredLabel: fmt(Math.min(got, required)),
     });
   }
 
-  const order = ["Proteins", "Vegetables", "Store cupboard", "Bread and cheese", "Standing order", "Best guesses"];
-  lines.sort((a, b) => (order.indexOf(a.section) - order.indexOf(b.section)) || a.name.localeCompare(b.name));
-  return { lines, total: lines.reduce((t, l) => t + l.cost, 0) };
+  const buy = lines.filter((l) => l.toBuy > 0);
+  const kitchen = lines.filter((l) => l.toBuy <= 0);
+  return {
+    lines: buy, kitchen,
+    total: buy.reduce((t, l) => t + l.cost, 0),
+    saved: kitchen.reduce((t, l) => t + l.fullCost, 0) +
+           lines.filter((l) => l.toBuy > 0).reduce((t, l) => t + (l.fullCost - l.cost), 0),
+  };
 }
 
 /* ---------- shared state ---------- */
@@ -639,8 +799,19 @@ async function persist() {
   if (!weekRef) return;
   const diff = {};
   for (const k of changed()) diff[k] = picks[k];
+  // Only the corrections travel, not the whole kitchen. A quantity she never
+  // touched stays whatever the newest receipt says, so a fresh receipt is not
+  // overwritten by a stale copy of the old one sitting in the document.
+  const haveDiff = {};
+  for (const k of new Set([...Object.keys(have), ...Object.keys(haveSeed)])) {
+    if ((have[k] || 0) !== (haveSeed[k] || 0)) haveDiff[k] = have[k] || 0;
+  }
   try {
-    await weekRef.set({ picks: diff, extra, updatedAt: Date.now() });
+    await weekRef.set({
+      picks: diff, extra, have: haveDiff, qtyAdj, subs, dropped, added,
+      seededFrom: ONHAND.from ? ONHAND.from.order : null,
+      updatedAt: Date.now(),
+    });
   } catch (e) {
     setSync("off", "Change saved on this phone only — " + (e && e.code ? e.code : "not saved"));
   }
@@ -650,6 +821,13 @@ function applyRemote(d) {
   if (!d) return;
   extra = { ...extra, ...(d.extra || {}) };
   picks = { ...baseline, ...(d.picks || {}) };
+  // A document written against an older receipt keeps its hand corrections, but
+  // the receipt underneath it is the new one.
+  have = { ...haveSeed, ...(d.have || {}) };
+  qtyAdj = d.qtyAdj || {};
+  subs = d.subs || {};
+  dropped = d.dropped || {};
+  added = d.added || {};
   renderAll();
 }
 
@@ -869,17 +1047,103 @@ const sectionIcon = (name) => {
   return `<span class="sec-icon${i.tint ? " " + i.tint : ""}" aria-hidden="true">${i.svg}</span>`;
 };
 
+/* The receipt date, for the line that explains where "already here" came from. */
+const onHandDate = () => {
+  const f = ONHAND.from;
+  if (!f) return "";
+  const d = new Date(Date.UTC(f.date.year, f.date.month - 1, f.date.day));
+  return d.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", timeZone: "UTC" });
+};
+
+const andList = (xs) => xs.length < 2 ? (xs[0] || "") : xs.slice(0, -1).join(", ") + " and " + xs[xs.length - 1];
+
+/* Why a line is not being bought, in her words rather than the model's. */
+function coverReason(l) {
+  if (l.struck) return "you struck this off";
+  const exact = l.coveredBy.some((c) => c.exact);
+  const others = l.coveredBy.filter((c) => !c.exact).map((c) => c.product);
+  const bits = [];
+  if (exact) bits.push("already here");
+  // The whole point of the equivalents file: say which product stood in.
+  if (others.length) bits.push("covered by " + andList(others));
+  return bits.join(", ") || "already here";
+}
+
+/* Which product the stepper actually adjusts. Normally the line's own, but a
+   line covered by an equivalent holds none of itself — pressing − on the
+   Terroirs pork chops must change the count of the Jean Rozé ones she has, or
+   the button would appear to do nothing. */
+function stepTarget(l) {
+  if (have[l.key]) return l.key;
+  const other = l.coveredBy.find((c) => !c.exact);
+  return other ? other.product : l.key;
+}
+
+/* The − n + stepper. `have` is what she is setting; the label carries the unit
+   so a kilo of onions does not read as one onion. */
+function stepper(l) {
+  const key = stepTarget(l);
+  const held = have[key] || 0;
+  const unit = key === l.key ? l.unit : unitOf(key);
+  const label = unit === "kg" ? held.toFixed(2).replace(".", ",") + " kg" : String(Math.round(held));
+  return `<span class="step${held ? "" : " is-zero"}" role="group" aria-label="How much ${esc(key)} you already have">
+      <button class="stepbtn" type="button" data-have="${esc(key)}" data-dir="-1" aria-label="Less ${esc(key)}">−</button>
+      <span class="stepval">${esc(label)}</span>
+      <button class="stepbtn" type="button" data-have="${esc(key)}" data-dir="1" aria-label="More ${esc(key)}">+</button>
+    </span>`;
+}
+
+function shopLine(l, inKitchen) {
+  const partly = !inKitchen && l.covered > 0;
+  const sub = [];
+  sub.push(inKitchen ? esc(l.requiredLabel) + " needed" : esc(l.amount) + " to buy");
+  if (partly) sub.push(esc(l.requiredLabel) + " needed, " + esc(l.coveredLabel) + " already here");
+  if (inKitchen || partly) sub.push(esc(coverReason(l)));
+  if (l.renamed) sub.push("instead of " + esc(l.renamed));
+  sub.push(esc(l.for));
+
+  // Striking off a line that is not being bought anyway would say nothing, so
+  // the ✕ only appears where there is something to strike.
+  const strike = l.struck
+    ? `<button class="minibtn" type="button" data-strike="${esc(l.key)}">Put it back</button>`
+    : inKitchen ? ""
+    : `<button class="minibtn danger" type="button" data-strike="${esc(l.key)}" aria-label="Strike ${esc(l.name)} off the list">✕</button>`;
+
+  return `<li class="${inKitchen ? "is-kitchen" : ""}">
+    <div class="shop-line">
+      <span class="shop-name">${esc(l.name)}${l.guess ? '<span class="flag">guess</span>' : ""}</span>
+      <span class="shop-dots"></span>
+      <span class="shop-cost">${inKitchen ? "—" : eur(l.cost)}</span>
+    </div>
+    <div class="shop-sub">${sub.map((s) => `<span>${s}</span>`).join("")}</div>
+    <div class="line-ctl">
+      ${stepper(l)}
+      <button class="minibtn" type="button" data-allof="${esc(l.key)}">${inKitchen ? "Need it after all" : "I have it"}</button>
+      ${l.kind === "added" ? "" : `<button class="minibtn" type="button" data-subswap="${esc(l.key)}">Swap</button>`}
+      ${strike}
+    </div>
+  </li>`;
+}
+
 function renderShop() {
-  const { lines, total } = basket();
+  const { lines, kitchen, total, saved } = basket();
   const ceiling = CONF.budgetCeiling;
   const pct = Math.min(100, (total / ceiling) * 100);
   const over = total > ceiling;
 
   let html = `<div class="meter">
       <div class="meter-bar"><div class="meter-fill${over ? " over" : ""}" style="width:${pct.toFixed(1)}%"></div></div>
-      <div class="meter-row"><span>${eur(total)} estimated</span><span>${eur(ceiling)} ceiling</span></div>
+      <div class="meter-row"><span>${eur(total)} to buy</span><span>${eur(ceiling)} ceiling</span></div>
     </div>`;
+  if (saved > 0.005) {
+    html += `<div class="savedline">${eur(saved)} of this week's cooking is already in the kitchen and has been taken off the list.</div>`;
+  }
   if (over) html += `<div class="empty" style="margin-top:.9rem;border-color:var(--clay);color:var(--clay)">Over the ceiling by ${eur(total - ceiling)}. Swap something out, or raise it.</div>`;
+
+  html += `<div class="toolbar" style="margin-top:1.1rem">
+      <button class="btn" id="additem">Add something</button>
+      <button class="btn" id="resetshop"${shopEdited() ? "" : " hidden"}>Back to what the receipt says</button>
+    </div>`;
 
   const secs = [];
   for (const l of lines) {
@@ -891,17 +1155,28 @@ function renderShop() {
     const sub = s.lines.reduce((a, b) => a + b.cost, 0);
     html += `<div class="shop-sec">
       <div class="group-head has-icon" style="margin:0">${sectionIcon(s.name)}<h2>${esc(s.name)}</h2><span class="leader"></span><span class="group-count">${eur(sub)}</span></div>
-      <ul class="shop-list">${s.lines.map((l) => `
-        <li><div class="shop-line">
-            <span class="shop-name">${esc(l.name)}${l.guess ? '<span class="flag">guess</span>' : ""}</span>
-            <span class="shop-dots"></span><span class="shop-cost">${eur(l.cost)}</span>
-          </div>
-          <div class="shop-sub"><span>${esc(l.amount)}</span><span>${esc(l.for)}</span></div></li>`).join("")}</ul>
+      <ul class="shop-list">${s.lines.map((l) => shopLine(l, false)).join("")}</ul>
     </div>`;
   }
+  if (!lines.length) {
+    html += `<div class="empty" style="margin-top:1.2rem">Nothing left to buy — the kitchen already covers every dish on the menu.</div>`;
+  }
   html += `<div class="shop-total"><span>Estimated total</span><span>${eur(total)}</span></div>`;
+
+  // Nothing disappears silently. Everything the week needs but is not being
+  // bought is listed here with the reason, so the list still traces back.
+  if (kitchen.length) {
+    html += `<details class="chipbox kitchenbox">
+      <summary>Already in the kitchen — ${kitchen.length} ${kitchen.length === 1 ? "item" : "items"}, ${eur(saved)} not spent</summary>
+      <div class="kitchen-body">
+        <p class="kitchen-note">From the Drive order collected ${esc(onHandDate())}${ONHAND.from ? ", plus anything you have corrected by hand" : ""}. Tap “Need it after all” to put one back on the list.</p>
+        <ul class="shop-list">${kitchen.map((l) => shopLine(l, true)).join("")}</ul>
+      </div>
+    </details>`;
+  }
+
   const cookCount = meals().filter((m) => !m.leftovers).length;
-  html += `<div class="foot" style="margin-top:1.6rem">Rebuilt from the ${cookCount} meals actually cooked this week — ${meals().length - cookCount} more come out of an earlier pot and cost nothing extra. Follows every swap.<br>${(plan.notes || []).map(esc).join("<br>")}</div>`;
+  html += `<div class="foot" style="margin-top:1.6rem">Rebuilt from the ${cookCount} meals actually cooked this week — ${meals().length - cookCount} more come out of an earlier pot and cost nothing extra. Follows every swap, and every quantity you correct.<br>${(plan.notes || []).map(esc).join("<br>")}</div>`;
   $("#shop-out").innerHTML = html;
 }
 
@@ -919,10 +1194,13 @@ function alternatives(mealId) {
 
 function openSwap(mealId) {
   swapTarget = mealId;
+  sheetMode = "dish";
   const m = mealById(mealId);
   $("#sheet-title").textContent = "Swap " + cap(m.day) + " " + m.slot;
   $("#sheet-sub").textContent = "Currently " + all()[picks[mealId]].title + ". Pick another, or ask for something new.";
   $("#gen-state").innerHTML = "";
+  $("#sheet-search").hidden = true;
+  $("#gen-btn").hidden = !sample;
   $("#sheet-restore").hidden = picks[mealId] === baseline[mealId];
   $("#sheet-alts").innerHTML = alternatives(mealId).map(([slug, r]) =>
     `<button class="alt" type="button" data-pick="${esc(slug)}">
@@ -936,6 +1214,163 @@ function setPick(mealId, slug) {
   picks[mealId] = slug;
   renderAll();
   persist();
+}
+
+/* ---------- the same sheet, for products rather than dishes ----------
+   One dialog, three jobs, so there is a single thing to close and a single set
+   of open/close wiring. `sheetMode` says which. */
+let sheetMode = "dish";
+let productTarget = null;
+
+const priceLabel = (name) => {
+  const pb = PRICES[name];
+  return pb ? eur(pb.price) + (pb.unit === "kg" ? " / kg" : "") : "no price on file";
+};
+
+/* Which aisle a product belongs to, learnt from the recipes that name it. The
+   pricebook itself has no sections — it is only names and prices — so this is
+   what lets the swap sheet open on something useful instead of a blank search. */
+const SECTION_OF = {};
+for (const r of Object.values(LIB)) {
+  for (const i of r.ingredients || []) {
+    if (i.buy && i.buy.section && !SECTION_OF[i.product]) SECTION_OF[i.product] = i.buy.section;
+  }
+}
+
+/* "beurre" should find the butter, not a shampoo that happens to contain
+   "beurre de karité". Rank a name that starts with the query first, then one
+   where a word starts with it, then anything containing it. */
+function search(query, exclude = []) {
+  const q = query.trim().toLowerCase();
+  if (q.length < 2) return [];
+  const scored = [];
+  for (const name of Object.keys(PRICES)) {
+    if (exclude.includes(name)) continue;
+    const low = name.toLowerCase();
+    const at = low.indexOf(q);
+    if (at < 0) continue;
+    const wordStart = at === 0 || /[^a-z0-9àâäçéèêëîïôöùûü]/.test(low[at - 1]);
+    scored.push([at === 0 ? 0 : wordStart ? 1 : 2, at, name]);
+  }
+  return scored
+    .sort((a, b) => a[0] - b[0] || a[1] - b[1] || a[2].localeCompare(b[2]))
+    .slice(0, 40)
+    .map(([, , name]) => name);
+}
+
+/* Products offered as a stand-in: the rest of the equivalence group first,
+   because those are already known to be the same thing; then, with nothing
+   typed, the other products this household buys from the same aisle. */
+function productOptions(current, q) {
+  const g = GROUP_OF[current];
+  const groupNames = g ? (g.members || []).map((m) => m.name).filter((n) => n !== current) : [];
+  const head = groupNames.map((n) => ({ name: n, why: g.label }));
+  const sec = SECTION_OF[current];
+  const rest = q.trim().length >= 2
+    ? search(q, [current, ...groupNames]).map((n) => ({ name: n, why: null }))
+    : Object.keys(PRICES)
+        .filter((n) => n !== current && !groupNames.includes(n) && SECTION_OF[n] === sec)
+        .sort((a, b) => a.localeCompare(b))
+        .slice(0, 30)
+        .map((n) => ({ name: n, why: sec }));
+  return [...head, ...rest];
+}
+
+function renderProductAlts() {
+  const q = $("#sheet-search").value;
+  const current = sheetMode === "product" ? (subs[productTarget] || productTarget) : null;
+  const opts = sheetMode === "product"
+    ? productOptions(current, q)
+    : search(q).map((n) => ({ name: n, why: SECTION_OF[n] || null }));
+
+  if (!opts.length) {
+    $("#sheet-alts").innerHTML = `<div class="empty" style="padding:1.4rem 1rem">${
+      q.trim().length >= 2 ? "Nothing in your receipts matches that." : "Type at least two letters to search."
+    }</div>`;
+    return;
+  }
+  const attr = sheetMode === "product" ? "data-pick-product" : "data-add-product";
+  $("#sheet-alts").innerHTML = opts.map((o) =>
+    `<button class="alt" type="button" ${attr}="${esc(o.name)}">
+       <span class="alt-name">${esc(o.name)}${o.why ? ` <span class="flag pantry">${esc(o.why)}</span>` : ""}</span>
+       <span class="leader"></span>
+       <span class="alt-meta">${esc(priceLabel(o.name))}</span>
+     </button>`).join("");
+}
+
+function openProductSwap(key) {
+  sheetMode = "product";
+  productTarget = key;
+  const current = subs[key] || key;
+  $("#sheet-title").textContent = "Buy something else instead";
+  $("#sheet-sub").textContent = "The recipes ask for " + key + ". Anything you pick here is bought in its place — the dish does not change.";
+  $("#gen-state").innerHTML = "";
+  $("#gen-btn").hidden = true;
+  $("#sheet-restore").hidden = !subs[key];
+  $("#sheet-search").hidden = false;
+  $("#sheet-search").value = "";
+  renderProductAlts();
+  $("#sheet").showModal();
+}
+
+function openAddItem() {
+  sheetMode = "add";
+  productTarget = null;
+  $("#sheet-title").textContent = "Add something to the order";
+  $("#sheet-sub").textContent = "Anything you add is marked as yours rather than attributed to a dish.";
+  $("#gen-state").innerHTML = "";
+  $("#gen-btn").hidden = true;
+  $("#sheet-restore").hidden = true;
+  $("#sheet-search").hidden = false;
+  $("#sheet-search").value = "";
+  renderProductAlts();
+  $("#sheet").showModal();
+}
+
+/* ---------- the ingredient controls ---------- */
+function commitShop() { renderAll(); persist(); }
+
+function bumpHave(key, dir) {
+  // Weighed goods move in 100 g steps, everything else one packet at a time.
+  const step = unitOf(key) === "kg" ? 0.1 : 1;
+  const next = Math.max(0, Math.round(((have[key] || 0) + dir * step) * 100) / 100);
+  if (next === 0) delete have[key]; else have[key] = next;
+  commitShop();
+}
+
+/* "I have it" means all of it — enough that nothing needs buying. Pressed again
+   from the kitchen list it means the opposite: none of it. */
+function toggleAllOf(key) {
+  const b = basket();
+  const inKitchen = b.kitchen.some((x) => x.key === key);
+  const l = [...b.lines, ...b.kitchen].find((x) => x.key === key);
+  if (!l) return;
+  if (inKitchen) {
+    delete have[key];
+    delete dropped[key];
+  } else {
+    have[key] = (have[key] || 0) + l.toBuy;
+  }
+  commitShop();
+}
+
+function toggleStrike(key) {
+  if (dropped[key]) delete dropped[key];
+  else if (added[key]) delete added[key];
+  else dropped[key] = true;
+  commitShop();
+}
+
+function addProduct(name) {
+  const key = "added:" + name;
+  added[key] = { name, qty: (added[key]?.qty || 0) + 1 };
+  commitShop();
+}
+
+function resetShop() {
+  have = { ...haveSeed };
+  qtyAdj = {}; subs = {}; dropped = {}; added = {};
+  commitShop();
 }
 
 /* ---------- generating a new dish ---------- */
@@ -1032,19 +1467,21 @@ function renderAll() {
 }
 
 function renderMasthead() {
-  const { total } = basket();
+  const { total, saved } = basket();
   $("#store-line").textContent = CONF.store || plan.store || "";
   $("#week-title").textContent = plan.label || ("Week of " + plan.weekOf);
   const d = plan.meals.filter((m) => m.slot === "dinner").length;
   const l = plan.meals.filter((m) => m.slot === "lunch").length;
   $("#strapline").textContent =
-    `${d} dinners and ${l} lunches. Swap anything you don't fancy — the basket follows. No chilli anywhere.`;
+    `${d} dinners and ${l} lunches. Swap a dish you don't fancy, or tell the Shopping tab what you already have — the basket follows both. No chilli anywhere.`;
   $("#tally").innerHTML = [
     ["Meals", plan.meals.length],
     ["Library", Object.keys(all()).length],
-    ["Basket", eur(total)],
+    ["To buy", eur(total)],
+    ["Already here", eur(saved)],
     ["Ceiling", eur(CONF.budgetCeiling)],
-  ].map(([k, v]) => `<span>${k}</span>&nbsp;<b>${v}</b>`).join("");
+    // One element per pair, or the flex row wraps a label away from its number.
+  ].map(([k, v]) => `<span class="tally-pair"><span>${k}</span>&nbsp;<b>${v}</b></span>`).join("");
   $("#foot").innerHTML =
     `${Object.keys(all()).length} dishes, ${Object.keys(PRICES).length} products priced from a year of your own receipts. ` +
     `Estimates, not quotes.<br>Product names are the exact Intermarché ones, so each resolves to a single search result at the Drive.`;
@@ -1116,6 +1553,28 @@ document.addEventListener("click", (e) => {
   if (sw) return openSwap(sw.dataset.swap);
   const alt = e.target.closest("button[data-pick]");
   if (alt) { $("#sheet").close(); return setPick(swapTarget, alt.dataset.pick); }
+
+  // the ingredient layer
+  const step = e.target.closest("button[data-have]");
+  if (step) return bumpHave(step.dataset.have, Number(step.dataset.dir));
+  const allof = e.target.closest("button[data-allof]");
+  if (allof) return toggleAllOf(allof.dataset.allof);
+  const strike = e.target.closest("button[data-strike]");
+  if (strike) return toggleStrike(strike.dataset.strike);
+  const subsw = e.target.closest("button[data-subswap]");
+  if (subsw) return openProductSwap(subsw.dataset.subswap);
+  const pp = e.target.closest("button[data-pick-product]");
+  if (pp) {
+    const name = pp.dataset.pickProduct;
+    if (name === productTarget) delete subs[productTarget]; else subs[productTarget] = name;
+    $("#sheet").close();
+    return commitShop();
+  }
+  const ap = e.target.closest("button[data-add-product]");
+  if (ap) { $("#sheet").close(); return addProduct(ap.dataset.addProduct); }
+  if (e.target.closest("#additem")) return openAddItem();
+  if (e.target.closest("#resetshop")) return resetShop();
+
   const btn = e.target.closest(".expand");
   if (!btn) return;
   const c = btn.closest(".card");
@@ -1127,8 +1586,11 @@ document.addEventListener("click", (e) => {
 $("#gen-btn").addEventListener("click", generate);
 $("#sheet-close").addEventListener("click", () => $("#sheet").close());
 $("#sheet-restore").addEventListener("click", () => {
-  $("#sheet").close(); setPick(swapTarget, baseline[swapTarget]);
+  $("#sheet").close();
+  if (sheetMode === "product") { delete subs[productTarget]; return commitShop(); }
+  setPick(swapTarget, baseline[swapTarget]);
 });
+$("#sheet-search").addEventListener("input", renderProductAlts);
 
 const PANELS = { "tab-week": "panel-week", "tab-recipes": "panel-recipes", "tab-shop": "panel-shop" };
 $$(".tab").forEach((t) => t.addEventListener("click", () => {

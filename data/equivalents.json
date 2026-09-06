@@ -1,0 +1,76 @@
+{
+  "_comment": "Products that stand in for one another. Hand-edited, never generated — the same status as preferences.json. A group means: anything the household already has from this group counts against a recipe calling for any other member. The page always names the product that did the covering, so a match is reported, never silent. \"kg\" is the pack weight, and is required on every unit-priced member of a group that also contains a kg-priced one, so a tray can be counted against a recipe asking for kilos.",
+  "groups": [
+    {
+      "id": "cotes-de-porc",
+      "label": "Pork chops",
+      "note": "The same cut under two Intermarché house brands, same price.",
+      "members": [
+        {
+          "name": "Terroirs, une marque Intermarché Côtes de PORC"
+        },
+        {
+          "name": "Jean Rozé, une marque Intermarché Côtes de PORC"
+        }
+      ]
+    },
+    {
+      "id": "riz-basmati",
+      "label": "Basmati rice",
+      "note": "Bag sizes differ a little; for a week's cooking they are the same thing.",
+      "members": [
+        {
+          "name": "Taureau Ailé Riz Basmati"
+        },
+        {
+          "name": "Saint Eloi, une marque Intermarché Riz long basmati BIO"
+        },
+        {
+          "name": "Saint Eloi, une marque Intermarché Basmati de l'Himalaya"
+        },
+        {
+          "name": "Saint Eloi, une marque Intermarché Riz long grain de qualité supérieure basmati origine Inde ou Pakistan naturellement parfumé"
+        }
+      ]
+    },
+    {
+      "id": "cacahuetes-salees",
+      "label": "Salted roasted peanuts",
+      "note": "For scattering over a bún or a salad. Not the peanut butter.",
+      "members": [
+        {
+          "name": "Menguy's Cacahuètes grillées et salées"
+        },
+        {
+          "name": "Bouton d’Or, une marque Intermarché Cacahuètes grillées à l'huile et salées"
+        }
+      ]
+    },
+    {
+      "id": "poulet-pieces",
+      "label": "Chicken pieces — thigh, fillet, aiguillettes",
+      "note": "Charlotte swaps these freely and the 6 September plan does exactly that (the curry runs on Saturday's aiguillettes instead of thighs). Thighs take longer and bring their own fat, so the method still needs reading. Priced per kilo except the Notre Sélection tray, hence the kg weights.",
+      "members": [
+        {
+          "name": "Volaé, une marque Intermarché Cuisse de poulet jaune x4"
+        },
+        {
+          "name": "Volaé, une marque Intermarché Cuisse de poulet jaune déjointée"
+        },
+        {
+          "name": "La Nouvelle Agriculture Aiguillette de poulet"
+        },
+        {
+          "name": "Fermiers de Loué Aiguillettes de poulet jaune"
+        },
+        {
+          "name": "Le Gaulois Filet de poulet extra tendre"
+        },
+        {
+          "name": "Notre Sélection Aiguillettes de poulet",
+          "kg": 0.5
+        }
+      ]
+    }
+  ]
+}
