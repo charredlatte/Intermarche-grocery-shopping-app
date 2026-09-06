@@ -72,7 +72,15 @@
     "batchCooks": true,
     "batchDay": "sunday",
     "batchNote": "One base cooked Sunday that seeds two weeknights.",
-    "leftoversNight": null
+    "leftoversNight": null,
+    "equipment": [
+      "air fryer",
+      "oven",
+      "muffin tin",
+      "casserole dish",
+      "hob"
+    ],
+    "equipmentNote": "Told to Claude on 2026-09-06. The air fryer and the muffin tin were being ignored entirely — use them. Every recipe carries an \"equipment\" array and the Recipes tab filters on it. A muffin tin is twelve holes; batch breakfasts and mini quiches suit it. No microwave, slow cooker, pressure cooker or barbecue is recorded — don't assume one."
   },
   "staples": {
     "_comment": "Auto-detected from purchase history, but pin the ones that must never be dropped.",
@@ -131,5 +139,9 @@
       "merguez"
     ],
     "avoidReason": "All carry heat. The IBS rule outranks authenticity — the recipes say where they depart from the original and why."
+  },
+  "favourites": {
+    "_comment": "Charlotte and her partner star dishes in the page itself, and those live in the shared artifact database under library/favourites — NOT in this repo, and not in the weekly document, so they survive the plan changing. Read them off the page if you need them; nothing here is generated from this file.",
+    "askedFor": "2026-09-06, alongside avocado toast"
   }
 }

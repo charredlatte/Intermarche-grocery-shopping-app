@@ -80,6 +80,16 @@ questions, then a plan, then a line-item list, then the basket.
   guindilla, peperoncino, 'nduja, merguez. All carry heat, and the IBS rule
   outranks authenticity. Where a recipe departs from the original for this
   reason, it says so in its own text.
+- **Every recipe declares its `equipment`.** She has an air fryer, an oven,
+  muffin tins and casserole dishes — recorded in `preferences.cooking.equipment`,
+  and filterable on the Recipes tab. The air fryer and the muffin tin were being
+  ignored entirely until 2026-09-06; use them. Assume nothing else: no microwave,
+  slow cooker or barbecue is recorded.
+- **Favourites live in the page, not the repo.** Stars are written to the shared
+  artifact database at `library/favourites`, deliberately outside
+  `weeks/<weekOf>` so they survive a new plan. Favourited dishes sort to the top
+  of the library and the swap sheet. Nothing about them is generated at build
+  time — don't look for them in `data/`.
 
 ## Intermarché's catalogue cannot be read
 

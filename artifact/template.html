@@ -100,6 +100,25 @@
   }
   .tally b { color: var(--ink); font-weight: 600; }
   .tally-pair { white-space: nowrap; }
+
+  /* ---- favourites and equipment ---- */
+  .fav {
+    appearance: none; border: 0; background: none; cursor: pointer;
+    padding: 0 0 0 .5rem; margin: -.2rem 0;
+    font-size: 1.05rem; line-height: 1; color: var(--ink-3);
+    transition: color .13s, transform .13s;
+  }
+  .fav:hover { color: var(--yuzu); transform: scale(1.12); }
+  .fav[aria-pressed="true"] { color: var(--yuzu); }
+
+  .kit { display: flex; flex-wrap: wrap; gap: .25rem .5rem; margin: -.25rem 0 .55rem; }
+  .kit-item {
+    font: 400 .7rem/1.4 var(--f-mono); color: var(--ink-3);
+    white-space: nowrap;
+  }
+  #favonly[aria-pressed="true"] {
+    background: var(--yuzu-soft); border-color: var(--yuzu); color: var(--yuzu); font-weight: 500;
+  }
   .tally span { color: var(--ink-3); }
 
   /* ---- tabs ---- */
@@ -559,6 +578,13 @@
         <span class="ctl-label">Cuisine</span>
         <div class="chips" id="rcuisine" style="padding:0"></div>
       </div>
+      <div>
+        <span class="ctl-label">What you'll cook it in</span>
+        <div class="chips" id="rkit" style="padding:0"></div>
+      </div>
+      <div class="toolbar">
+        <button class="btn" id="favonly" aria-pressed="false">★ Favourites only</button>
+      </div>
       <div class="active-filters">
         <span id="rec-count"></span>
         <button class="linkbtn" id="rec-clear" hidden>Clear filters</button>
@@ -627,6 +653,13 @@ let qtyAdj  = {};               // product -> override what the recipes asked fo
 let subs    = {};               // product -> buy this one instead
 let dropped = {};               // product -> struck off by hand
 let added   = {};               // key -> { name, qty, section } she added herself
+
+/* Favourites. Not week-scoped like the rest — a dish you love is still a dish
+   you love next week — so they live in their own document and survive the plan
+   changing underneath them. Shared, like everything else here. */
+let favs = new Set();
+let favRef = null;
+const isFav = (slug) => favs.has(slug);
 
 const all = () => ({ ...LIB, ...extra });
 const dishFor = (mealId) => all()[picks[mealId]];
@@ -845,6 +878,11 @@ function applyRemote(d) {
   db = await claude.use("db");
   if (!db) return setSync("off", "Changes stay on this phone");
   weekRef = db.doc("weeks/" + plan.weekOf);
+  favRef = db.doc("library/favourites");
+  favRef.onSnapshot(
+    (snap) => { favs = new Set((snap.data() || {}).slugs || []); renderAll(); },
+    () => { /* the week's own sync line already reports a failure */ },
+  );
   weekRef.onSnapshot(
     (snap) => { applyRemote(snap.data()); setSync("live", "Shared — you and your partner see the same week"); },
     (err) => setSync("off", "Sync stopped (" + err.code + ") — changes stay on this phone"),
@@ -859,6 +897,13 @@ function applyRemote(d) {
 })();
 
 /* ---------- cards ---------- */
+/* Which appliance a dish needs. She has an air fryer, an oven, muffin tins and
+   casserole dishes, so the library says which of them each dish wants. */
+const KIT_ICON = {
+  "air fryer": "◉", "oven": "▣", "muffin tin": "⁘",
+  "casserole dish": "▭", "hob": "◍", "blender": "▽",
+};
+
 const tagClass = (t) =>
   t === "batch cook" ? " is-batch"
   : t === "fast" || t === "make ahead" || t === "no cook" ? " is-fast"
@@ -883,10 +928,15 @@ function card(o) {
       ${o.isSwapped ? '<span class="swapped">swapped</span>' : ""}
       <span class="leader"></span>
       <span class="card-time">${o.minutes} min</span>
+      <button class="fav" type="button" data-fav="${esc(o.slug)}"
+              aria-pressed="${isFav(o.slug)}"
+              aria-label="${isFav(o.slug) ? "Remove" : "Add"} ${esc(r.title)} ${isFav(o.slug) ? "from" : "to"} favourites"
+              title="${isFav(o.slug) ? "One of your favourites" : "Save to favourites"}">${isFav(o.slug) ? "★" : "☆"}</button>
     </div>
     <div class="card-body">
       <h3>${esc(r.title)}</h3>
       <div class="card-meta">${esc(cap(r.cuisine))} &middot; serves ${r.serves} &middot; ${r.prepMinutes} prep + ${r.cookMinutes} cook</div>
+      ${(r.equipment || []).length ? `<div class="kit">${(r.equipment).map((e) => `<span class="kit-item">${KIT_ICON[e] || ""} ${esc(e)}</span>`).join("")}</div>` : ""}
       ${o.leftovers ? '<div class="tags"><span class="tag is-batch">from an earlier pot &middot; nothing to buy</span></div>' : ""}
       ${o.note ? `<p class="card-note">${esc(o.note)}</p>` : ""}
       ${isPack ? `<p class="packnote">${esc(r.packNote)}</p>` : ""}
@@ -940,7 +990,7 @@ function renderWeek() {
   }
 
   const asCard = (m) => card({
-    key: m.id, mealId: m.id, r: m.r, slot: m.slot, minutes: m.minutes,
+    key: m.id, mealId: m.id, slug: picks[m.id], r: m.r, slot: m.slot, minutes: m.minutes,
     note: m.note, isSwapped: m.isSwapped, leftovers: m.leftovers,
     day: state.order === "day" ? null : m.day,
   });
@@ -965,12 +1015,18 @@ function renderWeek() {
 }
 
 /* ---------- recipes tab ---------- */
-const rstate = { q: "", slot: "all", cuisines: new Set() };
+const rstate = { q: "", slot: "all", cuisines: new Set(), kit: new Set(), favsOnly: false };
 
 function renderCuisineChips() {
   const cs = [...new Set(Object.values(all()).map((r) => r.cuisine))].sort();
   $("#rcuisine").innerHTML = cs.map((c) =>
     `<button class="chip" type="button" data-cuisine="${esc(c)}" aria-pressed="${rstate.cuisines.has(c)}">${esc(cap(c))}</button>`).join("");
+  const ks = [...new Set(Object.values(all()).flatMap((r) => r.equipment || []))].sort();
+  $("#rkit").innerHTML = ks.map((k) =>
+    `<button class="chip" type="button" data-kit="${esc(k)}" aria-pressed="${rstate.kit.has(k)}">${KIT_ICON[k] || ""} ${esc(cap(k))}</button>`).join("");
+  const fo = $("#favonly");
+  fo.setAttribute("aria-pressed", String(rstate.favsOnly));
+  fo.textContent = (rstate.favsOnly ? "★" : "☆") + ` Favourites only${favs.size ? " (" + favs.size + ")" : ""}`;
 }
 
 function renderRecipes() {
@@ -982,26 +1038,33 @@ function renderRecipes() {
   }
 
   const q = rstate.q.trim().toLowerCase();
-  const list = Object.entries(lib).filter(([, r]) =>
+  const list = Object.entries(lib).filter(([slug, r]) =>
     (rstate.slot === "all" || r.slot === rstate.slot) &&
     (rstate.cuisines.size === 0 || rstate.cuisines.has(r.cuisine)) &&
+    (!rstate.favsOnly || favs.has(slug)) &&
+    // any ticked appliance, not all of them — same as the cuisine chips. Ticking
+    // the air fryer and the muffin tin means "show me either", not "needs both".
+    (rstate.kit.size === 0 || [...rstate.kit].some((k) => (r.equipment || []).includes(k))) &&
     (!q || (r.title + " " + r.short + " " + r.cuisine + " " + (r.tags || []).join(" ") + " " +
             (r.ingredients || []).map((i) => i.item + " " + i.product).join(" ") + " " +
             (r.steps || []).join(" ")).toLowerCase().includes(q)))
-    .sort((a, b) => a[1].title.localeCompare(b[1].title));
+    .sort((a, b) => (favs.has(b[0]) - favs.has(a[0])) || a[1].title.localeCompare(b[1].title));
 
   const total = Object.keys(lib).length;
-  const filtered = !!q || rstate.slot !== "all" || rstate.cuisines.size > 0;
+  const filtered = !!q || rstate.slot !== "all" || rstate.cuisines.size > 0 ||
+                   rstate.kit.size > 0 || rstate.favsOnly;
   $("#rec-count").textContent = filtered ? `${list.length} of ${total} dishes` : `${total} dishes in the library`;
   $("#rec-clear").hidden = !filtered;
 
   if (!list.length) {
-    $("#rec-out").innerHTML = `<div class="empty">No dish matches that yet. The library grows every week.</div>`;
+    $("#rec-out").innerHTML = `<div class="empty">${rstate.favsOnly && !favs.size
+      ? "No favourites yet — tap the star on any dish to keep it here."
+      : "No dish matches that yet. The library grows every week."}</div>`;
     return;
   }
   const inner = list.map(([k, r]) => {
     const uniq = [...new Set(servedIn[k] || [])];
-    return card({ key: "r-" + k, r, day: null, slot: r.slot,
+    return card({ key: "r-" + k, slug: k, r, day: null, slot: r.slot,
                   minutes: r.prepMinutes + r.cookMinutes,
                   served: uniq.length ? uniq.join(", ") : null });
   }).join("");
@@ -1196,7 +1259,8 @@ function alternatives(mealId) {
   const budget = m.slot === "dinner" ? 999 : 30;
   return Object.entries(lib)
     .filter(([slug, r]) => slug !== cur && r.slot === m.slot && (r.prepMinutes + r.cookMinutes) <= budget)
-    .sort((a, b) => (a[1].prepMinutes + a[1].cookMinutes) - (b[1].prepMinutes + b[1].cookMinutes));
+    .sort((a, b) => (favs.has(b[0]) - favs.has(a[0])) ||
+                    (a[1].prepMinutes + a[1].cookMinutes) - (b[1].prepMinutes + b[1].cookMinutes));
 }
 
 function openSwap(mealId) {
@@ -1211,10 +1275,22 @@ function openSwap(mealId) {
   $("#sheet-restore").hidden = picks[mealId] === baseline[mealId];
   $("#sheet-alts").innerHTML = alternatives(mealId).map(([slug, r]) =>
     `<button class="alt" type="button" data-pick="${esc(slug)}">
-       <span class="alt-name">${esc(r.title)}</span><span class="leader"></span>
+       <span class="alt-name">${isFav(slug) ? "★ " : ""}${esc(r.title)}</span><span class="leader"></span>
        <span class="alt-meta">${cap(r.cuisine)} &middot; ${r.prepMinutes + r.cookMinutes} min</span>
      </button>`).join("");
   $("#sheet").showModal();
+}
+
+async function persistFavs() {
+  if (!favRef) return;
+  try { await favRef.set({ slugs: [...favs], updatedAt: Date.now() }); }
+  catch (e) { setSync("off", "Favourite saved on this phone only — " + (e && e.code ? e.code : "not saved")); }
+}
+
+function toggleFav(slug) {
+  if (favs.has(slug)) favs.delete(slug); else favs.add(slug);
+  renderAll();
+  persistFavs();
 }
 
 function setPick(mealId, slug) {
@@ -1540,6 +1616,8 @@ $("#week-clear").addEventListener("click", () => {
 $("#rec-clear").addEventListener("click", () => {
   rstate.q = ""; rstate.slot = "all"; rstate.cuisines.clear();
   $("#rsearch").value = "";
+  rstate.kit.clear();
+  rstate.favsOnly = false;
   $$("#rslot button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.v === "all")));
   renderCuisineChips(); renderRecipes();
 });
@@ -1559,6 +1637,18 @@ $("#shuffle").addEventListener("click", () => {
 $("#resetweek").addEventListener("click", () => { picks = { ...baseline }; renderAll(); persist(); });
 
 document.addEventListener("click", (e) => {
+  const fav = e.target.closest("button[data-fav]");
+  if (fav) return toggleFav(fav.dataset.fav);
+  const kit = e.target.closest("button[data-kit]");
+  if (kit) {
+    const k = kit.dataset.kit;
+    rstate.kit.has(k) ? rstate.kit.delete(k) : rstate.kit.add(k);
+    renderCuisineChips(); return renderRecipes();
+  }
+  if (e.target.closest("#favonly")) {
+    rstate.favsOnly = !rstate.favsOnly;
+    renderCuisineChips(); return renderRecipes();
+  }
   const sw = e.target.closest("button[data-swap]");
   if (sw) return openSwap(sw.dataset.swap);
   const alt = e.target.closest("button[data-pick]");

@@ -137,6 +137,10 @@
       "Lid on, 20 minutes. Add the carrot coins, 10 minutes more. Add the pepper strips for the last 5 so they keep some bite.",
       "Off the heat, squeeze in the lemon and stir through most of the coriander. Taste for salt.",
       "Serve a third over basmati. The rest is another dinner and a lunch — cool it uncovered before it goes in the fridge."
+    ],
+    "equipment": [
+      "casserole dish",
+      "hob"
     ]
   },
   "boeuf-poivrons": {
@@ -244,6 +248,9 @@
       "Onion wedges into the clear side, 2 minutes. Garlic and ginger, 30 seconds.",
       "Peppers in, toss everything together, 3 minutes — they should still squeak.",
       "Both soys down the hot side of the pan so they sizzle and catch, toss once, off the heat."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "yakisoba-dinde": {
@@ -349,6 +356,9 @@
       "Lid off, carrot ribbons and garlic, 1 minute.",
       "Loosen the noodles under the tap and add them with their sachet, plus the turkey and any juices.",
       "Both soys, then toss hard for 2 minutes until everything is glossy."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "donburi-teriyaki": {
@@ -430,6 +440,9 @@
       "Pour in the yakitori sauce. It thickens fast — turn the chicken through it for a minute until lacquered, then off before the sugar catches.",
       "Blanch the broccoli in the egg water for 2 minutes.",
       "Rice into deep bowls, chicken and all the pan sauce over, broccoli alongside. Halve the eggs on top, scatter the nori."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "gyoza-brocoli": {
@@ -527,6 +540,9 @@
       "Add the sliced garlic, the ginger and a splash of water, clamp a lid on, 3 minutes.",
       "Lid off, a squeeze of lemon, and let any remaining water go.",
       "Serve with the gyoza and rice, soy for dipping."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "porc-soja-gingembre": {
@@ -634,6 +650,9 @@
       "Same pan, heat down: onion and pepper, 4 minutes, scraping up everything stuck to the base.",
       "Pour in the reserved marinade and 3 tbsp water. Bubble 2 minutes until syrupy.",
       "Chops back in with any resting juices, turn once to coat, serve over rice."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "riz-saute-lardons": {
@@ -725,6 +744,9 @@
       "Rice in, breaking up the clumps with the back of a spatula. Spread it out and leave it a full minute at a time so it toasts rather than steams — 4 minutes in total.",
       "Push everything aside, beat the eggs into the clear space, let them set for 20 seconds, then fold them through.",
       "Lardons back in, soy round the edge of the pan, one more toss."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "poulet-citron-gingembre": {
@@ -822,6 +844,9 @@
       "Ginger and garlic in the same pan, 30 seconds.",
       "Lemon juice, soy, a teaspoon of sugar and 100 ml water. Scrape the base and let it bubble down for 2 minutes until it coats a spoon.",
       "Chicken and zest back in, turn to coat. Broccoli steamed alongside, rice underneath."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "dahl-lentilles-coco": {
@@ -938,6 +963,9 @@
       "Drained lentils and the coconut milk. Simmer uncovered, 12 minutes, stirring now and then so it does not catch.",
       "It should be thick enough to hold a furrow when you drag the spoon through. Loosen with water if it goes past that.",
       "Salt properly — lentils take more than you expect — and stir the coriander through at the end."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "pho-express-boeuf": {
@@ -1044,6 +1072,9 @@
       "Brown the beef hard in a separate pan, 4 minutes, and put it on the noodles.",
       "Fish out the onion and ginger. Taste the broth — it should be a little too savoury on its own, because the noodles will flatten it.",
       "Pour the boiling broth over. Carrot ribbons, a mountain of coriander, lemon at the table."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "aubergines-miso-soja": {
@@ -1136,6 +1167,10 @@
       "Mix the sweet soy, soy, grated ginger and crushed garlic.",
       "Turn the halves over, spoon the glaze into the scored faces, and roast 7 minutes more until the tops are dark and bubbling.",
       "Serve on rice with a soft egg, spooning the pan juices over."
+    ],
+    "equipment": [
+      "oven",
+      "hob"
     ]
   },
   "gratin-courgettes": {
@@ -1217,6 +1252,11 @@
       "Off the heat, stir in the cooked rice and two-thirds of the emmental, then the beaten eggs. Season well.",
       "Into a baking dish, the rest of the cheese on top.",
       "30 minutes until set and blistered. Let it stand 10 minutes before cutting — it slices instead of slumping."
+    ],
+    "equipment": [
+      "oven",
+      "casserole dish",
+      "hob"
     ]
   },
   "gnocchi-pesto": {
@@ -1291,6 +1331,9 @@
       "Push to one side, cherry tomatoes into the space, 3 minutes until they split and weep.",
       "Garlic, 30 seconds, then toss everything together with the pesto rosso and a splash of water to loosen it.",
       "Off the heat, tear the mozzarella over so it softens without turning to rubber."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "farfalles-pesto-poulet": {
@@ -1365,6 +1408,9 @@
       "Lift the pasta straight across with a spider or tongs, dripping wet, plus a ladle of the water. Do not drain it into the sink — that starchy water is what makes the sauce cling.",
       "Pesto in off the heat, toss hard for a minute until it goes glossy rather than oily.",
       "Parmesan at the table."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "pizza-maison": {
@@ -1438,6 +1484,9 @@
       "Sauce over the dough, thin — a bare spoonful spread to the edges. Grate the garlic into it.",
       "Slide the dough onto the hot tray, mozzarella and halved cherry tomatoes over.",
       "12 to 15 minutes until the edge is blistered and the base lifts stiff off the tray."
+    ],
+    "equipment": [
+      "oven"
     ]
   },
   "poulet-roti-legumes": {
@@ -1522,6 +1571,10 @@
       "45 minutes, turning the potatoes once at the half hour.",
       "The chicken is done when the skin is genuinely crisp and the thickest part gives no pink juice.",
       "Green beans boiled for 6 minutes at the very end. Squeeze the roasted garlic out of its skins over everything."
+    ],
+    "equipment": [
+      "oven",
+      "hob"
     ]
   },
   "tortilla-pommes-terre": {
@@ -1584,6 +1637,9 @@
       "Reserved oil in the pan on medium. Everything in, flatten the top, 4 minutes until the edge sets.",
       "The flip: plate over the pan, invert with confidence rather than care, slide it back in.",
       "3 minutes more. The centre should still wobble slightly. Rest 10 minutes before cutting."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "saucisses-lentilles": {
@@ -1667,6 +1723,9 @@
       "Drained lentils in with a splash of water, 3 minutes to warm through and pick up everything in the pan.",
       "Season hard — lentils are flat without enough salt and a good grind of pepper.",
       "Sausages back on top, cornichons on the side for the sharpness."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "bolognaise-maison": {
@@ -1771,6 +1830,9 @@
       "Tomato sauce plus half a jar of water. Simmer, lid ajar, 20 minutes.",
       "Taste. If it is sharp, a pinch of sugar; if it is flat, more salt.",
       "Pasta cooked a minute under, finished in the sauce with a splash of its water. Parmesan at the table."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "parmigiana-aubergines": {
@@ -1857,6 +1919,10 @@
       "Layer in a dish: sauce, aubergine, torn mozzarella, a little parmesan. Repeat, finishing with sauce and all the remaining parmesan.",
       "Bake 15 minutes at 200°C until the top is bubbling and dark at the corners.",
       "Rest 10 minutes. Bread to wipe the dish."
+    ],
+    "equipment": [
+      "oven",
+      "hob"
     ]
   },
   "tartine-mortadelle": {
@@ -1929,6 +1995,9 @@
       "Torn mozzarella and halved cherry tomatoes over, back under for 5 minutes until the cheese is molten and blistered in spots.",
       "Out of the grill, then drape the mortadella over in loose folds. It should warm from the bread, not cook — grilled mortadella goes tough and loses its point.",
       "Black pepper, olive oil, and the salad alongside."
+    ],
+    "equipment": [
+      "oven"
     ]
   },
   "soupe-legumes": {
@@ -2024,6 +2093,10 @@
       "Water to just cover — no more, or you dilute it. Simmer 20 minutes until the potato falls apart against the spoon.",
       "Blend, or leave it chunky. Season hard, and a final knob of butter stirred in off the heat.",
       "Bread on the side."
+    ],
+    "equipment": [
+      "hob",
+      "blender"
     ]
   },
   "onigiri-oeuf": {
@@ -2095,6 +2168,9 @@
       "Wet your hands. Flatten a handful of rice in your palm, a spoonful of egg in the middle, close the rice over it.",
       "Press into a triangle by cupping one hand at a right angle and turning a third at a time. Three turns, firm but not crushing.",
       "A band of nori round the base of each. They keep until lunchtime at room temperature."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "bun-vermicelles": {
@@ -2189,6 +2265,9 @@
       "Noodles in the bottom of the box. Cucumber and carrot in separate piles, coriander over everything.",
       "Crush the peanuts under the flat of a knife and scatter.",
       "If it is travelling, keep the dressing in a jar and pour it at the table."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "salade-mache-oeuf": {
@@ -2268,6 +2347,9 @@
       "Mâche in the bowl — dress it at the very last moment, it collapses fast.",
       "Cucumber and grated carrot over the top.",
       "Peel and halve the eggs, set them on, crushed peanuts, a grind of pepper."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "baguette-boursin": {
@@ -2330,6 +2412,9 @@
       "Boursin on both cut faces, thickly.",
       "Cucumber in overlapping slices, mâche pressed in on top.",
       "Wrap tightly in paper and leave it half an hour if you can — better once the bread has softened against the cheese."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "salade-pois-chiches": {
@@ -2415,6 +2500,9 @@
       "Red onion sliced as thin as you can, rinsed under cold water for 10 seconds to take the raw edge off.",
       "Everything together with the oil from the cheese jar, lemon juice and plenty of pepper.",
       "Cheese cubes folded through last so they keep their shape."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "salade-lentilles": {
@@ -2495,6 +2583,9 @@
       "Lentils, grated carrot, celery and chopped cornichons folded through.",
       "Season generously and leave it 10 minutes — lentils absorb dressing and taste under-seasoned straight away.",
       "Mâche and a halved egg on top at the last moment."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "sandwich-mortadelle": {
@@ -2568,6 +2659,9 @@
       "Mortadella folded into loose ruffles rather than laid flat — it eats better with air in it.",
       "Cornichons sliced lengthways along the length of the sandwich so every bite gets one.",
       "Lettuce, close it, press it firmly, wrap in paper."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "riz-saute-restes": {
@@ -2637,6 +2731,9 @@
       "Cold rice in, broken up, spread flat and left for a minute at a time so it toasts — 3 minutes total.",
       "Push aside, egg beaten into the space, 20 seconds, then folded through.",
       "Soy round the edge of the pan, one toss, done. Add any leftover meat or vegetables with the rice."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "salade-avocat-oeuf": {
@@ -2717,6 +2814,9 @@
       "Lemon over the avocado immediately, before anything else. That is what keeps it green.",
       "Mâche, halved tomatoes, avocado, halved eggs. Olive oil, salt, a lot of pepper.",
       "Bread on the side."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "salade-tomates-mozzarella": {
@@ -2780,6 +2880,9 @@
       "Tear the mozzarella rather than slicing it — the ragged edges hold the oil.",
       "Olive oil, black pepper. No vinegar; the tomato is acid enough.",
       "Bread to mop the plate."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "roules-cannelle": {
@@ -2852,6 +2955,9 @@
       "Cut into 10 with a serrated knife, sawing rather than pressing, and lay them cut-side up with a good gap between — they spread. Squash each one down slightly.",
       "Brush the tops with almond milk and bake 18–20 minutes, until the tops are set and the edges are properly brown. The pale ones are underdone in the middle.",
       "Cool on the tray 5 minutes; the centres firm up as they go. Freeze what you will not eat in two days, and take one out the night before or give it 30 seconds in the microwave."
+    ],
+    "equipment": [
+      "oven"
     ]
   },
   "sandwich-matin": {
@@ -2934,6 +3040,9 @@
       "Halve the cherry tomatoes, salt them on the board, and give them a minute. Salting first draws out the water that would otherwise run into the crumb.",
       "Charcuterie in loose folds rather than flat sheets, cheese over, then the tomatoes cut-side down.",
       "Plenty of black pepper, close, press gently, eat."
+    ],
+    "equipment": [
+      "oven"
     ]
   },
   "truite-amandes-poireaux": {
@@ -3019,6 +3128,9 @@
       "Turn, 90 seconds, then lift onto the plates.",
       "Almonds into the pan, 1 minute until they smell toasted and go pale gold, then the lemon juice, which will hiss and lift everything off the base.",
       "Spoon the almonds and pan juices over, leeks and potatoes alongside."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "poulet-basquaise": {
@@ -3149,6 +3261,10 @@
       "Tomatoes in, chicken back on top with any juices, lid on, 25 minutes at a bare simmer.",
       "Lid off for the last 5 to thicken the sauce. Taste hard for salt — peppers and tomato both swallow it.",
       "Serve over rice. It is better the next day, so it seeds a second dinner."
+    ],
+    "equipment": [
+      "casserole dish",
+      "hob"
     ]
   },
   "gratin-patates-douces-chevre": {
@@ -3248,6 +3364,9 @@
       "Grated cheese over the top, cover with foil, 25 minutes.",
       "Foil off, 10 minutes more, until the top is blistered and the edges have gone dark and sweet. That caramelised rim is the best part of the dish; do not pull it early.",
       "Stand 10 minutes before cutting, and serve with the rocket dressed in oil and lemon."
+    ],
+    "equipment": [
+      "oven"
     ]
   },
   "omelette-champignons": {
@@ -3333,6 +3452,9 @@
       "Beat the eggs with a fork just until the yolks break up. Over-beating makes a rubbery omelette.",
       "Eggs over the mushrooms on a medium heat, and drag the setting edges into the middle with a spatula for about 90 seconds.",
       "Emmental and parsley over one half while the top is still glossy and wet. Fold, slide onto a plate, and let the residual heat finish it."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "soupe-poireaux-pommes-terre": {
@@ -3417,6 +3539,10 @@
       "Potatoes and stock in. Simmer 15 minutes, until a knife slides through a cube with no resistance.",
       "Blend about two-thirds of it and stir it back, so there is still something to chew.",
       "Season properly — it will take more salt and pepper than you expect — and serve with the baguette."
+    ],
+    "equipment": [
+      "hob",
+      "blender"
     ]
   },
   "risotto-safran": {
@@ -3518,6 +3644,9 @@
       "Now a ladle of hot stock at a time, stirring, waiting until each is nearly absorbed before the next. About 18 minutes. Add the saffron stock halfway.",
       "When the rice is tender with the faintest bite, take it off the heat, beat in the butter and parmesan hard, and let it sit 2 minutes. That final beating is what makes it creamy, not cream.",
       "It should spread slowly on the plate. If it stands up in a mound, loosen it with another splash of stock."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "carbonara-pancetta": {
@@ -3591,6 +3720,9 @@
       "Scoop out a mugful of pasta water before draining. This is the one step people skip and the one that matters.",
       "Drain the pasta, tip it into the pancetta pan OFF THE HEAT, and toss for 30 seconds so the pan cools slightly.",
       "Now the egg mixture, and toss hard, adding pasta water a splash at a time until it turns into a glossy sauce that coats every piece. Off the heat throughout — on the heat you get scrambled egg, and there is no coming back from it."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "lasagnes-legumes-ricotta": {
@@ -3708,6 +3840,10 @@
       "Layer: vegetables, sheets, ricotta spread thin, and repeat. Finish with vegetables, then the grated cheese.",
       "40 minutes, until the top is brown and a knife goes through the sheets with no resistance.",
       "Rest 15 minutes before cutting. Straight out of the oven it slumps; rested, it slices."
+    ],
+    "equipment": [
+      "oven",
+      "hob"
     ]
   },
   "puttanesca-sans-piment": {
@@ -3811,6 +3947,9 @@
       "Olives and capers, 1 minute, then the tomato sauce. Simmer 8 minutes.",
       "Drain the pasta a minute early, keeping a mugful of water, and finish it in the sauce for that last minute with a splash of the water.",
       "Parsley through at the end. Taste before you add any salt at all."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "salade-roquette-parmesan-pommes": {
@@ -3906,6 +4045,9 @@
       "Dress the rocket with olive oil first, then a little balsamic, then salt. Oil before acid coats the leaves and stops them collapsing.",
       "Shave the parmesan over with a peeler — shards, not gratings, so you get a proper salty hit now and then.",
       "Pine nuts over, black pepper, and the baguette alongside."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "pates-saumon-fume-citron": {
@@ -3994,6 +4136,9 @@
       "Drain the pasta, keeping a mugful of water. Into the shallot pan, off the heat.",
       "Ricotta mixture in, tossing and loosening with pasta water until it coats.",
       "Only now tear in the salmon and fold it through the residual heat, with the herbs. Cook it properly and it seizes into salty threads; warmed like this it stays soft."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "tortilla-patatas": {
@@ -4070,6 +4215,9 @@
       "Beat the eggs with salt, tip in the hot potatoes, and leave the lot to sit for 10 minutes. This soak is what makes the tortilla hold together instead of falling apart.",
       "Two tablespoons of the reserved oil into a 24 cm non-stick pan on medium. Mixture in, and cook 5 minutes, easing the edges in with a spatula.",
       "Cover with a plate, flip the whole thing over — commit, do not hesitate — slide it back in and give it 3 more minutes. The middle should still be a little loose."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "gambas-ail-persil": {
@@ -4159,6 +4307,9 @@
       "Turn them, 60 seconds more, and take the pan off as soon as they have just turned opaque. They keep cooking in the hot oil, so pull them early.",
       "Parsley and a squeeze of lemon in, swirl once.",
       "Straight to the table in the pan, with the baguette. The oil is the point as much as the prawns."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "pisto-manchego": {
@@ -4288,6 +4439,1376 @@
       "Now leave it alone on a low heat for 15 minutes, stirring rarely, until it is jammy and the oil separates out at the edges. That separation is how you know it is done; before that it is just hot vegetables.",
       "Fry the eggs hard in olive oil so the whites go lacy and crisp at the edges.",
       "Pisto into bowls, egg on top, manchego shaved over, baguette to mop."
+    ],
+    "equipment": [
+      "hob"
+    ]
+  },
+  "avocado-toast": {
+    "title": "Avocado toast, properly seasoned",
+    "cuisine": "american",
+    "slot": "breakfast",
+    "kind": "recipe",
+    "prepMinutes": 6,
+    "cookMinutes": 6,
+    "serves": 2,
+    "equipment": [
+      "air fryer",
+      "hob"
+    ],
+    "tags": [
+      "fast",
+      "no chilli",
+      "vegetarian",
+      "uses eggs"
+    ],
+    "short": "The whole dish is seasoning. Under-salted avocado is the reason most versions of this taste of nothing.",
+    "ingredients": [
+      {
+        "item": "avocado",
+        "qty": "2, ripe",
+        "product": "Le Choix du Primeur Avocat AFFINE",
+        "buy": {
+          "amount": 2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "bread",
+        "qty": "4 thick slices",
+        "product": "Cuit sur place Baguette La Généreuse",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "eggs",
+        "qty": "2",
+        "product": "Volaé, une marque Intermarché Œufs frais de poules élevées au sol",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "cherry tomatoes",
+        "qty": "a handful",
+        "product": "Petit prix Tomates cerises allongées",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "lemon",
+        "qty": "half",
+        "product": "Le Choix du Primeur Citrons JAUNES",
+        "buy": {
+          "amount": 0.28,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "olive oil, salt, black pepper",
+        "qty": "",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Bread into the air fryer at 190°C for 4 minutes, or under a grill. You want it dry and crisp right through — soft toast collapses under the avocado.",
+      "Poach or fry the eggs while it goes. Six-minute boiled works equally well if you would rather not stand over a pan.",
+      "Halve the avocados and scoop them into a bowl. Mash roughly with a fork — keep some lumps, a smooth purée is baby food.",
+      "Now season it much harder than feels right: the lemon juice, a real pinch of salt, plenty of pepper, a slug of olive oil. Taste it. Then add a bit more salt. This is the entire recipe.",
+      "Spread thickly on the toast, halved cherry tomatoes over, egg on top, one last grind of pepper."
+    ]
+  },
+  "pilons-airfryer-citron": {
+    "title": "Air fryer chicken drumsticks with lemon and thyme",
+    "cuisine": "french",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 25,
+    "serves": 2,
+    "equipment": [
+      "air fryer"
+    ],
+    "tags": [
+      "no chilli",
+      "dairy-free"
+    ],
+    "short": "Drumsticks in the air fryer come out with skin like crackling and no oven to heat. Twenty-five minutes, one basket.",
+    "ingredients": [
+      {
+        "item": "chicken drumsticks",
+        "qty": "1 pack",
+        "product": "Plukon Pilons de poulet",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "lemon",
+        "qty": "1",
+        "product": "Le Choix du Primeur Citrons JAUNES",
+        "buy": {
+          "amount": 0.28,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "3 cloves, crushed",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "thyme",
+        "qty": "several sprigs",
+        "product": "Thym frais",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.9
+        }
+      },
+      {
+        "item": "potatoes",
+        "qty": "400 g, in chunks",
+        "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "salad",
+        "qty": "to serve",
+        "product": "Saint Eloi, une marque Intermarché Mélange de salades mâche et roquette prêt à l'emploi",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      }
+    ],
+    "steps": [
+      "Dry the drumsticks with kitchen paper — genuinely dry, all over. Moisture is the only thing standing between you and crisp skin.",
+      "Toss with olive oil, salt, pepper, the crushed garlic, thyme leaves and the zest of the lemon.",
+      "Air fryer to 200°C. Drumsticks in a single layer, not touching. Stacked, they steam each other and the skin stays flabby.",
+      "18 minutes, turning once at 10. Add the potato chunks around them for the last 12, tossed in a little oil.",
+      "Check the thickest drumstick at the bone — the juices should run clear with no pink at all.",
+      "Squeeze the lemon over everything the moment it comes out, while it is hot enough to sizzle. Salad alongside."
+    ]
+  },
+  "frites-patates-douces-airfryer": {
+    "title": "Air fryer sweet potato fries",
+    "cuisine": "american",
+    "slot": "lunch",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "serves": 2,
+    "equipment": [
+      "air fryer"
+    ],
+    "tags": [
+      "fast",
+      "no chilli",
+      "vegetarian",
+      "dairy-free"
+    ],
+    "short": "The cornflour is not optional — it is the only way sweet potato goes crisp instead of floppy.",
+    "ingredients": [
+      {
+        "item": "sweet potatoes",
+        "qty": "600 g",
+        "product": "Le Choix du Primeur Patates DOUCES",
+        "buy": {
+          "amount": 0.6,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "cornflour",
+        "qty": "1 tbsp",
+        "product": "Maïzena fécule de maïs",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.8
+        }
+      },
+      {
+        "item": "mayonnaise",
+        "qty": "to dip",
+        "product": "Bouton d’Or, une marque Intermarché Mayonnaise",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "1 clove, for the dip",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.05,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "olive oil, salt",
+        "qty": "",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Cut the sweet potatoes into batons about a centimetre thick. Even thickness matters more than the exact size — mixed sizes give you burnt thin ones and raw fat ones.",
+      "Soak them in cold water for 10 minutes to pull out surface starch, then dry them thoroughly. Wet chips steam.",
+      "Toss with a tablespoon of cornflour until dusty, then a tablespoon of oil. Cornflour first, oil second, or it clumps.",
+      "Air fryer 200°C, single layer, 18–20 minutes, shaking the basket twice. Cook in two batches rather than crowding it.",
+      "Salt the moment they come out, not before — salt in the basket draws water and softens them.",
+      "Stir the crushed garlic into the mayonnaise for a dip."
+    ]
+  },
+  "dinde-panee-airfryer": {
+    "title": "Air fryer breaded turkey escalope",
+    "cuisine": "italian",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 12,
+    "cookMinutes": 14,
+    "serves": 2,
+    "equipment": [
+      "air fryer"
+    ],
+    "tags": [
+      "fast",
+      "no chilli"
+    ],
+    "short": "A milanese without a pan of hot oil. Parmesan in the crumb is what makes it taste of something.",
+    "ingredients": [
+      {
+        "item": "turkey escalopes",
+        "qty": "2 thin",
+        "product": "Volaé, une marque Intermarché Escalopes de dinde extra fines x2",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "breadcrumbs",
+        "qty": "80 g",
+        "product": "Chapelure",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.4
+        }
+      },
+      {
+        "item": "parmesan",
+        "qty": "30 g, grated",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Grana Padano AOP râpé",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "egg",
+        "qty": "1, beaten",
+        "product": "Volaé, une marque Intermarché Œufs frais de poules élevées au sol",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "flour",
+        "qty": "3 tbsp",
+        "product": "Top Budget Farine de blé Type 55",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "lemon",
+        "qty": "half, in wedges",
+        "product": "Le Choix du Primeur Citrons JAUNES",
+        "buy": {
+          "amount": 0.28,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "rocket",
+        "qty": "to serve",
+        "product": "Saint Eloi, une marque Intermarché Roquette prête à l'emploi déjà lavée",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      }
+    ],
+    "steps": [
+      "Three shallow plates: seasoned flour, beaten egg, and the breadcrumbs mixed with the parmesan.",
+      "Pat the escalopes dry, then flour, egg, crumb — pressing the crumb on firmly. Shake off the excess flour properly or the coating slides off in sheets.",
+      "Spray or brush both sides with oil. An air fryer will not brown a dry crumb; it just goes pale and dusty.",
+      "190°C, 7 minutes, flip, 5–7 minutes more until deep gold.",
+      "Lemon squeezed over, rocket alongside dressed in oil and salt."
+    ]
+  },
+  "legumes-rotis-airfryer": {
+    "title": "Air fryer roasted vegetables with brebis",
+    "cuisine": "french",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 22,
+    "serves": 2,
+    "equipment": [
+      "air fryer"
+    ],
+    "tags": [
+      "fast",
+      "no chilli",
+      "vegetarian"
+    ],
+    "short": "Courgette, pepper and aubergine charred hard, then brebis crumbled over while it is still hot enough to soften.",
+    "ingredients": [
+      {
+        "item": "courgette",
+        "qty": "1",
+        "product": "Le Choix du Primeur Courgettes LONGUES",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "red pepper",
+        "qty": "1",
+        "product": "Le Choix du Primeur Poivron ROUGE",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "aubergine",
+        "qty": "1 small",
+        "product": "Le Choix du Primeur Aubergines VIOLETTES",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "red onion",
+        "qty": "1",
+        "product": "Le Choix du Primeur Oignons ROUGES",
+        "buy": {
+          "amount": 0.15,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "brebis with herbs",
+        "qty": "1 pack, crumbled",
+        "product": "Salakis Fromage 100% brebis herbes de Provence",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "balsamic vinegar",
+        "qty": "1 tbsp",
+        "product": "Vinaigre balsamique",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 2.8
+        }
+      },
+      {
+        "item": "baguette",
+        "qty": "to serve",
+        "product": "Cuit sur place Baguette La Généreuse",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Bread and cheese"
+        }
+      }
+    ],
+    "steps": [
+      "Cut everything to roughly 2 cm. Bigger than you would for the oven — an air fryer moves a lot of air and small pieces dry out.",
+      "Toss with olive oil and salt, then into the basket at 200°C.",
+      "20 minutes, shaking hard every 7. You are after blackened edges in places, not an even golden colour; the charred bits are the flavour.",
+      "Tip into a warm bowl, splash the balsamic over while it steams, and toss.",
+      "Crumble the brebis over so it half melts, and eat with the baguette."
+    ]
+  },
+  "muffins-oeufs-legumes": {
+    "title": "Egg and vegetable muffins",
+    "cuisine": "american",
+    "slot": "breakfast",
+    "kind": "recipe",
+    "prepMinutes": 12,
+    "cookMinutes": 20,
+    "serves": 4,
+    "equipment": [
+      "muffin tin",
+      "oven"
+    ],
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "vegetarian",
+      "uses eggs"
+    ],
+    "short": "Twelve at a time, good cold for three days. A breakfast for the mornings you don't want another sandwich.",
+    "ingredients": [
+      {
+        "item": "eggs",
+        "qty": "8",
+        "product": "Volaé, une marque Intermarché Œufs frais de poules élevées au sol",
+        "buy": {
+          "amount": 2,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "red pepper",
+        "qty": "1, finely diced",
+        "product": "Le Choix du Primeur Poivron ROUGE",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "courgette",
+        "qty": "1, grated and squeezed",
+        "product": "Le Choix du Primeur Courgettes LONGUES",
+        "buy": {
+          "amount": 0.25,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "grated cheese",
+        "qty": "100 g",
+        "product": "Pâturages, une marque Intermarché 3 fromages râpés",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "1, finely chopped",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "flat-leaf parsley",
+        "qty": "a handful",
+        "product": "Persil plat",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.1
+        }
+      }
+    ],
+    "steps": [
+      "Oven to 180°C. Oil a twelve-hole muffin tin properly, including the top surface between the holes — egg welds itself to bare metal.",
+      "Grate the courgette and squeeze it dry in a clean cloth. Skip this and you get twelve wet, collapsed pucks.",
+      "Soften the onion and pepper in a pan for 5 minutes; raw onion in the mix stays crunchy and sharp.",
+      "Beat the eggs with plenty of salt and pepper, stir in the vegetables, cheese and parsley.",
+      "Fill each hole about three-quarters. They rise like soufflés and then settle, so leave the room.",
+      "20 minutes, until puffed and just set with no wobble at the centre. Cool 5 minutes in the tin before easing them out with a knife."
+    ]
+  },
+  "muffins-banane-chocolat": {
+    "title": "Banana and dark chocolate muffins",
+    "cuisine": "american",
+    "slot": "breakfast",
+    "kind": "recipe",
+    "prepMinutes": 12,
+    "cookMinutes": 22,
+    "serves": 4,
+    "equipment": [
+      "muffin tin",
+      "oven"
+    ],
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "vegetarian",
+      "uses eggs"
+    ],
+    "short": "The blacker the bananas the better. Dairy-free — it runs on the almond milk you already buy.",
+    "ingredients": [
+      {
+        "item": "bananas",
+        "qty": "3, very ripe",
+        "product": "Le Choix du Primeur Bananes",
+        "buy": {
+          "amount": 0.4,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "flour",
+        "qty": "250 g",
+        "product": "Top Budget Farine de blé Type 55",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "sugar",
+        "qty": "100 g",
+        "product": "Daddy Sucre en poudre",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "eggs",
+        "qty": "2",
+        "product": "Volaé, une marque Intermarché Œufs frais de poules élevées au sol",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "almond milk",
+        "qty": "100 ml",
+        "product": "Bjorg Boisson végétale Lait d'amande vanille BIO",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "dark chocolate chips",
+        "qty": "100 g",
+        "product": "Vahiné Pépites de chocolat noir",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "baking powder",
+        "qty": "2 tsp",
+        "product": "Levure chimique",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.2
+        }
+      },
+      {
+        "item": "oil and a pinch of salt",
+        "qty": "",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Oven to 190°C, papers in the muffin tin. Bananas that have gone black in the fruit bowl are the ones you want — they are sweeter and mash to nothing.",
+      "Mash the bananas thoroughly, then beat in the sugar, eggs, almond milk and 80 ml of oil.",
+      "Flour, baking powder and salt sifted over the top, plus the chocolate chips.",
+      "Fold it about ten times with a spatula and stop while it still looks lumpy and undermixed. Beating a muffin batter smooth develops the gluten and gives you rubber.",
+      "Divide between twelve papers, right to the top for a good dome.",
+      "22 minutes, until a skewer comes out with a crumb or two but no wet batter. Cool in the tin 5 minutes."
+    ]
+  },
+  "mini-quiches-muffin": {
+    "title": "Mini quiches lorraines",
+    "cuisine": "french",
+    "slot": "lunch",
+    "kind": "recipe",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "serves": 4,
+    "equipment": [
+      "muffin tin",
+      "oven"
+    ],
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "uses eggs"
+    ],
+    "short": "A whole quiche's worth in twelve, cooked in a third of the time and easy to carry.",
+    "ingredients": [
+      {
+        "item": "shortcrust pastry",
+        "qty": "1 roll",
+        "product": "Pâte brisée prête à dérouler",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.7
+        }
+      },
+      {
+        "item": "lardons",
+        "qty": "150 g",
+        "product": "Herta Lardons nature",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "eggs",
+        "qty": "4",
+        "product": "Volaé, une marque Intermarché Œufs frais de poules élevées au sol",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "emmental",
+        "qty": "100 g, grated",
+        "product": "Pâturages, une marque Intermarché Emmental français râpé",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "1",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "salad",
+        "qty": "to serve",
+        "product": "Le Choix du Primeur Salade MACHE",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "nutmeg, salt, pepper",
+        "qty": "",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Oven to 190°C. Cut twelve discs from the pastry with a glass, a good centimetre wider than the muffin holes, and press them in.",
+      "Lardons into a cold pan, heat to medium, 5 minutes until crisp. Onion into the rendered fat, 4 minutes. Drain off the fat or the quiches turn greasy.",
+      "Beat the eggs with salt, pepper and a scrape of nutmeg. No cream — the cheese carries it.",
+      "Lardons, onion and most of the emmental into the cases, then egg poured in to just below the pastry rim. Overfill them and they weld to the tin.",
+      "Rest of the cheese on top. 25 minutes, until set and golden.",
+      "Cool 5 minutes before lifting out. Good hot, better at room temperature."
+    ]
+  },
+  "poivrons-farcis-four": {
+    "title": "Stuffed peppers baked with rice and beef",
+    "cuisine": "spanish",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 20,
+    "cookMinutes": 45,
+    "serves": 4,
+    "equipment": [
+      "oven",
+      "casserole dish",
+      "hob"
+    ],
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "dairy-free"
+    ],
+    "short": "Peppers are on the always-welcome list and this is the best thing to do with four of them. The rice goes in raw and cooks inside the pepper.",
+    "ingredients": [
+      {
+        "item": "red peppers",
+        "qty": "2",
+        "product": "Le Choix du Primeur Poivron ROUGE",
+        "buy": {
+          "amount": 0.4,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "yellow peppers",
+        "qty": "2",
+        "product": "Le Choix du Primeur Poivrons JAUNES",
+        "buy": {
+          "amount": 0.4,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "beef mince",
+        "qty": "400 g",
+        "product": "Jean Rozé, une marque Intermarché Viande hachée vrac pur BŒUF 15% MG",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "rice",
+        "qty": "150 g, uncooked",
+        "product": "Taureau Ailé Riz Basmati",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "tomato sauce",
+        "qty": "1 jar",
+        "product": "Panzani Sauce Tomates Provençale ingrédients origine naturelle",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "1",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.15,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "3 cloves",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "flat-leaf parsley",
+        "qty": "a handful",
+        "product": "Persil plat",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.1
+        }
+      }
+    ],
+    "steps": [
+      "Oven to 180°C. Cut the tops off the peppers and keep them; pull out the seeds and the white ribs.",
+      "Brown the mince hard in a pan, 5 minutes, without stirring much. Then the onion, 4 minutes, and the garlic.",
+      "Off the heat, stir in the raw rice, half the tomato sauce, the parsley and plenty of salt. Raw rice, not cooked — it swells inside the pepper and takes the meat juices with it. Cooked rice turns to mush.",
+      "Stand the peppers in a casserole dish, fill them about three-quarters, and put their lids back on.",
+      "Pour the rest of the sauce and 150 ml water around the base, cover the dish with foil, and bake 35 minutes.",
+      "Foil off, 10 minutes more to colour the tops. Test the rice through the side of a pepper with a knife; if it is still firm, another 5 minutes covered."
+    ]
+  },
+  "gratin-coquillettes-jambon": {
+    "title": "Baked coquillettes with ham",
+    "cuisine": "french",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 30,
+    "serves": 4,
+    "equipment": [
+      "oven",
+      "casserole dish",
+      "hob"
+    ],
+    "tags": [
+      "batch cook",
+      "no chilli"
+    ],
+    "short": "The French childhood pasta bake, made without a béchamel — the pasta finishes cooking in the milk it bakes in.",
+    "ingredients": [
+      {
+        "item": "coquillettes",
+        "qty": "400 g",
+        "product": "Fiorini, une marque Intermarché Coquillettes",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "sliced ham",
+        "qty": "200 g",
+        "product": "Jambon blanc en tranches",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Best guesses",
+          "price": 2.8
+        }
+      },
+      {
+        "item": "grated cheese",
+        "qty": "200 g",
+        "product": "Pâturages, une marque Intermarché Emmental français râpé",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "1",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "milk",
+        "qty": "400 ml",
+        "product": "Pâturages, une marque Intermarché Lait demi-écrémé stérilisé UHT BIO - issu de l'agriculture biologique,",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "salad",
+        "qty": "to serve",
+        "product": "Le Choix du Primeur Laitue FEUILLES DE CHENES BLONDE",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "nutmeg, salt, pepper",
+        "qty": "",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Oven to 180°C. Boil the coquillettes for 4 minutes only — half the packet time. They drink the milk in the oven and finish there; fully cooked pasta turns to paste.",
+      "Soften the onion in butter, 5 minutes.",
+      "Drain the pasta and mix in the dish with the onion, torn ham, two-thirds of the cheese, the milk, salt, pepper and a good scrape of nutmeg.",
+      "Rest of the cheese over the top.",
+      "30 minutes, until the top is brown and the edges are bubbling. If it looks wet at 25 minutes, give it another five uncovered.",
+      "Stand 5 minutes, and eat with a sharp green salad — it needs the contrast."
+    ]
+  },
+  "tian-provencal": {
+    "title": "Tian provençal",
+    "cuisine": "french",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 20,
+    "cookMinutes": 50,
+    "serves": 4,
+    "equipment": [
+      "oven",
+      "casserole dish"
+    ],
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "vegetarian",
+      "dairy-free"
+    ],
+    "short": "Courgette, aubergine and tomato stood on edge in a dish and baked slowly until they shrink and sweeten. Almost no work.",
+    "ingredients": [
+      {
+        "item": "courgettes",
+        "qty": "2",
+        "product": "Le Choix du Primeur Courgettes LONGUES",
+        "buy": {
+          "amount": 0.4,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "aubergine",
+        "qty": "1",
+        "product": "Le Choix du Primeur Aubergines VIOLETTES",
+        "buy": {
+          "amount": 0.35,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "tomatoes",
+        "qty": "4",
+        "product": "Le Choix du Primeur Tomate RONDE en GRAPPE",
+        "buy": {
+          "amount": 0.5,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "2, sliced",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "4 cloves",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "thyme and rosemary",
+        "qty": "several sprigs",
+        "product": "Herbes de Provence fraîches",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.9
+        }
+      },
+      {
+        "item": "olive oil",
+        "qty": "generous",
+        "product": "Bouton d’Or, une marque Intermarché Huile d'olive vierge extra BIO - issue de l'agriculture biologique",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "rice",
+        "qty": "to serve",
+        "product": "Taureau Ailé Riz Basmati",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      }
+    ],
+    "steps": [
+      "Oven to 180°C. Soften the sliced onions and garlic in olive oil for 10 minutes and spread them over the base of the dish. This layer is what stops the whole thing sticking and drying out.",
+      "Slice the courgette, aubergine and tomato into rounds of the same thickness, about 5 mm. Same thickness matters — mixed thicknesses cook unevenly and some stay raw.",
+      "Stand them on edge in tight alternating rows, packed hard against each other. They shrink a lot, and a loosely packed tian collapses into a puddle.",
+      "Salt, pepper, the herbs tucked in, and a generous pour of olive oil over the whole surface.",
+      "50 minutes. It is done when the tops are browned and the vegetables have sunk to about two-thirds of their original height.",
+      "Better warm than hot, and better still the next day. Rice or bread alongside."
+    ]
+  },
+  "poulet-tomates-olives-four": {
+    "title": "Roast chicken thighs with tomatoes and olives",
+    "cuisine": "french",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 45,
+    "serves": 4,
+    "equipment": [
+      "oven",
+      "casserole dish"
+    ],
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "dairy-free"
+    ],
+    "short": "One dish, forty-five minutes, no stirring. The tomatoes burst and turn into the sauce by themselves.",
+    "ingredients": [
+      {
+        "item": "chicken thighs",
+        "qty": "1 kg",
+        "product": "Volaé, une marque Intermarché Cuisse de poulet jaune x4",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "cherry tomatoes",
+        "qty": "500 g",
+        "product": "Petit prix Tomates cerises allongées",
+        "buy": {
+          "amount": 2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "black olives",
+        "qty": "a handful",
+        "product": "Olives noires dénoyautées",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 2.2
+        }
+      },
+      {
+        "item": "red onion",
+        "qty": "2, in wedges",
+        "product": "Le Choix du Primeur Oignons ROUGES",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "1 whole head, halved",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.12,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "lemon",
+        "qty": "1, in wedges",
+        "product": "Le Choix du Primeur Citrons JAUNES",
+        "buy": {
+          "amount": 0.28,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "rosemary",
+        "qty": "several sprigs",
+        "product": "Romarin frais",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.9
+        }
+      },
+      {
+        "item": "potatoes",
+        "qty": "600 g",
+        "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      }
+    ],
+    "steps": [
+      "Oven to 200°C. Halve the potatoes and put them in the dish with the onion wedges, the halved garlic head and the rosemary, tossed in olive oil and salt.",
+      "Dry the chicken thighs, salt the skin hard, and sit them on top — skin up, and not touching each other. Anything laid on top of them steams them.",
+      "25 minutes.",
+      "Scatter the cherry tomatoes, olives and lemon wedges around the chicken, and give it 20 minutes more.",
+      "The tomatoes should have burst and gone jammy and the skin should be crisp. If the skin is still pale, three minutes under the grill fixes it.",
+      "Squeeze the roasted garlic cloves out of their skins and mash them into the pan juices before serving."
+    ]
+  },
+  "pain-perdu": {
+    "title": "Pain perdu",
+    "cuisine": "french",
+    "slot": "breakfast",
+    "kind": "recipe",
+    "prepMinutes": 5,
+    "cookMinutes": 10,
+    "serves": 2,
+    "equipment": [
+      "hob"
+    ],
+    "tags": [
+      "fast",
+      "no chilli",
+      "vegetarian",
+      "uses eggs"
+    ],
+    "short": "What yesterday's baguette is for. Made with the vanilla almond milk, so there is no cow's milk in it.",
+    "ingredients": [
+      {
+        "item": "stale baguette",
+        "qty": "1, in thick slices",
+        "product": "Cuit sur place Baguette La Généreuse",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "eggs",
+        "qty": "3",
+        "product": "Volaé, une marque Intermarché Œufs frais de poules élevées au sol",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "almond milk",
+        "qty": "200 ml",
+        "product": "Bjorg Boisson végétale Lait d'amande vanille BIO",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "sugar",
+        "qty": "2 tbsp",
+        "product": "Daddy Sucre en poudre",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "banana",
+        "qty": "1, sliced",
+        "product": "Le Choix du Primeur Bananes",
+        "buy": {
+          "amount": 0.15,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "cinnamon",
+        "qty": "a good pinch",
+        "product": "Bouton d’Or, une marque Intermarché Cannelle moulue",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "butter",
+        "qty": "for the pan",
+        "product": "already in the fridge",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Beat the eggs, almond milk, one tablespoon of the sugar and the cinnamon in a wide shallow dish.",
+      "Cut the baguette into 3 cm slices, on a steep angle for more surface.",
+      "Soak them for a full minute a side. Stale bread needs it; a quick dip leaves a dry core, which is the usual failure.",
+      "Butter in a pan on medium — not high. Too hot and the outside browns while the custard inside stays raw.",
+      "3 minutes a side until deep gold and puffed.",
+      "Banana over, the last of the sugar scattered on while hot."
+    ]
+  },
+  "oeufs-tomate-four": {
+    "title": "Eggs baked in tomato sauce",
+    "cuisine": "italian",
+    "slot": "breakfast",
+    "kind": "recipe",
+    "prepMinutes": 5,
+    "cookMinutes": 15,
+    "serves": 2,
+    "equipment": [
+      "oven",
+      "casserole dish",
+      "hob"
+    ],
+    "tags": [
+      "fast",
+      "no chilli",
+      "vegetarian",
+      "uses eggs"
+    ],
+    "short": "Uova in purgatorio — normally made hot with chilli, which is exactly what we leave out. Garlic and oregano carry it instead.",
+    "ingredients": [
+      {
+        "item": "tomato sauce",
+        "qty": "1 jar",
+        "product": "Panzani Sauce Tomates Provençale ingrédients origine naturelle",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "eggs",
+        "qty": "4",
+        "product": "Volaé, une marque Intermarché Œufs frais de poules élevées au sol",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "3 cloves, sliced",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "parmesan",
+        "qty": "to finish",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Grana Padano AOP râpé",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "baguette",
+        "qty": "to mop",
+        "product": "Cuit sur place Baguette La Généreuse",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "basil",
+        "qty": "a few leaves",
+        "product": "Basilic frais en pot",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 2.2
+        }
+      }
+    ],
+    "steps": [
+      "Oven to 200°C. Soften the sliced garlic in olive oil in an ovenproof dish over a low heat, 2 minutes, without letting it colour.",
+      "Tomato sauce in with a splash of water, and simmer 5 minutes so it thickens slightly.",
+      "Make four wells with the back of a spoon and crack an egg into each. Deep wells — a shallow one lets the white spread across the whole surface.",
+      "Season the eggs, parmesan over the sauce but not the yolks, and into the oven.",
+      "8–10 minutes. Pull it when the whites are just set and the yolks still move when you shake the dish; they carry on cooking in the hot sauce.",
+      "Basil over, baguette to mop."
     ]
   }
 }
