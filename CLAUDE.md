@@ -116,6 +116,36 @@ screenshot of 2026-09-04 shows the Légumes aisle returning exactly one leek
 product, a **jar** of cooked leek whites at 6,23 €. Fresh poireaux are not
 stocked. Ask for a screenshot when a guessed product matters to a dish.
 
+## Google Home → shopping list
+
+Charlotte has one Google Nest Mini. Saying "Hey Google, add X to my Meal
+Planning list" writes into Google Keep — that's where Assistant's voice lists
+live now, and there's no official Keep API for a personal @gmail.com account,
+only Workspace. `scripts/sync-keep.py` reads it anyway, via the unofficial
+`gkeepapi` client, authenticated with a Google **master token** — a credential
+with full account access, not a password.
+
+- **Needs `GOOGLE_KEEP_EMAIL` and `GOOGLE_KEEP_MASTER_TOKEN`** set as Claude
+  Code Environment variables — never in this repo, never in `data/`. Charlotte
+  generates the master token herself, on her own device, via the browser flow
+  in [gkeepapi's docs](https://gkeepapi.readthedocs.io/en/latest/#obtaining-a-master-token).
+  No session here performs that login or sees her Google password — same
+  boundary as the Intermarché password below.
+- Charlotte chose this knowingly on 2026-09-11, over a no-credentials
+  alternative (reading the list aloud each time) that was offered and
+  declined. The tradeoff: this can break whenever Google changes Keep's
+  internals, and repeated automated access to a personal account is against
+  Google's terms and carries a small risk of the account getting flagged. The
+  script is deliberately one-shot, called on demand by `courses` or by asking
+  "sync my Google list" — never polled or scheduled.
+- An Amazon-cart version of this was considered the same day and declined:
+  there is no consumer API to add items to an Amazon cart (Alexa's own
+  Shopping Actions API only works inside an approved Alexa Skill), and Google
+  Home has no path into Amazon at all.
+
+See `.claude/skills/courses/SKILL.md` → "Her Google list" for how a sync gets
+folded into the week.
+
 ## Commands
 
 ```bash

@@ -29,6 +29,33 @@ disponible` email post-dates `generatedAt` — add it to `data/invoices/` as
 Come to the conversation already knowing what she buys. Do not ask questions the
 receipts answer.
 
+## Her Google list
+
+Charlotte can say "Hey Google, add X to my Meal Planning list" any time — it
+lands in Google Keep. Check it before building the list:
+
+```bash
+uv run --with gkeepapi scripts/sync-keep.py list --list "Meal Planning"
+```
+
+If `GOOGLE_KEEP_EMAIL` / `GOOGLE_KEEP_MASTER_TOKEN` aren't set in the
+environment, skip this silently — it's optional, not every environment has it
+configured. If there are unchecked items, read them back to her and ask
+whether to fold them in before you build this week's list. Run anything she
+confirms through the no-chilli check same as everything else.
+
+She can also just ask "sync my Google list" in any conversation, any time —
+not only during this weekly run. Either way, write confirmed items into the
+current week's shared list (the newest `weekOf` under `data/plans/`) the same
+way the page itself does when she types something in by hand: `write_db`
+against `weeks/<weekOf>`, merging `added["added:<Name>"] = {name, qty}` —
+read the doc first for its `version`, merge, write with `if_version` pinned.
+Then check the imported items off in Keep so they aren't re-synced next time:
+
+```bash
+uv run --with gkeepapi scripts/sync-keep.py check --list "Meal Planning" --ids <id> [<id> ...]
+```
+
 ## The three questions
 
 Ask all three at once as tappable options. Not more than three — a longer quiz
