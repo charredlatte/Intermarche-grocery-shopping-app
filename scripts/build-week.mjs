@@ -45,12 +45,18 @@ let equivalents = { groups: [] };
 try { equivalents = JSON.parse(readFileSync(join(DATA, "equivalents.json"), "utf8")); }
 catch { /* no equivalents file; exact names only */ }
 
-// Products confirmed by looking at the app rather than by a receipt. Their
-// catalogue cannot be read from here, so this is the only route by which
-// something she has never bought gets an exact name and a real price.
+// Products confirmed from a screenshot of the app rather than by a receipt —
+// the route from her phone, alongside the catalogue read in her Chrome.
 let seenInApp = { products: [] };
 try { seenInApp = JSON.parse(readFileSync(join(DATA, "seen-in-app.json"), "utf8")); }
 catch { /* nothing observed yet */ }
+
+// What Méré's site lists for each product, read off intermarche.com. Receipt
+// names are poor search terms and packs change, so the Drive checklist links
+// straight to each product's page instead.
+let catalogue = { products: {} };
+try { catalogue = JSON.parse(readFileSync(join(DATA, "catalogue.json"), "utf8")); }
+catch { /* not built yet; the checklist falls back to searching by name */ }
 
 /* ---- pricebook ---------------------------------------------------------- */
 const pricebook = {};
@@ -117,6 +123,30 @@ for (const g of equivalents.groups ?? []) {
       }
     }
   }
+}
+
+// A catalogue entry for a name nothing uses can never be shown, which means a
+// typo that silently leaves the real product unlinked.
+const usedNames = new Set(Object.keys(pricebook));
+for (const r of Object.values(recipes)) for (const i of r.ingredients ?? []) if (i.buy) usedNames.add(i.product);
+for (const s of prefs.staples?.alwaysInclude ?? []) usedNames.add(s.name);
+for (const g of equivalents.groups ?? []) for (const m of g.members ?? []) usedNames.add(m.name);
+const STATUSES = ["exact", "check", "picked", "missing"];
+const checkListing = (where, l) => {
+  if (!l.brand || !l.title) problems.push(`${where}: a listing needs a brand and a title`);
+  if (!/^\/produit\//.test(l.url ?? "")) problems.push(`${where}: listing url must start with /produit/`);
+  if (l.price != null && typeof l.price !== "number") problems.push(`${where}: listing price must be a number or null`);
+};
+for (const [name, c] of Object.entries(catalogue.products ?? {})) {
+  const where = `catalogue "${name}"`;
+  if (!usedNames.has(name)) problems.push(`${where}: no recipe, staple, equivalent or receipt uses this name`);
+  if (!STATUSES.includes(c.status)) problems.push(`${where}: status must be one of ${STATUSES.join(", ")}`);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(c.checked ?? "")) problems.push(`${where}: needs a "checked" date`);
+  if (c.status === "missing" ? c.listing : !c.listing) {
+    problems.push(`${where}: ${c.status === "missing" ? "a missing product has no listing — put it in alternatives" : "needs a listing"}`);
+  }
+  if (c.listing) checkListing(where, c.listing);
+  for (const a of c.alternatives ?? []) checkListing(where + " alternative", a);
 }
 
 const planDir = join(DATA, "plans");
@@ -204,7 +234,10 @@ const config = {
 const template = readFileSync(TEMPLATE, "utf8");
 if (!template.includes("/*__DATA__*/")) die("template.html has lost its /*__DATA__*/ placeholder.");
 
-const payload = { recipes, plans, pricebook, staples, config, onHand, equivalents: equivalents.groups ?? [] };
+const payload = {
+  recipes, plans, pricebook, staples, config, onHand, equivalents: equivalents.groups ?? [],
+  catalogue: catalogue.products ?? {}, site: catalogue.site ?? "https://www.intermarche.com",
+};
 // </script> inside the JSON would close the script tag early.
 const json = JSON.stringify(payload).replace(/<\//g, "<\\/");
 writeFileSync(OUT, template.replace("/*__DATA__*/ null", json));
@@ -219,3 +252,10 @@ console.log(`  ceiling ${config.budgetCeiling} EUR, ${staples.length} standing s
 const d = onHand.from.date;
 console.log(`  on hand: ${onHand.items.length} items from order ${onHand.from.order} (${d.year}-${String(d.month).padStart(2, "0")}-${String(d.day).padStart(2, "0")})`);
 console.log(`  ${payload.equivalents.length} equivalence group(s)`);
+const catEntries = Object.values(payload.catalogue);
+const byStatus = Object.fromEntries(STATUSES.map((s) => [s, catEntries.filter((c) => c.status === s).length]));
+const buyable = new Set([...Object.values(recipes).flatMap((r) => (r.ingredients ?? []).filter((i) => i.buy).map((i) => i.product)),
+                         ...staples.map((s) => s.name)]);
+const unchecked = [...buyable].filter((n) => !payload.catalogue[n]).length;
+console.log(`  catalogue: ${catEntries.length} listings (${STATUSES.map((s) => `${byStatus[s]} ${s}`).join(", ")})` +
+            (unchecked ? `; ${unchecked} buyable product(s) not checked on the site — npm run catalogue:queue` : ""));

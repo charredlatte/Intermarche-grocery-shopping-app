@@ -1,0 +1,2305 @@
+{
+  "_comment": "What Intermarché Drive Méré actually lists for every product the app can put in a basket, read off intermarche.com in Charlotte's logged-in Chrome. Keyed by the name the recipes, staples and equivalents use. The site's own title, pack and price often differ from the receipt, and receipt names are poor search terms, so the basket step works from \"url\" — the product's page, one per barcode — and falls back to \"search\", a term checked to return the product. status: exact = the same product and pack as the name; check = the nearest listing differs (renamed, a different pack) and needs Charlotte's OK before it goes in; picked = a guessed ingredient resolved to a real listing; missing = nothing suitable, see alternatives. \"available\": false means out of stock on the day it was checked — stock changes daily, so the basket step still checks live. Regenerate stale entries with npm run catalogue:queue and a browsing session; hand-correct freely.",
+  "store": "Intermarché Drive Méré",
+  "site": "https://www.intermarche.com",
+  "products": {
+    "Ajinomoto Gyoza poulet et légumes raviolis à poêler": {
+      "status": "missing",
+      "search": "gyoza",
+      "checked": "2026-09-14",
+      "note": "Not listed at Méré: the full name returns nothing and \"gyoza\" returns only three Ginza fresh gyoza. One of those is bœuf ail piment — chilli.",
+      "alternatives": [
+        {
+          "brand": "Ginza",
+          "title": "Gyoza poulet citronnelle",
+          "packaging": "La barquette de 7 - 155g",
+          "unitPrice": "25,48 €/Kg",
+          "price": 3.95,
+          "url": "/produit/gyoza-poulet-citronnelle/3456700014057"
+        },
+        {
+          "brand": "Ginza",
+          "title": "Gyoza crevette combawa",
+          "packaging": "La barquette de 7- 155g",
+          "unitPrice": "30,13 €/Kg",
+          "price": 4.67,
+          "url": "/produit/gyoza-crevette-combawa/3456700014071"
+        }
+      ]
+    },
+    "Amandes effilées": {
+      "status": "picked",
+      "search": "amandes effilées",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Chabrior, une marque Intermarché",
+        "title": "Amandes effilées",
+        "packaging": "Le sachet de 125 g",
+        "unitPrice": "16,24 €/Kg",
+        "price": 2.03,
+        "url": "/produit/amandes-effilees/3250390100423"
+      }
+    },
+    "Aneth frais": {
+      "status": "picked",
+      "search": "aneth",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Aneth en botte",
+        "packaging": "Vendu à la pièce",
+        "unitPrice": "1,09 €/Pièce",
+        "price": 1.09,
+        "url": "/produit/aneth-en-botte/3250393158698"
+      }
+    },
+    "Barilla Pâtes Lasagne aux œufs - Collezione": {
+      "status": "exact",
+      "search": "barilla lasagne",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Barilla",
+        "title": "Pâtes Lasagne aux œufs - Collezione",
+        "packaging": "Le paquet de 500g",
+        "unitPrice": "4,28 €/Kg",
+        "price": 2.14,
+        "url": "/produit/pates-lasagne-aux-œufs-collezione/8076800376999"
+      }
+    },
+    "Barilla Sauce pesto alla genovese basilic frais": {
+      "status": "exact",
+      "search": "barilla pesto",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Barilla",
+        "title": "Sauce pesto alla genovese basilic frais",
+        "packaging": "Le pot de 190g",
+        "unitPrice": null,
+        "price": null,
+        "url": "/produit/sauce-pesto-alla-genovese-basilic-frais/8076809513753",
+        "available": false
+      }
+    },
+    "Barilla Sauce pesto rosso": {
+      "status": "exact",
+      "search": "barilla pesto",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Barilla",
+        "title": "Sauce pesto rosso",
+        "packaging": "Le pot de 200g",
+        "unitPrice": null,
+        "price": null,
+        "url": "/produit/sauce-pesto-rosso/8076809523547",
+        "available": false
+      }
+    },
+    "Basilic frais en pot": {
+      "status": "picked",
+      "search": "basilic",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Basilic en botte",
+        "packaging": "Vendu à la pièce",
+        "unitPrice": "1,09 €/Pièce",
+        "price": 1.09,
+        "url": "/produit/basilic-en-botte/3250393158650"
+      },
+      "note": "A bunch, not a pot — Méré sells no potted basil."
+    },
+    "Bjorg Boisson végétale Lait d'amande vanille BIO": {
+      "status": "exact",
+      "search": "Bjorg Boisson végétale Lait d'amande vanille BIO",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Bjorg",
+        "title": "Boisson végétale Lait d'amande vanille BIO",
+        "packaging": "La brique de 1l",
+        "unitPrice": "2,57 €/L",
+        "price": 2.57,
+        "url": "/produit/boisson-vegetale-lait-d'amande-vanille-bio/3229820789002"
+      }
+    },
+    "Bouillon de bœuf en cubes": {
+      "status": "picked",
+      "search": "bouillon cubes boeuf",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Maggi",
+        "title": "Bouillon cubes boeuf",
+        "packaging": "La boite de 18 cubes - 180 g",
+        "unitPrice": "9,67 €/Kg",
+        "price": 1.74,
+        "url": "/produit/bouillon-cubes-boeuf/7613033687983"
+      }
+    },
+    "Bouillon de légumes en cubes": {
+      "status": "picked",
+      "search": "bouillon cubes légumes",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Maggi",
+        "title": "Bouillon cubes légumes",
+        "packaging": "La boite de 18 - 180 g",
+        "unitPrice": "9,44 €/Kg",
+        "price": 1.7,
+        "url": "/produit/bouillon-cubes-legumes/7613035781627"
+      }
+    },
+    "Boursin Fromage à tartiner ail & fines herbes": {
+      "status": "exact",
+      "search": "Boursin Fromage à tartiner ail et fines herbes",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Boursin",
+        "title": "Fromage à tartiner ail & fines herbes",
+        "packaging": "La boite de 250 g",
+        "unitPrice": "14,32 €/Kg",
+        "price": 3.58,
+        "url": "/produit/fromage-a-tartiner-ail-&-fines-herbes/3073781069259"
+      }
+    },
+    "Boursin Fromage à tartiner ail et fines herbes": {
+      "status": "exact",
+      "search": "Boursin Fromage à tartiner ail et fines herbes",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Boursin",
+        "title": "Fromage à tartiner ail et fines herbes",
+        "packaging": "La boite de 150g",
+        "unitPrice": "14,47 €/Kg",
+        "price": 2.17,
+        "url": "/produit/fromage-a-tartiner-ail-et-fines-herbes/3073781180848"
+      }
+    },
+    "Bouton d’Or, une marque Intermarché Cacahuètes grillées à l'huile et salées": {
+      "status": "exact",
+      "search": "cacahuètes grillées",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Bouton d’Or, une marque Intermarché",
+        "title": "Cacahuètes grillées à l'huile et salées",
+        "packaging": "Le sachet de 500 g",
+        "unitPrice": "2,80 €/Kg",
+        "price": 1.4,
+        "url": "/produit/cacahuetes-grillees-a-l'huile-et-salees/3250390002123"
+      }
+    },
+    "Bouton d’Or, une marque Intermarché Cannelle moulue": {
+      "status": "exact",
+      "search": "Cannelle moulue",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Bouton d’Or, une marque Intermarché",
+        "title": "Cannelle moulue",
+        "packaging": "Le pot de 35g",
+        "unitPrice": null,
+        "price": null,
+        "url": "/produit/cannelle-moulue/3250390003144",
+        "available": false
+      },
+      "alternatives": [
+        {
+          "brand": "Ducros",
+          "title": "Cannelle moulue",
+          "packaging": "Le flacon de 39g",
+          "unitPrice": "33,33 €/Kg",
+          "price": 1.3,
+          "url": "/produit/cannelle-moulue/3166290200197"
+        }
+      ]
+    },
+    "Bouton d’Or, une marque Intermarché Huile d'olive vierge extra BIO - issue de l'agriculture biologique": {
+      "status": "exact",
+      "search": "Huile d'olive vierge extra BIO",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Bouton d’Or, une marque Intermarché",
+        "title": "Huile d'olive vierge extra BIO - issue de l'agriculture biologique",
+        "packaging": "La bouteille de 75 cl",
+        "unitPrice": "10,07 €/L",
+        "price": 7.55,
+        "url": "/produit/huile-d'olive-vierge-extra-bio-issue-de-l'agriculture-biologique/3250391594245"
+      }
+    },
+    "Bouton d’Or, une marque Intermarché Mayonnaise": {
+      "status": "exact",
+      "search": "mayonnaise bouton d'or",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Bouton d’Or, une marque Intermarché",
+        "title": "Mayonnaise",
+        "packaging": "Le flacon de 450 g",
+        "unitPrice": "4,42 €/Kg",
+        "price": 1.99,
+        "url": "/produit/mayonnaise/3250390625391"
+      }
+    },
+    "Bûche de chèvre": {
+      "status": "picked",
+      "search": "bûche de chèvre",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Pâturages, une marque Intermarché",
+        "title": "Bûche de chèvre",
+        "packaging": "Le fromage de 400 g",
+        "unitPrice": "9,83 €/Kg",
+        "price": 3.93,
+        "url": "/produit/buche-de-chevre/3250392551407"
+      },
+      "note": "A 400 g log. Président's Bûche fondante is 180 g for 2,06 € if that is too much.",
+      "alternatives": [
+        {
+          "brand": "Président",
+          "title": "La Bûche fondante",
+          "packaging": "La bûche de 180g",
+          "unitPrice": "11,44 €/Kg",
+          "price": 2.06,
+          "url": "/produit/la-buche-fondante/3228021170053"
+        }
+      ]
+    },
+    "Canaillou, une marque Intermarché Litière végétale agglomérante à base de bois pour animaux familiers": {
+      "status": "exact",
+      "search": "litière végétale",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Canaillou, une marque Intermarché",
+        "title": "Litière végétale agglomérante à base de bois pour animaux familiers",
+        "packaging": "Le sachet de 7L",
+        "unitPrice": "0,84 €/L",
+        "price": 5.89,
+        "url": "/produit/litiere-vegetale-agglomerante-a-base-de-bois-pour-animaux-familiers/3250392613976"
+      }
+    },
+    "Cannelle moulue": {
+      "status": "picked",
+      "search": "cannelle moulue",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Ducros",
+        "title": "Cannelle moulue",
+        "packaging": "Le flacon de 39g",
+        "unitPrice": "33,33 €/Kg",
+        "price": 1.3,
+        "url": "/produit/cannelle-moulue/3166290200197"
+      },
+      "note": "Bouton d'Or's 35 g pot was out of stock on 14 September."
+    },
+    "Câpres au vinaigre": {
+      "status": "picked",
+      "search": "câpres",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Bouton d’Or, une marque Intermarché",
+        "title": "Câpres surfines au vinaigre",
+        "packaging": "Le bocal de 125 g net égoutté",
+        "unitPrice": null,
+        "price": null,
+        "url": "/produit/capres-surfines-au-vinaigre/3250391170951",
+        "available": false
+      },
+      "alternatives": [
+        {
+          "brand": "Crespo",
+          "title": "Câpres",
+          "packaging": "L'unité de 60g net égoutté",
+          "unitPrice": "42,17 €/Kg",
+          "price": 2.53,
+          "url": "/produit/capres/3076820010373"
+        }
+      ]
+    },
+    "Cassonade": {
+      "status": "picked",
+      "search": "cassonade",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Daddy",
+        "title": "Cassonade pure canne",
+        "packaging": "Le paquet de 750g",
+        "unitPrice": "3,19 €/Kg",
+        "price": 2.39,
+        "url": "/produit/cassonade-pure-canne/3165433724019"
+      }
+    },
+    "Chabrior, une marque Intermarché Demi baguettes précuites complètes": {
+      "status": "exact",
+      "search": "demi baguettes précuites",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Chabrior, une marque Intermarché",
+        "title": "Demi baguettes précuites complètes",
+        "packaging": "Le paquet de 2 - 300 g",
+        "unitPrice": null,
+        "price": null,
+        "url": "/produit/demi-baguettes-precuites-completes/3250392495404",
+        "available": false
+      },
+      "alternatives": [
+        {
+          "brand": "Chabrior, une marque Intermarché",
+          "title": "demi baguettes précuites",
+          "packaging": "Le sachet de 300 g",
+          "unitPrice": "2,33 €/Kg",
+          "price": 0.7,
+          "url": "/produit/demi-baguettes-precuites/3250391386857"
+        }
+      ]
+    },
+    "Chabrior, une marque Intermarché Demi-baguettes de campagne précuites BIO": {
+      "status": "exact",
+      "search": "demi baguettes précuites",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Chabrior, une marque Intermarché",
+        "title": "Demi-baguettes de campagne précuites BIO",
+        "packaging": "Le paquet de 2 de 125g - 250g",
+        "unitPrice": "10,48 €/Kg",
+        "price": 2.62,
+        "url": "/produit/demi-baguettes-de-campagne-precuites-bio/3250391649310"
+      }
+    },
+    "Champignons de Paris": {
+      "status": "picked",
+      "search": "champignons de paris",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Terroirs, une marque Intermarché",
+        "title": "Champignons BLANCS DE PARIS- CAT. 1",
+        "packaging": "La barquette de 400g",
+        "unitPrice": "6,48 €/Kg",
+        "price": 2.59,
+        "url": "/produit/champignons-blancs-de-paris/3250399883679"
+      }
+    },
+    "Chapelure": {
+      "status": "picked",
+      "search": "chapelure",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Tipiak",
+        "title": "Fine chapelure de pain",
+        "packaging": "La boite de 275g",
+        "unitPrice": null,
+        "price": null,
+        "url": "/produit/fine-chapelure-de-pain/3600900020404",
+        "available": false
+      },
+      "note": "Both breadcrumbs Méré lists (Tipiak) were out of stock on 14 September."
+    },
+    "Croustipate Pâte à pizza qualité comme à la pizzeria": {
+      "status": "exact",
+      "search": "croustipate pizza",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Croustipate",
+        "title": "Pâte à pizza qualité comme à la pizzeria",
+        "packaging": "La boîte de 500g",
+        "unitPrice": "4,86 €/Kg",
+        "price": 2.43,
+        "url": "/produit/pate-a-pizza-qualite-comme-a-la-pizzeria/3392590205772"
+      }
+    },
+    "Cuit sur place Baguette La Généreuse": {
+      "status": "exact",
+      "search": "Baguette La Généreuse",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Cuit sur place",
+        "title": "Baguette La Généreuse",
+        "packaging": "La baguette de 300 g",
+        "unitPrice": "2,97 €/Kg",
+        "price": 0.89,
+        "url": "/produit/baguette-la-genereuse/2831099000000"
+      }
+    },
+    "Daddy Sucre en poudre": {
+      "status": "exact",
+      "search": "Daddy Sucre en poudre",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Daddy",
+        "title": "Sucre en poudre",
+        "packaging": "Le paquet de 750g",
+        "unitPrice": "2,40 €/Kg",
+        "price": 1.8,
+        "url": "/produit/sucre-en-poudre/3165433714010"
+      }
+    },
+    "Échalotes": {
+      "status": "picked",
+      "search": "échalotes",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Echalotes TRADITIONELLES- CAT. 1",
+        "packaging": "En vrac - à partir de 100 gr (soit 4 échalotes)",
+        "unitPrice": "4,59 €/Kg",
+        "price": 0.46,
+        "url": "/produit/echalotes-traditionelles/2800545000000"
+      }
+    },
+    "Fermiers de Loué Aiguillettes de poulet jaune": {
+      "status": "exact",
+      "search": "Aiguillette de poulet",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Fermiers de Loué",
+        "title": "Aiguillettes de poulet jaune",
+        "packaging": "La barquette de 6 - 200 g",
+        "unitPrice": null,
+        "price": null,
+        "url": "/produit/aiguillettes-de-poulet-jaune/0257977000000",
+        "available": false
+      }
+    },
+    "Filets d'anchois à l'huile": {
+      "status": "picked",
+      "search": "anchois",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Micéli",
+        "title": "Filets d'anchois allongés à l'huile d'olive",
+        "packaging": "La boite de 32 g net égoutté",
+        "unitPrice": "40,40 €/Kg",
+        "price": 2.02,
+        "url": "/produit/filets-d'anchois-allonges-a-l'huile-d'olive/3218370011114"
+      },
+      "note": "Not the \"roulés sauce piquante\" tin next to it on the shelf — that one is chilli."
+    },
+    "Fiorini, une marque Intermarché Coquillettes": {
+      "status": "exact",
+      "search": "fiorini pâtes",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Fiorini, une marque Intermarché",
+        "title": "Coquillettes",
+        "packaging": "Le paquet de 1 kg",
+        "unitPrice": "1,36 €/Kg",
+        "price": 1.36,
+        "url": "/produit/coquillettes/3250390000389"
+      }
+    },
+    "Fiorini, une marque Intermarché Pâtes coquillages": {
+      "status": "exact",
+      "search": "fiorini pâtes",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Fiorini, une marque Intermarché",
+        "title": "Pâtes coquillages",
+        "packaging": "Le paquet de 500 g",
+        "unitPrice": "2,38 €/Kg",
+        "price": 1.19,
+        "url": "/produit/pates-coquillages/3250391550623"
+      }
+    },
+    "Fiorini, une marque Intermarché Pâtes farfalles": {
+      "status": "exact",
+      "search": "fiorini pâtes",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Fiorini, une marque Intermarché",
+        "title": "Pâtes farfalles",
+        "packaging": "Le paquet de 1 kg",
+        "unitPrice": "1,27 €/Kg",
+        "price": 1.27,
+        "url": "/produit/pates-farfalles/3250391504190"
+      }
+    },
+    "Fiorini, une marque Intermarché Sauce pesto au basilic bio": {
+      "status": "exact",
+      "search": "sauce pesto basilic bio",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Fiorini, une marque Intermarché",
+        "title": "Sauce pesto au basilic bio",
+        "packaging": "Le bocal de 190 g",
+        "unitPrice": "10,47 €/Kg",
+        "price": 1.99,
+        "url": "/produit/sauce-pesto-au-basilic-bio/3250392926939"
+      }
+    },
+    "Gambas crues décortiquées": {
+      "status": "missing",
+      "search": "gambas",
+      "checked": "2026-09-14",
+      "note": "No raw peeled gambas at Méré. Raw ones only come whole: Odyssée 800 g at 22,78 €, or Capitaine Cook frozen 400 g (out of stock today). The cheap option is cooked.",
+      "alternatives": [
+        {
+          "brand": "Intermarché",
+          "title": "Gambas cuites calibre 30/40",
+          "packaging": "La barquette de 400g",
+          "unitPrice": "14,98 €/Kg",
+          "price": 5.99,
+          "url": "/produit/gambas-cuites-calibre-30-ou-40/3250393461231"
+        },
+        {
+          "brand": "Odyssée, une marque Intermarché",
+          "title": "Gambas entières crues",
+          "packaging": "La boite de 800 g",
+          "unitPrice": "28,48 €/Kg",
+          "price": 22.78,
+          "url": "/produit/gambas-entieres-crues/3250391422746"
+        },
+        {
+          "brand": "Capitaine Cook, une marque Intermarché",
+          "title": "Gambas sauvages entières crues congelées",
+          "packaging": "La barquette de 400 g",
+          "unitPrice": null,
+          "price": null,
+          "url": "/produit/gambas-sauvages-entieres-crues-congelees/3250390886471",
+          "available": false
+        }
+      ]
+    },
+    "Gingembre frais": {
+      "status": "picked",
+      "search": "gingembre",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Gingembre- CAT. 1",
+        "packaging": "En vrac - à partir de 150 gr (soit 1 racine)",
+        "unitPrice": "6,99 €/Kg",
+        "price": 1.05,
+        "url": "/produit/gingembre/2800525000000"
+      },
+      "note": "Loose fresh root, one per add."
+    },
+    "Herbes de Provence fraîches": {
+      "status": "picked",
+      "search": "herbes de provence",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Ducros",
+        "title": "Herbes de Provence",
+        "packaging": "La boite de 40g",
+        "unitPrice": "44,25 €/Kg",
+        "price": 1.77,
+        "url": "/produit/herbes-de-provence/3166290400610"
+      },
+      "note": "No fresh herb mix at Méré — dried only."
+    },
+    "Herta Lardons nature": {
+      "status": "check",
+      "search": "Herta Lardons nature",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Herta",
+        "title": "Lardons nature sans nitrite",
+        "packaging": "Les 2 barquettes de 75g - 150g",
+        "unitPrice": "12,33 €/Kg",
+        "price": 1.85,
+        "url": "/produit/lardons-nature-sans-nitrite/3154230802259"
+      },
+      "note": "Same two 75 g trays, now called \"sans nitrite\". Plain \"Lardons nature\" is a single 200 g tray.",
+      "alternatives": [
+        {
+          "brand": "Herta",
+          "title": "Lardons nature",
+          "packaging": "La barquette de 200g",
+          "unitPrice": "10,40 €/Kg",
+          "price": 2.08,
+          "url": "/produit/lardons-nature/3154230802167"
+        }
+      ]
+    },
+    "Itinéraire des Saveurs, une marque Intermarché Grana Padano AOP râpé": {
+      "status": "exact",
+      "search": "grana padano",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Itinéraire des Saveurs, une marque Intermarché",
+        "title": "Grana Padano AOP râpé",
+        "packaging": "Le paquet de 100g",
+        "unitPrice": "14,90 €/Kg",
+        "price": 1.49,
+        "url": "/produit/grana-padano-aop-rape/3250390244950"
+      }
+    },
+    "Itinéraire des Saveurs, une marque Intermarché Mozzarella di Bufala Campana AOP": {
+      "status": "exact",
+      "search": "mozzarella",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Itinéraire des Saveurs, une marque Intermarché",
+        "title": "Mozzarella di Bufala Campana AOP",
+        "packaging": "Le sachet de 125 g net égoutté",
+        "unitPrice": "14,00 €/Kg",
+        "price": 1.75,
+        "url": "/produit/mozzarella-di-bufala-campana-aop/3250391053322"
+      }
+    },
+    "Itinéraire des Saveurs, une marque Intermarché Parmigiano Reggiano AOP": {
+      "status": "exact",
+      "search": "Parmigiano Reggiano AOP",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Itinéraire des Saveurs, une marque Intermarché",
+        "title": "Parmigiano Reggiano AOP",
+        "packaging": "La barquette de 200 g",
+        "unitPrice": null,
+        "price": null,
+        "url": "/produit/parmigiano-reggiano-aop/3250391989959",
+        "available": false
+      },
+      "alternatives": [
+        {
+          "brand": "Parmareggio",
+          "title": "Fromage Parmigiano Reggiano AOP",
+          "packaging": "La barquette de 180g",
+          "unitPrice": "38,00 €/Kg",
+          "price": 6.84,
+          "url": "/produit/fromage-parmigiano-reggiano-aop/8010721999899"
+        },
+        {
+          "brand": "Itinéraire des Saveurs, une marque Intermarché",
+          "title": "Parmigiano Reggiano AOP râpé",
+          "packaging": "Le sachet de 60 g",
+          "unitPrice": "20,17 €/Kg",
+          "price": 1.19,
+          "url": "/produit/parmigiano-reggiano-aop-rape/3250392334352"
+        }
+      ]
+    },
+    "Itinéraire des Saveurs, une marque Intermarché Parmigiano Reggiano AOP râpé": {
+      "status": "exact",
+      "search": "Parmigiano Reggiano AOP",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Itinéraire des Saveurs, une marque Intermarché",
+        "title": "Parmigiano Reggiano AOP râpé",
+        "packaging": "Le sachet de 60 g",
+        "unitPrice": "20,17 €/Kg",
+        "price": 1.19,
+        "url": "/produit/parmigiano-reggiano-aop-rape/3250392334352"
+      }
+    },
+    "Itinéraire des Saveurs, une marque Intermarché Sauce Yakitori assaisonnement à base de sauce soja, saké et mirin": {
+      "status": "exact",
+      "search": "Sauce Yakitori",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Itinéraire des Saveurs, une marque Intermarché",
+        "title": "Sauce Yakitori assaisonnement à base de sauce soja, saké et mirin",
+        "packaging": "La bouteille de 250 ml",
+        "unitPrice": "16,48 €/L",
+        "price": 4.12,
+        "url": "/produit/sauce-yakitori-assaisonnement-a-base-de-sauce-soja-sake-et-mirin/3250393470608"
+      }
+    },
+    "Itinéraire des Saveurs, une marque Intermarché Saveur d'Asie - Sauce soja sucrée": {
+      "status": "exact",
+      "search": "Sauce soja sucrée",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Itinéraire des Saveurs, une marque Intermarché",
+        "title": "Saveur d'Asie - Sauce soja sucrée",
+        "packaging": "La bouteille de 300 ml",
+        "unitPrice": "10,43 €/L",
+        "price": 3.13,
+        "url": "/produit/saveur-d'asie-sauce-soja-sucree/3250392138769"
+      }
+    },
+    "Jambon blanc en tranches": {
+      "status": "picked",
+      "search": "jambon blanc",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Monique Ranou, une marque Intermarché",
+        "title": "Jambon de porc Mon Paris découenné dégraissé",
+        "packaging": "La barquette de 6 tranches - 270 g",
+        "unitPrice": "10,07 €/Kg",
+        "price": 2.72,
+        "url": "/produit/jambon-de-porc-mon-paris-decouenne-degraisse/3250390190936"
+      }
+    },
+    "Jardin Bio étic Sauce tomate pour pizza, pâtes et riz BIO": {
+      "status": "exact",
+      "search": "sauce tomate pour pizza",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Jardin Bio étic",
+        "title": "Sauce tomate pour pizza, pâtes et riz BIO",
+        "packaging": "Le bocal de 200g",
+        "unitPrice": null,
+        "price": null,
+        "url": "/produit/sauce-tomate-pour-pizza-pates-et-riz-bio/3478820030915",
+        "available": false
+      }
+    },
+    "Jean Rozé, une marque Intermarché Chipolata supérieure aux herbes": {
+      "status": "exact",
+      "search": "chipolata",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Jean Rozé, une marque Intermarché",
+        "title": "Chipolata supérieure aux herbes",
+        "packaging": "Les 6 pièces de 55g - 330 g",
+        "unitPrice": "10,00 €/Kg",
+        "price": 3.3,
+        "url": "/produit/chipolata-superieure-aux-herbes/3250393211935"
+      }
+    },
+    "Jean Rozé, une marque Intermarché Chipolatas supérieures": {
+      "status": "exact",
+      "search": "chipolata",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Jean Rozé, une marque Intermarché",
+        "title": "Chipolatas supérieures",
+        "packaging": "Les 6 pièces de 55g - 330g",
+        "unitPrice": null,
+        "price": null,
+        "url": "/produit/chipolatas-superieures/3250393211959",
+        "available": false
+      }
+    },
+    "Jean Rozé, une marque Intermarché Côtes de PORC": {
+      "status": "exact",
+      "search": "côtes de porc",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Jean Rozé, une marque Intermarché",
+        "title": "Côtes de PORC",
+        "packaging": "Les 4 pièces de 140g - 560 g",
+        "unitPrice": "8,55 €/Kg",
+        "price": 4.79,
+        "url": "/produit/cotes-de-porc/3250393447464"
+      }
+    },
+    "Jean Rozé, une marque Intermarché Viande hachée vrac pur BŒUF 15% MG": {
+      "status": "check",
+      "search": "viande hachée 15%",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Jean Rozé, une marque Intermarché",
+        "title": "Viande hachée pur bœuf 15% MG",
+        "packaging": "Le sachet de 400 g",
+        "unitPrice": null,
+        "price": null,
+        "url": "/produit/viande-hachee-pur-bœuf-15%25-mg/3250393122705",
+        "available": false
+      },
+      "note": "Now sold as a 400 g bag rather than a tray, and \"vrac\" has gone from the name. Out of stock on 14 September."
+    },
+    "Jean Rozé, une marque Intermarché Viande hachée vrac pur BŒUF 5% MG": {
+      "status": "exact",
+      "search": "Viande hachée pur bœuf 5%",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Jean Rozé, une marque Intermarché",
+        "title": "Viande hachée vrac pur BŒUF 5% MG",
+        "packaging": "La barquette de 350 g",
+        "unitPrice": null,
+        "price": null,
+        "url": "/produit/viande-hachee-vrac-pur-bœuf-5%25-mg/3250390303213",
+        "available": false
+      }
+    },
+    "Kikkoman Sauce soja salée": {
+      "status": "check",
+      "search": "Sauce soja salée",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Kikkoman",
+        "title": "Sauce soja salée",
+        "packaging": "Le carafe de 150 ml",
+        "unitPrice": "25,20 €/L",
+        "price": 3.78,
+        "url": "/produit/sauce-soja-salee/8715035110106"
+      },
+      "note": "Méré only has the 150 ml carafe now, not the 250 ml bottle on the receipt.",
+      "alternatives": [
+        {
+          "brand": "Suzi Wan",
+          "title": "Sauce soja salée",
+          "packaging": "La bouteille de 135ml",
+          "unitPrice": "15,93 €/L",
+          "price": 2.15,
+          "url": "/produit/sauce-soja-salee/4002359018312"
+        }
+      ]
+    },
+    "L'Or Espresso capsules intensité 8 — boîte de 50": {
+      "status": "check",
+      "search": "capsules l'or intensité 8",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "L'Or",
+        "title": "Capsules de café compatibles Nespresso Lungo Profondo Intensité 8",
+        "packaging": "La boite de 50 capsules - 260g",
+        "unitPrice": "63,81 €/Kg",
+        "price": 16.59,
+        "url": "/produit/capsules-de-cafe-compatibles-nespresso-lungo-profondo-intensite-8/8711000705063"
+      },
+      "note": "The only strength-8 L'Or capsule in a box of 50 is Lungo Profondo. The Espresso Brésil 8 comes in 30. The receipt never named which one you buy.",
+      "alternatives": [
+        {
+          "brand": "L'Or",
+          "title": "Espresso - Capsules de café compatibles Nespresso Brésil Intensité 8",
+          "packaging": "La boîte de 30 capsules - 165g",
+          "unitPrice": "65,13 €/Kg",
+          "price": 10.16,
+          "url": "/produit/espresso-capsules-de-cafe-compatibles-nespresso-bresil-intensite-8/8711000572580"
+        }
+      ]
+    },
+    "L'Or Espresso Décaféiné capsules — boîte de 50": {
+      "status": "missing",
+      "search": "capsules l'or décaféiné",
+      "checked": "2026-09-14",
+      "note": "No decaf L'Or capsules in a box of 50 at Méré. The biggest is Decaffeinato intensité 6 in 30; Lungo Profondo Decaffeinato 8 only comes in 10.",
+      "alternatives": [
+        {
+          "brand": "L'Or",
+          "title": "Capsules de café compatibles Nespresso Decaffeinato Intensité 6",
+          "packaging": "La boite de 30 capsules - 156g",
+          "unitPrice": "60,19 €/Kg",
+          "price": 9.39,
+          "url": "/produit/capsules-de-cafe-compatibles-nespresso-decaffeinato-intensite-6/8711000547250"
+        },
+        {
+          "brand": "L'Or",
+          "title": "Capsules de café compatibles Nespresso Lungo Profondo Decaffeinato Intensité 8",
+          "packaging": "La boite de 10 capsules - 52g",
+          "unitPrice": "66,73 €/Kg",
+          "price": 3.47,
+          "url": "/produit/capsules-de-cafe-compatibles-nespresso-lungo-profondo-decaffeinato-intensite-8/8711000709405"
+        }
+      ]
+    },
+    "La Nouvelle Agriculture Aiguillette de poulet": {
+      "status": "exact",
+      "search": "Aiguillette de poulet",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "La Nouvelle Agriculture",
+        "title": "Aiguillette de poulet",
+        "packaging": "La barquette de 6 - 220g environ",
+        "unitPrice": "20,55 €/Kg",
+        "price": 4.52,
+        "url": "/produit/aiguillette-de-poulet/0213329000000"
+      }
+    },
+    "Lait de coco": {
+      "status": "picked",
+      "search": "lait de coco",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Kara",
+        "title": "Lait de coco fluide",
+        "packaging": "La brique de 500ml",
+        "unitPrice": "5,40 €/L",
+        "price": 2.7,
+        "url": "/produit/lait-de-coco-fluide/8886303210535"
+      },
+      "note": "Full-fat. The Itinéraire des Saveurs tin at the top of the results is \"allégé\"."
+    },
+    "Le Choix du Primeur Ail BLANC": {
+      "status": "check",
+      "search": "ail blanc",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Ail BLANC- CAT. 1",
+        "packaging": "Le filet de 2 têtes",
+        "unitPrice": "3,79 €/Pièce",
+        "price": 3.79,
+        "url": "/produit/ail-blanc/3250393126314"
+      },
+      "note": "The loose single head on the receipt is gone; the same brand now sells a net of two heads. Petit prix's 250 g net is about half the price.",
+      "alternatives": [
+        {
+          "brand": "Petit prix",
+          "title": "Ail BLANC- CAT. 1",
+          "packaging": "Le filet de 250 g",
+          "unitPrice": "7,96 €/Kg",
+          "price": 1.99,
+          "url": "/produit/ail-blanc/3250399915547"
+        },
+        {
+          "brand": "Terroirs, une marque Intermarché",
+          "title": "Ail BLANC 3 têtes- CAT. 1",
+          "packaging": "Le filet",
+          "unitPrice": "4,99 €/Pièce",
+          "price": 4.99,
+          "url": "/produit/ail-blanc-3-tetes/3250399886076"
+        }
+      ]
+    },
+    "Le Choix du Primeur Aubergines VIOLETTES": {
+      "status": "exact",
+      "search": "aubergine",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Aubergines VIOLETTES- CAT. 1",
+        "packaging": "En vrac - à partir de 400 gr (soit 1 aubergine)",
+        "unitPrice": "4,29 €/Kg",
+        "price": 1.72,
+        "url": "/produit/aubergines-violettes/2800203000000"
+      }
+    },
+    "Le Choix du Primeur Avocat AFFINE": {
+      "status": "exact",
+      "search": "avocat",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Avocat AFFINE- CAT. 1",
+        "packaging": "Vendu à la pièce",
+        "unitPrice": "1,39 €/Pièce",
+        "price": 1.39,
+        "url": "/produit/avocat-affine/3250393159176"
+      }
+    },
+    "Le Choix du Primeur Bananes": {
+      "status": "exact",
+      "search": "bananes",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Bananes- CAT. 1",
+        "packaging": "En vrac - à partir de 250g environ (soit 1 banane)",
+        "unitPrice": "1,99 €/Kg",
+        "price": 0.5,
+        "url": "/produit/bananes/2800323000000"
+      }
+    },
+    "Le Choix du Primeur Brocolis": {
+      "status": "exact",
+      "search": "brocolis",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Brocolis- CAT. 1",
+        "packaging": "En vrac - à partir de 500 gr (soit 1 bouquet)",
+        "unitPrice": "5,99 €/Kg",
+        "price": 3,
+        "url": "/produit/brocolis/2800198000000"
+      }
+    },
+    "Le Choix du Primeur Carottes": {
+      "status": "exact",
+      "search": "carottes",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Carottes- CAT. 1",
+        "packaging": "En vrac - à partir de 120 gr (soit 1 carotte)",
+        "unitPrice": "1,79 €/Kg",
+        "price": 0.21,
+        "url": "/produit/carottes/2834202000000"
+      }
+    },
+    "Le Choix du Primeur Céleri BRANCHE VERT": {
+      "status": "exact",
+      "search": "céleri branche",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Céleri BRANCHE VERT- CAT. 1",
+        "packaging": "En vrac - à partir de 150g environ (soit 1 tige)",
+        "unitPrice": "2,45 €/Kg",
+        "price": 0.37,
+        "url": "/produit/celeri-branche-vert/2800514000000"
+      }
+    },
+    "Le Choix du Primeur Citrons JAUNES": {
+      "status": "exact",
+      "search": "citrons jaunes",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Citrons JAUNES- CAT. 1",
+        "packaging": "En vrac - à partir de 140g environ (soit 1 citron)",
+        "unitPrice": "3,49 €/Kg",
+        "price": 0.49,
+        "url": "/produit/citrons-jaunes/2802097000000"
+      }
+    },
+    "Le Choix du Primeur Concombre": {
+      "status": "exact",
+      "search": "concombre",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Concombre- CAT. 1",
+        "packaging": "Vendu à la pièce",
+        "unitPrice": "1,79 €/Pièce",
+        "price": 1.79,
+        "url": "/produit/concombre/3250393160974"
+      }
+    },
+    "Le Choix du Primeur Coriandre": {
+      "status": "exact",
+      "search": "coriandre",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Coriandre",
+        "packaging": "La botte, vendu à la pièce",
+        "unitPrice": "1,09 €/Pièce",
+        "price": 1.09,
+        "url": "/produit/coriandre/3250393158476"
+      }
+    },
+    "Le Choix du Primeur Courgettes LONGUES": {
+      "status": "exact",
+      "search": "courgettes",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Courgettes LONGUES- CAT. 1",
+        "packaging": "En vrac - à partir de 300 gr (soit 1 courgette)",
+        "unitPrice": "3,99 €/Kg",
+        "price": 1.2,
+        "url": "/produit/courgettes-longues/2800366000000"
+      }
+    },
+    "Le Choix du Primeur Haricots VERTS EBOUTES": {
+      "status": "exact",
+      "search": "haricots verts éboutés",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Haricots VERTS EBOUTES- CAT. 1",
+        "packaging": "La barquette de 400 gr environ",
+        "unitPrice": "9,98 €/Kg",
+        "price": 3.99,
+        "url": "/produit/haricots-verts-eboutes/3250393140976"
+      }
+    },
+    "Le Choix du Primeur Laitue COEUR DE ROMAINE": {
+      "status": "missing",
+      "search": "laitue",
+      "checked": "2026-09-14",
+      "note": "No romaine at Méré — \"laitue\" returns only a BIO sucrine (out of stock) and mâche.",
+      "alternatives": [
+        {
+          "brand": "Le Choix du Primeur",
+          "title": "Salade MACHE",
+          "packaging": "La barquette de 125g",
+          "unitPrice": "7,92 €/Kg",
+          "price": 0.99,
+          "url": "/produit/salade-mache/3250399916636"
+        }
+      ]
+    },
+    "Le Choix du Primeur Laitue FEUILLES DE CHENES BLONDE": {
+      "status": "missing",
+      "search": "laitue",
+      "checked": "2026-09-14",
+      "note": "Not listed at Méré: \"laitue\" returns only an out-of-stock BIO sucrine and the mâche.",
+      "alternatives": [
+        {
+          "brand": "Le Choix du Primeur",
+          "title": "Salade MACHE",
+          "packaging": "La barquette de 125g",
+          "unitPrice": "7,92 €/Kg",
+          "price": 0.99,
+          "url": "/produit/salade-mache/3250399916636"
+        }
+      ]
+    },
+    "Le Choix du Primeur Oignons JAUNES": {
+      "status": "exact",
+      "search": "oignons",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Oignons JAUNES- CAT. 1",
+        "packaging": "En vrac - à partir de 150g environ (soit 1 oignon)",
+        "unitPrice": "2,89 €/Kg",
+        "price": 0.43,
+        "url": "/produit/oignons-jaunes/2800548000000"
+      }
+    },
+    "Le Choix du Primeur Oignons ROUGES": {
+      "status": "exact",
+      "search": "oignons rouges",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Oignons ROUGES- CAT. 1",
+        "packaging": "En vrac - à partir de 150g environ (soit 1 oignon)",
+        "unitPrice": "3,89 €/Kg",
+        "price": 0.58,
+        "url": "/produit/oignons-rouges/2800377000000"
+      }
+    },
+    "Le Choix du Primeur Patates DOUCES": {
+      "status": "exact",
+      "search": "patates douces",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Patates DOUCES- CAT. 1",
+        "packaging": "En vrac - à partir de 500g (soit 1 patate douce)",
+        "unitPrice": "2,79 €/Kg",
+        "price": 1.4,
+        "url": "/produit/patates-douces/2800576000000"
+      }
+    },
+    "Le Choix du Primeur Poivron ROUGE": {
+      "status": "exact",
+      "search": "poivron",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Poivron ROUGE- CAT. 1",
+        "packaging": "En vrac - à partir de 200g (soit 1 poivron)",
+        "unitPrice": "4,99 €/Kg",
+        "price": 1,
+        "url": "/produit/poivron-rouge/2800223000000"
+      }
+    },
+    "Le Choix du Primeur Poivrons JAUNES": {
+      "status": "exact",
+      "search": "poivron",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Poivrons JAUNES- CAT. 1",
+        "packaging": "En vrac - à partir de 200 gr (soit 1 poivron)",
+        "unitPrice": "5,99 €/Kg",
+        "price": 1.2,
+        "url": "/produit/poivrons-jaunes/2800553000000"
+      }
+    },
+    "Le Choix du Primeur Poivrons VERTS": {
+      "status": "exact",
+      "search": "poivron",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Poivrons VERTS- CAT. 1",
+        "packaging": "En vrac - à partir de 200 gr (soit 1 poivron)",
+        "unitPrice": "4,99 €/Kg",
+        "price": 1,
+        "url": "/produit/poivrons-verts/2800217000000"
+      }
+    },
+    "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif": {
+      "status": "missing",
+      "search": "pomme de terre",
+      "checked": "2026-09-14",
+      "note": "No Princesse Amandine at Méré. The firm-fleshed option is Terroirs' \"vapeur rissolée salade\" 2 kg; the same brand's 2 kg net is chair tendre.",
+      "alternatives": [
+        {
+          "brand": "Terroirs, une marque Intermarché",
+          "title": "Pomme de terre blonde - vapeur rissolée salade - NOUVELLE RECOLTE- CAT. 1",
+          "packaging": "Le filet de 2kg",
+          "unitPrice": "1,50 €/Kg",
+          "price": 2.99,
+          "url": "/produit/pomme-de-terre-blonde-vapeur-rissolee-salade-nouvelle-recolte/3250399883624"
+        },
+        {
+          "brand": "Le Choix du Primeur",
+          "title": "Pomme de terre de consommation NOUVELLE RECOLTE chair tendre- CAT. 1",
+          "packaging": "Le filet de 2kg",
+          "unitPrice": "1,15 €/Kg",
+          "price": 2.29,
+          "url": "/produit/pomme-de-terre-de-consommation-nouvelle-recolte-chair-tendre/3250399976524"
+        }
+      ]
+    },
+    "Le Choix du Primeur Pommes GRANNY SMITH": {
+      "status": "missing",
+      "search": "pommes",
+      "checked": "2026-09-14",
+      "note": "No Granny Smith found: \"granny smith\" only matches Grany cereal bars, and none of the first 40 of 448 \"pommes\" results is one."
+    },
+    "Le Choix du Primeur Salade MACHE": {
+      "status": "exact",
+      "search": "mache",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Salade MACHE",
+        "packaging": "La barquette de 125g",
+        "unitPrice": "7,92 €/Kg",
+        "price": 0.99,
+        "url": "/produit/salade-mache/3250399916636"
+      }
+    },
+    "Le Choix du Primeur Salade MACHE BIO": {
+      "status": "exact",
+      "search": "mache",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Salade MACHE BIO- CAT. 2",
+        "packaging": "La barquette de 150 g",
+        "unitPrice": "19,93 €/Kg",
+        "price": 2.99,
+        "url": "/produit/salade-mache-bio/3250393131677"
+      }
+    },
+    "Le Choix du Primeur Tomate RONDE en GRAPPE": {
+      "status": "exact",
+      "search": "tomates rondes",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Tomate RONDE en GRAPPE- CAT. EXTRA",
+        "packaging": "En vrac - à partir de 120g environ (soit 1 tomate)",
+        "unitPrice": "6,99 €/Kg",
+        "price": 0.84,
+        "url": "/produit/tomate-ronde-en-grappe/2800547000000"
+      }
+    },
+    "Le Choix du Primeur Tomates RONDES CHARNUES": {
+      "status": "exact",
+      "search": "tomates rondes",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Tomates RONDES CHARNUES- CAT. 1",
+        "packaging": "En vrac - à partir de 300g environ (soit 1 tomate)",
+        "unitPrice": "5,99 €/Kg",
+        "price": 1.8,
+        "url": "/produit/tomates-rondes-charnues/2800592000000"
+      }
+    },
+    "Le Gaulois Escalope de dinde": {
+      "status": "missing",
+      "search": "escalope de dinde",
+      "checked": "2026-09-14",
+      "note": "Le Gaulois only sells breaded and cordon bleu escalopes at Méré now. Plain turkey escalopes come from the butcher counter, or Volaé's extra-fines (out of stock today).",
+      "alternatives": [
+        {
+          "brand": "Le Choix du Volailler",
+          "title": "DINDE : escalope",
+          "packaging": "À la coupe, à partir de 280g environ (2 pièces)",
+          "unitPrice": "15,90 €/Kg",
+          "price": 4.45,
+          "url": "/produit/dinde-:-escalope/2888639000000"
+        },
+        {
+          "brand": "Volaé, une marque Intermarché",
+          "title": "Escalopes de dinde extra fines x2",
+          "packaging": "La barquette de 240 gr environ",
+          "unitPrice": null,
+          "price": null,
+          "url": "/produit/escalopes-de-dinde-extra-fines-x2/0209278000000",
+          "available": false
+        }
+      ]
+    },
+    "Le Gaulois Filet de poulet extra tendre": {
+      "status": "exact",
+      "search": "filet de poulet le gaulois",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Gaulois",
+        "title": "Filet de poulet extra tendre",
+        "packaging": "La barquette de 2 - 280g",
+        "unitPrice": "19,89 €/Kg",
+        "price": 5.57,
+        "url": "/produit/filet-de-poulet-extra-tendre/2276746000000"
+      }
+    },
+    "Levure chimique": {
+      "status": "picked",
+      "search": "levure chimique",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Chabrior, une marque Intermarché",
+        "title": "Levure chimique",
+        "packaging": "Les 6 sachets de 11g - 66g",
+        "unitPrice": "4,09 €/Kg",
+        "price": 0.27,
+        "url": "/produit/levure-chimique/3250390148920"
+      }
+    },
+    "Lustucru Sélection Gnocchi à poêler croustillant et moelleux format XXL": {
+      "status": "exact",
+      "search": "gnocchi lustucru",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Lustucru Sélection",
+        "title": "Gnocchi à poêler croustillant et moelleux format XXL",
+        "packaging": "Le paquet de 720g",
+        "unitPrice": "3,94 €/Kg",
+        "price": 2.84,
+        "url": "/produit/gnocchi-a-poeler-croustillant-et-moelleux-format-xxl/3240931548135"
+      }
+    },
+    "Maddy's Cheddar rouge mature": {
+      "status": "exact",
+      "search": "cheddar rouge",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Maddy's",
+        "title": "Cheddar rouge mature",
+        "packaging": "Le paquet de 200g",
+        "unitPrice": "18,70 €/Kg",
+        "price": 3.74,
+        "url": "/produit/cheddar-rouge-mature/3481300330658"
+      }
+    },
+    "Maille Cornichons extra-fins L'Original": {
+      "status": "exact",
+      "search": "Maille cornichons",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Maille",
+        "title": "Cornichons extra-fins L'Original",
+        "packaging": "Le bocal de 380g net égoutté",
+        "unitPrice": "8,89 €/Kg",
+        "price": 3.38,
+        "url": "/produit/cornichons-extra-fins-l'original/8712566246526"
+      }
+    },
+    "Maïzena fécule de maïs": {
+      "status": "picked",
+      "search": "chapelure",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Maïzena",
+        "title": "Maizena fleur de maïs sans gluten, format familial",
+        "packaging": "La boîte de 700g",
+        "unitPrice": "3,71 €/Kg",
+        "price": 2.6,
+        "url": "/produit/maizena-fleur-de-mais-sans-gluten-format-familial/8712100338724"
+      },
+      "note": "The 400 g box was out of stock; this is the 700 g.",
+      "alternatives": [
+        {
+          "brand": "Maïzena",
+          "title": "Fleur de maïs sans gluten",
+          "packaging": "La boite de 400 g",
+          "unitPrice": null,
+          "price": null,
+          "url": "/produit/fleur-de-mais-sans-gluten/8712100338694",
+          "available": false
+        }
+      ]
+    },
+    "Manchego": {
+      "status": "missing",
+      "search": "manchego",
+      "checked": "2026-09-14",
+      "note": "Méré lists no manchego — the search returns nothing."
+    },
+    "Menguy's Cacahuètes grillées et salées": {
+      "status": "check",
+      "search": "cacahuètes grillées",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Menguy's",
+        "title": "Cacahuètes grillées et salées",
+        "packaging": "Le sachet de 500 g",
+        "unitPrice": "8,30 €/Kg",
+        "price": 4.15,
+        "url": "/produit/cacahuetes-grillees-et-salees/3327271102019"
+      },
+      "note": "Only the 500 g bag now, not the 900 g. Bouton d'Or's 500 g bag is 1,40 €.",
+      "alternatives": [
+        {
+          "brand": "Bouton d’Or, une marque Intermarché",
+          "title": "Cacahuètes grillées à l'huile et salées",
+          "packaging": "Le sachet de 500 g",
+          "unitPrice": "2,80 €/Kg",
+          "price": 1.4,
+          "url": "/produit/cacahuetes-grillees-a-l'huile-et-salees/3250390002123"
+        }
+      ]
+    },
+    "Montorsi Mortadelle": {
+      "status": "exact",
+      "search": "mortadelle",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Montorsi",
+        "title": "Mortadelle",
+        "packaging": "La barquette de 120g",
+        "unitPrice": "21,25 €/Kg",
+        "price": 2.55,
+        "url": "/produit/mortadelle/8005153004327"
+      }
+    },
+    "Negroni Assortiment de charcuterie": {
+      "status": "exact",
+      "search": "assortiment de charcuterie",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Negroni",
+        "title": "Assortiment de charcuterie",
+        "packaging": "La barquette de 130 g",
+        "unitPrice": "46,38 €/Kg",
+        "price": 6.03,
+        "url": "/produit/assortiment-de-charcuterie/8028257010377"
+      }
+    },
+    "Notre Sélection Aiguillettes de poulet": {
+      "status": "exact",
+      "search": "Aiguillette de poulet",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Notre Sélection",
+        "title": "Aiguillettes de poulet",
+        "packaging": "La barquette de 500g",
+        "unitPrice": "14,74 €/Kg",
+        "price": 7.37,
+        "url": "/produit/aiguillettes-de-poulet/5413458061403"
+      }
+    },
+    "Notre Sélection Filet de truite": {
+      "status": "missing",
+      "search": "truite",
+      "checked": "2026-09-14",
+      "note": "No fresh trout fillets at Méré — \"truite\" returns only smoked trout."
+    },
+    "Odyssée, une marque Intermarché Saumon fumé d'Ecosse": {
+      "status": "check",
+      "search": "saumon fumé",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Odyssée, une marque Intermarché",
+        "title": "Saumon fumé d'Ecosse",
+        "packaging": "La barquette de 8 tranches - 260g",
+        "unitPrice": "41,81 €/Kg",
+        "price": 10.87,
+        "url": "/produit/saumon-fume-d'ecosse/3250393463860"
+      },
+      "note": "Eight slices for 260 g now, not six for 240 g."
+    },
+    "Olives noires dénoyautées": {
+      "status": "picked",
+      "search": "olives noires dénoyautées",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Tramier",
+        "title": "Olives noires confites dénoyautées",
+        "packaging": "Le bocal de 150g",
+        "unitPrice": "10,73 €/Kg",
+        "price": 1.61,
+        "url": "/produit/olives-noires-confites-denoyautees/3017230000059"
+      }
+    },
+    "Pancetta en dés": {
+      "status": "picked",
+      "search": "pancetta",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Itinéraire des Saveurs, une marque Intermarché",
+        "title": "Saveur d'Italie - Pancetta",
+        "packaging": "La barquette de 10 tranches - 100 g",
+        "unitPrice": "31,50 €/Kg",
+        "price": 3.15,
+        "url": "/produit/saveur-d'italie-pancetta/3250391204885"
+      },
+      "note": "Sliced, not diced: the only pancetta at Méré. Cut the slices into lardons."
+    },
+    "Panier d'Emilie Œufs frais calibre moyen-gros": {
+      "status": "missing",
+      "search": "œufs plein air",
+      "checked": "2026-09-14",
+      "note": "Panier d'Emilie eggs are not listed at Méré."
+    },
+    "Panzani Pâtes Coquillettes": {
+      "status": "exact",
+      "search": "panzani coquillettes",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Panzani",
+        "title": "Pâtes Coquillettes",
+        "packaging": "Le paquet de 500g",
+        "unitPrice": "1,82 €/Kg",
+        "price": 0.91,
+        "url": "/produit/pates-coquillettes/3038350013002"
+      }
+    },
+    "Panzani Pâtes Coquillettes - Les 3 minutes": {
+      "status": "exact",
+      "search": "panzani coquillettes",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Panzani",
+        "title": "Pâtes Coquillettes - Les 3 minutes",
+        "packaging": "Le paquet de 1kg",
+        "unitPrice": "2,28 €/Kg",
+        "price": 2.28,
+        "url": "/produit/pates-coquillettes-les-3-minutes/3038350343000"
+      }
+    },
+    "Panzani Pâtes Coquilllettes": {
+      "status": "exact",
+      "search": "panzani coquillettes",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Panzani",
+        "title": "Pâtes Coquilllettes",
+        "packaging": "Le paquet de 1kg",
+        "unitPrice": "1,72 €/Kg",
+        "price": 1.72,
+        "url": "/produit/pates-coquilllettes/3038350023001"
+      }
+    },
+    "Panzani Sauce Tomates Basilic ingrédients origine naturelle": {
+      "status": "exact",
+      "search": "panzani sauce tomates",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Panzani",
+        "title": "Sauce Tomates Basilic ingrédients origine naturelle",
+        "packaging": "Le pot de 650g",
+        "unitPrice": null,
+        "price": null,
+        "url": "/produit/sauce-tomates-basilic-ingredients-origine-naturelle/3038359011504",
+        "available": false
+      },
+      "alternatives": [
+        {
+          "brand": "Panzani",
+          "title": "Sauce Tomates Basilic ingrédients origine naturelle",
+          "packaging": "Le pot de 400g",
+          "unitPrice": "5,53 €/Kg",
+          "price": 2.21,
+          "url": "/produit/sauce-tomates-basilic-ingredients-origine-naturelle/3038359011498"
+        }
+      ]
+    },
+    "Panzani Sauce Tomates Cuisinées ingrédients origine naturelle": {
+      "status": "exact",
+      "search": "panzani sauce tomates",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Panzani",
+        "title": "Sauce Tomates Cuisinées ingrédients origine naturelle",
+        "packaging": "Le pot de 425g",
+        "unitPrice": "4,31 €/Kg",
+        "price": 1.83,
+        "url": "/produit/sauce-tomates-cuisinees-ingredients-origine-naturelle/3038359011412"
+      }
+    },
+    "Panzani Sauce Tomates Provençale ingrédients origine naturelle": {
+      "status": "exact",
+      "search": "panzani sauce tomates",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Panzani",
+        "title": "Sauce Tomates Provençale ingrédients origine naturelle",
+        "packaging": "Le pot de 650g",
+        "unitPrice": "3,69 €/Kg",
+        "price": 2.4,
+        "url": "/produit/sauce-tomates-provencale-ingredients-origine-naturelle/3038359011467"
+      }
+    },
+    "Parole gourmande Blancs de poireaux": {
+      "status": "exact",
+      "search": "blancs de poireaux",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Parole gourmande",
+        "title": "Blancs de poireaux",
+        "packaging": "L'unité de 395g net égoutté",
+        "unitPrice": "9,44 €/Kg",
+        "price": 6.23,
+        "url": "/produit/blancs-de-poireaux/3574314020704"
+      }
+    },
+    "Pastificio Liguori Pâtes fusilli": {
+      "status": "exact",
+      "search": "fusilli liguori",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Pastificio Liguori",
+        "title": "Pâtes fusilli",
+        "packaging": "Le paquet de 500g",
+        "unitPrice": "4,42 €/Kg",
+        "price": 2.21,
+        "url": "/produit/pates-fusilli/8008912010317"
+      }
+    },
+    "Pâte brisée prête à dérouler": {
+      "status": "picked",
+      "search": "pâte brisée",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Monique Ranou, une marque Intermarché",
+        "title": "Pâte brisée prête à dérouler",
+        "packaging": "Le paquet de 230 g",
+        "unitPrice": "2,83 €/Kg",
+        "price": 0.65,
+        "url": "/produit/pate-brisee-prete-a-derouler/3250390017158"
+      }
+    },
+    "Pâturages, une marque Intermarché 3 fromages râpés": {
+      "status": "exact",
+      "search": "3 fromages râpés",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Pâturages, une marque Intermarché",
+        "title": "3 fromages râpés",
+        "packaging": "Le sachet de 200g",
+        "unitPrice": "8,85 €/Kg",
+        "price": 1.77,
+        "url": "/produit/3-fromages-rapes/3250391901746"
+      }
+    },
+    "Pâturages, une marque Intermarché Beurre moulé demi-sel": {
+      "status": "exact",
+      "search": "beurre moulé demi-sel",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Pâturages, une marque Intermarché",
+        "title": "Beurre moulé demi-sel",
+        "packaging": "Le paquet de 500g",
+        "unitPrice": "9,98 €/Kg",
+        "price": 4.99,
+        "url": "/produit/beurre-moule-demi-sel/3250390010647"
+      },
+      "note": "The receipt cut the pack off at \"la plaquette de 5…\"; 4,99 € on the receipt matches this 500 g pack exactly."
+    },
+    "Pâturages, une marque Intermarché Cheddar Les Tranchettes": {
+      "status": "check",
+      "search": "cheddar tranchettes",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Pâturages, une marque Intermarché",
+        "title": "Les tranchettes de cheddar pour hamburger",
+        "packaging": "Le paquet de 10 tranches - 200 g",
+        "unitPrice": "6,25 €/Kg",
+        "price": 1.25,
+        "url": "/produit/les-tranchettes-de-cheddar-pour-hamburger/3250391799961"
+      },
+      "note": "Renamed: Pâturages' cheddar slices are now \"pour hamburger\", 10 slices for 200 g or 18 for 340 g.",
+      "alternatives": [
+        {
+          "brand": "Pâturages, une marque Intermarché",
+          "title": "Fromage Les Tranchettes Hamburger au cheddar",
+          "packaging": "Le paquet de 18 tranches - 340 g",
+          "unitPrice": "5,91 €/Kg",
+          "price": 2.01,
+          "url": "/produit/fromage-les-tranchettes-hamburger-au-cheddar/3250392450403"
+        }
+      ]
+    },
+    "Pâturages, une marque Intermarché Emmental français au lait français": {
+      "status": "exact",
+      "search": "emmental français",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Pâturages, une marque Intermarché",
+        "title": "Emmental français au lait français",
+        "packaging": "Le sachet de 500 g",
+        "unitPrice": "8,08 €/Kg",
+        "price": 4.03,
+        "url": "/produit/emmental-francais-au-lait-francais/3250390150589"
+      }
+    },
+    "Pâturages, une marque Intermarché Emmental français râpé": {
+      "status": "check",
+      "search": "emmental français râpé",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Pâturages, une marque Intermarché",
+        "title": "Emmental français râpé",
+        "packaging": "Le sachet de 200 g",
+        "unitPrice": "8,29 €/Kg",
+        "price": 1.65,
+        "url": "/produit/emmental-francais-rape/3250390010258"
+      },
+      "note": "No 500 g bag any more: 200 g or 1 kg. A dish uses 100–200 g, so one 200 g bag per dish.",
+      "alternatives": [
+        {
+          "brand": "Pâturages, une marque Intermarché",
+          "title": "Emmental français râpé",
+          "packaging": "Le sachet de 1 kg",
+          "unitPrice": "7,89 €/Kg",
+          "price": 7.89,
+          "url": "/produit/emmental-francais-rape/3250392224981"
+        }
+      ]
+    },
+    "Pâturages, une marque Intermarché Lait demi-écrémé stérilisé UHT BIO - issu de l'agriculture biologique,": {
+      "status": "exact",
+      "search": "lait demi-écrémé bio pâturages",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Pâturages, une marque Intermarché",
+        "title": "Lait demi-écrémé stérilisé UHT BIO - issu de l'agriculture biologique,",
+        "packaging": "La bouteille de 1l",
+        "unitPrice": "1,08 €/L",
+        "price": 1.08,
+        "url": "/produit/lait-demi-ecreme-sterilise-uht-bio-issu-de-l'agriculture-biologique/3250390204930"
+      }
+    },
+    "Pâturages, une marque Intermarché Mozzarella": {
+      "status": "check",
+      "search": "mozzarella",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Pâturages, une marque Intermarché",
+        "title": "Mozzarella Maxi",
+        "packaging": "Le sachet de 250 g net égoutté",
+        "unitPrice": "7,58 €/Kg",
+        "price": 1.82,
+        "url": "/produit/mozzarella-maxi/3250390747420"
+      },
+      "note": "The 250 g ball is called \"Mozzarella Maxi\" now; plain \"Mozzarella\" is the 125 g.",
+      "alternatives": [
+        {
+          "brand": "Pâturages, une marque Intermarché",
+          "title": "Mozzarella",
+          "packaging": "Le sachet de 125 g net égoutté",
+          "unitPrice": "7,44 €/Kg",
+          "price": 0.93,
+          "url": "/produit/mozzarella/3250390678885"
+        }
+      ]
+    },
+    "Pâturages, une marque Intermarché Ricotta": {
+      "status": "exact",
+      "search": "ricotta",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Pâturages, une marque Intermarché",
+        "title": "Ricotta",
+        "packaging": "La boite de 250 g",
+        "unitPrice": "5,20 €/Kg",
+        "price": 1.3,
+        "url": "/produit/ricotta/3250391334667"
+      }
+    },
+    "Persil plat": {
+      "status": "picked",
+      "search": "persil plat",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Saint Eloi, une marque Intermarché",
+        "title": "Persil plat émincé BIO surgelé",
+        "packaging": "L'étui de 50 g",
+        "unitPrice": "32,40 €/Kg",
+        "price": 1.62,
+        "url": "/produit/persil-plat-emince-bio-surgele/3250390714705"
+      },
+      "note": "Méré sells no fresh parsley — frozen chopped or dried only. Frozen is the closer of the two."
+    },
+    "Petit navire Saumon fumé de Norvège": {
+      "status": "exact",
+      "search": "saumon fumé",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Petit navire",
+        "title": "Saumon fumé de Norvège",
+        "packaging": "La barquette de 120g",
+        "unitPrice": "46,92 €/Kg",
+        "price": 5.63,
+        "url": "/produit/saumon-fume-de-norvege/3760253430623"
+      }
+    },
+    "Petit prix Courgettes": {
+      "status": "exact",
+      "search": "courgettes",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Petit prix",
+        "title": "Courgettes- CAT. 2",
+        "packaging": "Le filet de 1 kg",
+        "unitPrice": "2,99 €/Kg",
+        "price": 2.99,
+        "url": "/produit/courgettes/3250399915660"
+      }
+    },
+    "Petit prix Tomates cerises allongées": {
+      "status": "exact",
+      "search": "tomates cerises",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Petit prix",
+        "title": "Tomates cerises allongées- CAT. 1",
+        "packaging": "La boite de 250 g",
+        "unitPrice": "3,96 €/Kg",
+        "price": 0.99,
+        "url": "/produit/tomates-cerises-allongees/3250399980743"
+      }
+    },
+    "Pignons de pin": {
+      "status": "picked",
+      "search": "pignons de pin",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Chabrior, une marque Intermarché",
+        "title": "Pignons de pin",
+        "packaging": "Le sachet de 50 g",
+        "unitPrice": null,
+        "price": null,
+        "url": "/produit/pignons-de-pin/3250390100522",
+        "available": false
+      },
+      "note": "Both pine-nut bags Méré lists (Chabrior, Vahiné) were out of stock on 14 September."
+    },
+    "Plukon Pilons de poulet": {
+      "status": "exact",
+      "search": "pilons de poulet",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Plukon",
+        "title": "Pilons de poulet",
+        "packaging": "La barquette de 1kg",
+        "unitPrice": null,
+        "price": null,
+        "url": "/produit/pilons-de-poulet/5413458017585",
+        "available": false
+      }
+    },
+    "Producteurs & Commerçants Baguette BIO": {
+      "status": "missing",
+      "search": "baguette bio",
+      "checked": "2026-09-14",
+      "note": "Not listed. Méré's organic baguettes are Terroirs (out of stock) and a cereal baguette cooked on site.",
+      "alternatives": [
+        {
+          "brand": "Terroirs, une marque Intermarché",
+          "title": "Baguette BIO",
+          "packaging": "La baguette de 250 g",
+          "unitPrice": null,
+          "price": null,
+          "url": "/produit/baguette-bio/2829869000000",
+          "available": false
+        },
+        {
+          "brand": "Cuit sur place",
+          "title": "Baguette céréales BIO",
+          "packaging": "La baguette de 250 g",
+          "unitPrice": "5,16 €/Kg",
+          "price": 1.29,
+          "url": "/produit/baguette-cereales-bio/2829868000000"
+        }
+      ]
+    },
+    "Riz Arborio pour risotto": {
+      "status": "picked",
+      "search": "riz arborio",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Itinéraire des Saveurs, une marque Intermarché",
+        "title": "Riz arborio pour risotto",
+        "packaging": "Le paquet de 500 g",
+        "unitPrice": null,
+        "price": null,
+        "url": "/produit/riz-arborio-pour-risotto/3250391686667",
+        "available": false
+      },
+      "note": "The only arborio at Méré, out of stock on 14 September."
+    },
+    "Romarin frais": {
+      "status": "picked",
+      "search": "romarin",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Bouton d’Or, une marque Intermarché",
+        "title": "Romarin de Provence en branche",
+        "packaging": "Le sachet de 15 g",
+        "unitPrice": "116,00 €/Kg",
+        "price": 1.74,
+        "url": "/produit/romarin-de-provence-en-branche/3250390590194"
+      },
+      "note": "No fresh rosemary at Méré. These are dried whole sprigs, the nearest thing."
+    },
+    "Safran en dosettes": {
+      "status": "picked",
+      "search": "safran",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Ducros",
+        "title": "Safran",
+        "packaging": "Les 4 doses de 0,1g",
+        "unitPrice": "4,33 €/Pièce",
+        "price": 4.33,
+        "url": "/produit/safran/3166291350990"
+      },
+      "note": "Bouton d'Or's three doses were out of stock."
+    },
+    "Saint Eloi, une marque Intermarché Basmati de l'Himalaya": {
+      "status": "exact",
+      "search": "saint eloi basmati",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Saint Eloi, une marque Intermarché",
+        "title": "Basmati de l'Himalaya",
+        "packaging": "Le sachet de 500 g",
+        "unitPrice": "3,84 €/Kg",
+        "price": 1.92,
+        "url": "/produit/basmati-de-l'himalaya/3250392260279"
+      }
+    },
+    "Saint Eloi, une marque Intermarché Lentilles préparées": {
+      "status": "exact",
+      "search": "lentilles préparées",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Saint Eloi, une marque Intermarché",
+        "title": "Lentilles préparées",
+        "packaging": "La boite de 530 g net égoutté",
+        "unitPrice": "2,17 €/Kg",
+        "price": 1.15,
+        "url": "/produit/lentilles-preparees/3250390005162"
+      }
+    },
+    "Saint Eloi, une marque Intermarché Mélange de salades mâche et roquette prêt à l'emploi": {
+      "status": "missing",
+      "search": "mache",
+      "checked": "2026-09-14",
+      "note": "Not listed — \"mâche\" returns only the two Choix du Primeur trays, and \"roquette\" no salad at all.",
+      "alternatives": [
+        {
+          "brand": "Le Choix du Primeur",
+          "title": "Salade MACHE",
+          "packaging": "La barquette de 125g",
+          "unitPrice": "7,92 €/Kg",
+          "price": 0.99,
+          "url": "/produit/salade-mache/3250399916636"
+        }
+      ]
+    },
+    "Saint Eloi, une marque Intermarché Pois chiches français": {
+      "status": "exact",
+      "search": "pois chiches",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Saint Eloi, une marque Intermarché",
+        "title": "Pois chiches français",
+        "packaging": "La boîte de 530 g net égoutté",
+        "unitPrice": "2,26 €/Kg",
+        "price": 1.2,
+        "url": "/produit/pois-chiches-francais/3250390005148"
+      }
+    },
+    "Saint Eloi, une marque Intermarché Riz long basmati BIO": {
+      "status": "exact",
+      "search": "saint eloi basmati",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Saint Eloi, une marque Intermarché",
+        "title": "Riz long basmati BIO",
+        "packaging": "Le sachet de 500 g",
+        "unitPrice": "2,98 €/Kg",
+        "price": 1.49,
+        "url": "/produit/riz-long-basmati-bio/3250391950805"
+      }
+    },
+    "Saint Eloi, une marque Intermarché Riz long grain de qualité supérieure basmati origine Inde ou Pakistan naturellement parfumé": {
+      "status": "exact",
+      "search": "saint eloi basmati",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Saint Eloi, une marque Intermarché",
+        "title": "Riz long grain de qualité supérieure basmati origine Inde ou Pakistan naturellement parfumé",
+        "packaging": "Le paquet de 500g",
+        "unitPrice": "2,82 €/Kg",
+        "price": 1.41,
+        "url": "/produit/riz-long-grain-de-qualite-superieure-basmati-origine-inde-ou-pakistan-naturellement-parfume/3250390257219"
+      }
+    },
+    "Saint Eloi, une marque Intermarché Roquette prête à l'emploi déjà lavée": {
+      "status": "missing",
+      "search": "roquette",
+      "checked": "2026-09-14",
+      "note": "No rocket at Méré: \"roquette\" returns only a Barilla pesto."
+    },
+    "Salakis Fromage 100% brebis herbes de Provence": {
+      "status": "exact",
+      "search": "salakis herbes",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Salakis",
+        "title": "Fromage 100% brebis herbes de Provence",
+        "packaging": "Le bocal de 300g",
+        "unitPrice": null,
+        "price": null,
+        "url": "/produit/fromage-100%25-brebis-herbes-de-provence/3023260005872",
+        "available": false
+      }
+    },
+    "Suzi Wan Vermicelles de riz": {
+      "status": "missing",
+      "search": "vermicelles de riz",
+      "checked": "2026-09-14",
+      "note": "Suzi Wan's rice vermicelli is no longer listed. The only rice noodle is Notre Sélection's 3 mm, which is a flat noodle, not vermicelli.",
+      "alternatives": [
+        {
+          "brand": "Notre Sélection",
+          "title": "Pâtes de riz 3 mm",
+          "packaging": "Le paquet de 375g",
+          "unitPrice": "6,91 €/Kg",
+          "price": 2.59,
+          "url": "/produit/pates-de-riz-3-mm/0084909302267"
+        }
+      ]
+    },
+    "Tanoshi Feuilles d'algues nori grillées pour sushi": {
+      "status": "exact",
+      "search": "tanoshi",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Tanoshi",
+        "title": "Feuilles d'algues nori grillées pour sushi",
+        "packaging": "Le sachet de 7 feuilles - 17,5g",
+        "unitPrice": "182,78 €/Kg",
+        "price": 3.29,
+        "url": "/produit/feuilles-d'algues-nori-grillees-pour-sushi/3229820765334"
+      }
+    },
+    "Tanoshi Nouilles japonaises précuites Ramen assaisonnement bœuf": {
+      "status": "check",
+      "search": "tanoshi",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Tanoshi",
+        "title": "Nouilles japonaises Ramen précuites soja caramel",
+        "packaging": "Le sachet de 360g",
+        "unitPrice": "8,89 €/Kg",
+        "price": 3.2,
+        "url": "/produit/nouilles-japonaises-ramen-precuites-soja-caramel/3229820181363"
+      },
+      "note": "The beef-seasoned ramen is gone. Tanoshi's other 360 g precooked ramen are soja caramel and poulet teriyaki.",
+      "alternatives": [
+        {
+          "brand": "Tanoshi",
+          "title": "Nouilles ramen précuites au poulet teriyaki",
+          "packaging": "Le sachet de 360g",
+          "unitPrice": "9,00 €/Kg",
+          "price": 3.24,
+          "url": "/produit/nouilles-ramen-precuites-au-poulet-teriyaki/3229820794723"
+        }
+      ]
+    },
+    "Tanoshi Nouilles ramen précuites au poulet teriyaki": {
+      "status": "exact",
+      "search": "tanoshi",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Tanoshi",
+        "title": "Nouilles ramen précuites au poulet teriyaki",
+        "packaging": "Le sachet de 360g",
+        "unitPrice": "9,00 €/Kg",
+        "price": 3.24,
+        "url": "/produit/nouilles-ramen-precuites-au-poulet-teriyaki/3229820794723"
+      }
+    },
+    "Tanoshi Riz pour sushi Japonica": {
+      "status": "exact",
+      "search": "tanoshi",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Tanoshi",
+        "title": "Riz pour sushi Japonica",
+        "packaging": "Le sachet de 450g",
+        "unitPrice": "7,76 €/Kg",
+        "price": 3.49,
+        "url": "/produit/riz-pour-sushi-japonica/3229820765297"
+      }
+    },
+    "Taureau Ailé Riz Basmati": {
+      "status": "exact",
+      "search": "Taureau Ailé Riz Basmati",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Taureau Ailé",
+        "title": "Riz Basmati",
+        "packaging": "Le sachet d'1kg",
+        "unitPrice": "3,74 €/Kg",
+        "price": 3.74,
+        "url": "/produit/riz-basmati/3760341070472"
+      }
+    },
+    "Terroirs, une marque Intermarché Côtes de PORC": {
+      "status": "missing",
+      "search": "côtes de porc",
+      "checked": "2026-09-14",
+      "note": "Terroirs no longer sells these chops at Méré. Jean Rozé's are the same four 140 g chops, already in the same equivalence group.",
+      "alternatives": [
+        {
+          "brand": "Jean Rozé, une marque Intermarché",
+          "title": "Côtes de PORC",
+          "packaging": "Les 4 pièces de 140g - 560 g",
+          "unitPrice": "8,55 €/Kg",
+          "price": 4.79,
+          "url": "/produit/cotes-de-porc/3250393447464"
+        }
+      ]
+    },
+    "Thym frais": {
+      "status": "picked",
+      "search": "thym",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Bouton d’Or, une marque Intermarché",
+        "title": "Bouquet garni thym & laurier",
+        "packaging": "Le sachet de 12 g",
+        "unitPrice": "106,67 €/Kg",
+        "price": 1.28,
+        "url": "/produit/bouquet-garni-thym-&-laurier/3250391507580"
+      },
+      "note": "No fresh thyme at Méré. A dried thyme-and-bay bouquet garni is the nearest."
+    },
+    "Top Budget Farine de blé Type 55": {
+      "status": "exact",
+      "search": "farine top budget",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Top Budget",
+        "title": "Farine de blé Type 55",
+        "packaging": "Le paquet de 1 kg",
+        "unitPrice": "0,54 €/Kg",
+        "price": 0.54,
+        "url": "/produit/farine-de-ble-type-55/3410280020594"
+      }
+    },
+    "Ultima croquettes pour chat stérilisé adulte poulet": {
+      "status": "exact",
+      "search": "ultima chat stérilisé",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Ultima",
+        "title": "croquettes pour chat stérilisé adulte poulet",
+        "packaging": "Le sac de 1,5 kg",
+        "unitPrice": "4,74 €/Kg",
+        "price": 7.11,
+        "url": "/produit/croquettes-pour-chat-sterilise-adulte-poulet/8410650162065"
+      }
+    },
+    "Vahiné Pépites de chocolat noir": {
+      "status": "exact",
+      "search": "pépites de chocolat",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Vahiné",
+        "title": "Pépites de chocolat noir",
+        "packaging": "Le sachet de 100g",
+        "unitPrice": null,
+        "price": null,
+        "url": "/produit/pepites-de-chocolat-noir/3179140923061",
+        "available": false
+      },
+      "alternatives": [
+        {
+          "brand": "Chabrior, une marque Intermarché",
+          "title": "Pépites chocolat",
+          "packaging": "Le sachet de 100 g",
+          "unitPrice": "14,80 €/Kg",
+          "price": 1.48,
+          "url": "/produit/pepites-chocolat/3250391468621"
+        }
+      ]
+    },
+    "Vin blanc sec de cuisine": {
+      "status": "missing",
+      "search": "vin blanc",
+      "checked": "2026-09-14",
+      "note": "No cooking wine as such — \"vin blanc\" returns 370 bottles. Pick any dry white; nothing chosen for you."
+    },
+    "Vinaigre balsamique": {
+      "status": "picked",
+      "search": "vinaigre balsamique",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Itinéraire des Saveurs, une marque Intermarché",
+        "title": "Vinaigre Balsamique de Modène",
+        "packaging": "La bouteille de 25 cl",
+        "unitPrice": "6,16 €/L",
+        "price": 1.54,
+        "url": "/produit/vinaigre-balsamique-de-modene/3250391593422"
+      }
+    },
+    "Volaé, une marque Intermarché Cuisse de poulet jaune déjointée": {
+      "status": "exact",
+      "search": "cuisse de poulet jaune",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Volaé, une marque Intermarché",
+        "title": "Cuisse de poulet jaune déjointée",
+        "packaging": "La barquette de 500 g environ",
+        "unitPrice": "6,00 €/Kg",
+        "price": 3,
+        "url": "/produit/cuisse-de-poulet-jaune-dejointee/0211114000000"
+      }
+    },
+    "Volaé, une marque Intermarché Cuisse de poulet jaune x4": {
+      "status": "exact",
+      "search": "cuisse de poulet jaune",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Volaé, une marque Intermarché",
+        "title": "Cuisse de poulet jaune x4",
+        "packaging": "La barquette d'1.05 kg environ",
+        "unitPrice": null,
+        "price": null,
+        "url": "/produit/cuisse-de-poulet-jaune-x4/0211121000000",
+        "available": false
+      }
+    },
+    "Volaé, une marque Intermarché Escalopes de dinde extra fines x2": {
+      "status": "exact",
+      "search": "escalope de dinde",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Volaé, une marque Intermarché",
+        "title": "Escalopes de dinde extra fines x2",
+        "packaging": "La barquette de 240 gr environ",
+        "unitPrice": null,
+        "price": null,
+        "url": "/produit/escalopes-de-dinde-extra-fines-x2/0209278000000",
+        "available": false
+      }
+    },
+    "Volaé, une marque Intermarché Œufs frais de poules élevées au sol": {
+      "status": "check",
+      "search": "œufs sol",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Volaé, une marque Intermarché",
+        "title": "œufs frais de poules élevées au sol",
+        "packaging": "La boîte de 12 œufs",
+        "unitPrice": "0,25 €/Unité",
+        "price": 2.96,
+        "url": "/produit/œufs-frais-de-poules-elevees-au-sol/3250392427160"
+      },
+      "note": "Méré has no box of 20 any more. Volaé's barn eggs come in 12 (2,96 €) or 6 (1,65 €): a 12 and a 6 make 18.",
+      "alternatives": [
+        {
+          "brand": "Volaé, une marque Intermarché",
+          "title": "œufs frais de poules élevées au sol",
+          "packaging": "La boîte de 6 œufs",
+          "unitPrice": "0,28 €/Unité",
+          "price": 1.65,
+          "url": "/produit/œufs-frais-de-poules-elevees-au-sol/3250392427146"
+        }
+      ]
+    },
+    "Volaé, une marque Intermarché Œufs frais de poules élevées en plein air": {
+      "status": "missing",
+      "search": "œufs plein air",
+      "checked": "2026-09-14",
+      "note": "No box of 20 in stock. Volaé's plein air 18 and l'Œuf de nos Villages' 20 are both listed but were out of stock on 14 September.",
+      "alternatives": [
+        {
+          "brand": "Volaé, une marque Intermarché",
+          "title": "Œufs frais de poules élevées en plein air",
+          "packaging": "La boîte de 18 œufs",
+          "unitPrice": null,
+          "price": null,
+          "url": "/produit/œufs-frais-de-poules-elevees-en-plein-air/3250392264857",
+          "available": false
+        },
+        {
+          "brand": "l'Œuf de nos Villages",
+          "title": "Œufs de poules élevées en plein air engagé",
+          "packaging": "La boite de 20",
+          "unitPrice": null,
+          "price": null,
+          "url": "/produit/œufs-de-poules-elevees-en-plein-air-engage/3700864005209",
+          "available": false
+        }
+      ]
+    }
+  }
+}

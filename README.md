@@ -35,7 +35,7 @@ Intermarché emails a `Votre facture est disponible` receipt after every Drive o
 
 `scripts/parse-invoices.mjs` turns those into `purchase-history.json`: what I buy, how often, in what quantity, at what price. That is a far better preference model than any onboarding quiz, because it is what I did rather than what I said.
 
-It also means the shopping list can use **exact Intermarché product names** — "Jean Rozé, une marque Intermarché Viande hachée vrac pur BŒUF 5% MG, la barquette de 350 g" — which is what makes the browser step reliable. Searching "ground beef" on intermarche.fr returns forty things. Searching the exact name returns one.
+It also means the shopping list can use **exact Intermarché product names** — "Jean Rozé, une marque Intermarché Viande hachée vrac pur BŒUF 5% MG, la barquette de 350 g" — as keys. They were meant to be search terms too, on the theory that the exact name would return exactly one result. Tried on the real site on 14 September 2026, it doesn't: Intermarché's search ranks rather than matches, so that full name puts every house-brand product ahead of the mince, and a product that has since been renamed or repacked returns nothing. So the names now key into `data/catalogue.json`, which maps each one to its product page at Méré.
 
 Three things the invoices do that the parser has to handle:
 
@@ -50,7 +50,7 @@ Three things the invoices do that the parser has to handle:
 
 The two that matter most are constraints rather than tastes. **No chilli at all** — IBS, so this is a health rule and not a preference to be traded off. And **milk and cream minimised** — cheese is fine, coconut milk is fine, so curries still work.
 
-There is also a `pantry` block listing the Asian staples Méré is *confirmed* to stock, taken from my own receipts rather than guessed: Kikkoman soy, the Itinéraire des Saveurs yakitori and sweet soy sauces, Tanoshi sushi rice, nori and ramen, Suzi Wan rice vermicelli, Ajinomoto gyoza. Those double as known-good search terms.
+There is also a `pantry` block listing the Asian staples Méré is *confirmed* to stock, taken from my own receipts rather than guessed: Kikkoman soy, the Itinéraire des Saveurs yakitori and sweet soy sauces, Tanoshi sushi rice, nori and ramen, Suzi Wan rice vermicelli, Ajinomoto gyoza. By 14 September 2026 two of those — the gyoza and the vermicelli — were no longer sold at Méré, which is the kind of drift the catalogue exists to catch.
 
 ### 3. The weekly conversation
 
@@ -62,7 +62,9 @@ The one rule in there worth calling out: **familiarity comes from the ingredient
 
 ### 4. The basket
 
-Claude in Chrome, on my PC, with my Intermarché session already logged in. It goes to the Drive Méré store, searches each line item, adds it, and stops. It does **not** book a slot and does **not** pay. I open the basket, read it, remove what I don't want, and confirm.
+Claude in Chrome, on my PC, with my Intermarché session already logged in. It works from the list I approved on the page: anything Méré no longer sells as named comes to me as a question first, then it opens each product's own page at Drive Méré, checks the pack, adds the right count, and stops. It does **not** book a slot and does **not** pay. I open the basket, read it, remove what I don't want, and confirm.
+
+`data/catalogue.json` is what makes that work: for every product the app can buy, the product's page at Méré, the site's own name and pack, the price on the day it was checked, and whether it is the same thing as on my receipts. It was built by browsing the site in my Chrome, because Intermarché blocks anything scripted.
 
 ## Non-negotiable rules
 
@@ -102,15 +104,18 @@ It is also a two-person app. Any meal can be swapped — either for another dish
 
 The library is 32 dishes now, roughly half Asian and half European. Ready-made things like the gyoza are still on the menu but marked as assemblies — a note about the packet, and a real recipe only for the part that is actually cooked.
 
-- [ ] Browser automation step — documented in the skill, not yet run against a real plan
+- [x] Méré catalogue — all 153 products the app can buy matched to their product pages, 14 September 2026
+- [ ] Browser automation step — adding to the basket tested on one product; not yet run against a whole approved list
 - [ ] The budget question — a 7-dinner, 5-lunch week with a pantry restock prices out around 139 €, comfortably over the normal 100 € ceiling. First real run will settle whether the ceiling moves or the lunches go back to being leftovers.
 - [ ] Pantry state — knowing the 20-egg pack from last week is half gone
 
 ## Setup
 
 ```bash
-npm run parse       # invoices -> purchase history
-npm run build:week  # plans + recipes -> artifact/week.html
+npm run parse            # invoices -> purchase history
+npm run build:week       # plans + recipes + catalogue -> artifact/week.html
+npm run catalogue:queue  # what still needs looking up on the site
+npm run drive:list -- <weeks doc>.json  # the approved list, ready for the basket step
 ```
 
 No dependencies — the parser uses only the Node standard library, so there is nothing to `npm install`. Node 18 or newer.

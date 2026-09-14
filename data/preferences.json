@@ -113,7 +113,7 @@
     "coffeeNote": "Told to Claude 2026-09-06: L'Or capsules, strength 8, plus decaf, 3 pods a day. The only coffee in the receipts is one box on 2025-10-09 at 17,64 € — and the email truncated the name to \"L'Or Capsules de café ...\", so the variety was never captured and the exact Intermarché name is unknown. Both lines are therefore guesses at that same price, flagged in the page. Replace them with the exact names off the next receipt that includes coffee, and drop the guess flag."
   },
   "pantry": {
-    "_comment": "Asian staples Méré is confirmed to stock, from the receipts. Use these exact names; they are known-good search terms.",
+    "_comment": "Asian staples Méré stocks, from the receipts and re-checked on the site 2026-09-14. These are the receipt names — keys into data/catalogue.json, which holds each one's product page and current pack. They are not search terms.",
     "confirmedAtMere": [
       "Kikkoman Sauce soja salée",
       "Itinéraire des Saveurs, une marque Intermarché Sauce Yakitori assaisonnement à base de sauce soja, saké et mirin",
@@ -121,11 +121,14 @@
       "Tanoshi Riz pour sushi Japonica",
       "Tanoshi Feuilles d'algues nori grillées pour sushi",
       "Tanoshi Nouilles ramen précuites au poulet teriyaki",
-      "Tanoshi Nouilles japonaises précuites Ramen assaisonnement bœuf",
-      "Suzi Wan Vermicelles de riz",
-      "Ajinomoto Gyoza poulet et légumes raviolis à poêler",
       "Taureau Ailé Riz Basmati"
     ],
+    "goneFromMere": [
+      "Suzi Wan Vermicelles de riz",
+      "Ajinomoto Gyoza poulet et légumes raviolis à poêler",
+      "Tanoshi Nouilles japonaises précuites Ramen assaisonnement bœuf"
+    ],
+    "goneNote": "Found gone on intermarche.com, 2026-09-14. The only rice noodle left is Notre Sélection's flat 3 mm; the only gyoza are three fresh Ginza packs of seven, one of them bœuf ail piment. Kikkoman is still there but only as a 150 ml carafe. Recipes that use these are Charlotte's call — the catalogue carries the alternatives.",
     "notKnownToStock": [
       "gochujang",
       "gochugaru",
@@ -136,7 +139,7 @@
       "vinaigre de riz",
       "poireaux frais (leeks — jarred only)"
     ],
-    "stockFindings": "2026-09-06, from a screenshot of the app: the Légumes aisle returns exactly one leek product, Parole gourmande Blancs de poireaux in a jar at 6,23 €. No fresh poireaux. Two recipes assumed fresh leeks on a guess and were wrong. Anything Charlotte shows us goes into data/seen-in-app.json with its exact name and price and stops being a guess — that file is the only way to learn a product she has never bought, since the catalogue itself is unreadable from here."
+    "stockFindings": "2026-09-06, from a screenshot of the app: the Légumes aisle returns exactly one leek product, Parole gourmande Blancs de poireaux in a jar at 6,23 €. No fresh poireaux. Two recipes assumed fresh leeks on a guess and were wrong. Confirmed on the site 2026-09-14, along with the rest of the gaps now listed in CLAUDE.md: no fresh parsley, thyme or rosemary, no romaine or rocket, no fresh trout fillets, no manchego. Everything the app can buy is in data/catalogue.json, read off intermarche.com in Charlotte's logged-in Chrome; a screenshot into data/seen-in-app.json is still the route from her phone."
   },
   "substitutions": {
     "_comment": "Two different things. A recipe adaptation is decided up front and reported. An out-of-stock item at basket time stops and asks.",
@@ -146,7 +149,7 @@
   "ingredients": {
     "_comment": "How adventurous to be with products. Set by Charlotte on 2026-09-06.",
     "useUnboughtProducts": true,
-    "note": "Actively use products she has not bought before — pancetta, saffron, anchovies, capers, olives, pine nuts, manchego, gambas, leeks, mushrooms, shallots, arborio rice. Intermarché's catalogue cannot be read (their bot protection blocks it), so these ship as guesses: an estimated name and price, landing in the Best guesses section, to be checked at the Drive. Anything already in the receipts should still use its exact name — that is what resolves to a single search result.",
+    "note": "Actively use products she has not bought before — pancetta, saffron, anchovies, capers, olives, pine nuts, manchego, gambas, leeks, mushrooms, shallots, arborio rice. These ship as guesses with an estimated price, then get looked up on the site and recorded in data/catalogue.json; once named there, the page lists them under New to you at the real price. Anything already in the receipts should still use its exact name — the key into the pricebook and the catalogue.",
     "avoidDespiteBeingEuropean": [
       "chorizo",
       "piment d'Espelette",

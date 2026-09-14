@@ -67,11 +67,12 @@ These are not preferences. Check the plan against them before showing it.
   time), chicken fillets and aiguillettes, turkey escalopes, beef mince, pork
   chops, peppers, onions, garlic, broccoli, cucumber, mâche, basmati rice. A
   donburi, a stir-fry and a bún bowl all come out of that list.
-- **The pantry is already half built** and Méré is confirmed to stock it — see
-  `preferences.json` → `pantry.confirmedAtMere`. Kikkoman soy, yakitori sauce
-  (soy/sake/mirin), sweet soy, Tanoshi sushi rice, nori, ramen, Suzi Wan rice
-  vermicelli, Ajinomoto gyoza. Reach for these first; they are known-good search
-  terms as well as known-good ingredients.
+- **The pantry is already half built** — see `preferences.json` →
+  `pantry.confirmedAtMere`: yakitori sauce (soy/sake/mirin), sweet soy, Tanoshi
+  sushi rice, nori, ramen, Kikkoman soy. Reach for these first. But check
+  `data/catalogue.json` before leaning on anything: on 14 September 2026 the
+  Ajinomoto gyoza and Suzi Wan rice vermicelli were gone from Méré, and Kikkoman
+  had shrunk to a 150 ml carafe.
 - **One Sunday batch cook** that seeds two weeknights — a braise, a curry base,
   a big pot of rice, or a batch of spring rolls rolled ahead.
 - **Reuse perishables across dishes.** A 20-egg pack, a bunch of coriander and a
@@ -86,8 +87,14 @@ These are not preferences. Check the plan against them before showing it.
 
 Every line must be an **exact Intermarché product name** from the purchase
 history where one exists — "Jean Rozé, une marque Intermarché Viande hachée vrac
-pur BŒUF 5% MG", not "ground beef". Exact names resolve to one search result on
-the site; generic names resolve to forty and the basket step becomes unreliable.
+pur BŒUF 5% MG", not "ground beef". That name is the key into the pricebook and
+into `data/catalogue.json`, which holds what Méré's site actually lists for it:
+the product's link, its pack, today's price, and a search term that works.
+
+**The name is a key, not a search term.** Intermarché's search ranks rather than
+matches: that full Jean Rozé name floods the results with every house-brand
+product and puts the mince sixteenth, and a product that has been renamed or
+repacked returns nothing at all. The basket step goes by the catalogue's link.
 
 Two things in `purchase-history.json` to respect:
 
@@ -103,7 +110,10 @@ Two things in `purchase-history.json` to respect:
 For anything not in the history, propose the closest thing and flag it as a
 guess. If a recipe wants something Méré doesn't stock — gochujang, mirin, fish
 sauce, fresh Asian greens — **adapt the recipe to what Méré has and say what you
-swapped.** Don't send her to a second shop.
+swapped.** Don't send her to a second shop. The catalogue already knows some of
+the gaps: no fresh parsley, thyme or rosemary (fresh herbs are basil, dill, mint
+and coriander, "en botte"), no romaine, oak-leaf lettuce or rocket, no fresh
+trout fillets, no manchego, no raw peeled gambas, and eggs in twelves at most.
 
 Add the standing staples from `preferences.json`, at the quantities given there
 — the cat food is ×2, there are two cats. Then subtract anything likely still in
@@ -113,20 +123,59 @@ Show the list with a running total against the budget ceiling before touching
 the browser. A pantry-restock week uses `pantryWeekCeiling` instead of
 `ceilingPerOrder` — say plainly that you're claiming it and why.
 
+## Keeping the catalogue current
+
+`data/catalogue.json` covers every product a recipe, staple or equivalent can
+put in the basket. Whenever you add a dish, a guess or a staple:
+
+1. `npm run catalogue:queue` lists what has no entry, or an entry older than 28
+   days, with a starting search term.
+2. Resolve each one in her logged-in Chrome, one search page at a time. Read the
+   results grid — each `.stime-product-card-course` has the brand in a bold
+   `p`, the title in the `h2`, the pack in `.stime-product--details__packaging`,
+   the price, and "Indisponible" when out of stock; the product link is
+   `/produit/<slug>/<barcode>`. **Ignore the "Trouvez le produit idéal" carousel
+   above the grid**: it is a recommendation widget and shows products Méré does
+   not stock — it showed the Ajinomoto gyoza the grid no longer has.
+3. Record it: `exact` (same product and pack), `check` (renamed or repacked —
+   the nearest listing plus a note saying what changed), `picked` (a guess
+   resolved to a real product), or `missing` (nothing suitable; list the
+   `alternatives`). Search results sit chilli beside plain — the gyoza bœuf ail
+   piment, the anchois sauce piquante — so read every title before recording it.
+4. `npm run build:week` validates the file and reports what is still unchecked.
+
+The site is behind DataDome. Browse like a person: never script its API, never
+fire searches in a burst, and if a captcha appears, stop and tell her.
+
 ## Filling the basket
 
 Runs on her PC, in Chrome, with her Intermarché session already logged in. That
 is the same machine Claude Code runs on — she has no laptop, so if you are on the
-PC you can do this now; if she is on her phone, it waits.
+PC you can do this now; if she is on her phone, it waits. **Only from a list she
+has approved on the page** — the approval saves the lines, each with how many to
+add (weighed goods already turned into pieces or trays) and its catalogue link.
 
-1. Confirm the store is **Drive Méré** before adding anything.
-2. Search each line item by exact name, add it, set the quantity.
-3. If a product is unavailable, **stop and ask**. Do not substitute silently.
-   The receipts show one or two items per order go out of stock, so this will
-   come up most weeks. This is different from adapting a recipe up front, which
-   is decided before the browser opens.
-4. When the list is done, report what went in, what didn't, and the basket total
-   versus the plan estimate.
+1. Read `weeks/<weekOf>` from the page's database — the Artifact tool,
+   `action: read_db`, `db_op: get`, `out_dir` in the scratchpad — and run
+   `npm run drive:list -- <that file>`. It refuses a week that isn't approved.
+2. **Ask first, in one message.** Every `check` and `missing` line comes out
+   under "Ask Charlotte first" with its note and alternatives. Her answers decide
+   what goes in; never add a `check` listing on your own judgement.
+3. Confirm the store in the site header is **Méré**, and note what the basket
+   already holds (count and total, top right).
+4. For each ready line, open its URL and check the product block — the `h1`
+   holds brand and title, the line beneath it the pack — against `expect`. If
+   the page says "Indisponible" or has no add button, **stop and ask**; the
+   receipts show one or two items per order go out of stock, and
+   `outOfStockWhenChecked` is only a hint. Otherwise use the add control in the
+   same block as the `h1`, never one under "Vous aimerez aussi", and press +
+   until "Exemplaires dans le panier" reads `add`. A count already showing means
+   it was in the basket before: set it to `add`, don't add on top.
+5. When done, tick what went in on her page in one write: `write_db`,
+   `db_op: update`, `weeks/<weekOf>`, `data: { inBasket: { ...existing, <key>: true } }`
+   — read `inBasket` first, because `update` replaces the whole map.
+6. Report what went in, what didn't, and the site's basket total against the
+   `estimate`.
 
 ## Hard stops
 
@@ -159,6 +208,8 @@ approves a plan, before or after filling the basket:
    - Omit `buy` for anything already in the cupboard, and add `"pantry": true`.
    - `"guess": true` plus `buy.price` when the product has never been on a
      receipt. The build rejects a non-guess product missing from the pricebook.
+     Then give it a catalogue entry (above) — a guess the site has named stops
+     being a guess on the page and takes the site's price.
 2. **Write `data/plans/<weekOf>.json`** — the meals, each with a stable `id`
    (swaps are keyed on it), day, slot, recipe slug, and optional `note`.
    A portion eaten out of an earlier batch gets `"leftovers": true` and a
@@ -175,7 +226,7 @@ approves a plan, before or after filling the basket:
    reads `weeks/<weekOf>` and overlays those picks on the plan you shipped. A
    new week means a new `weekOf`, so it starts clean without touching hers. If
    she asks to keep a swapped-in dish permanently, move it into the plan file.
-6. Commit both repos.
+6. Commit and push.
 
 Reuse a slug rather than writing a near-duplicate — that is what makes the
 Recipes tab a library worth re-picking from, and it shows her which weeks a dish
@@ -183,6 +234,5 @@ has already appeared in.
 
 ## After she confirms
 
-Save the week's plan if she wants it kept, commit and push the data repo, and
-stop. The invoice email arrives within the hour; next week's parser run picks it
+Save the week's plan if she wants it kept, commit and push, and stop. The invoice email arrives within the hour; next week's parser run picks it
 up and the history improves on its own.

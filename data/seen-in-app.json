@@ -1,5 +1,5 @@
 {
-  "_comment": "Products confirmed by looking at the Intermarché app or site, rather than by a receipt. Hand-edited, like preferences.json. This exists because their catalogue cannot be read from here (403, DataDome), so the only way a product Charlotte has never bought becomes exact is if she shows it to us. Anything in here joins the pricebook with its real name and price and stops being a guess. Record what was actually on screen and nothing more — no inferred sizes, no remembered prices.",
+  "_comment": "Products confirmed by looking at the Intermarché app or site, rather than by a receipt. Hand-edited, like preferences.json. Scripted requests to intermarche.com are blocked (403, DataDome); data/catalogue.json is read in Charlotte's own Chrome instead, and this file is the route from her phone — a screenshot of the app. Anything in here joins the pricebook with its real name and price and stops being a guess. Record what was actually on screen and nothing more — no inferred sizes, no remembered prices.",
   "products": [
     {
       "name": "Parole gourmande Blancs de poireaux",
