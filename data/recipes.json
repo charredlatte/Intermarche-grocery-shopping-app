@@ -456,20 +456,22 @@
     "tags": [
       "fast",
       "no chilli",
-      "from the freezer"
+      "no cook"
     ],
-    "packNote": "The gyoza are shop-bought and cook straight from frozen — follow the pack, roughly 3 minutes in oil, 5 under a lid with a splash of water, 2 more with the lid off. There is no recipe to give you for that.",
+    "packNote": "The gyoza are shop-bought and fresh rather than frozen, so they want eating within a couple of days and they cook a shade quicker — follow the tray, roughly 2 minutes in oil, 4 under a lid with a splash of water, 2 more with the lid off. There is no recipe to give you for that. Two trays of seven between the two of you.",
     "short": "A no-cooking night. The gyoza come from a packet; the only real cooking is the broccoli beside them.",
     "ingredients": [
       {
         "item": "gyoza",
-        "qty": "1 pack (400 g)",
-        "product": "Ajinomoto Gyoza poulet et légumes raviolis à poêler",
+        "qty": "2 trays (14 pieces)",
+        "product": "Ginza Gyoza poulet citronnelle",
         "buy": {
-          "amount": 1,
+          "amount": 2,
           "mode": "sum",
-          "section": "Proteins"
-        }
+          "section": "Proteins",
+          "price": 3.95
+        },
+        "guess": true
       },
       {
         "item": "broccoli",

@@ -2300,6 +2300,20 @@
           "available": false
         }
       ]
+    },
+    "Ginza Gyoza poulet citronnelle": {
+      "status": "picked",
+      "search": "gyoza",
+      "checked": "2026-09-14",
+      "note": "Replaces the delisted Ajinomoto pack. Fresh, not frozen. The third gyoza at Méré is bœuf ail piment — chilli, never this one.",
+      "listing": {
+        "brand": "Ginza",
+        "title": "Gyoza poulet citronnelle",
+        "packaging": "La barquette de 7 - 155g",
+        "unitPrice": "25,48 €/Kg",
+        "price": 3.95,
+        "url": "/produit/gyoza-poulet-citronnelle/3456700014057"
+      }
     }
   }
 }
