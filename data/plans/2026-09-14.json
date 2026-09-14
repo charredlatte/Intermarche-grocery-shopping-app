@@ -1,0 +1,40 @@
+{
+  "weekOf": "2026-09-14",
+  "label": "Week of 14 September",
+  "store": "Intermarché Drive Méré",
+  "notes": [
+    "No order since 5 September — last week's plan never became a basket. The kitchen list is seeded from that receipt, so strike every perishable on it: nine days on, only the cupboard lines still hold.",
+    "Three Asian dinners, four European, which is the 50/50 rule as close as seven divides. Chinese lands at Thursday lunch rather than at dinner. No chilli anywhere, and no cream: the carbonara is egg and parmesan, the pain perdu is made on almond milk.",
+    "Eleven of the fourteen dishes have never been served — the Italian, Spanish, air-fryer and muffin-tin recipes added on 6 September had all sat unused. Nothing from last week repeats. Hob, air fryer, oven and muffin tin each get a night.",
+    "If the Drive slot slips to Tuesday, shift everything a day. Monday's gyoza is the one dinner that doesn't mind waiting, because it comes frozen.",
+    "The recipes add up to eleven baguettes. Order three packs of Chabrior demi-baguettes précuites instead and bake them as you go — same equivalence group, and they don't go stale by Wednesday.",
+    "233 € gross, 178 € once the kitchen list and the decaf capsules come off — 28 € over the ceiling. Strike the L'Or strength 8 if there is still a box, and the olive oil if the bottle isn't empty: that lands it at 153 €, and dropping the second bag of litter takes it under 150 €."
+  ],
+  "meals": [
+    { "id": "monday-breakfast", "day": "monday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "monday-lunch", "day": "monday", "slot": "lunch", "recipe": "sandwich-mortadelle", "note": "Nothing to cook on the day the order lands." },
+    { "id": "monday-dinner", "day": "monday", "slot": "dinner", "recipe": "gyoza-brocoli", "note": "Frozen gyoza, so it survives a late slot. Broccoli here, and again Wednesday and Friday." },
+
+    { "id": "tuesday-breakfast", "day": "tuesday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "tuesday-lunch", "day": "tuesday", "slot": "lunch", "recipe": "onigiri-oeuf", "note": "Roll them Monday evening while the gyoza pan cools." },
+    { "id": "tuesday-dinner", "day": "tuesday", "slot": "dinner", "recipe": "carbonara-pancetta", "note": "Pancetta is a guess — check the name at the Drive. Off the heat for the eggs." },
+
+    { "id": "wednesday-breakfast", "day": "wednesday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "wednesday-lunch", "day": "wednesday", "slot": "lunch", "recipe": "salade-avocat-oeuf" },
+    { "id": "wednesday-dinner", "day": "wednesday", "slot": "dinner", "recipe": "donburi-teriyaki", "note": "Cook the whole packet of basmati — Thursday's lunch is what's left." },
+
+    { "id": "thursday-breakfast", "day": "thursday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "thursday-lunch", "day": "thursday", "slot": "lunch", "recipe": "riz-saute-restes", "note": "Wednesday's rice with an egg through it.", "leftovers": true },
+    { "id": "thursday-dinner", "day": "thursday", "slot": "dinner", "recipe": "legumes-rotis-airfryer", "note": "32 minutes but almost none of it yours. Batch the mini quiches in the oven while the air fryer runs." },
+
+    { "id": "friday-breakfast", "day": "friday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "friday-lunch", "day": "friday", "slot": "lunch", "recipe": "mini-quiches-muffin", "note": "Made Thursday night in the muffin tin. Twelve holes, so there are spares for Saturday.", "minutesOverride": 5 },
+    { "id": "friday-dinner", "day": "friday", "slot": "dinner", "recipe": "yakisoba-dinde" },
+
+    { "id": "saturday-breakfast", "day": "saturday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "saturday-dinner", "day": "saturday", "slot": "dinner", "recipe": "gambas-ail-persil", "note": "The treat night, and the one to cut if the basket needs to come down: pisto with manchego keeps the Spanish night for about 4 €." },
+
+    { "id": "sunday-breakfast", "day": "sunday", "slot": "breakfast", "recipe": "pain-perdu", "note": "What the week's last baguette is for. Almond milk, no cow's milk in it." },
+    { "id": "sunday-dinner", "day": "sunday", "slot": "dinner", "recipe": "poulet-tomates-olives-four", "note": "The batch cook. Serves four, so Monday's lunch next week is already done." }
+  ]
+}
