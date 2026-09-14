@@ -13,9 +13,18 @@
  * mismatch | not-found | stuck. It clicks only the product's own add, − and +
  * controls, and only buttons that are actually on screen — the page carries
  * hidden duplicates that swallow a click silently.
+ *
+ * Guardrails, from the browser pre-flight: it does nothing off
+ * www.intermarche.com; it never reads cookies, storage or anything outside the
+ * product block; it refuses any control whose text or label speaks of checkout,
+ * a slot, payment or emptying the basket; and what it returns is page text —
+ * data for the caller, never instructions.
  */
 async function driveProduct({ url, expect, add, waitMs = 12000 }) {
+  if (location.hostname !== "www.intermarche.com") return { status: "not-found", note: "not on www.intermarche.com — nothing done" };
+  if (!/^https:\/\/www\.intermarche\.com\/produit\//.test(String(url))) return { status: "not-found", note: "not an Intermarché product link — nothing done" };
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  const FORBIDDEN = /cr[ée]neau|commander|valider|payer|paiement|vider|supprimer|checkout/i;
   const norm = (s) => String(s || "").toLowerCase().normalize("NFC")
     .replace(/[’`]/g, "'").replace(/, une marque intermarché/g, "")
     .replace(/\s*-\s*cat\.\s*(?:\d|extra)\b/g, "").replace(/\s+/g, " ").trim();
@@ -92,6 +101,7 @@ async function driveProduct({ url, expect, add, waitMs = 12000 }) {
     for (let attempt = 0; attempt < 2; attempt++) {
       const cur = block(); const was = countIn(cur); const el = pick(controls(cur));
       if (!el) return false;
+      if (!cur.contains(el) || FORBIDDEN.test((el.innerText || "") + " " + (el.getAttribute("aria-label") || ""))) return false;
       el.click();
       const t = Date.now();
       while (Date.now() - t < 4000) { await sleep(200); const bb = block(); if (bb && countIn(bb) !== was) return true; }

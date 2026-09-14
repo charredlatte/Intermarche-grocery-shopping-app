@@ -62,16 +62,37 @@ const SETTLED = ["added", "already", "unavailable", "skipped", "mismatch", "not-
 const catalogue = JSON.parse(readFileSync(join(ROOT, "data", "catalogue.json"), "utf8"));
 const SITE = catalogue.site ?? "https://www.intermarche.com";
 
-const ready = [], lookup = [], done = [];
+// Every line comes from the page's database, which any viewer of the page can
+// write, so it is untrusted input to a browser signed in to her account. A link
+// is used only if it is an Intermarché product path that resolves to
+// www.intermarche.com — "@elsewhere.example/…" appended to the site would
+// otherwise read as a login name and open another host. Counts and the expected
+// listing are checked the same way.
+const SITE_HOST = new URL(SITE).hostname;
+const safeUrl = (path) => {
+  if (typeof path !== "string" || !/^\/produit\/[^\s?#@\\]+\/\d{6,14}$/.test(path)) return null;
+  const u = new URL(path, SITE);
+  return u.protocol === "https:" && u.hostname === SITE_HOST ? u.href : null;
+};
+const safeExpect = (e) => e && ["brand", "title", "packaging"].every((f) => typeof e[f] === "string" && e[f].length > 0 && e[f].length < 200)
+  ? { brand: e.brand, title: e.title, packaging: e.packaging } : null;
+
+const ready = [], lookup = [], done = [], rejected = [];
 for (const l of doc.lines) {
   const c = catalogue.products[l.name] ?? null;
   const item = {
     key: l.key, name: l.name, add: l.add, estimate: l.cost, price: l.price ?? null, status: l.status,
-    url: l.url ? SITE + l.url : null, expect: l.expect ?? null, search: l.search ?? c?.search ?? l.name,
+    url: l.url ? safeUrl(l.url) : null, expect: safeExpect(l.expect), search: l.search ?? c?.search ?? l.name,
     outOfStockWhenChecked: c?.listing?.available === false && l.status !== "chosen" ? c.checked : null,
   };
   const r = settled[l.key];
-  if (r && SETTLED.includes(r.status)) done.push({ ...item, report: r });
+  const bad = typeof l.key !== "string" || !l.key || l.key.length > 300 ? "no usable key"
+    : !Number.isInteger(l.add) || l.add < 0 || l.add > 30 ? `count ${JSON.stringify(l.add)} out of range`
+    : l.url && !item.url ? `link ${JSON.stringify(String(l.url).slice(0, 80))} is not an Intermarché product page`
+    : item.url && !item.expect ? "no expected listing to check the page against"
+    : null;
+  if (bad) rejected.push({ key: l.key, name: l.name, reason: bad });
+  else if (r && SETTLED.includes(r.status)) done.push({ ...item, report: r });
   else if (item.url) ready.push(item);
   else lookup.push(item);
 }
@@ -100,13 +121,17 @@ if (batchAt >= 0) {
       { name: "computer", input: { tabId, action: "wait", duration: 2 } },
     ]));
   }
-  console.log(JSON.stringify({ run, collection, nextSeq: seq, keys: ready.map((i) => [i.key, i.add]), lookup: lookup.map((i) => i.key), batches }, null, 2));
+  console.log(JSON.stringify({ run, collection, nextSeq: seq, keys: ready.map((i) => [i.key, i.add]), lookup: lookup.map((i) => i.key), rejected, batches }, null, 2));
 } else if (args.includes("--json")) {
   console.log(JSON.stringify({ weekOf: doc.weekOf, run, status, collection, nextId: idFor(seq), nextSeq: seq,
-    estimate: doc.estimate, ready, lookup, done }, null, 2));
+    estimate: doc.estimate, ready, lookup, done, rejected }, null, 2));
 } else {
   console.log(`Push for ${doc.weekOf}, run ${run}: ${status}; ${doc.lines.length} lines, estimate ${eur(doc.estimate)}`);
   console.log(`Reports go to ${collection}, next id ${idFor(seq)} (then ${idFor(seq + 1)}, …)`);
+  if (rejected.length) {
+    console.log(`\n## Rejected — not pushed, tell Charlotte (${rejected.length})`);
+    for (const i of rejected) console.log(`- ${i.name ?? i.key}: ${i.reason}`);
+  }
   if (lookup.length) {
     console.log(`\n## Look up and ask (${lookup.length})`);
     for (const i of lookup) console.log(`- ${i.name} ×${i.add} — search "${i.search}", then ask before adding`);
