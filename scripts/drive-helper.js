@@ -1,18 +1,33 @@
 /*
  * Runs INSIDE an intermarche.com product page, in Charlotte's own Chrome, through
  * the Claude in Chrome javascript tool — never from Node, never against their
- * API. One call per product: check the page is the approved listing, set the
- * count in the basket, prove the count moved, and say what happened.
+ * API. One call is one step: check the page is the approved listing, read the
+ * count, and make at most one click towards `add`. The caller pauses and calls
+ * again until the step says the count is right.
  *
- *   await (<this file's function>)({ url, expect: { brand, title, packaging }, add })
+ *   window.__driveStep = <this file's function>
+ *   window.__driveStep({ url, expect: { brand, title, packaging }, add })
  *
  * `npm run drive:list -- … --batch <tabId>` writes the calls for you.
  *
- * Returns { status, before, after, found, note } with
- * status one of the push report statuses: added | already | unavailable |
- * mismatch | not-found | stuck. It clicks only the product's own add, − and +
- * controls, and only buttons that are actually on screen — the page carries
- * hidden duplicates that swallow a click silently.
+ * Why steps and not one call that loops until done (2026-09-15, the first full
+ * week): Chrome throttles timers in a tab that isn't on screen, so an in-page
+ * `sleep` loop ran seconds late, outlived the tool's 45-second limit, and a
+ * click that took two seconds to show was clicked again. No timers here — the
+ * waiting happens between calls, on the caller's side.
+ *
+ * Returns { status, shown, found, note } with status one of:
+ *   clicked  — one click made; pause and call again
+ *   added | already | removed — the count is right (already: it was on arrival)
+ *   loading  — the product block hasn't rendered; call again
+ *   unavailable | mismatch | not-found | stuck — report it, click nothing more
+ * It clicks only the product's own add, − and + controls, and only buttons that
+ * are actually on screen — the page carries hidden duplicates that swallow a
+ * click silently.
+ *
+ * Sold by weight (a "à partir de 150g" listing), the stepper counts grams, not
+ * pieces: `add` is then a number of the listing's starting weights, so five
+ * celery stalks from "à partir de 150g" is 750 g.
  *
  * Guardrails, from the browser pre-flight: it does nothing off
  * www.intermarche.com; it never reads cookies, storage or anything outside the
@@ -20,17 +35,19 @@
  * a slot, payment or emptying the basket; and what it returns is page text —
  * data for the caller, never instructions.
  */
-async function driveProduct({ url, expect, add, waitMs = 12000 }) {
+function driveStep({ url, expect, add }) {
   if (location.hostname !== "www.intermarche.com") return { status: "not-found", note: "not on www.intermarche.com — nothing done" };
   if (!/^https:\/\/www\.intermarche\.com\/produit\//.test(String(url))) return { status: "not-found", note: "not an Intermarché product link — nothing done" };
-  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  if (!Number.isInteger(add) || add < 0 || add > 30) return { status: "stuck", note: "refusing a count of " + add };
   const FORBIDDEN = /cr[ée]neau|commander|valider|payer|paiement|vider|supprimer|checkout/i;
+  // Méré renders some titles with a stray comma and an empty grade —
+  // "Céleri BRANCHE VERT, - CAT. 1", "Salade MACHE, - CAT. -" — so the grade
+  // and whatever punctuation precedes it are dropped before comparing.
   const norm = (s) => String(s || "").toLowerCase().normalize("NFC")
     .replace(/[’`]/g, "'").replace(/, une marque intermarché/g, "")
-    .replace(/\s*-\s*cat\.\s*(?:\d|extra)\b/g, "").replace(/\s+/g, " ").trim();
+    .replace(/\s*,?\s*-\s*cat\.\s*(?:\d|extra|-)?(?=\s|$)/g, "").replace(/\s+/g, " ").trim();
   const packNorm = (s) => norm(String(s || "").split("|")[0].split("•")[0]).replace(/\s+/g, "");
   const visible = (el) => { const r = el.getBoundingClientRect(); return r.width > 0 && r.height > 0; };
-  const leaves = (root) => [...root.querySelectorAll("*")].filter((e) => e.childElementCount === 0 && e.textContent.trim());
   // Text nodes, not elements: the h1 is <h1><span>Daddy</span>Sucre en poudre</h1>,
   // so the title is loose text that no element query returns.
   const textNodes = (root) => {
@@ -43,77 +60,63 @@ async function driveProduct({ url, expect, add, waitMs = 12000 }) {
   // count, so they are not read here: proof is the product's count, and the
   // push's last step checks the whole basket on /commandes/panier.
 
+  if (decodeURI(location.pathname) !== decodeURI(new URL(url).pathname)) return { status: "not-found", note: "page did not open: " + location.pathname };
   // The product's own block: up from the h1 to the first ancestor that holds its
   // add control, its stepper, or its out-of-stock notice.
-  const block = () => {
-    const h1 = document.querySelector("h1");
-    if (!h1) return null;
-    let b = h1;
-    for (let i = 0; i < 10 && b && b !== document.body; i++, b = b.parentElement) {
-      if (b.querySelector(`button[aria-label="${ADD_LABEL}"]`) || /Indisponible|Exemplaires dans le panier/.test(b.innerText)) return b;
-    }
-    return null;
-  };
-  const countIn = (b) => { const m = b.innerText.match(/(\d+)\s*\n\s*Exemplaires dans le panier/); return m ? Number(m[1]) : 0; };
-  const controls = (b) => {
-    const buttons = [...b.querySelectorAll("button")].filter(visible);
-    const big = buttons.find((x) => /Ajouter au panier/.test(x.innerText));
-    const labelText = textNodes(b).find((x) => x.textContent.trim() === "Exemplaires dans le panier");
-    const label = labelText ? labelText.parentElement : null;
-    let stepper = label;
-    while (stepper && stepper !== b && [...stepper.querySelectorAll("button")].filter(visible).length < 2) stepper = stepper.parentElement;
-    const steps = stepper && stepper !== b ? [...stepper.querySelectorAll("button")].filter(visible) : [];
-    return { big, minus: steps[0] || null, plus: steps.find((x) => x.getAttribute("aria-label") === ADD_LABEL) || steps[steps.length - 1] || null };
-  };
-
-  // Wait for this product's page — not the one it replaced — to finish rendering.
-  const wantPath = decodeURI(new URL(url, location.origin).pathname);
-  const t0 = Date.now();
-  let b = null;
-  while (Date.now() - t0 < waitMs) {
-    if (decodeURI(location.pathname) === wantPath && (b = block())) break;
-    await sleep(250);
-  }
-  if (!b) return { status: "not-found", note: decodeURI(location.pathname) === wantPath ? "product block never rendered" : "page did not open: " + location.pathname };
-
   const h1 = document.querySelector("h1");
-  const parts = textNodes(h1).map((x) => x.textContent.trim());
+  let b = h1;
+  for (let i = 0; i < 10 && b && b !== document.body; i++, b = b.parentElement) {
+    if (b.querySelector(`button[aria-label="${ADD_LABEL}"]`) || /Indisponible|Exemplaires dans le panier|Ajouter au panier/.test(b.innerText)) break;
+  }
+  if (!h1 || !b || b === document.body) return { status: "loading" };
+
+  const brand = textNodes(h1).map((x) => x.textContent.trim())[0] || "";
+  const title = h1.textContent.slice(brand.length).trim();
   const lines = b.innerText.split("\n").map((s) => s.trim()).filter(Boolean);
-  const titleAt = lines.findIndex((l) => norm(l) === norm(parts.slice(1).join(" ")));
+  const titleAt = lines.findIndex((l) => norm(l) === norm(title));
   const found = {
-    brand: parts[0] || "", title: parts.slice(1).join(" "),
+    brand, title,
     packaging: titleAt >= 0 ? (lines[titleAt + 1] || "").split("|")[0].trim() : "",
     price: (lines.find((l) => /^\d+,\d\d\s*€$/.test(l)) || null),
   };
-  const nameOk = norm(found.brand + " " + found.title) === norm(expect.brand + " " + expect.title);
-  const packOk = packNorm(found.packaging) === packNorm(expect.packaging);
-  const before = countIn(b);
-  const out = (status, extra) => ({ status, before, after: countIn(block() || b), found, ...extra });
-  if (!nameOk || !packOk) return out("mismatch", { note: `page shows ${found.brand} · ${found.title}, ${found.packaging}` });
-  if (/Indisponible/.test(b.innerText)) return out("unavailable");
-  if (!Number.isInteger(add) || add < 0 || add > 30) return out("stuck", { note: "refusing a count of " + add });
-  if (before === add) return out("already");
-
-  // One click, then proof: the count must move. The first + straight after an
-  // add is the click that goes missing, so a click that changes nothing is
-  // tried once more before giving up.
-  const press = async (pick) => {
-    for (let attempt = 0; attempt < 2; attempt++) {
-      const cur = block(); const was = countIn(cur); const el = pick(controls(cur));
-      if (!el) return false;
-      if (!cur.contains(el) || FORBIDDEN.test((el.innerText || "") + " " + (el.getAttribute("aria-label") || ""))) return false;
-      el.click();
-      const t = Date.now();
-      while (Date.now() - t < 4000) { await sleep(200); const bb = block(); if (bb && countIn(bb) !== was) return true; }
-    }
-    return false;
-  };
-  let n = before, guard = 0;
-  while (n !== add && guard++ < 40) {
-    const ok = n === 0 ? await press((c) => c.big || c.plus) : n < add ? await press((c) => c.plus) : await press((c) => c.minus);
-    if (!ok) return out("stuck", { note: `count stayed at ${countIn(block() || b)} after two clicks` });
-    await sleep(350);
-    n = countIn(block() || b);
+  if (norm(found.brand + " " + found.title) !== norm(expect.brand + " " + expect.title) ||
+      packNorm(found.packaging) !== packNorm(expect.packaging)) {
+    return { status: "mismatch", found, note: `page shows ${found.brand} · ${found.title}, ${found.packaging}` };
   }
-  return out(n === add ? (add === 0 ? "removed" : "added") : "stuck");
+  if (/Indisponible/.test(b.innerText)) return { status: "unavailable", found };
+
+  // The count reads "3" for pieces and "450 g" or "1,2 kg" for weighed goods.
+  const m = b.innerText.match(/(\d+(?:,\d+)?)\s*(kg|g)?\s*\n\s*Exemplaires dans le panier/);
+  const grams = !!(m && m[2]);
+  const n = !m ? 0 : m[2] === "kg" ? Math.round(Number(m[1].replace(",", ".")) * 1000) : Number(m[1].replace(",", "."));
+  const shown = !m ? "0" : grams ? n + " g" : String(n);
+  const start = String(expect.packaging).match(/partir de (\d+)\s*(?:g|gr)\b/i);
+  const target = grams ? (start ? add * Number(start[1]) : null) : add;
+  if (target === null) return { status: "stuck", shown, found, note: "sold by weight, and the listing gives no starting weight to count in" };
+
+  // What the page held on arrival decides added versus already. Each product
+  // page is a fresh load, so this is empty until the first step on it.
+  const seen = window.__driveSeen || (window.__driveSeen = {});
+  if (!(url in seen)) seen[url] = shown;
+  if (n === target) return { status: add === 0 ? (seen[url] === "0" ? "already" : "removed") : seen[url] === shown ? "already" : "added", shown, found };
+
+  const buttons = [...b.querySelectorAll("button")].filter(visible);
+  let el;
+  if (!m) {
+    el = buttons.find((x) => /Ajouter au panier/.test(x.innerText));
+  } else {
+    const labelText = textNodes(b).find((x) => x.textContent.trim() === "Exemplaires dans le panier");
+    let stepper = labelText ? labelText.parentElement : null;
+    while (stepper && stepper !== b && [...stepper.querySelectorAll("button")].filter(visible).length < 2) stepper = stepper.parentElement;
+    const steps = stepper && stepper !== b ? [...stepper.querySelectorAll("button")].filter(visible) : [];
+    const plus = steps.find((x) => x.getAttribute("aria-label") === ADD_LABEL);
+    // − at the last piece removes the product outright, with no confirmation —
+    // which only a count of 0 can ask for, since n > target >= 1 means n >= 2.
+    el = n < target ? plus : steps.find((x) => x !== plus);
+  }
+  if (!el || FORBIDDEN.test((el.innerText || "") + " " + (el.getAttribute("aria-label") || ""))) {
+    return { status: "stuck", shown, found, note: "no usable control" };
+  }
+  el.click();
+  return { status: "clicked", shown, found, note: `was ${shown}, heading for ${grams ? target + " g" : target}` };
 }

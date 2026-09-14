@@ -103,23 +103,36 @@ const collection = `push/${doc.weekOf}/progress`;
 const eur = (n) => (n ?? 0).toFixed(2).replace(".", ",") + " €";
 
 if (batchAt >= 0) {
-  // Ready-made browser_batch actions: open the product page, then run the
-  // in-page helper on it. A few products per batch keeps the pace human and
-  // lets progress be reported between batches.
+  // Ready-made browser_batch actions: open the product page, load the in-page
+  // helper on it, then step it — one click per call, a pause between calls,
+  // because a site click takes a couple of seconds to show in the count. A few
+  // products per batch keeps the pace human and lets progress be reported
+  // between batches. The last step for a product is its result; any status but
+  // added/already/removed after the last step means do that product by hand.
   const size = sizeArg ? Math.max(1, Number(sizeArg.split("=")[1])) : 5;
-  // The file's header comment is for people; each call carries only the function.
+  // Comments are for people; each page load carries only the function.
   const source = readFileSync(join(ROOT, "scripts", "drive-helper.js"), "utf8");
-  const helper = source.slice(source.indexOf("async function driveProduct"));
-  const call = (i) => `await (${helper})(${JSON.stringify({ url: i.url, expect: i.expect, add: i.add })})`;
+  const helper = source.slice(source.indexOf("function driveStep")).replace(/^\s*\/\/.*\n/gm, "");
+  const js = (text) => ({ name: "javascript_tool", input: { tabId, action: "javascript_exec", text } });
+  const wait = (duration) => ({ name: "computer", input: { tabId, action: "wait", duration } });
   const batches = [];
   for (let k = 0; k < ready.length; k += size) {
-    // The pause matters: opening product pages back to back got one redirected
-    // to a search page instead (2026-09-14).
-    batches.push(ready.slice(k, k + size).flatMap((i) => [
-      { name: "navigate", input: { tabId, url: i.url } },
-      { name: "javascript_tool", input: { tabId, action: "javascript_exec", text: call(i) } },
-      { name: "computer", input: { tabId, action: "wait", duration: 2 } },
-    ]));
+    batches.push(ready.slice(k, k + size).flatMap((i) => {
+      // A click to add, one per count, one to read the result, one spare for a
+      // slow render. Weighed goods can step in half packs (the turkey escalope
+      // listing starts at 280 g and steps by 140 g), so they get twice the clicks.
+      const weighed = /partir de \d+\s*(?:g|gr)\b/i.test(i.expect.packaging);
+      const steps = (weighed ? 2 * i.add : i.add) + 2;
+      const step = `JSON.stringify([${JSON.stringify(i.key)}, window.__driveStep(${JSON.stringify({ url: i.url, expect: i.expect, add: i.add })})])`;
+      // The pause after opening matters too: opening product pages back to back
+      // got one redirected to a search page instead (2026-09-14).
+      return [
+        { name: "navigate", input: { tabId, url: i.url } },
+        js(`window.__driveStep = ${helper}; "ready"`),
+        wait(3),
+        ...Array.from({ length: steps }, () => [js(step), wait(4)]).flat(),
+      ];
+    }));
   }
   console.log(JSON.stringify({ run, collection, nextSeq: seq, keys: ready.map((i) => [i.key, i.add]), lookup: lookup.map((i) => i.key), rejected, batches }, null, 2));
 } else if (args.includes("--json")) {

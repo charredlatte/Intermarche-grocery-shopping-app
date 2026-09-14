@@ -214,17 +214,26 @@ The page folds the reports for the current run over the request, latest last.
    `status: "requested"` — if it says `cancelled`, stop and tell her. Then
    `npm run drive:list -- <push doc file> <out_dir>`; it drops lines already
    settled by an earlier attempt at the same push, so a stopped run resumes.
+   **No request at the recorded link?** Before telling her nothing was pushed,
+   list her artifacts (`action: list`) and read `push` on every page titled
+   "Méré Basket, <that date>": on 2026-09-15 the week had been published twice,
+   the file pointed at the copy she never opened, and her push sat on the other.
+   Correct `data/artifacts.json` when you find it.
 2. **Claim it**: one status report, `running`. The page switches to progress.
 3. Confirm the store in the site header is **Méré**, and note what the basket
    already holds (count and total, top right) — if it isn't empty, say so; a
    push sets counts, it does not clear anything.
 4. **Fill it with the helper.** `npm run drive:list -- <push doc> <out_dir>
    --batch <Chrome tabId>` writes ready-made `browser_batch` actions, five
-   products to a batch: open the product page, run `scripts/drive-helper.js` on
-   it, pause. The helper checks the page against `expect`, sets the count with
-   the product's own visible controls, proves each click moved the count, and
-   returns one of:
+   products to a batch: open the product page, load `scripts/drive-helper.js`
+   on it, then call it a few times with a 4-second pause between calls. Each
+   call checks the page against `expect`, reads the count and makes **at most
+   one click** towards it — the waiting happens between calls, never inside the
+   page. **Read the last result for each product**; earlier ones say `clicked`
+   or `loading` and only mean "still going". The last one is:
    - `added` / `already` — report the line as that.
+   - `clicked` or `loading` still — the steps ran out before the count settled.
+     Look at the product's count, then do that product by hand, below.
    - `unavailable` — **stop and ask**: report the line `unavailable` and a
      `waiting` status with a one-line `question` (the page shows it), then ask
      her in chat. Never substitute. The receipts show one or two items per order
@@ -233,11 +242,30 @@ The page folds the reports for the current run over the request, latest last.
    - `not-found` — the product page did not open. Opening pages back to back
      once landed on a search page instead; wait a few seconds and run that one
      product again before reporting it.
-   - `stuck` — a click moved nothing twice. Do that product by hand, below.
+   - `stuck` — no usable control, or a weighed listing with no starting weight.
+     Do that product by hand, below.
+
+   **Weighed goods count in grams.** A listing sold "en vrac" or "à la coupe"
+   ("à partir de 150g environ (soit 1 tige)") shows "450 g" in its stepper, not
+   "3", and `add` is a number of starting weights: five celery stalks is 750 g.
+   Some step in half packs — the turkey escalopes start at 280 g and go up by
+   140 g — which is why weighed lines get twice the calls. The old helper read
+   "700 g" as no count at all and kept pressing + (2026-09-15).
+
+   **Why one click per call.** The push tab is not on screen, and Chrome slows
+   timers in a hidden tab to a second or worse, so a helper that waited inside
+   the page overran the tool's 45-second limit, and a click that took two
+   seconds to show got clicked a second time. The pause between calls is the
+   caller's, and a click that hadn't shown yet is corrected by the next call.
 
    Tested 2026-09-14 on the live site: added sugar ×2 from zero, found the
    basmati already at 1, refused a wrong pack without clicking, reported the
-   out-of-stock mince, and removed the sugar again (`add: 0`).
+   out-of-stock mince, and removed the sugar again (`add: 0`). The step helper
+   was checked on 2026-09-15 against the filled basket with clicks switched off:
+   turkey read as already at 280 g and would have pressed + for 560 g, celery
+   as already at 750 g, the mâche matched despite Méré's "Salade MACHE, - CAT. -",
+   a product not in the basket would have pressed "Ajouter", the out-of-stock
+   eggs reported, a wrong pack and an off-site link refused.
 
    **By hand** — only for a `stuck` product, or if the helper itself breaks.
    Check the product block — the `h1` holds brand and title (the title is loose
@@ -252,8 +280,9 @@ The page folds the reports for the current run over the request, latest last.
      "Exemplaires dans le panier", and + (`aria-label` "Ajouter un exemplaire du
      produit au panier"). Press + until the count reads `add`. A count already
      showing means it was in the basket before: set it to `add`, don't add on top.
-   - **Re-read the product's count after every click.** A click that doesn't
-     move it did not happen: re-read the stepper's position and click again. The
+   - **Re-read the product's count after every click, a few seconds later.** A
+     click takes about two seconds to show; one that still hasn't moved it after
+     that did not happen: re-read the stepper's position and click again. The
      first + straight after "Ajouter au panier" is the one that gets lost — the
      stepper is still settling. − at 1 removes the product outright, with no
      confirmation. The header's basket count and total lag a beat behind, so

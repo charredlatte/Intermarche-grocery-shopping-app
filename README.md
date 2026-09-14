@@ -107,7 +107,7 @@ The library is 32 dishes now, roughly half Asian and half European. Ready-made t
 - [x] Méré catalogue — all 153 products the app can buy matched to their product pages, 14 September 2026
 - [x] Push from the page — approve, press Push, `/courses push` fills the basket and writes progress back
 - [x] Push tested end to end on 2026-09-14 with a two-line test page: request, basket filled in Chrome, progress on the page, site total matched the estimate to the cent. Re-run the same day after the browser pre-flight hardening, with the in-page helper: one tool call for both products, wrong pack refused, out-of-stock reported, off-site call refused, basket restored
-- [ ] First push of a whole approved week
+- [x] First push of a whole approved week, 15 September 2026 — 43 products, 130,54 € at Méré (almond milk and paprika from my Keep list included) against a 130,59 € estimate. Two lines were out of stock and settled in chat: the eggs came as two boxes of six, the Salakis as the plain one. Weighed goods turned out to count in grams, so the in-page helper was rebuilt to take one click per call
 - [ ] The budget question — a 7-dinner, 5-lunch week with a pantry restock prices out around 139 €, comfortably over the normal 100 € ceiling. First real run will settle whether the ceiling moves or the lunches go back to being leftovers.
 - [ ] Pantry state — knowing the 20-egg pack from last week is half gone
 
