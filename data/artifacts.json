@@ -1,7 +1,12 @@
 {
-  "_comment": "One basket page per week, each published fresh by /courses and recorded here. /courses push reads the week's link from this file to find the push request. The page before 2026-09-14 served every week from one bookmarked URL; it is kept as oldSharedPage and no longer updated.",
+  "_comment": "One basket page per week, each published fresh by /courses and recorded here. /courses push reads the week's link from this file to find the push request. \"superseded\" lists earlier pages for a week that was re-published — a re-run builds a new link, and her swaps, counts and decisions are copied onto it from the page listed there, so the old one is dead and should not be pushed from. The page before 2026-09-14 served every week from one bookmarked URL; it is kept as oldSharedPage and no longer updated.",
   "weeks": {
-    "2026-09-14": "https://claude.ai/code/artifact/a531ad93-dfa5-4dcb-832e-a7f2e3f6ca23"
+    "2026-09-14": "https://claude.ai/artifact/AsuNh1WoA3EDHXM9NaiGSP"
+  },
+  "superseded": {
+    "2026-09-14": [
+      "https://claude.ai/code/artifact/a531ad93-dfa5-4dcb-832e-a7f2e3f6ca23"
+    ]
   },
   "oldSharedPage": "https://claude.ai/code/artifact/6c3028de-cca4-41c2-b063-b10cb4214efb"
 }
