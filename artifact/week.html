@@ -917,6 +917,13 @@ let db = null, weekRef = null, sample = null;
 // something itself. Without these, the first snapshot — which can arrive
 // seconds after the page opens — silently reverted every early decision.
 let writing = 0, lastEdit = 0, saveError = null, unsaved = false;
+// The database client hands out its own cached objects from a snapshot and
+// decides what to write by comparing references. Binding page state straight to
+// them means every strike, swap and decision is made INSIDE that cache, so the
+// client sees nothing changed and silently writes nothing. Copy on the way in
+// and on the way out. This is exactly why the kitchen list saved and nothing
+// else did: have, picks and extra were already rebuilt fresh, the rest were not.
+const clone = (v) => (v == null ? v : JSON.parse(JSON.stringify(v)));
 
 /* The ingredient layer. The dishes decide what the week *needs*; these five
    decide what actually has to be bought, and every one of them is hers to set
@@ -1229,12 +1236,12 @@ async function persist() {
   }
   writing++;
   try {
-    await weekRef.set({
+    await weekRef.set(clone({
       picks: diff, extra, have: haveDiff, qtyAdj, subs, dropped, added, addAdj, choices,
       approved, inBasket,
       seededFrom: ONHAND.from ? ONHAND.from.order : null,
       updatedAt: lastEdit,
-    });
+    }));
     unsaved = false;
     if (saveError) { saveError = null; setSync("live", "Saving again — that last one went through"); }
   } catch (e) {
@@ -1262,14 +1269,14 @@ function applyRemote(d) {
   // A document written against an older receipt keeps its hand corrections, but
   // the receipt underneath it is the new one.
   have = { ...haveSeed, ...(d.have || {}) };
-  qtyAdj = d.qtyAdj || {};
-  subs = d.subs || {};
-  dropped = d.dropped || {};
-  added = d.added || {};
-  addAdj = d.addAdj || {};
-  choices = d.choices || {};
-  approved = d.approved || null;
-  inBasket = d.inBasket || {};
+  qtyAdj = clone(d.qtyAdj) || {};
+  subs = clone(d.subs) || {};
+  dropped = clone(d.dropped) || {};
+  added = clone(d.added) || {};
+  addAdj = clone(d.addAdj) || {};
+  choices = clone(d.choices) || {};
+  approved = clone(d.approved) || null;
+  inBasket = clone(d.inBasket) || {};
   renderAll();
 }
 
