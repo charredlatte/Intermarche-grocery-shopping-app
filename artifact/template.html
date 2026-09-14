@@ -916,7 +916,7 @@ let db = null, weekRef = null, sample = null;
 // writing counts saves in flight; lastEdit is when this page last changed
 // something itself. Without these, the first snapshot — which can arrive
 // seconds after the page opens — silently reverted every early decision.
-let writing = 0, lastEdit = 0;
+let writing = 0, lastEdit = 0, saveError = null, unsaved = false;
 
 /* The ingredient layer. The dishes decide what the week *needs*; these five
    decide what actually has to be bought, and every one of them is hers to set
@@ -1235,8 +1235,11 @@ async function persist() {
       seededFrom: ONHAND.from ? ONHAND.from.order : null,
       updatedAt: lastEdit,
     });
+    unsaved = false;
+    if (saveError) { saveError = null; setSync("live", "Saving again — that last one went through"); }
   } catch (e) {
-    setSync("off", "Change saved on this phone only — " + (e && e.code ? e.code : "not saved"));
+    saveError = (e && (e.code || e.message)) || "not saved";
+    setSync("off", "NOT saved — " + saveError + ". Your decisions are on this phone only.");
   } finally {
     writing--;
   }
@@ -1247,7 +1250,13 @@ function applyRemote(d) {
   // Older than what she just did here, or landing mid-save: dropping it is the
   // whole point. Last-writer-wins still settles two people editing at once,
   // because whoever saves next sends a newer stamp.
-  if (writing > 0 || (d.updatedAt || 0) < lastEdit) return;
+  // Nothing from the server may overwrite a decision this page has made and not
+  // yet confirmed saved. Timestamps cannot arbitrate that: Claude writes to this
+  // document too, from a machine whose clock is not hers, so a stamp from the
+  // future would otherwise outrank a tap from a second ago. Once the save lands,
+  // hers IS the stored state and the server flows again.
+  if (writing > 0 || unsaved) return;
+  if ((d.updatedAt || 0) < lastEdit) return;
   extra = { ...extra, ...(d.extra || {}) };
   picks = { ...baseline, ...(d.picks || {}) };
   // A document written against an older receipt keeps its hand corrections, but
@@ -2018,7 +2027,15 @@ function openAddItem() {
 }
 
 /* ---------- the ingredient controls ---------- */
-function commitShop() { lastEdit = Date.now(); renderAll(); persist(); }
+function commitShop() {
+  lastEdit = Date.now();
+  unsaved = true;
+  // The save goes first. Drawing the list is allowed to fail; losing what she
+  // just decided is not, and a thrown render used to take the save down with it.
+  persist();
+  try { renderAll(); }
+  catch (e) { setSync("off", "Saved, but the list would not redraw — " + (e && e.message ? e.message : "error")); throw e; }
+}
 
 /* "I have it" means all of it — enough that nothing needs buying. Pressed again
    from the kitchen list it means the opposite: none of it. */
