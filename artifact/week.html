@@ -912,6 +912,11 @@ const baseline = Object.fromEntries(plan.meals.map((m) => [m.id, m.recipe]));
 let picks = { ...baseline };
 let extra = {};
 let db = null, weekRef = null, sample = null;
+// A snapshot that left the server before she tapped must not undo the tap.
+// writing counts saves in flight; lastEdit is when this page last changed
+// something itself. Without these, the first snapshot — which can arrive
+// seconds after the page opens — silently reverted every early decision.
+let writing = 0, lastEdit = 0;
 
 /* The ingredient layer. The dishes decide what the week *needs*; these five
    decide what actually has to be bought, and every one of them is hers to set
@@ -1210,6 +1215,9 @@ function setSync(kind, text) {
 
 async function persist() {
   if (!weekRef) return;
+  // Every save stamps the edit, not just the basket ones, so the guard in
+  // applyRemote is armed whichever control she used.
+  lastEdit = Date.now();
   const diff = {};
   for (const k of changed()) diff[k] = picks[k];
   // Only the corrections travel, not the whole kitchen. A quantity she never
@@ -1219,20 +1227,27 @@ async function persist() {
   for (const k of new Set([...Object.keys(have), ...Object.keys(haveSeed)])) {
     if ((have[k] || 0) !== (haveSeed[k] || 0)) haveDiff[k] = have[k] || 0;
   }
+  writing++;
   try {
     await weekRef.set({
       picks: diff, extra, have: haveDiff, qtyAdj, subs, dropped, added, addAdj, choices,
       approved, inBasket,
       seededFrom: ONHAND.from ? ONHAND.from.order : null,
-      updatedAt: Date.now(),
+      updatedAt: lastEdit,
     });
   } catch (e) {
     setSync("off", "Change saved on this phone only — " + (e && e.code ? e.code : "not saved"));
+  } finally {
+    writing--;
   }
 }
 
 function applyRemote(d) {
   if (!d) return;
+  // Older than what she just did here, or landing mid-save: dropping it is the
+  // whole point. Last-writer-wins still settles two people editing at once,
+  // because whoever saves next sends a newer stamp.
+  if (writing > 0 || (d.updatedAt || 0) < lastEdit) return;
   extra = { ...extra, ...(d.extra || {}) };
   picks = { ...baseline, ...(d.picks || {}) };
   // A document written against an older receipt keeps its hand corrections, but
@@ -2003,7 +2018,7 @@ function openAddItem() {
 }
 
 /* ---------- the ingredient controls ---------- */
-function commitShop() { renderAll(); persist(); }
+function commitShop() { lastEdit = Date.now(); renderAll(); persist(); }
 
 /* "I have it" means all of it — enough that nothing needs buying. Pressed again
    from the kitchen list it means the opposite: none of it. */
