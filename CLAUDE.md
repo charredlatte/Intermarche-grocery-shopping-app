@@ -145,34 +145,44 @@ stocked. Ask for a screenshot when a guessed product matters to a dish.
 npm run parse            # data/invoices/*.txt -> data/purchase-history.json
 npm run build:week       # recipes + plans + catalogue -> artifact/week.html
 npm run catalogue:queue  # products with no catalogue entry, or one older than 28 days
-npm run drive:list -- <weeks doc>.json  # the approved list joined to Méré's listings
+npm run drive:list -- <push doc>.json  # a push request from the page, as a work list
 ```
 
-The built page is republished to the artifact URL in `data/artifact-url.txt`.
-**Always pass that URL** — a publish without it creates a second artifact and
-breaks the link she has bookmarked. **Omit `capabilities` on a redeploy** so the
-stored `db` and `sample` grants carry forward.
+**A fresh page every week.** Each `/courses` run publishes the built page as a
+new artifact — new link — and records it in `data/artifacts.json` under the
+week. Charlotte asked for this on 2026-09-14. Her favourites (`library/favourites`)
+are copied across from the previous page with `read_db`/`write_db`; publish with
+`capabilities: { db: {}, sample: {} }` and `contract: "0.2.41"`. The pages before
+that week shared one bookmarked URL, still listed there as the old page.
 
-The page is an app, not a printout: Charlotte and her partner swap meals, the
-picks live in a shared database under `weeks/<weekOf>`, and the shopping basket
-is derived from whatever is currently picked. Nothing they do writes back to the
-repo — the plan file is only the starting point.
+The page is an app, not a printout, and **the basket is its centre**. Basket is
+the first tab and where it opens: Méré's own name, pack and current price on
+every line, a count to add in the site's packs, and a total against the ceiling.
+Anything Méré sells differently or not at all sits under "Decide first" with its
+options, and **Approve stays locked until every one is decided** — nothing is
+swapped for her. Weighed goods are marked ≈, because the Drive charges the exact
+weight. Where Méré's pack differs from the receipt's, the count is converted by
+weight, volume or piece count (20 eggs become two boxes of 12). Picks, counts
+and decisions live in the shared database under `weeks/<weekOf>`; nothing she
+does writes back to the repo — the plan file is only the starting point.
 
-**Four tabs, and Cook is the front door.** Cook is a five-step quiz — time,
-appliance, mood, what to use up, how many dishes — modelled on the Potto flow
-Charlotte sent on 2026-09-06: one question a screen, a segmented progress bar,
-pastel cards that saturate with a tick, and a single green pill that stays pale
-until the answer is valid. Her palette, that structure. The appliance step is a
-drawn kitchen (inline SVG, no assets) whose five appliances are hit targets.
-No-chilli shows as a locked, permanently-ticked card — it is a health rule, not
-a mood. Results are ranked and each carries badges saying *why* it matched.
+**Approved, the page pushes.** "Push to Intermarché" writes `push/<weekOf>` —
+the approved lines, each resolved to a listing and a count. The page cannot reach
+intermarche.com, so the request waits for `/courses push` on her PC, which fills
+the basket in her Chrome and reports each step as a **new document** in
+`push/<weekOf>/progress`; the page folds those over the request and shows the
+progress and, at the end, the site's own total against the estimate.
 
-Week, Recipes and Shopping are unchanged behind it. Shopping has two states:
-the editor, flagging anything Méré no longer sells as named, and — once she
-presses Approve — a checklist for the Drive with an Open link per product page,
-a count of what to add (weighed goods turned into pieces or trays), and the
-note and alternatives on any line that needs her decision. Approving saves the
-lines into `weeks/<weekOf>`, which is what the basket step reads.
+Why new documents: checked 2026-09-14, the Artifact tool's `write_db` refuses
+`update`, `set` and `delete` on any document that already exists
+(`version_mismatch` — it wants an `if_version` the tool cannot send). Creating a
+document is the only write Claude can make to a page's database once her page is
+live, so everything Claude reports is append-only, and anything seeded into a
+new page has to be written before she first opens it.
+
+Week, Recipes and the Cook quiz sit behind the basket unchanged. Cook is a
+five-step quiz modelled on the Potto flow Charlotte sent on 2026-09-06; no-chilli
+is a locked card, because it is a health rule, not a mood.
 
 No dependencies; `npm install` is a no-op. Node 18+.
 

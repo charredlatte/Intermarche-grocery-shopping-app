@@ -1,4 +1,4 @@
-<title>Méré Kitchen Week</title>
+<title>Méré Basket</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
@@ -341,18 +341,6 @@
     font: 500 .78rem/1.4 var(--f-mono); font-variant-numeric: tabular-nums; color: var(--ink-2);
   }
   .shop-sec { margin-top: 1.7rem; }
-  .shop-list { list-style: none; margin: .55rem 0 0; padding: 0; }
-  .shop-list li { padding: .5rem 0; border-bottom: 1px dotted var(--rule); }
-  .shop-line { display: flex; align-items: baseline; gap: .45rem; }
-  .shop-name { font-size: .9rem; }
-  .shop-dots { flex: 1; border-bottom: 1px dotted var(--rule); transform: translateY(-.25em); min-width: 1rem; }
-  .shop-cost {
-    font: 600 .84rem/1.4 var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap;
-  }
-  .shop-sub {
-    font: 400 .73rem/1.45 var(--f-mono); color: var(--ink-3); margin-top: .1rem;
-    display: flex; flex-wrap: wrap; gap: .1rem .6rem;
-  }
   .shop-total {
     display: flex; justify-content: space-between; gap: 1rem;
     margin-top: 1.5rem; padding-top: .8rem; border-top: 1.5px solid var(--ink);
@@ -494,10 +482,6 @@
   .minibtn:hover { background: var(--card-sunk); border-color: var(--ink-3); color: var(--ink); }
   .minibtn.danger:hover { border-color: var(--clay); color: var(--clay); background: var(--clay-soft); }
 
-  /* struck through, but still legible — this is the audit trail, not a bin */
-  .shop-list li.is-kitchen .shop-name { text-decoration: line-through; text-decoration-color: var(--ink-3); }
-  .shop-list li.is-kitchen .shop-name,
-  .shop-list li.is-kitchen .shop-cost { color: var(--ink-3); }
 
   /* ---- approve, then the Drive checklist ---- */
   .approvebar {
@@ -558,17 +542,92 @@
   .copybtn:hover { border-color: var(--ink-3); color: var(--ink); }
   .copybtn.did { background: var(--herb-soft); border-color: var(--herb); color: var(--herb); }
   a.copybtn { text-decoration: none; display: inline-block; }
-  a.copybtn.go { background: var(--herb); border-color: var(--herb); color: var(--card); }
-  a.copybtn.go:hover { filter: brightness(1.08); color: var(--card); }
   .drive-actions { flex: none; display: flex; flex-direction: column; gap: .3rem; align-items: stretch; }
-  .drive-for { font: 400 .72rem/1.4 var(--f-mono); color: var(--ink-3); margin-top: .1rem; overflow-wrap: anywhere; }
   .drive-note { font: 400 .76rem/1.45 var(--f-body); color: var(--ink-2); margin-top: .25rem; }
-  .drive-alts { margin: .25rem 0 0; padding: 0; list-style: none; }
-  .drive-alts li { display: block; padding: .1rem 0; border: 0; font: 400 .74rem/1.45 var(--f-mono); color: var(--ink-3); }
-  .drive-alts a { color: var(--ink-2); }
   .flag.warn { background: var(--clay-soft); color: var(--clay); }
   .flag.ok { background: var(--herb-soft); color: var(--herb); }
-  .site-line { font: 400 .72rem/1.4 var(--f-mono); color: var(--ink-3); }
+
+  /* ---- the basket: the page's centre ---- */
+  .hero {
+    margin-top: 1.2rem; padding: 1.05rem 1.05rem .95rem;
+    background: var(--card); border: 1px solid var(--rule); border-radius: 6px;
+    box-shadow: var(--shadow);
+  }
+  .hero-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+  .hero-total {
+    font: 600 clamp(2.1rem, 9vw, 2.8rem)/1 var(--f-display);
+    font-variation-settings: "opsz" 120; letter-spacing: -.02em;
+    font-variant-numeric: tabular-nums; margin-top: .4rem;
+  }
+  .hero-sub { font: 500 .8rem/1.4 var(--f-mono); color: var(--ink-2); margin-top: .35rem; font-variant-numeric: tabular-nums; }
+  .hero-sub .over { color: var(--clay); font-weight: 600; }
+  .hero-state {
+    flex: none; text-align: center; min-width: 5.6rem; padding: .55rem .6rem;
+    border-radius: 5px; display: flex; flex-direction: column; gap: .2rem;
+    font: 500 .7rem/1.2 var(--f-mono); letter-spacing: .04em;
+  }
+  .hero-state b { font: 600 1.35rem/1 var(--f-display); letter-spacing: 0; }
+  .hero-state.is-warn { background: var(--clay-soft); color: var(--clay); }
+  .hero-state.is-ok { background: var(--herb-soft); color: var(--herb); }
+  .hero .meter { margin: .9rem 0 .5rem; }
+  .hero-note { margin: 0 0 .75rem; font: 400 .8rem/1.5 var(--f-body); color: var(--ink-3); }
+
+  .bl-list { list-style: none; margin: .55rem 0 0; padding: 0; }
+  .bl { padding: .7rem 0 .65rem; border-bottom: 1px dotted var(--rule); }
+  .bl-row { display: flex; align-items: flex-start; gap: .8rem; }
+  .bl-main { flex: 1; min-width: 0; }
+  .bl-name { font: 500 .93rem/1.35 var(--f-body); color: var(--ink); overflow-wrap: anywhere; }
+  .bl-meta {
+    display: flex; flex-wrap: wrap; gap: .1rem .7rem; margin-top: .15rem;
+    font: 400 .72rem/1.45 var(--f-mono); color: var(--ink-2);
+  }
+  .bl-for { font: 400 .72rem/1.45 var(--f-body); color: var(--ink-3); margin-top: .1rem; }
+  .bl-cost {
+    flex: none; font: 600 .88rem/1.35 var(--f-mono); font-variant-numeric: tabular-nums;
+    white-space: nowrap; color: var(--ink);
+  }
+  .bl.is-kitchen .bl-name, .bl.is-kitchen .bl-cost { color: var(--ink-3); }
+  .bl.is-pending { padding-left: .7rem; border-left: 2px solid var(--clay); border-bottom-style: solid; }
+  .stepbtn:disabled { opacity: .35; cursor: default; background: var(--card); }
+
+  .decide-sec .sec-icon { font: 700 .85rem/1 var(--f-mono); }
+  .decide-lede { margin: .5rem 0 0; font: 400 .84rem/1.5 var(--f-body); color: var(--ink-2); max-width: 34rem; }
+  .decide { margin-top: .55rem; }
+  .decide-note { margin: 0 0 .5rem; font: 400 .8rem/1.5 var(--f-body); color: var(--ink-2); }
+  .decide-opts { display: grid; grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr)); gap: .4rem; }
+  .opt {
+    appearance: none; cursor: pointer; text-align: left;
+    border: 1px solid var(--rule); border-radius: 4px; background: var(--card);
+    padding: .5rem .6rem; color: var(--ink);
+    display: flex; flex-direction: column; gap: .15rem;
+    transition: border-color .12s, background .12s;
+  }
+  .opt:hover { border-color: var(--herb); background: var(--herb-soft); }
+  .opt-name { font: 500 .82rem/1.3 var(--f-body); }
+  .opt-meta { font: 400 .7rem/1.35 var(--f-mono); color: var(--ink-3); }
+  .opt-skip { background: var(--card-sunk); }
+  .opt-skip:hover { border-color: var(--ink-3); background: var(--rule-soft); }
+
+  .pushpanel {
+    margin-top: .8rem; padding: 1rem 1.05rem;
+    background: var(--card); border: 1px solid var(--rule); border-radius: 6px; box-shadow: var(--shadow);
+  }
+  .pushpanel h3 { margin: 0 0 .4rem; font: 600 1.3rem/1.2 var(--f-display); font-variation-settings: "opsz" 36; letter-spacing: -.01em; }
+  .pushpanel p { margin: .35rem 0; font: 400 .88rem/1.5 var(--f-body); color: var(--ink-2); max-width: 36rem; }
+  .pushpanel p.small { font-size: .78rem; color: var(--ink-3); }
+  .pushpanel p.warn { color: var(--clay); }
+  .pushpanel .toolbar { margin-top: .75rem; }
+  .pushpanel.is-wait { border-color: var(--yuzu); }
+  .pushpanel.is-run { border-color: var(--herb); }
+  .pushpanel.is-warn { border-color: var(--clay); }
+  .pushpanel.is-ok { border-color: var(--herb); background: var(--herb-soft); }
+  a.btn { text-decoration: none; display: inline-block; }
+  .cmd {
+    display: flex; align-items: center; justify-content: space-between; gap: .6rem;
+    margin: .5rem 0; padding: .5rem .6rem; border-radius: 4px;
+    background: var(--card-sunk); border: 1px solid var(--rule);
+  }
+  .cmd code { font: 600 .95rem/1.2 var(--f-mono); color: var(--ink); }
 
   .drive-list li.is-done .drive-name { text-decoration: line-through; color: var(--ink-3); }
   .drive-list li.is-done .drive-meta { opacity: .65; }
@@ -719,13 +778,17 @@
   </header>
 
   <nav class="tabs" role="tablist" aria-label="Sections">
-    <button class="tab" role="tab" id="tab-cook"    aria-controls="panel-cook"    aria-selected="true">Cook</button>
+    <button class="tab" role="tab" id="tab-shop"    aria-controls="panel-shop"    aria-selected="true">Basket</button>
     <button class="tab" role="tab" id="tab-week"    aria-controls="panel-week"    aria-selected="false">Week</button>
     <button class="tab" role="tab" id="tab-recipes" aria-controls="panel-recipes" aria-selected="false">Recipes</button>
-    <button class="tab" role="tab" id="tab-shop"    aria-controls="panel-shop"    aria-selected="false">Shopping</button>
+    <button class="tab" role="tab" id="tab-cook"    aria-controls="panel-cook"    aria-selected="false">Cook</button>
   </nav>
 
-  <section id="panel-cook" role="tabpanel" aria-labelledby="tab-cook">
+  <section id="panel-shop" role="tabpanel" aria-labelledby="tab-shop">
+    <div id="shop-out"></div>
+  </section>
+
+  <section id="panel-cook" role="tabpanel" aria-labelledby="tab-cook" hidden>
     <div id="cook-out"></div>
   </section>
 
@@ -802,10 +865,6 @@
     <div id="rec-out"></div>
   </section>
 
-  <section id="panel-shop" role="tabpanel" aria-labelledby="tab-shop" hidden>
-    <div id="shop-out"></div>
-  </section>
-
   <footer class="foot" id="foot"></footer>
 </div>
 
@@ -864,15 +923,46 @@ let qtyAdj  = {};               // product -> override what the recipes asked fo
 let subs    = {};               // product -> buy this one instead
 let dropped = {};               // product -> struck off by hand
 let added   = {};               // key -> { name, qty, section } she added herself
+let addAdj  = {};               // key -> how many packs to add at Méré, set by hand
+let choices = {};               // key -> { pick: "listing" | <alternative index> | "skip" }
 
 /* Favourites. Not week-scoped like the rest — a dish you love is still a dish
    you love next week — so they live in their own document and survive the plan
    changing underneath them. Shared, like everything else here. */
-/* The list is hers to approve. Nothing is "ready for the Drive" until she says
-   so — and once approved the page stops being an editor and becomes a checklist
-   to work through at intermarche.fr. Reopening it puts the editor back. */
-let approved = null;        // { at, total, count } once she has signed it off
+/* The list is hers to approve, and only once every line says exactly which Méré
+   product and how many. Approved, the page stops being an editor and becomes
+   the push: what goes to Intermarché and what came back. Reopening it puts the
+   editor back. */
+let approved = null;        // { at, total, count, lines } once she has signed it off
 let inBasket = {};          // product -> already added at the Drive
+
+/* Pushing. The page cannot reach intermarche.com itself, so a push is a request
+   written to push/<weekOf>; Claude on her PC picks it up with `/courses push`,
+   fills the basket through her own Chrome, and writes each line's outcome back
+   into the same document, which this page follows live. */
+let push = null;          // push/<weekOf>: the request, written by this page
+let pushRef = null;
+let pushError = null;
+let progress = [];        // push/<weekOf>/progress/*: Claude's reports, append-only
+
+/* The request as it stands now: the request document with every report Claude
+   has filed for this push folded over it, oldest first. Reports are new
+   documents rather than edits, so they never collide with each other or with
+   her own writes; a report from an earlier push of the same week is ignored. */
+function pushState() {
+  if (!push) return null;
+  const s = { ...push, log: {} };
+  const mine = progress.filter((p) => p && p.run === push.requestedAt).sort((a, b) => (a.at || 0) - (b.at || 0));
+  for (const p of mine) {
+    if (p.type === "line" && p.key) s.log[p.key] = p;
+    if (p.type === "status" && push.status !== "cancelled") {
+      s.status = p.status;
+      for (const f of ["question", "note", "siteTotal", "siteCount"]) if (p[f] != null) s[f] = p[f];
+    }
+  }
+  return s;
+}
+const PUSH_COMMAND = "/courses push";
 
 let favs = new Set();
 let favRef = null;
@@ -888,7 +978,7 @@ const sameHave = () => Object.keys({ ...have, ...haveSeed })
 /* Anything at all touched on the Shopping tab, so the reset button knows to
    show itself. */
 const shopEdited = () => !sameHave() ||
-  [qtyAdj, subs, dropped, added].some((o) => Object.keys(o).length > 0);
+  [qtyAdj, subs, dropped, added, addAdj, choices].some((o) => Object.keys(o).length > 0);
 
 /* Every meal, resolved. Skips a pick whose dish has gone missing. */
 function meals() {
@@ -961,12 +1051,29 @@ function draw(p, want, need) {
 /* The weight of one pack, read off the site's own wording: "à partir de 150g
    (soit 1 oignon)", "la barquette d'1.05 kg environ", "les 4 pièces de 140g -
    560 g". The last weight is the whole pack. */
+function packMeasure(packaging) {
+  const s = String(packaging).toLowerCase().replace(/(\d),(\d)/g, "$1.$2");
+  const last = (re) => { const ms = [...s.matchAll(re)]; return ms.length ? ms[ms.length - 1] : null; };
+  const m = last(/(\d+(?:\.\d+)?)\s*(kg|gr|g)(?![a-zà-ÿ])/g);
+  if (m) return { kind: "mass", qty: parseFloat(m[1]) * (m[2] === "kg" ? 1000 : 1) };
+  const v = last(/(\d+(?:\.\d+)?)\s*(cl|ml|l)(?![a-zà-ÿ])/g);
+  if (v) return { kind: "volume", qty: parseFloat(v[1]) * (v[2] === "l" ? 1000 : v[2] === "cl" ? 10 : 1) };
+  const c = s.match(/\b(?:de|les)\s+(\d+)\b/);
+  return c ? { kind: "count", qty: Number(c[1]) } : null;
+}
 function packKg(packaging) {
-  const ms = [...String(packaging).matchAll(/(\d+(?:[.,]\d+)?)\s*(kg|gr|g)(?![a-zà-ÿ])/gi)];
-  if (!ms.length) return null;
-  const m = ms[ms.length - 1];
-  const n = parseFloat(m[1].replace(",", "."));
-  return m[2].toLowerCase() === "kg" ? n : n / 1000;
+  const m = packMeasure(packaging);
+  return m && m.kind === "mass" ? m.qty / 1000 : null;
+}
+
+/* How many of the site's packs stand in for one of the receipt's: a box of 12
+   eggs for the 20-egg box the recipes were costed on is 1.67. Only when both
+   packs state the same kind of measure — a receipt cut off mid-word ("la
+   plaquette de 5...") says nothing and converts nothing. */
+function packRatio(receiptPack, sitePack) {
+  if (!receiptPack || !sitePack || /\.\.\.$|…$/.test(receiptPack)) return 1;
+  const r = packMeasure(receiptPack), s = packMeasure(sitePack);
+  return r && s && r.kind === s.kind && s.qty > 0 ? r.qty / s.qty : 1;
 }
 
 /* ---------- the basket, derived from whatever is on the menu ---------- */
@@ -1023,22 +1130,28 @@ function basket() {
     const name = w.name || subs[w.key] || w.key;
     const pb = PRICES[name];
     const cat = CATALOGUE[name] || null;
-    const listing = cat && cat.status !== "missing" && cat.listing && cat.listing.price != null ? cat.listing : null;
-    // A guess the site has since named is a real product at a real price. A
-    // receipt product sold by the unit takes the site's price too, since a
-    // receipt can be a year old; weighed goods keep the receipt's price per kilo,
-    // because that is the unit the recipes ask for.
-    const guess = (w.guess || !pb) && !listing;
+
+    // Which Méré listing this line will be pushed as. Anything the site sells
+    // under another name or pack, or not at all, has no listing until she picks
+    // one here — that decision is never made for her.
+    const needsDecision = !!cat && (cat.status === "check" || cat.status === "missing");
+    const choice = needsDecision ? choices[w.key] || null : null;
+    const skipped = !!choice && choice.pick === "skip";
+    const site = choice
+      ? (skipped ? null : choice.pick === "listing" ? cat.listing : (cat.alternatives || [])[choice.pick] || null)
+      : cat && cat.status !== "missing" ? cat.listing : null;
+    const pending = needsDecision && !choice;
+    const sitePrice = site && site.price != null ? site.price : null;
+
+    const guess = (w.guess || !pb) && !site;
     const unit = guess || !pb ? "unit" : pb.unit;
-    const price = guess ? (w.guessPrice ?? 3)
-                : listing && (!pb || pb.unit === "unit") ? listing.price
-                : pb.price;
+    const receiptPrice = guess ? (w.guessPrice ?? 3) : pb ? pb.price : (w.guessPrice ?? 3);
     const section = w.section === "Best guesses" && !guess ? "New to you" : w.section;
 
     let required = qtyAdj[w.key] != null ? qtyAdj[w.key] : w.required;
     if (unit !== "kg") required = Math.max(1, Math.ceil(required));  // you cannot buy 1.4 jars
 
-    const struck = !!dropped[w.key];
+    const struck = !!dropped[w.key] || skipped;
     const { got, from } = struck ? { got: 0, from: [] } : draw(p, name, required);
     let toBuy = Math.max(0, required - got);
     if (unit !== "kg") toBuy = Math.ceil(toBuy - 1e-9);
@@ -1046,17 +1159,33 @@ function basket() {
 
     const fmt = (n) => unit === "kg" ? n.toFixed(2).replace(".", ",") + " kg" : "x" + Math.round(n);
     // The Drive sells weighed goods by the piece or the tray, so a kilo figure
-    // has to become a count of what to add. A pack with no weight on it counts
-    // as one.
-    const pk = unit === "kg" && cat && cat.listing ? packKg(cat.listing.packaging) : null;
-    const add = unit === "kg" ? (toBuy > 0 ? Math.max(1, Math.round(toBuy / (pk || toBuy))) : 0) : toBuy;
+    // becomes a count of what to add. A pack with no weight on it counts as one.
+    // She can change the count; that count is what gets pushed.
+    // A pack that changed size is converted, so a smaller pack means more of them.
+    const pk = unit === "kg" && site ? packKg(site.packaging) : null;
+    const ratio = unit !== "kg" && site && pb ? packRatio(pb.pack, site.packaging) : 1;
+    const addDefault = toBuy <= 0 ? 0
+      : unit === "kg" ? Math.max(1, Math.round(toBuy / (pk || toBuy)))
+      : Math.max(1, Math.ceil(toBuy * ratio - 0.1));
+    const add = toBuy > 0 && addAdj[w.key] != null ? addAdj[w.key] : addDefault;
+
+    // Priced the way Méré charges it — the listing's price per pack, times the
+    // packs added. Only a line with no listing falls back to the receipt. Weighed
+    // goods are charged on the exact weight at collection, so they stay approximate.
+    const weighed = unit === "kg" || (!!site && /vrac|environ|à la coupe/i.test(site.packaging));
+    const cost = toBuy <= 0 ? 0 : sitePrice != null ? sitePrice * add : receiptPrice * toBuy;
+    const unitValue = unit === "kg" ? receiptPrice : (sitePrice ?? receiptPrice);
+    const covered = Math.min(got, required);
     lines.push({
-      key: w.key, name, section, kind: w.kind, guess, cat, add,
-      unit, price, required, covered: Math.min(got, required), toBuy, struck,
+      key: w.key, name, section, kind: w.kind, guess, cat, site, choice, pending, skipped,
+      replaces: ratio !== 1 ? pb.pack : null,
+      add, addDefault, unit, price: sitePrice ?? receiptPrice, priced: sitePrice != null ? "site" : guess ? "guess" : "receipt",
+      approx: sitePrice == null || weighed,
+      required, covered, toBuy, struck,
       renamed: name !== w.key ? w.key : null,
       coveredBy: from, for: w.for,
-      cost: price * toBuy, fullCost: price * required,
-      amount: fmt(toBuy), requiredLabel: fmt(required), coveredLabel: fmt(Math.min(got, required)),
+      cost, coveredValue: struck ? 0 : unitValue * covered,
+      amount: fmt(toBuy), requiredLabel: fmt(required), coveredLabel: fmt(covered),
     });
   }
 
@@ -1066,9 +1195,9 @@ function basket() {
   const kitchen = lines.filter((l) => l.toBuy <= 0);
   return {
     lines: buy, kitchen,
+    pending: buy.filter((l) => l.pending),
     total: buy.reduce((t, l) => t + l.cost, 0),
-    saved: kitchen.reduce((t, l) => t + l.fullCost, 0) +
-           lines.filter((l) => l.toBuy > 0).reduce((t, l) => t + (l.fullCost - l.cost), 0),
+    saved: lines.reduce((t, l) => t + l.coveredValue, 0),
   };
 }
 
@@ -1092,7 +1221,7 @@ async function persist() {
   }
   try {
     await weekRef.set({
-      picks: diff, extra, have: haveDiff, qtyAdj, subs, dropped, added,
+      picks: diff, extra, have: haveDiff, qtyAdj, subs, dropped, added, addAdj, choices,
       approved, inBasket,
       seededFrom: ONHAND.from ? ONHAND.from.order : null,
       updatedAt: Date.now(),
@@ -1113,6 +1242,8 @@ function applyRemote(d) {
   subs = d.subs || {};
   dropped = d.dropped || {};
   added = d.added || {};
+  addAdj = d.addAdj || {};
+  choices = d.choices || {};
   approved = d.approved || null;
   inBasket = d.inBasket || {};
   renderAll();
@@ -1134,6 +1265,17 @@ function applyRemote(d) {
   weekRef.onSnapshot(
     (snap) => { applyRemote(snap.data()); setSync("live", "Shared — you and your partner see the same week"); },
     (err) => setSync("off", "Sync stopped (" + err.code + ") — changes stay on this phone"),
+  );
+  // Its own document, so Claude's progress writes and her list edits can never
+  // overwrite each other.
+  pushRef = db.doc("push/" + plan.weekOf);
+  pushRef.onSnapshot(
+    (snap) => { push = snap.exists ? snap.data() : null; renderAll(); },
+    (err) => { pushError = err.code || "unavailable"; renderAll(); },
+  );
+  db.collection("push/" + plan.weekOf + "/progress").onSnapshot(
+    (qs) => { progress = qs.docs.map((d) => d.data()); renderAll(); },
+    (err) => { pushError = err.code || "unavailable"; renderAll(); },
   );
   setSync("live", "Shared — you and your partner see the same week");
 })();
@@ -1381,6 +1523,7 @@ const andList = (xs) => xs.length < 2 ? (xs[0] || "") : xs.slice(0, -1).join(", 
 
 /* Why a line is not being bought, in her words rather than the model's. */
 function coverReason(l) {
+  if (l.skipped) return "skipped — Méré doesn't sell it as named";
   if (l.struck) return "you struck this off";
   const exact = l.coveredBy.some((c) => c.exact);
   const others = l.coveredBy.filter((c) => !c.exact).map((c) => c.product);
@@ -1391,35 +1534,13 @@ function coverReason(l) {
   return bits.join(", ") || "already here";
 }
 
-/* Which product the stepper actually adjusts. Normally the line's own, but a
-   line covered by an equivalent holds none of itself — pressing − on the
-   Terroirs pork chops must change the count of the Jean Rozé ones she has, or
-   the button would appear to do nothing. */
-function stepTarget(l) {
-  if (have[l.key]) return l.key;
-  const other = l.coveredBy.find((c) => !c.exact);
-  return other ? other.product : l.key;
-}
-
-/* The − n + stepper. `have` is what she is setting; the label carries the unit
-   so a kilo of onions does not read as one onion. */
-function stepper(l) {
-  const key = stepTarget(l);
-  const held = have[key] || 0;
-  const unit = key === l.key ? l.unit : unitOf(key);
-  const label = unit === "kg" ? held.toFixed(2).replace(".", ",") + " kg" : String(Math.round(held));
-  return `<span class="step${held ? "" : " is-zero"}" role="group" aria-label="How much ${esc(key)} you already have">
-      <button class="stepbtn" type="button" data-have="${esc(key)}" data-dir="-1" aria-label="Less ${esc(key)}">−</button>
-      <span class="stepval">${esc(label)}</span>
-      <button class="stepbtn" type="button" data-have="${esc(key)}" data-dir="1" aria-label="More ${esc(key)}">+</button>
-    </span>`;
-}
-
 /* What the Drive site had to say about a product, the last time anyone looked. */
 const checkedOn = (iso) => new Date(iso + "T12:00:00Z")
   .toLocaleDateString("en-GB", { day: "numeric", month: "long", timeZone: "UTC" });
 const siteHref = (listing) => SITE + encodeURI(decodeURI(listing.url));
-const listingName = (listing) => listing.brand.replace(/, une marque Intermarché$/, "") + " · " + listing.title;
+// Méré's produce titles carry an EU grading suffix ("- CAT. 1") that says nothing here.
+const cleanTitle = (t) => String(t).replace(/\s*-\s*CAT\.\s*(?:\d|EXTRA)\s*$/i, "");
+const listingName = (listing) => listing.brand.replace(/, une marque Intermarché$/, "") + " · " + cleanTitle(listing.title);
 
 function siteFlag(cat) {
   if (!cat) return { cls: "", text: "not checked at Méré" };
@@ -1430,181 +1551,294 @@ function siteFlag(cat) {
 }
 const flagHtml = (f) => f ? `<span class="flag${f.cls ? " " + f.cls : ""}">${esc(f.text)}</span>` : "";
 
-function shopLine(l, inKitchen) {
-  const partly = !inKitchen && l.covered > 0;
-  const sub = [];
-  sub.push(inKitchen ? esc(l.requiredLabel) + " needed" : esc(l.amount) + " to buy");
-  if (partly) sub.push(esc(l.requiredLabel) + " needed, " + esc(l.coveredLabel) + " already here");
-  if (inKitchen || partly) sub.push(esc(coverReason(l)));
-  if (l.renamed) sub.push("instead of " + esc(l.renamed));
-  sub.push(esc(l.for));
-  // Méré's own name for it, when that is not simply the name above.
-  const li = l.cat && l.cat.listing;
-  if (!inKitchen && li && (l.cat.status !== "exact" || l.guess)) {
-    sub.push(`<span class="site-line">at Méré: ${esc(listingName(li))}, ${esc(li.packaging.toLowerCase())}</span>`);
-  }
+const round2 = (n) => Math.round(n * 100) / 100;
+const money = (l) => (l.approx ? "≈ " : "") + eur(l.cost);
 
-  // Striking off a line that is not being bought anyway would say nothing, so
-  // the ✕ only appears where there is something to strike.
-  const strike = l.struck
-    ? `<button class="minibtn" type="button" data-strike="${esc(l.key)}">Put it back</button>`
-    : inKitchen ? ""
-    : `<button class="minibtn danger" type="button" data-strike="${esc(l.key)}" aria-label="Strike ${esc(l.name)} off the list">✕</button>`;
-
-  return `<li class="${inKitchen ? "is-kitchen" : ""}">
-    <div class="shop-line">
-      <span class="shop-name">${esc(l.name)}${l.guess ? '<span class="flag">guess</span>' : ""}${inKitchen || (l.guess && !l.cat) ? "" : flagHtml(siteFlag(l.cat))}</span>
-      <span class="shop-dots"></span>
-      <span class="shop-cost">${inKitchen ? "—" : eur(l.cost)}</span>
-    </div>
-    <div class="shop-sub">${sub.map((s) => `<span>${s}</span>`).join("")}</div>
-    <div class="line-ctl">
-      ${stepper(l)}
-      <button class="minibtn" type="button" data-allof="${esc(l.key)}">${inKitchen ? "Need it after all" : "I have it"}</button>
-      ${l.kind === "added" ? "" : `<button class="minibtn" type="button" data-subswap="${esc(l.key)}">Swap</button>`}
-      ${strike}
-    </div>
-  </li>`;
+/* What a line still needs before it can be pushed, or what it is known to be. */
+function lineFlag(l) {
+  if (l.pending) return { cls: "warn", text: l.cat.status === "missing" ? "not at Méré" : "changed at Méré" };
+  if (l.site && l.site.available === false) return { cls: "warn", text: "out of stock " + checkedOn(l.cat.checked) };
+  if (l.choice) return { cls: "ok", text: "your pick" };
+  if (!l.cat) return { cls: "", text: l.guess ? "guess — Claude asks at push" : "not checked — Claude asks at push" };
+  return null;
 }
 
-/* The approved list, laid out for working through at intermarche.com: each row
-   links straight to the product's page at Méré — receipt names make poor search
-   terms, and packs change — with the quantity beside it and a tick as each one
-   goes into the real basket. Ordered by aisle. */
-function driveRow(l) {
-  const cat = l.cat, li = cat && cat.listing;
-  const done = !!inBasket[l.key];
-  const flag = l.guess && !cat ? { cls: "", text: "name unconfirmed — search for it" } : siteFlag(cat);
-  const showWhy = cat && (cat.status === "check" || cat.status === "missing" || (li && li.available === false));
-  const alts = showWhy ? (cat.alternatives || []) : [];
-  return `
-    <li class="${done ? "is-done" : ""}">
-      <button class="tickbox" type="button" data-tick="${esc(l.key)}"
-              aria-pressed="${done}"
-              aria-label="${done ? "Added" : "Mark added"}: ${esc(l.name)}">${done ? "✓" : ""}</button>
-      <div class="drive-body">
-        <div class="drive-name">${esc(li ? listingName(li) : l.name)}</div>
-        ${li && cat.status !== "exact" && !l.name.toLowerCase().includes(li.title.toLowerCase()) ? `<div class="drive-for">for ${esc(l.name)}</div>` : ""}
-        <div class="drive-meta">
-          <span class="drive-qty">add ${l.add}</span>${l.unit === "kg" ? `<span>≈ ${esc(l.amount)}</span>` : ""}
-          ${li ? `<span>${esc(li.packaging)}</span>` : ""}
-          <span>${eur(l.cost)}</span>
-          ${flagHtml(flag)}
+function decisionBlock(l) {
+  const c = l.cat;
+  const opts = [];
+  if (c.status === "check" && c.listing) opts.push({ pick: "listing", li: c.listing });
+  (c.alternatives || []).forEach((a, i) => opts.push({ pick: i, li: a }));
+  return `<div class="decide">
+      ${c.note ? `<p class="decide-note">${esc(c.note)}</p>` : ""}
+      <div class="decide-opts" role="group" aria-label="What to buy for ${esc(l.name)}">
+        ${opts.map((o) => {
+          const out = o.li.available === false || o.li.price == null;
+          return `<button class="opt" type="button" data-choice="${esc(l.key)}" data-option="${o.pick}">
+            <span class="opt-name">${esc(listingName(o.li))}</span>
+            <span class="opt-meta">${esc(o.li.packaging)} · ${out ? "out of stock " + esc(checkedOn(c.checked)) : eur(o.li.price)}</span>
+          </button>`;
+        }).join("")}
+        <button class="opt opt-skip" type="button" data-choice="${esc(l.key)}" data-option="skip">
+          <span class="opt-name">Skip it this week</span>
+          <span class="opt-meta">nothing bought</span>
+        </button>
+      </div>
+    </div>`;
+}
+
+function addStepper(l) {
+  return `<span class="step" role="group" aria-label="How many to add at Méré">
+      <button class="stepbtn" type="button" data-addstep="${esc(l.key)}" data-dir="-1" aria-label="One fewer"${l.add <= 1 ? " disabled" : ""}>−</button>
+      <span class="stepval">${l.add}</span>
+      <button class="stepbtn" type="button" data-addstep="${esc(l.key)}" data-dir="1" aria-label="One more">+</button>
+    </span>`;
+}
+
+/* One line of the basket as it will be pushed: Méré's own name and pack first,
+   because that is what lands in the real basket; the recipe's name underneath. */
+function basketLine(l) {
+  // Undecided, a line keeps the recipe's name: showing Méré's proposal as its
+  // title would read as a choice already made.
+  const li = l.pending ? null : l.site;
+  const title = li ? listingName(li) : l.name;
+  const meta = [];
+  if (li) meta.push(esc(li.packaging) + (li.price != null ? " · " + eur(li.price) + " each" : ""));
+  if (li && !l.name.toLowerCase().includes(li.title.toLowerCase())) meta.push("for " + esc(l.name));
+  if (l.renamed) meta.push("instead of " + esc(l.renamed));
+  if (l.replaces) meta.push(`for the recipes' ${l.toBuy} × ${esc(l.replaces.toLowerCase())}`);
+  if (l.unit === "kg") meta.push("recipes need " + esc(l.amount));
+  if (l.covered > 0) meta.push(esc(l.coveredLabel) + " " + esc(coverReason(l)));
+  const dishes = `<div class="bl-for">${esc(l.for)}</div>`;
+
+  return `<li class="bl${l.pending ? " is-pending" : ""}" id="line-${esc(l.key.replace(/[^\w-]/g, "_"))}">
+      <div class="bl-row">
+        <div class="bl-main">
+          <div class="bl-name">${esc(title)}${flagHtml(lineFlag(l))}</div>
+          ${meta.length ? `<div class="bl-meta">${meta.map((m) => `<span>${m}</span>`).join("")}</div>` : ""}
+          ${dishes}
         </div>
-        ${showWhy && cat.note ? `<div class="drive-note">${esc(cat.note)}</div>` : ""}
-        ${alts.length ? `<ul class="drive-alts">${alts.map((a) => `<li>or <a href="${esc(siteHref(a))}" target="_blank" rel="noopener">${esc(listingName(a))}</a>, ${esc(a.packaging.toLowerCase())}, ${a.price != null && a.available !== false ? eur(a.price) : "out of stock " + esc(checkedOn(cat.checked))}</li>`).join("")}</ul>` : ""}
+        <div class="bl-cost">${money(l)}</div>
       </div>
-      <div class="drive-actions">
-        ${li ? `<a class="copybtn go" href="${esc(siteHref(li))}" target="_blank" rel="noopener" aria-label="Open ${esc(listingName(li))} at Méré">Open</a>` : ""}
-        <button class="copybtn" type="button" data-copy="${esc(l.key)}" data-copy-name="${esc(cat ? cat.search : l.name)}"
-                aria-label="Copy a search term for ${esc(l.name)}">Copy</button>
-      </div>
+      ${l.pending ? decisionBlock(l) : `<div class="line-ctl">
+          ${addStepper(l)}
+          <button class="minibtn" type="button" data-allof="${esc(l.key)}">I have it</button>
+          ${l.choice ? `<button class="minibtn" type="button" data-unchoose="${esc(l.key)}">Choose again</button>` : ""}
+          ${l.kind === "added" ? "" : `<button class="minibtn" type="button" data-subswap="${esc(l.key)}">Swap</button>`}
+          <button class="minibtn danger" type="button" data-strike="${esc(l.key)}" aria-label="Strike ${esc(title)} off the list">✕</button>
+        </div>`}
     </li>`;
 }
 
-function renderDrive() {
-  const { lines, total } = basket();
-  const done = lines.filter((l) => inBasket[l.key]).length;
-  const pct = lines.length ? (done / lines.length) * 100 : 0;
-  const left = lines.filter((l) => !inBasket[l.key]).reduce((t, l) => t + l.cost, 0);
-
-  let html = `<div class="drive-head">
-      <div class="eyebrow">Approved list &middot; ${new Date(approved.at).toLocaleDateString("en-GB", { day: "numeric", month: "long" })}</div>
-      <h2 class="drive-title">Add these at the Drive</h2>
-      <p class="drive-sub">Open opens each product's own page at Méré, so there is nothing to search for:
-        add it, then tick it off here. Copy gives a search term checked to find it, for anything without a link.</p>
-      <div class="meter" style="margin-top:1rem">
-        <div class="meter-bar"><div class="meter-fill" style="width:${pct.toFixed(1)}%"></div></div>
-        <div class="meter-row"><span>${done} of ${lines.length} added</span><span>${eur(left)} still to add</span></div>
+function kitchenLine(l) {
+  const action = l.skipped
+    ? `<button class="minibtn" type="button" data-unchoose="${esc(l.key)}">Choose again</button>`
+    : l.struck
+      ? `<button class="minibtn" type="button" data-strike="${esc(l.key)}">Put it back</button>`
+      : `<button class="minibtn" type="button" data-allof="${esc(l.key)}">Need it after all</button>`;
+  return `<li class="bl is-kitchen">
+      <div class="bl-row">
+        <div class="bl-main">
+          <div class="bl-name">${esc(l.name)}</div>
+          <div class="bl-meta"><span>${esc(l.requiredLabel)} needed</span><span>${esc(coverReason(l))}</span></div>
+        </div>
+        <div class="bl-cost">—</div>
       </div>
-      <div class="toolbar" style="margin-top:.9rem">
-        <button class="btn" id="reopen">Reopen for editing</button>
-      </div>
-      <p class="drive-warn">Claude does not place this order. Filling the basket and confirming it stays with you.</p>
-    </div>`;
-
-  const secs = [];
-  for (const l of lines) {
-    let sec = secs.find((x) => x.name === l.section);
-    if (!sec) secs.push((sec = { name: l.section, lines: [] }));
-    sec.lines.push(l);
-  }
-  for (const sec of secs) {
-    html += `<div class="shop-sec">
-      <div class="group-head has-icon" style="margin:0">${sectionIcon(sec.name)}<h2>${esc(sec.name)}</h2><span class="leader"></span>
-        <span class="group-count">${sec.lines.filter((l) => inBasket[l.key]).length}/${sec.lines.length}</span></div>
-      <ul class="drive-list">${sec.lines.map(driveRow).join("")}</ul>
-    </div>`;
-  }
-  html += `<div class="shop-total"><span>${done === lines.length ? "All added" : "Still to add"}</span><span>${eur(left)}</span></div>`;
-  if (done === lines.length && lines.length) {
-    html += `<div class="empty" style="margin-top:1.1rem;border-color:var(--herb);color:var(--herb)">
-      That is the whole list in the basket. Check it over at the Drive and confirm it yourself.</div>`;
-  }
-  $("#shop-out").innerHTML = html;
+      <div class="line-ctl">${action}</div>
+    </li>`;
 }
 
-function renderShop() {
-  if (approved) return renderDrive();
-  const { lines, kitchen, total, saved } = basket();
-  const ceiling = CONF.budgetCeiling;
-  const pct = Math.min(100, (total / ceiling) * 100);
-  const over = total > ceiling;
-
-  let html = `<div class="meter">
-      <div class="meter-bar"><div class="meter-fill${over ? " over" : ""}" style="width:${pct.toFixed(1)}%"></div></div>
-      <div class="meter-row"><span>${eur(total)} to buy</span><span>${eur(ceiling)} ceiling</span></div>
-    </div>`;
-  if (saved > 0.005) {
-    html += `<div class="savedline">${eur(saved)} of this week's cooking is already in the kitchen and has been taken off the list.</div>`;
-  }
-  if (over) html += `<div class="empty" style="margin-top:.9rem;border-color:var(--clay);color:var(--clay)">Over the ceiling by ${eur(total - ceiling)}. Swap something out, or raise it.</div>`;
-
-  html += `<div class="toolbar" style="margin-top:1.1rem">
-      <button class="btn" id="additem">Add something</button>
-      <button class="btn" id="resetshop"${shopEdited() ? "" : " hidden"}>Back to what the receipt says</button>
-    </div>`;
-
+const groupBySection = (lines) => {
   const secs = [];
   for (const l of lines) {
     let s = secs.find((x) => x.name === l.section);
     if (!s) secs.push((s = { name: l.section, lines: [] }));
     s.lines.push(l);
   }
-  for (const s of secs) {
-    const sub = s.lines.reduce((a, b) => a + b.cost, 0);
+  return secs;
+};
+
+function renderShop() {
+  if (approved) return renderApproved();
+  const { lines, kitchen, pending, total, saved } = basket();
+  const ceiling = CONF.budgetCeiling;
+  const over = total > ceiling;
+  const ready = lines.filter((l) => !l.pending);
+  const approxCount = lines.filter((l) => l.approx).length;
+  const asks = lines.filter((l) => !l.cat).length;
+
+  let html = `<section class="hero">
+      <div class="hero-top">
+        <div>
+          <div class="eyebrow">To add at ${esc(CONF.store || "the Drive")}</div>
+          <div class="hero-total">${eur(total)}</div>
+          <div class="hero-sub">${lines.length} ${lines.length === 1 ? "line" : "lines"} · ${over ? `<b class="over">${eur(total - ceiling)} over</b> your ${eur(ceiling)} ceiling` : `${eur(ceiling - total)} under your ${eur(ceiling)} ceiling`}</div>
+        </div>
+        <div class="hero-state${pending.length ? " is-warn" : " is-ok"}">
+          <b>${pending.length ? pending.length : "✓"}</b>
+          <span>${pending.length ? (pending.length === 1 ? "decision left" : "decisions left") : "ready to approve"}</span>
+        </div>
+      </div>
+      <div class="meter"><div class="meter-bar"><div class="meter-fill${over ? " over" : ""}" style="width:${Math.min(100, (total / ceiling) * 100).toFixed(1)}%"></div></div></div>
+      <p class="hero-note">Priced at Méré's current prices${approxCount ? `; ${approxCount} weighed or unpriced ${approxCount === 1 ? "line is" : "lines are"} approximate (≈)` : ""}.
+        ${saved > 0.005 ? `${eur(saved)} of the week is already in the kitchen and off the list.` : ""}
+        ${asks ? `${asks} ${asks === 1 ? "line has" : "lines have"} not been checked at Méré, so Claude will ask about ${asks === 1 ? "it" : "them"} during the push.` : ""}</p>
+      <div class="toolbar">
+        <button class="btn" id="additem">Add something</button>
+        <button class="btn" id="resetshop"${shopEdited() ? "" : " hidden"}>Undo my changes</button>
+      </div>
+    </section>`;
+
+  if (pending.length) {
+    html += `<div class="shop-sec decide-sec">
+        <div class="group-head has-icon" style="margin:0"><span class="sec-icon is-clay" aria-hidden="true">!</span><h2>Decide first</h2><span class="leader"></span><span class="group-count">${pending.length}</span></div>
+        <p class="decide-lede">Méré sells these under another name or pack, or not at all. Pick what to buy — nothing is swapped without you.</p>
+        <ul class="bl-list">${pending.map(basketLine).join("")}</ul>
+      </div>`;
+  }
+
+  for (const s of groupBySection(ready)) {
     html += `<div class="shop-sec">
-      <div class="group-head has-icon" style="margin:0">${sectionIcon(s.name)}<h2>${esc(s.name)}</h2><span class="leader"></span><span class="group-count">${eur(sub)}</span></div>
-      <ul class="shop-list">${s.lines.map((l) => shopLine(l, false)).join("")}</ul>
-    </div>`;
+        <div class="group-head has-icon" style="margin:0">${sectionIcon(s.name)}<h2>${esc(s.name)}</h2><span class="leader"></span><span class="group-count">${eur(s.lines.reduce((a, b) => a + b.cost, 0))}</span></div>
+        <ul class="bl-list">${s.lines.map(basketLine).join("")}</ul>
+      </div>`;
   }
   if (!lines.length) {
     html += `<div class="empty" style="margin-top:1.2rem">Nothing left to buy — the kitchen already covers every dish on the menu.</div>`;
   }
   html += `<div class="shop-total"><span>Estimated total</span><span>${eur(total)}</span></div>`;
 
-  // Nothing disappears silently. Everything the week needs but is not being
-  // bought is listed here with the reason, so the list still traces back.
   if (kitchen.length) {
     html += `<details class="chipbox kitchenbox">
-      <summary>Already in the kitchen — ${kitchen.length} ${kitchen.length === 1 ? "item" : "items"}, ${eur(saved)} not spent</summary>
-      <div class="kitchen-body">
-        <p class="kitchen-note">From the Drive order collected ${esc(onHandDate())}${ONHAND.from ? ", plus anything you have corrected by hand" : ""}. Tap “Need it after all” to put one back on the list.</p>
-        <ul class="shop-list">${kitchen.map((l) => shopLine(l, true)).join("")}</ul>
-      </div>
-    </details>`;
+        <summary>Not buying — ${kitchen.length} ${kitchen.length === 1 ? "item" : "items"} already here, struck off or skipped</summary>
+        <div class="kitchen-body">
+          <p class="kitchen-note">What is already here comes from the Drive order collected ${esc(onHandDate())}, plus anything you have corrected by hand.</p>
+          <ul class="bl-list">${kitchen.map(kitchenLine).join("")}</ul>
+        </div>
+      </details>`;
   }
 
   html += `<div class="approvebar">
       <div>
-        <div class="approve-title">Happy with this list?</div>
-        <div class="approve-sub">${lines.length} items, ${eur(total)}. Approving turns it into a checklist laid out for the Drive site — you can reopen it any time.</div>
+        <div class="approve-title">${pending.length ? `Decide on ${pending.length} ${pending.length === 1 ? "line" : "lines"} first` : "Approve this basket"}</div>
+        <div class="approve-sub">${pending.length
+          ? "Approving locks the list for pushing, so every line has to say exactly what to buy."
+          : `${lines.length} lines, ${eur(total)}${over ? `, ${eur(total - ceiling)} over the ceiling` : ""}. Approving locks it and lets you push it to your Intermarché basket.`}</div>
       </div>
-      <button class="btn primary" id="approve"${lines.length ? "" : " disabled"}>Approve the list</button>
+      <button class="btn primary" id="approve"${lines.length && !pending.length ? "" : " disabled"}>Approve</button>
     </div>`;
 
   const cookCount = meals().filter((m) => !m.leftovers).length;
-  html += `<div class="foot" style="margin-top:1.6rem">Rebuilt from the ${cookCount} meals actually cooked this week — ${meals().length - cookCount} more come out of an earlier pot and cost nothing extra. Follows every swap, and every quantity you correct.<br>${(plan.notes || []).map(esc).join("<br>")}</div>`;
+  html += `<div class="foot" style="margin-top:1.6rem">Built from the ${cookCount} meals actually cooked this week — ${meals().length - cookCount} more come out of an earlier pot and cost nothing extra. Follows every swap and every count you change.<br>${(plan.notes || []).map(esc).join("<br>")}</div>`;
+  $("#shop-out").innerHTML = html;
+}
+
+/* ---------- approved: the push ---------- */
+const PUSH_OPEN = ["requested", "running", "waiting"];
+const pushOpen = () => { const s = pushState(); return !!s && PUSH_OPEN.includes(s.status); };
+const logFor = (key) => { const s = pushState(); return (s && s.log[key]) || null; };
+const LOG_DONE = ["added", "already", "unavailable", "skipped", "mismatch", "not-found"];
+
+function logChip(entry) {
+  if (!entry) return "";
+  const t = {
+    added: ["ok", `in basket ×${entry.qty ?? ""}`], already: ["ok", `in basket ×${entry.qty ?? ""}`],
+    unavailable: ["warn", "out of stock"], "not-found": ["warn", "not found"],
+    mismatch: ["warn", "didn't match — not added"], skipped: ["", "skipped"],
+    asking: ["warn", "Claude is asking you"], adding: ["", "adding…"],
+  }[entry.status] || ["", entry.status];
+  return `<span class="flag ${t[0]}">${esc(t[1].trim())}</span>`;
+}
+
+function pushedRow(l) {
+  const entry = logFor(l.key);
+  const done = !!inBasket[l.key] || (entry && (entry.status === "added" || entry.status === "already"));
+  const title = l.expect ? listingName(l.expect) : l.name;
+  return `<li class="${done ? "is-done" : ""}">
+      <button class="tickbox" type="button" data-tick="${esc(l.key)}" aria-pressed="${done}"
+              aria-label="${done ? "Added" : "Mark added"}: ${esc(title)}">${done ? "✓" : ""}</button>
+      <div class="drive-body">
+        <div class="drive-name">${esc(title)}</div>
+        <div class="drive-meta">
+          <span class="drive-qty">add ${l.add}</span>
+          ${l.expect ? `<span>${esc(l.expect.packaging)}</span>` : ""}
+          <span>${l.approx ? "≈ " : ""}${eur(l.cost)}</span>
+          ${entry ? logChip(entry) : l.url ? "" : `<span class="flag">Claude asks before adding</span>`}
+        </div>
+        ${entry && entry.note ? `<div class="drive-note">${esc(entry.note)}</div>` : ""}
+      </div>
+      <div class="drive-actions">
+        ${l.url ? `<a class="copybtn" href="${esc(siteHref(l))}" target="_blank" rel="noopener" aria-label="Open ${esc(title)} at Méré">Open</a>` : ""}
+      </div>
+    </li>`;
+}
+
+function pushPanel(lines) {
+  const push = pushState();
+  const s = push ? push.status : null;
+  const settled = lines.filter((l) => { const e = logFor(l.key); return e && LOG_DONE.includes(e.status); }).length;
+  const pct = lines.length ? (settled / lines.length) * 100 : 0;
+  const noDb = !pushRef;
+  const cmd = `<div class="cmd"><code>${PUSH_COMMAND}</code><button class="copybtn" type="button" id="copycmd">Copy</button></div>`;
+  const meter = `<div class="meter"><div class="meter-bar"><div class="meter-fill" style="width:${pct.toFixed(1)}%"></div></div>
+      <div class="meter-row"><span>${settled} of ${lines.length} done</span><span>${eur(approved.total)} estimated</span></div></div>`;
+
+  if (s === "requested") return `<div class="pushpanel is-wait">
+      <h3>Waiting for Claude on your PC</h3>
+      <p>Open Claude on the PC where Chrome is signed in to Intermarché and run:</p>${cmd}
+      <p class="small">It adds each line at Méré, then writes back here as it goes.</p>
+      <div class="toolbar"><button class="btn" id="pushcancel">Cancel the push</button></div>
+    </div>`;
+  if (s === "running") return `<div class="pushpanel is-run">
+      <h3>Filling your basket</h3>${meter}
+      <p class="small">Claude is adding these at Méré now. Leave this open to follow along.</p>
+    </div>`;
+  if (s === "waiting") return `<div class="pushpanel is-warn">
+      <h3>Claude needs you</h3>
+      <p>${esc(push.question || "Answer in Claude on your PC to carry on.")}</p>${meter}
+    </div>`;
+  if (s === "done") {
+    const diff = push.siteTotal != null ? push.siteTotal - approved.total : null;
+    const issues = lines.filter((l) => { const e = logFor(l.key); return e && !["added", "already"].includes(e.status); }).length;
+    return `<div class="pushpanel is-ok">
+      <h3>In your Intermarché basket</h3>
+      <p>${push.siteCount != null ? `${push.siteCount} items, ` : ""}${push.siteTotal != null ? `<b>${eur(push.siteTotal)}</b> on the site` : ""}${diff != null ? ` — ${Math.abs(diff) < 0.005 ? "exactly the estimate" : `${eur(Math.abs(diff))} ${diff > 0 ? "above" : "below"} the estimate`}` : ""}.
+        ${issues ? `${issues} ${issues === 1 ? "line was" : "lines were"} not added — see below.` : "Every line went in."}</p>
+      <p class="small">Claude does not book the slot or pay. Check the basket and confirm it yourself.</p>
+      <div class="toolbar">
+        <a class="btn primary" href="${esc(SITE)}/commandes/panier" target="_blank" rel="noopener">Open my basket</a>
+        <button class="btn" id="pushnow">Push again</button>
+      </div>
+    </div>`;
+  }
+  const lead = s === "cancelled" ? "Push cancelled" : s === "failed" ? "The push stopped" : "Push to your Intermarché basket";
+  return `<div class="pushpanel">
+      <h3>${lead}</h3>
+      ${s === "failed" && push.note ? `<p>${esc(push.note)}</p>` : ""}
+      <p>Claude on your PC opens each product at Méré in your own Chrome, sets the count shown here, and checks the basket total against the estimate. Pushing twice never doubles anything: each count is set, not added on top. It never books a slot or pays.</p>
+      <p class="small">Intermarché replaces out-of-stock items by default. To stop that, switch off “Option de remplacement de produits” on your basket page.</p>
+      <div class="toolbar"><button class="btn primary" id="pushnow"${noDb ? " disabled" : ""}>Push to Intermarché</button></div>
+      ${noDb ? `<p class="small">Pushing needs the published page — this copy is not connected.</p>` : ""}
+      ${pushError ? `<p class="small warn">The push could not be sent (${esc(pushError)}). Try again in a moment.</p>` : ""}
+    </div>`;
+}
+
+function renderApproved() {
+  const lines = approved.lines || [];
+  let html = `<div class="drive-head">
+      <div class="eyebrow">Approved ${new Date(approved.at).toLocaleDateString("en-GB", { day: "numeric", month: "long" })} · ${lines.length} lines · ${eur(approved.total)}</div>
+      ${pushPanel(lines)}
+      <div class="toolbar" style="margin-top:.8rem">
+        <button class="btn" id="reopen"${pushOpen() ? " disabled" : ""}>Reopen for editing</button>
+      </div>
+    </div>`;
+  for (const sec of groupBySection(lines)) {
+    html += `<div class="shop-sec">
+        <div class="group-head has-icon" style="margin:0">${sectionIcon(sec.name)}<h2>${esc(sec.name)}</h2><span class="leader"></span>
+          <span class="group-count">${eur(sec.lines.reduce((a, b) => a + b.cost, 0))}</span></div>
+        <ul class="drive-list">${sec.lines.map(pushedRow).join("")}</ul>
+      </div>`;
+  }
+  html += `<div class="shop-total"><span>Estimated total</span><span>${eur(approved.total)}</span></div>`;
   $("#shop-out").innerHTML = html;
 }
 
@@ -1771,14 +2005,6 @@ function openAddItem() {
 /* ---------- the ingredient controls ---------- */
 function commitShop() { renderAll(); persist(); }
 
-function bumpHave(key, dir) {
-  // Weighed goods move in 100 g steps, everything else one packet at a time.
-  const step = unitOf(key) === "kg" ? 0.1 : 1;
-  const next = Math.max(0, Math.round(((have[key] || 0) + dir * step) * 100) / 100);
-  if (next === 0) delete have[key]; else have[key] = next;
-  commitShop();
-}
-
 /* "I have it" means all of it — enough that nothing needs buying. Pressed again
    from the kitchen list it means the opposite: none of it. */
 function toggleAllOf(key) {
@@ -1808,16 +2034,41 @@ function addProduct(name) {
   commitShop();
 }
 
+function stepAdd(key, dir) {
+  const l = basket().lines.find((x) => x.key === key);
+  if (!l) return;
+  const next = Math.min(99, Math.max(1, l.add + dir));
+  if (next === l.addDefault) delete addAdj[key]; else addAdj[key] = next;
+  commitShop();
+}
+
+function chooseLine(key, option) {
+  choices[key] = { pick: option === "skip" || option === "listing" ? option : Number(option), at: Date.now() };
+  delete addAdj[key];
+  commitShop();
+}
+
+function unchoose(key) {
+  delete choices[key];
+  delete addAdj[key];
+  commitShop();
+}
+
 function approveList() {
-  const { lines, total } = basket();
-  // The lines themselves travel with the approval, so whoever fills the basket
-  // works from exactly what she signed off rather than re-deriving it.
+  const { lines, pending, total } = basket();
+  if (pending.length || !lines.length) return;
+  // The lines travel with the approval, each resolved to the exact Méré listing
+  // and count, so the push works from what she signed off and never re-derives it.
   approved = {
-    at: Date.now(), total, count: lines.length,
+    at: Date.now(), total: round2(total), count: lines.length, weekOf: plan.weekOf,
     lines: lines.map((l) => ({
-      key: l.key, name: l.name, add: l.add, amount: l.amount, unit: l.unit,
-      cost: Math.round(l.cost * 100) / 100,
-      status: l.cat ? l.cat.status : null, url: l.cat && l.cat.listing ? l.cat.listing.url : null,
+      key: l.key, name: l.name, section: l.section, for: l.for,
+      add: l.add, cost: round2(l.cost), approx: l.approx,
+      status: l.choice ? "chosen" : l.cat ? l.cat.status : "unchecked",
+      url: l.site ? l.site.url : null,
+      expect: l.site ? { brand: l.site.brand, title: l.site.title, packaging: l.site.packaging } : null,
+      price: l.site && l.site.price != null ? l.site.price : null,
+      search: l.cat ? l.cat.search : l.name,
     })),
   };
   inBasket = {};
@@ -1826,6 +2077,7 @@ function approveList() {
 }
 
 function reopenList() {
+  if (pushOpen()) return;
   approved = null;
   commitShop();
 }
@@ -1835,28 +2087,46 @@ function toggleInBasket(key) {
   commitShop();
 }
 
-/* What goes on the clipboard is a search term checked against the site, not the
-   receipt name: Intermarché's search ranks rather than matches, and a full
-   house-brand name buries the product under every other house-brand item. */
-async function copyName(key, btn) {
-  const name = btn.dataset.copyName;
+async function requestPush() {
+  if (!approved || !pushRef) return;
+  pushError = null;
+  // requestedAt doubles as this push's run id: every report Claude files names it.
+  const doc = {
+    weekOf: plan.weekOf, status: "requested", requestedAt: Date.now(),
+    approvedAt: approved.at, estimate: approved.total, ceiling: CONF.budgetCeiling,
+    store: CONF.store || "", lines: approved.lines.map((l, i) => ({ ...l, n: i + 1 })),
+  };
+  push = doc;
+  renderAll();
+  try { await pushRef.set(doc); }
+  catch (e) { pushError = (e && e.code) || "not saved"; push = null; renderAll(); }
+}
+
+async function cancelPush() {
+  const s = pushState();
+  if (!pushRef || !s || s.status !== "requested") return;
+  try { await pushRef.update({ status: "cancelled", cancelledAt: Date.now() }); }
+  catch (e) { pushError = (e && e.code) || "not saved"; renderAll(); }
+}
+
+async function copyText(text, btn) {
   let ok = false;
-  try { await navigator.clipboard.writeText(name); ok = true; } catch (e) { /* blocked */ }
+  try { await navigator.clipboard.writeText(text); ok = true; } catch (e) { /* blocked in some frames */ }
   if (!ok) {
-    // Clipboard permission is not guaranteed inside the artifact frame. Falling
-    // back to selecting the text means she can still copy it by hand.
-    const el = btn.closest("li").querySelector(".drive-name");
+    // Clipboard access is not guaranteed inside the artifact frame; selecting
+    // the text still lets her copy it by hand.
+    const el = btn.parentElement.querySelector("code");
     const r = document.createRange(); r.selectNodeContents(el);
     const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
   }
-  btn.textContent = ok ? "Copied" : "Selected — press copy";
+  btn.textContent = ok ? "Copied" : "Selected";
   btn.classList.add("did");
   setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("did"); }, 1600);
 }
 
 function resetShop() {
   have = { ...haveSeed };
-  qtyAdj = {}; subs = {}; dropped = {}; added = {};
+  qtyAdj = {}; subs = {}; dropped = {}; added = {}; addAdj = {}; choices = {};
   commitShop();
 }
 
@@ -2223,7 +2493,7 @@ function renderAll() {
 }
 
 function renderMasthead() {
-  const { total, saved } = basket();
+  const { lines, pending, total } = basket();
   $("#store-line").textContent = CONF.store || plan.store || "";
   $("#week-title").textContent = plan.label || ("Week of " + plan.weekOf);
   const count = (s) => plan.meals.filter((m) => m.slot === s).length;
@@ -2231,19 +2501,25 @@ function renderMasthead() {
     .map((s) => [count(s), s])
     .filter(([n]) => n > 0)
     .map(([n, s]) => `${n} ${n > 1 ? PLURAL[s] : s}`);
+  const ps = pushState();
+  const status = ps && ps.status === "done" ? "In your Intermarché basket"
+    : pushOpen() ? "Being pushed to Intermarché"
+    : approved ? "Approved — ready to push"
+    : pending.length ? `${pending.length} to decide before approving`
+    : "Ready to approve";
   $("#strapline").textContent =
-    `${andList(parts)}. Swap a dish you don't fancy, or tell the Shopping tab what you already have — the basket follows both. No chilli anywhere.`;
+    `The basket for ${andList(parts)}. Swap a dish and the basket follows. No chilli anywhere.`;
   $("#tally").innerHTML = [
-    ["Meals", plan.meals.length],
-    ["Library", Object.keys(all()).length],
-    ["To buy", eur(total)],
-    ["Already here", eur(saved)],
+    ["To buy", eur(approved ? approved.total : total)],
     ["Ceiling", eur(CONF.budgetCeiling)],
+    ["Lines", approved ? approved.lines.length : lines.length],
+    ["Status", status],
     // One element per pair, or the flex row wraps a label away from its number.
-  ].map(([k, v]) => `<span class="tally-pair"><span>${k}</span>&nbsp;<b>${v}</b></span>`).join("");
+  ].map(([k, v]) => `<span class="tally-pair"><span>${k}</span>&nbsp;<b>${esc(String(v))}</b></span>`).join("");
+  const checked = Object.values(CATALOGUE).map((c) => c.checked).sort().pop();
   $("#foot").innerHTML =
-    `${Object.keys(all()).length} dishes, ${Object.keys(PRICES).length} products priced from a year of your own receipts. ` +
-    `Estimates, not quotes.<br>Product names are the exact Intermarché ones, so each resolves to a single search result at the Drive.`;
+    `${Object.keys(all()).length} dishes. Prices and packs as listed at Méré${checked ? " on " + esc(checkedOn(checked)) : ""}; ` +
+    `weighed goods are charged on the exact weight at collection, so those lines are approximate.`;
 }
 
 /* ---------- wiring ---------- */
@@ -2362,8 +2638,12 @@ document.addEventListener("click", (e) => {
   if (alt) { $("#sheet").close(); return setPick(swapTarget, alt.dataset.pick); }
 
   // the ingredient layer
-  const step = e.target.closest("button[data-have]");
-  if (step) return bumpHave(step.dataset.have, Number(step.dataset.dir));
+  const step = e.target.closest("button[data-addstep]");
+  if (step) return stepAdd(step.dataset.addstep, Number(step.dataset.dir));
+  const pick = e.target.closest("button[data-choice]");
+  if (pick) return chooseLine(pick.dataset.choice, pick.dataset.option);
+  const unpick = e.target.closest("button[data-unchoose]");
+  if (unpick) return unchoose(unpick.dataset.unchoose);
   const allof = e.target.closest("button[data-allof]");
   if (allof) return toggleAllOf(allof.dataset.allof);
   const strike = e.target.closest("button[data-strike]");
@@ -2381,8 +2661,10 @@ document.addEventListener("click", (e) => {
   if (ap) { $("#sheet").close(); return addProduct(ap.dataset.addProduct); }
   const tick = e.target.closest("button[data-tick]");
   if (tick) return toggleInBasket(tick.dataset.tick);
-  const cp = e.target.closest("button[data-copy]");
-  if (cp) return copyName(cp.dataset.copy, cp);
+  const cmd = e.target.closest("#copycmd");
+  if (cmd) return copyText(PUSH_COMMAND, cmd);
+  if (e.target.closest("#pushnow")) return requestPush();
+  if (e.target.closest("#pushcancel")) return cancelPush();
   if (e.target.closest("#approve")) return approveList();
   if (e.target.closest("#reopen")) return reopenList();
   if (e.target.closest("#additem")) return openAddItem();
@@ -2428,7 +2710,6 @@ $$(".tab").forEach((t) => t.addEventListener("click", () => {
   document.body.classList.toggle("on-cook", t.id === "tab-cook");
   window.scrollTo({ top: 0, behavior: "instant" });
 }));
-document.body.classList.add("on-cook");   // Cook is the tab it opens on
 
 setSync("", "Checking for your partner's changes…");
 renderAll();

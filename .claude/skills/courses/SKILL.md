@@ -1,12 +1,22 @@
 ---
 name: courses
-description: Run the weekly meal plan and fill the Intermarché Drive basket. Use when Charlotte says "courses", "meal plan", "what should I eat this week", or when the Sunday reminder fires.
+description: Run the weekly meal plan, publish the week's basket page, and push the approved basket to Intermarché Drive. Use when Charlotte says "courses", "meal plan", "what should I eat this week", "/courses push", or when the Sunday reminder fires.
 ---
 
 # Weekly courses
 
-Plan the week — 7 dinners and 5 weekday lunches — then pre-fill the Intermarché
-Drive Méré basket so she only has to review and confirm.
+Plan the week — 7 dinners and 5 weekday lunches — and hand her **a fresh basket
+page for that week**: the shopping list at Méré's own names, packs and prices,
+where she settles anything Méré sells differently, approves, and presses Push.
+Then fill the Intermarché Drive Méré basket from that push, so she only has to
+review and confirm.
+
+Two ways in:
+
+- **`/courses`** — the weekly run: plan, build, publish a new page, send her the
+  link. Everything from "Before asking anything" down to "Publishing".
+- **`/courses push`** — she has pressed Push on the page. Skip straight to
+  "Pushing the basket". Only on her PC, with Chrome signed in to Intermarché.
 
 ## Before asking anything
 
@@ -147,29 +157,55 @@ put in the basket. Whenever you add a dish, a guess or a staple:
 The site is behind DataDome. Browse like a person: never script its API, never
 fire searches in a burst, and if a captcha appears, stop and tell her.
 
-## Filling the basket
+## Pushing the basket (`/courses push`)
 
 Runs on her PC, in Chrome, with her Intermarché session already logged in. That
-is the same machine Claude Code runs on — she has no laptop, so if you are on the
-PC you can do this now; if she is on her phone, it waits. **Only from a list she
-has approved on the page** — the approval saves the lines, each with how many to
-add (weighed goods already turned into pieces or trays) and its catalogue link.
+is the same machine Claude Code runs on — she has no laptop; if she is on her
+phone, it waits. **Only from a push she pressed on the page.** By then every
+line is approved and resolved: one Méré listing, one count (weighed goods
+already turned into pieces or trays, changed packs already converted), and she
+has already decided everything Méré sells differently. Nothing here decides
+what to buy.
 
-1. Read `weeks/<weekOf>` from the page's database — the Artifact tool,
-   `action: read_db`, `db_op: get`, `out_dir` in the scratchpad — and run
-   `npm run drive:list -- <that file>`. It refuses a week that isn't approved.
-2. **Ask first, in one message.** Every `check` and `missing` line comes out
-   under "Ask Charlotte first" with its note and alternatives. Her answers decide
-   what goes in; never add a `check` listing on your own judgement.
+The page cannot reach intermarche.com — a push is a request in the page's
+database, and your progress is reported back there so she watches it live.
+
+**Reports are new documents, never edits.** The Artifact tool refuses to
+update, replace or delete an existing document (it demands a version it cannot
+send), so every report is a fresh document in `push/<weekOf>/progress`, id
+`<run>-<seq>` where `run` is the request's `requestedAt` — `drive:list` prints
+the next id. Write them with `write_db`, `db_op: batch`, `op: "set"`, up to 50
+at a time. Two shapes:
+
+- status: `{ run, at, type: "status", status, question?, note?, siteTotal?, siteCount? }`
+  with `status` one of `running`, `waiting`, `done`, `failed`
+- line: `{ run, at, type: "line", key, status, qty?, price?, note? }` with
+  `status` one of `added` (count set), `already` (it was there at that count),
+  `unavailable`, `mismatch` (the page did not match `expect` — never add it),
+  `not-found`, `skipped` (her answer). Use the line's `key` exactly.
+
+The page folds the reports for the current run over the request, latest last.
+
+1. **Find the request.** `data/artifacts.json` maps each week to its page URL.
+   Read `push/<weekOf>` (`read_db`, `db_op: get`, `collection: push`,
+   `doc_id: <weekOf>`, `out_dir` in the scratchpad) and list
+   `push/<weekOf>/progress` into the same `out_dir`. The request must say
+   `status: "requested"` — if it says `cancelled`, stop and tell her. Then
+   `npm run drive:list -- <push doc file> <out_dir>`; it drops lines already
+   settled by an earlier attempt at the same push, so a stopped run resumes.
+2. **Claim it**: one status report, `running`. The page switches to progress.
 3. Confirm the store in the site header is **Méré**, and note what the basket
-   already holds (count and total, top right).
+   already holds (count and total, top right) — if it isn't empty, say so; a
+   push sets counts, it does not clear anything.
 4. For each ready line, open its URL and check the product block — the `h1`
    holds brand and title, the line beneath it the pack — against `expect`. If
-   the page says "Indisponible" or has no add button, **stop and ask**; the
-   receipts show one or two items per order go out of stock, and
-   `outOfStockWhenChecked` is only a hint. Otherwise work in the block around
-   the `h1` (walk up from it to the first ancestor holding an add button), never
-   a card under "Vous aimerez aussi":
+   the page says "Indisponible" or has no add button, **stop and ask**: report
+   the line `unavailable` and a `waiting` status with a one-line `question` (the
+   page shows it), then ask her in chat. Never substitute. The receipts show one
+   or two items per order go out of stock. Once she answers, report `running`
+   again and carry on. Otherwise work in
+   the block around the `h1` (walk up from it to the first ancestor holding an
+   add button), never a card under "Vous aimerez aussi":
    - A product not yet in the basket shows **"Ajouter au panier"**. The page
      carries a second, hidden copy of that button, and a `find` ref can land on
      it — the click then does nothing, silently. Click the copy that has a
@@ -185,11 +221,21 @@ add (weighed goods already turned into pieces or trays) and its catalogue link.
 
    Tested on 2026-09-14 with the Daddy sugar: added, raised to 2, lowered, and
    removed again, the header following each step.
-5. When done, tick what went in on her page in one write: `write_db`,
-   `db_op: update`, `weeks/<weekOf>`, `data: { inBasket: { ...existing, <key>: true } }`
-   — read `inBasket` first, because `update` replaces the whole map.
-6. Report what went in, what didn't, and the site's basket total against the
-   `estimate`.
+5. **Report as you go**: a batch of line reports every five or so products, so
+   the page moves while she watches.
+6. **Lines under "Look up and ask"** have no listing: search the term, show her
+   what Méré lists, and add only what she picks.
+7. **Reconcile**: open `https://www.intermarche.com/commandes/panier` and read
+   the line count and "Total à payer". Report `done` with `siteCount` and
+   `siteTotal`. Never press "Vider le panier" or "Choisir mon créneau" there.
+8. Report in chat what went in, what didn't, and the site total against the
+   `estimate`. If she had "Option de remplacement de produits" on (it is on by
+   default), remind her that Intermarché will swap anything that runs out.
+
+If the run has to stop — Chrome drops, she is signed out, a captcha — report
+`failed` with a plain `note` saying what happened. Running `/courses push`
+again resumes the same request; if she presses Push again on the page instead,
+that is a new run from the top, which is also safe — counts are set, not added.
 
 ## Hard stops
 
@@ -201,10 +247,11 @@ add (weighed goods already turned into pieces or trays) and its catalogue link.
   silently cut it yourself.
 - Nothing chilli reaches the list. Check before showing it.
 
-## Publishing the week to her phone
+## Publishing: a fresh page for the week
 
-The plan is not delivered until it is on the page she actually opens. After she
-approves a plan, before or after filling the basket:
+The plan is not delivered until it is on a page she can open. **Every `/courses`
+run publishes a new page with its own link** — the basket page for that week.
+After she agrees the plan:
 
 1. **Add any new dish to `data/recipes.json`** — slug, title, cuisine, slot,
    `kind`, prep and cook minutes, serves, tags, ingredients and full steps.
@@ -230,17 +277,27 @@ approves a plan, before or after filling the basket:
    `minutesOverride`; the basket skips it, because that pot is already paid for.
    **There is no shopping array any more** — the basket is derived from whatever
    meals are picked, so it survives her swapping things.
-3. **`npm run build:week`** — emits `artifact/week.html`.
-4. **Republish to the URL in `data/artifact-url.txt`.** Pass it as the Artifact
-   tool's `url`. Publishing without it creates a second artifact and breaks the
-   bookmark on her phone. Do not change the favicon or the title, and **omit
-   `capabilities` so the stored `db` and `sample` grants carry forward** —
-   restating a partial set would revoke the other.
-5. **Her swaps live in the shared database, not in the plan file.** The page
-   reads `weeks/<weekOf>` and overlays those picks on the plan you shipped. A
-   new week means a new `weekOf`, so it starts clean without touching hers. If
-   she asks to keep a swapped-in dish permanently, move it into the plan file.
-6. Commit and push.
+3. **Check the catalogue** — `npm run catalogue:queue`. Anything this week's
+   plan uses that has no entry would reach the page as "Claude asks at push";
+   resolve it now if you are on her PC (see "Keeping the catalogue current").
+4. **`npm run build:week`** — emits `artifact/week.html`, titled "Méré Basket,
+   <date>".
+5. **Publish it as a new page.** Copy `artifact/week.html` to the scratchpad as
+   `courses-<weekOf>.html` and publish that path with **no `url`** — a new path
+   is what makes a fresh link. Pass `favicon: "🧺"`, a one-line `description`,
+   `capabilities: { db: {}, sample: {} }` (the shared list and the dish
+   generator), and `contract: "0.2.41"`, the runtime the page is written against.
+6. **Carry her state over** from the previous page in `data/artifacts.json`,
+   with `read_db` there and a `write_db` batch of `set`s on the new page:
+   `library/favourites` always, and `weeks/<weekOf>` when re-publishing a week
+   that already has a page — her swaps, counts and decisions live there, not in
+   the plan file. Do it straight after publishing, before she opens the page:
+   once a document exists, this tool cannot overwrite it.
+7. **Record the link** in `data/artifacts.json` under the week, commit and push,
+   and send her the link in one line. The page is private to her until she
+   shares it from its menu — say so if her partner needs it.
+
+If she asks to keep a swapped-in dish permanently, move it into the plan file.
 
 Reuse a slug rather than writing a near-duplicate — that is what makes the
 Recipes tab a library worth re-picking from, and it shows her which weeks a dish

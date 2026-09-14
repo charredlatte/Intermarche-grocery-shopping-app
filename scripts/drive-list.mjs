@@ -1,82 +1,97 @@
 #!/usr/bin/env node
 /**
- * Turns the list Charlotte approved on the page into the work list for filling
- * the Drive basket: every line joined to its Méré listing from
- * data/catalogue.json, and split into what can go straight in and what needs
- * her answer first.
+ * Turns a push request from the page into the work list for filling the Drive
+ * basket.
  *
- *   npm run drive:list -- <week document>.json          # readable
- *   npm run drive:list -- <week document>.json --json   # for the browsing session
+ *   npm run drive:list -- <push doc>.json [<progress dir>]          # readable
+ *   npm run drive:list -- <push doc>.json [<progress dir>] --json   # for the session
  *
- * The week document is weeks/<weekOf> from the page's shared database, saved to
- * a file with the Artifact tool (action read_db, db_op get, out_dir). Only an
- * approved list has lines; an unapproved week is refused rather than guessed at.
+ * The push doc is push/<weekOf> in the week's page database, and the progress
+ * dir holds push/<weekOf>/progress — both saved with the Artifact tool
+ * (action read_db, out_dir). Pressing "Push to Intermarché" writes the doc;
+ * every line in it is already approved and resolved to one Méré listing and a
+ * count, so nothing here decides what to buy.
+ *
+ * Progress is append-only: each report is a NEW document (the Artifact tool
+ * cannot edit an existing one), named <run>-<seq> where run is the request's
+ * requestedAt. This prints the ids to use next, and leaves out lines a report
+ * already settled, so a push that stopped halfway resumes where it left off.
  */
 
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const args = process.argv.slice(2);
-const file = args.find((a) => !a.startsWith("--"));
+const [file, progressDir] = args.filter((a) => !a.startsWith("--"));
 if (!file) {
-  console.error("drive-list: pass the saved weeks/<weekOf> document, e.g. npm run drive:list -- weeks/2026-09-14.json");
+  console.error("drive-list: pass the saved push/<weekOf> document, and optionally the saved progress folder");
   process.exit(1);
 }
 
-const raw = JSON.parse(readFileSync(file, "utf8"));
-const doc = raw.data ?? raw;
+const unwrap = (p) => { const raw = JSON.parse(readFileSync(p, "utf8")); return raw.data ?? raw; };
+const doc = unwrap(file);
+if (!Array.isArray(doc.lines) || !doc.lines.length || !doc.requestedAt) {
+  console.error("drive-list: this is not a push request. Charlotte approves on the page, then presses Push to Intermarché.");
+  process.exit(2);
+}
+const run = doc.requestedAt;
+
+const walk = (dir) => readdirSync(dir).flatMap((f) => {
+  const p = join(dir, f);
+  return statSync(p).isDirectory() ? walk(p) : f.endsWith(".json") ? [p] : [];
+});
+const reports = progressDir ? walk(progressDir).map(unwrap).filter((r) => r.run === run) : [];
+reports.sort((a, b) => (a.at || 0) - (b.at || 0));
+const settled = {};
+let status = doc.status;
+for (const r of reports) {
+  if (r.type === "line" && r.key) settled[r.key] = r;
+  if (r.type === "status") status = r.status;
+}
+const SETTLED = ["added", "already", "unavailable", "skipped", "mismatch", "not-found"];
+
 const catalogue = JSON.parse(readFileSync(join(ROOT, "data", "catalogue.json"), "utf8"));
 const SITE = catalogue.site ?? "https://www.intermarche.com";
 
-if (!doc.approved) {
-  console.error("drive-list: this week has not been approved on the page. The basket is filled from an approved list only.");
-  process.exit(2);
-}
-if (!Array.isArray(doc.approved.lines)) {
-  console.error("drive-list: this approval predates saved lines. Ask Charlotte to press Reopen, then Approve again.");
-  process.exit(2);
-}
-
-const inBasket = doc.inBasket ?? {};
-const ready = [], ask = [], done = [];
-for (const l of doc.approved.lines) {
+const ready = [], lookup = [], done = [];
+for (const l of doc.lines) {
   const c = catalogue.products[l.name] ?? null;
   const item = {
-    key: l.key,
-    name: l.name,
-    add: l.add,
-    estimate: l.cost,
-    status: c ? c.status : "unchecked",
-    url: c?.listing ? SITE + c.listing.url : null,
-    expect: c?.listing ? { brand: c.listing.brand, title: c.listing.title, packaging: c.listing.packaging } : null,
-    search: c?.search ?? l.name,
-    outOfStockWhenChecked: c?.listing?.available === false ? c.checked : null,
-    note: c?.note ?? null,
-    alternatives: (c?.alternatives ?? []).map((a) => ({ ...a, url: SITE + a.url })),
+    key: l.key, name: l.name, add: l.add, estimate: l.cost, price: l.price ?? null, status: l.status,
+    url: l.url ? SITE + l.url : null, expect: l.expect ?? null, search: l.search ?? c?.search ?? l.name,
+    outOfStockWhenChecked: c?.listing?.available === false && l.status !== "chosen" ? c.checked : null,
   };
-  if (inBasket[l.key]) done.push(item);
-  else if (item.status === "exact" || item.status === "picked") ready.push(item);
-  else ask.push(item);
+  const r = settled[l.key];
+  if (r && SETTLED.includes(r.status)) done.push({ ...item, report: r });
+  else if (item.url) ready.push(item);
+  else lookup.push(item);
 }
 
-const total = doc.approved.lines.reduce((t, l) => t + (l.cost ?? 0), 0);
+const seq = reports.length + 1;
+const idFor = (n) => `${run}-${String(n).padStart(3, "0")}`;
+const collection = `push/${doc.weekOf}/progress`;
+const eur = (n) => (n ?? 0).toFixed(2).replace(".", ",") + " €";
+
 if (args.includes("--json")) {
-  console.log(JSON.stringify({ approvedAt: new Date(doc.approved.at).toISOString(), estimate: +total.toFixed(2), ask, ready, done }, null, 2));
+  console.log(JSON.stringify({ weekOf: doc.weekOf, run, status, collection, nextId: idFor(seq), nextSeq: seq,
+    estimate: doc.estimate, ready, lookup, done }, null, 2));
 } else {
-  const eur = (n) => (n ?? 0).toFixed(2).replace(".", ",") + " €";
-  console.log(`Approved ${new Date(doc.approved.at).toLocaleString("en-GB")}: ${doc.approved.lines.length} lines, estimate ${eur(total)}`);
-  console.log(`\n## Ask Charlotte first (${ask.length})`);
-  for (const i of ask) {
-    console.log(`- ${i.name} ×${i.add} [${i.status}]${i.note ? " — " + i.note : ""}`);
-    if (i.url) console.log(`    listed: ${i.expect.brand} · ${i.expect.title}, ${i.expect.packaging}  ${i.url}`);
-    for (const a of i.alternatives) console.log(`    or: ${a.brand} · ${a.title}, ${a.packaging}${a.price != null ? ", " + eur(a.price) : ""}  ${a.url}`);
+  console.log(`Push for ${doc.weekOf}, run ${run}: ${status}; ${doc.lines.length} lines, estimate ${eur(doc.estimate)}`);
+  console.log(`Reports go to ${collection}, next id ${idFor(seq)} (then ${idFor(seq + 1)}, …)`);
+  if (lookup.length) {
+    console.log(`\n## Look up and ask (${lookup.length})`);
+    for (const i of lookup) console.log(`- ${i.name} ×${i.add} — search "${i.search}", then ask before adding`);
   }
-  console.log(`\n## Ready to add (${ready.length})`);
+  console.log(`\n## To add (${ready.length})`);
   for (const i of ready) {
-    console.log(`- ×${i.add}  ${i.expect ? `${i.expect.brand} · ${i.expect.title}, ${i.expect.packaging}` : i.name}${i.outOfStockWhenChecked ? `  (was out of stock ${i.outOfStockWhenChecked})` : ""}`);
-    console.log(`    ${i.url ?? "search: " + i.search}`);
+    const e = i.expect;
+    console.log(`- ×${i.add}  ${e.brand} · ${e.title}, ${e.packaging}${i.price != null ? `, ${eur(i.price)}` : ""}${i.outOfStockWhenChecked ? `  (was out of stock ${i.outOfStockWhenChecked})` : ""}`);
+    console.log(`    ${i.url}\n    key: ${i.key}`);
   }
-  if (done.length) console.log(`\n## Already ticked on the page (${done.length})\n` + done.map((i) => `- ${i.name}`).join("\n"));
+  if (done.length) {
+    console.log(`\n## Already settled in this push (${done.length})`);
+    for (const i of done) console.log(`- ${i.name}: ${i.report.status}${i.report.qty != null ? " ×" + i.report.qty : ""}`);
+  }
 }

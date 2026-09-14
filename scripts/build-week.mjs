@@ -7,8 +7,8 @@
  *     -> artifact/week.html
  *
  * The page is data-driven so next week is a new plan file and a rebuild,
- * republished to the URL in data/artifact-url.txt. Never a fresh publish, or
- * the bookmark on her phone stops pointing at the current week.
+ * published by /courses as a fresh page for that week and recorded in
+ * data/artifacts.json.
  *
  * data/ lives in this repo rather than a private one, so everything it reads is
  * public. Nothing secret may be added to it.
@@ -62,7 +62,8 @@ catch { /* not built yet; the checklist falls back to searching by name */ }
 const pricebook = {};
 for (const p of history.products) {
   if (p.nameTruncated || p.lastPrice == null) continue;   // a cut-off name is not searchable
-  pricebook[p.name] = { unit: p.unit, price: p.lastPrice, source: "receipt" };
+  // The pack travels too: when Méré's pack differs, the page converts the count.
+  pricebook[p.name] = { unit: p.unit, price: p.lastPrice, source: "receipt", pack: p.packaging };
 }
 // A receipt always wins: it is what she was actually charged.
 for (const p of seenInApp.products ?? []) {
@@ -234,13 +235,21 @@ const config = {
 const template = readFileSync(TEMPLATE, "utf8");
 if (!template.includes("/*__DATA__*/")) die("template.html has lost its /*__DATA__*/ placeholder.");
 
+// Each week is published as its own page, so the title carries the week or the
+// gallery fills with identical names.
+const latestPlan = plans[plans.length - 1];
+const weekDate = new Date(latestPlan.weekOf + "T12:00:00Z")
+  .toLocaleDateString("en-GB", { day: "numeric", month: "long", timeZone: "UTC" });
+const titled = template.replace(/<title>[^<]*<\/title>/, `<title>Méré Basket, ${weekDate}</title>`);
+if (titled === template) die("template.html has lost its <title>.");
+
 const payload = {
   recipes, plans, pricebook, staples, config, onHand, equivalents: equivalents.groups ?? [],
   catalogue: catalogue.products ?? {}, site: catalogue.site ?? "https://www.intermarche.com",
 };
 // </script> inside the JSON would close the script tag early.
 const json = JSON.stringify(payload).replace(/<\//g, "<\\/");
-writeFileSync(OUT, template.replace("/*__DATA__*/ null", json));
+writeFileSync(OUT, titled.replace("/*__DATA__*/ null", json));
 
 const latest = plans[plans.length - 1];
 const dinners = Object.values(recipes).filter((r) => r.slot === "dinner").length;

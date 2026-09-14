@@ -96,16 +96,17 @@ The handoff is the plan itself. Answer on the couch Sunday morning, run the bask
 - [x] Recurring Sunday reminder
 ### 5. The app
 
-`artifact/template.html` plus `scripts/build-week.mjs` turn the plan data into a published page — three tabs: the week, a growing recipe library, and the shopping list. The week sorts by day, by prep time or by cuisine, and filters by ingredient or by how long I've got.
+`artifact/template.html` plus `scripts/build-week.mjs` turn the plan data into a published page, and **the basket is the page**. It opens on the shopping list at Méré's own product names, packs and current prices, with a count to add for each line and the total against my ceiling. Anything Méré sells differently or no longer sells waits under "Decide first" until I pick — I can't approve until every line says exactly what to buy. Once approved, "Push to Intermarché" hands the list to Claude on my PC, which fills my Drive basket and reports back on the page line by line, ending with the site's own total. Week, Recipes and the Cook quiz sit behind it.
 
-It is generated, not hand-written, so next Sunday is a new plan file and `npm run build:week`. The URL never changes because the build republishes to the one recorded in `data/artifact-url.txt` — publishing without it would create a second artifact and orphan the bookmark.
+It is generated, not hand-written, and **every `/courses` run publishes a fresh page with its own link** for that week, recorded in `data/artifacts.json`. Favourites carry over from one week's page to the next.
 
 It is also a two-person app. Any meal can be swapped — either for another dish from the library, or for something new invented on the spot — and the picks live in a shared database, so my partner and I see the same week on our own phones. The shopping list is derived from whatever is currently picked, so the total follows every swap. A dish eaten out of an earlier batch is marked as leftovers and buys nothing, which is the only reason the numbers come out right: counting the Sunday curry three times bought six tins of coconut milk for one pot.
 
 The library is 32 dishes now, roughly half Asian and half European. Ready-made things like the gyoza are still on the menu but marked as assemblies — a note about the packet, and a real recipe only for the part that is actually cooked.
 
 - [x] Méré catalogue — all 153 products the app can buy matched to their product pages, 14 September 2026
-- [ ] Browser automation step — adding, changing and removing tested on a product page; not yet run against a whole approved list
+- [x] Push from the page — approve, press Push, `/courses push` fills the basket and writes progress back
+- [ ] First real push of a whole approved list — adding, changing and removing tested on a product page so far
 - [ ] The budget question — a 7-dinner, 5-lunch week with a pantry restock prices out around 139 €, comfortably over the normal 100 € ceiling. First real run will settle whether the ceiling moves or the lunches go back to being leftovers.
 - [ ] Pantry state — knowing the 20-egg pack from last week is half gone
 
@@ -115,7 +116,7 @@ The library is 32 dishes now, roughly half Asian and half European. Ready-made t
 npm run parse            # invoices -> purchase history
 npm run build:week       # plans + recipes + catalogue -> artifact/week.html
 npm run catalogue:queue  # what still needs looking up on the site
-npm run drive:list -- <weeks doc>.json  # the approved list, ready for the basket step
+npm run drive:list -- <push doc>.json  # a push request from the page, as a work list
 ```
 
 No dependencies — the parser uses only the Node standard library, so there is nothing to `npm install`. Node 18 or newer.
