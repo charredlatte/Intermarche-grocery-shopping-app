@@ -1905,14 +1905,13 @@ async function persistFavs() {
 
 function toggleFav(slug) {
   if (favs.has(slug)) favs.delete(slug); else favs.add(slug);
-  renderAll();
   persistFavs();
+  try { renderAll(); } catch (e) { setSync("off", "Saved, but the page would not redraw — " + (e && e.message ? e.message : "error")); }
 }
 
 function setPick(mealId, slug) {
   picks[mealId] = slug;
-  renderAll();
-  persist();
+  commit();
 }
 
 /* ---------- the same sheet, for products rather than dishes ----------
@@ -2027,15 +2026,21 @@ function openAddItem() {
 }
 
 /* ---------- the ingredient controls ---------- */
-function commitShop() {
+// Every change she makes goes through here: save first, then draw. Drawing is
+// allowed to fail — losing what she just did is not. Swaps used to draw first
+// and save after, so a thrown render silently threw the swap away with it,
+// while the kitchen edits next to them survived.
+function commit() {
   lastEdit = Date.now();
   unsaved = true;
-  // The save goes first. Drawing the list is allowed to fail; losing what she
-  // just decided is not, and a thrown render used to take the save down with it.
   persist();
   try { renderAll(); }
-  catch (e) { setSync("off", "Saved, but the list would not redraw — " + (e && e.message ? e.message : "error")); throw e; }
+  catch (e) {
+    setSync("off", "Saved, but the list would not redraw — " + (e && e.message ? e.message : "error"));
+    throw e;
+  }
 }
+const commitShop = commit;
 
 /* "I have it" means all of it — enough that nothing needs buying. Pressed again
    from the kitchen list it means the opposite: none of it. */
@@ -2129,9 +2134,9 @@ async function requestPush() {
     store: CONF.store || "", lines: approved.lines.map((l, i) => ({ ...l, n: i + 1 })),
   };
   push = doc;
-  renderAll();
   try { await pushRef.set(doc); }
-  catch (e) { pushError = (e && e.code) || "not saved"; push = null; renderAll(); }
+  catch (e) { pushError = (e && e.code) || "not saved"; push = null; }
+  try { renderAll(); } catch (e) { setSync("off", "Pushed, but the page would not redraw — " + (e && e.message ? e.message : "error")); }
 }
 
 async function cancelPush() {
@@ -2613,9 +2618,9 @@ $("#shuffle").addEventListener("click", () => {
     picks[m.id] = slug;
     used.add(slug);
   }
-  renderAll(); persist();
+  commit();
 });
-$("#resetweek").addEventListener("click", () => { picks = { ...baseline }; renderAll(); persist(); });
+$("#resetweek").addEventListener("click", () => { picks = { ...baseline }; commit(); });
 
 document.addEventListener("click", (e) => {
   // ---- the quiz ----
