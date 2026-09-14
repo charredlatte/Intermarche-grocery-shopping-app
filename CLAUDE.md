@@ -194,8 +194,9 @@ parser. The filename supplies the year — the email body never states it.
 
 - **Claude never completes a purchase.** Fill the basket, then stop. No slot
   booking, no payment. The confirmation is hers.
-- **Every line item traces back** to a dish in the plan or to the standing
-  staples list. No surprise additions.
+- **Every line item traces back** to a dish in the plan, to the standing
+  staples list, or to her "Meal Planning" list in Google Keep, which the push
+  adds on her say-so (2026-09-15). No surprise additions.
 - **No chilli, ever.** IBS — this is a health constraint, not a taste preference.
   Check the finished list before showing it.
 - **If a product is unavailable at basket time, stop and ask.** Adapting a recipe
