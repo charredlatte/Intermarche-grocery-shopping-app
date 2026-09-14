@@ -145,7 +145,7 @@ stocked. Ask for a screenshot when a guessed product matters to a dish.
 npm run parse            # data/invoices/*.txt -> data/purchase-history.json
 npm run build:week       # recipes + plans + catalogue -> artifact/week.html
 npm run catalogue:queue  # products with no catalogue entry, or one older than 28 days
-npm run drive:list -- <push doc>.json  # a push request from the page, as a work list
+npm run drive:list -- <push doc>.json [<progress dir>] [--batch <tabId>]  # work list, or ready-made browser batches that run scripts/drive-helper.js
 ```
 
 **A fresh page every week.** Each `/courses` run publishes the built page as a

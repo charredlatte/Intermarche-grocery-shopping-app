@@ -24,7 +24,14 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const args = process.argv.slice(2);
-const [file, progressDir] = args.filter((a) => !a.startsWith("--"));
+const batchAt = args.indexOf("--batch");
+const tabId = batchAt >= 0 ? Number(args[batchAt + 1]) : null;
+const sizeArg = args.find((a) => a.startsWith("--size="));
+const [file, progressDir] = args.filter((a, i) => !a.startsWith("--") && !(batchAt >= 0 && i === batchAt + 1));
+if (batchAt >= 0 && !Number.isFinite(tabId)) {
+  console.error("drive-list: --batch needs the Chrome tab id, e.g. --batch 2126834440");
+  process.exit(1);
+}
 if (!file) {
   console.error("drive-list: pass the saved push/<weekOf> document, and optionally the saved progress folder");
   process.exit(1);
@@ -74,7 +81,27 @@ const idFor = (n) => `${run}-${String(n).padStart(3, "0")}`;
 const collection = `push/${doc.weekOf}/progress`;
 const eur = (n) => (n ?? 0).toFixed(2).replace(".", ",") + " €";
 
-if (args.includes("--json")) {
+if (batchAt >= 0) {
+  // Ready-made browser_batch actions: open the product page, then run the
+  // in-page helper on it. A few products per batch keeps the pace human and
+  // lets progress be reported between batches.
+  const size = sizeArg ? Math.max(1, Number(sizeArg.split("=")[1])) : 5;
+  // The file's header comment is for people; each call carries only the function.
+  const source = readFileSync(join(ROOT, "scripts", "drive-helper.js"), "utf8");
+  const helper = source.slice(source.indexOf("async function driveProduct"));
+  const call = (i) => `await (${helper})(${JSON.stringify({ url: i.url, expect: i.expect, add: i.add })})`;
+  const batches = [];
+  for (let k = 0; k < ready.length; k += size) {
+    // The pause matters: opening product pages back to back got one redirected
+    // to a search page instead (2026-09-14).
+    batches.push(ready.slice(k, k + size).flatMap((i) => [
+      { name: "navigate", input: { tabId, url: i.url } },
+      { name: "javascript_tool", input: { tabId, action: "javascript_exec", text: call(i) } },
+      { name: "computer", input: { tabId, action: "wait", duration: 2 } },
+    ]));
+  }
+  console.log(JSON.stringify({ run, collection, nextSeq: seq, keys: ready.map((i) => [i.key, i.add]), lookup: lookup.map((i) => i.key), batches }, null, 2));
+} else if (args.includes("--json")) {
   console.log(JSON.stringify({ weekOf: doc.weekOf, run, status, collection, nextId: idFor(seq), nextSeq: seq,
     estimate: doc.estimate, ready, lookup, done }, null, 2));
 } else {

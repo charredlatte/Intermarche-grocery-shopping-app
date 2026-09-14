@@ -117,7 +117,7 @@ The library is 32 dishes now, roughly half Asian and half European. Ready-made t
 npm run parse            # invoices -> purchase history
 npm run build:week       # plans + recipes + catalogue -> artifact/week.html
 npm run catalogue:queue  # what still needs looking up on the site
-npm run drive:list -- <push doc>.json  # a push request from the page, as a work list
+npm run drive:list -- <push doc>.json [<progress dir>] [--batch <tabId>]  # work list, or ready-made browser batches that run scripts/drive-helper.js
 ```
 
 No dependencies — the parser uses only the Node standard library, so there is nothing to `npm install`. Node 18 or newer.

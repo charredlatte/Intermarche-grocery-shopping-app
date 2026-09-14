@@ -198,15 +198,32 @@ The page folds the reports for the current run over the request, latest last.
 3. Confirm the store in the site header is **Méré**, and note what the basket
    already holds (count and total, top right) — if it isn't empty, say so; a
    push sets counts, it does not clear anything.
-4. For each ready line, open its URL and check the product block — the `h1`
-   holds brand and title, the line beneath it the pack — against `expect`. If
-   the page says "Indisponible" or has no add button, **stop and ask**: report
-   the line `unavailable` and a `waiting` status with a one-line `question` (the
-   page shows it), then ask her in chat. Never substitute. The receipts show one
-   or two items per order go out of stock. Once she answers, report `running`
-   again and carry on. Otherwise work in
-   the block around the `h1` (walk up from it to the first ancestor holding an
-   add button), never a card under "Vous aimerez aussi":
+4. **Fill it with the helper.** `npm run drive:list -- <push doc> <out_dir>
+   --batch <Chrome tabId>` writes ready-made `browser_batch` actions, five
+   products to a batch: open the product page, run `scripts/drive-helper.js` on
+   it, pause. The helper checks the page against `expect`, sets the count with
+   the product's own visible controls, proves each click moved the count, and
+   returns one of:
+   - `added` / `already` — report the line as that.
+   - `unavailable` — **stop and ask**: report the line `unavailable` and a
+     `waiting` status with a one-line `question` (the page shows it), then ask
+     her in chat. Never substitute. The receipts show one or two items per order
+     go out of stock. Once she answers, report `running` again and carry on.
+   - `mismatch` — the page is not the approved product; report it, never add it.
+   - `not-found` — the product page did not open. Opening pages back to back
+     once landed on a search page instead; wait a few seconds and run that one
+     product again before reporting it.
+   - `stuck` — a click moved nothing twice. Do that product by hand, below.
+
+   Tested 2026-09-14 on the live site: added sugar ×2 from zero, found the
+   basmati already at 1, refused a wrong pack without clicking, reported the
+   out-of-stock mince, and removed the sugar again (`add: 0`).
+
+   **By hand** — only for a `stuck` product, or if the helper itself breaks.
+   Check the product block — the `h1` holds brand and title (the title is loose
+   text beside a brand `span`), the line beneath it the pack — against `expect`,
+   and work in the block around the `h1` (walk up from it to the first ancestor
+   holding an add button), never a card under "Vous aimerez aussi":
    - A product not yet in the basket shows **"Ajouter au panier"**. The page
      carries a second, hidden copy of that button, and a `find` ref can land on
      it — the click then does nothing, silently. Click the copy that has a
@@ -215,21 +232,19 @@ The page folds the reports for the current run over the request, latest last.
      "Exemplaires dans le panier", and + (`aria-label` "Ajouter un exemplaire du
      produit au panier"). Press + until the count reads `add`. A count already
      showing means it was in the basket before: set it to `add`, don't add on top.
-   - **Re-read the count and the header after every click** — "N produits dans
-     le panier" and the total should move by exactly the product's price. A
-     click that changes neither did not happen: re-read the stepper's position
-     and click again. The first + straight after "Ajouter au panier" is the one
-     that gets lost — the stepper is still settling. − at 1 removes the product
-     outright, with no confirmation.
-
-   Tested on 2026-09-14 with the Daddy sugar: added, raised to 2, lowered, and
-   removed again, the header following each step.
-5. **Report as you go**: a batch of line reports every five or so products, so
-   the page moves while she watches.
+   - **Re-read the product's count after every click.** A click that doesn't
+     move it did not happen: re-read the stepper's position and click again. The
+     first + straight after "Ajouter au panier" is the one that gets lost — the
+     stepper is still settling. − at 1 removes the product outright, with no
+     confirmation. The header's basket count and total lag a beat behind, so
+     don't treat them as proof.
+5. **Report after each batch**: one `write_db` batch with a line report per
+   product the helper settled, so the page moves while she watches.
 6. **Lines under "Look up and ask"** have no listing: search the term, show her
    what Méré lists, and add only what she picks.
-7. **Reconcile**: open `https://www.intermarche.com/commandes/panier` and read
-   the line count and "Total à payer". Report `done` with `siteCount` and
+7. **Reconcile**: open `https://www.intermarche.com/commandes/panier`, wait
+   until its product list has rendered (it can come up blank for several
+   seconds), and read the article count and "Total à payer". Report `done` with `siteCount` and
    `siteTotal`. Never press "Vider le panier" or "Choisir mon créneau" there.
 8. Report in chat what went in, what didn't, and the site total against the
    `estimate`. If she had "Option de remplacement de produits" on (it is on by
