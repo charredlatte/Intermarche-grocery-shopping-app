@@ -105,7 +105,7 @@ It is also a two-person app. Any meal can be swapped — either for another dish
 The library is 32 dishes now, roughly half Asian and half European. Ready-made things like the gyoza are still on the menu but marked as assemblies — a note about the packet, and a real recipe only for the part that is actually cooked.
 
 - [x] Méré catalogue — all 153 products the app can buy matched to their product pages, 14 September 2026
-- [ ] Browser automation step — adding to the basket tested on one product; not yet run against a whole approved list
+- [ ] Browser automation step — adding, changing and removing tested on a product page; not yet run against a whole approved list
 - [ ] The budget question — a 7-dinner, 5-lunch week with a pantry restock prices out around 139 €, comfortably over the normal 100 € ceiling. First real run will settle whether the ceiling moves or the lunches go back to being leftovers.
 - [ ] Pantry state — knowing the 20-egg pack from last week is half gone
 

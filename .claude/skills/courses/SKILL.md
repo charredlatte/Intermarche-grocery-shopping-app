@@ -167,10 +167,24 @@ add (weighed goods already turned into pieces or trays) and its catalogue link.
    holds brand and title, the line beneath it the pack — against `expect`. If
    the page says "Indisponible" or has no add button, **stop and ask**; the
    receipts show one or two items per order go out of stock, and
-   `outOfStockWhenChecked` is only a hint. Otherwise use the add control in the
-   same block as the `h1`, never one under "Vous aimerez aussi", and press +
-   until "Exemplaires dans le panier" reads `add`. A count already showing means
-   it was in the basket before: set it to `add`, don't add on top.
+   `outOfStockWhenChecked` is only a hint. Otherwise work in the block around
+   the `h1` (walk up from it to the first ancestor holding an add button), never
+   a card under "Vous aimerez aussi":
+   - A product not yet in the basket shows **"Ajouter au panier"**. The page
+     carries a second, hidden copy of that button, and a `find` ref can land on
+     it — the click then does nothing, silently. Click the copy that has a
+     non-zero bounding box.
+   - Once added it becomes a stepper: an unlabelled −, the count above
+     "Exemplaires dans le panier", and + (`aria-label` "Ajouter un exemplaire du
+     produit au panier"). Press + until the count reads `add`. A count already
+     showing means it was in the basket before: set it to `add`, don't add on top.
+   - **Re-read the count and the header after every click** — "N produits dans
+     le panier" and the total should move by exactly the product's price. A
+     click that changes neither did not happen. − at 1 removes the product
+     outright, with no confirmation.
+
+   Tested on 2026-09-14 with the Daddy sugar: added, raised to 2, lowered, and
+   removed again, the header following each step.
 5. When done, tick what went in on her page in one write: `write_db`,
    `db_op: update`, `weeks/<weekOf>`, `data: { inBasket: { ...existing, <key>: true } }`
    — read `inBasket` first, because `update` replaces the whole map.
