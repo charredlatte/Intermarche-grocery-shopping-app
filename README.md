@@ -106,7 +106,8 @@ The library is 32 dishes now, roughly half Asian and half European. Ready-made t
 
 - [x] Méré catalogue — all 153 products the app can buy matched to their product pages, 14 September 2026
 - [x] Push from the page — approve, press Push, `/courses push` fills the basket and writes progress back
-- [ ] First real push of a whole approved list — adding, changing and removing tested on a product page so far
+- [x] Push tested end to end on 2026-09-14 with a two-line test page: request, basket filled in Chrome, progress on the page, site total matched the estimate to the cent
+- [ ] First push of a whole approved week
 - [ ] The budget question — a 7-dinner, 5-lunch week with a pantry restock prices out around 139 €, comfortably over the normal 100 € ceiling. First real run will settle whether the ceiling moves or the lunches go back to being leftovers.
 - [ ] Pantry state — knowing the 20-egg pack from last week is half gone
 

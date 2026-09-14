@@ -188,7 +188,8 @@ The page folds the reports for the current run over the request, latest last.
 
 1. **Find the request.** `data/artifacts.json` maps each week to its page URL.
    Read `push/<weekOf>` (`read_db`, `db_op: get`, `collection: push`,
-   `doc_id: <weekOf>`, `out_dir` in the scratchpad) and list
+   `doc_id: <weekOf>`, `out_dir` in the scratchpad — spelled in full, as
+   `C:\Users\<name>\…`; the short `UTILIS~1` form is refused) and list
    `push/<weekOf>/progress` into the same `out_dir`. The request must say
    `status: "requested"` — if it says `cancelled`, stop and tell her. Then
    `npm run drive:list -- <push doc file> <out_dir>`; it drops lines already
@@ -216,7 +217,9 @@ The page folds the reports for the current run over the request, latest last.
      showing means it was in the basket before: set it to `add`, don't add on top.
    - **Re-read the count and the header after every click** — "N produits dans
      le panier" and the total should move by exactly the product's price. A
-     click that changes neither did not happen. − at 1 removes the product
+     click that changes neither did not happen: re-read the stepper's position
+     and click again. The first + straight after "Ajouter au panier" is the one
+     that gets lost — the stepper is still settling. − at 1 removes the product
      outright, with no confirmation.
 
    Tested on 2026-09-14 with the Daddy sugar: added, raised to 2, lowered, and
