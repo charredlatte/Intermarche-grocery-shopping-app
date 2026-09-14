@@ -1380,12 +1380,6 @@
         }
       ]
     },
-    "Manchego": {
-      "status": "missing",
-      "search": "manchego",
-      "checked": "2026-09-14",
-      "note": "Méré lists no manchego — the search returns nothing."
-    },
     "Menguy's Cacahuètes grillées et salées": {
       "status": "check",
       "search": "cacahuètes grillées",

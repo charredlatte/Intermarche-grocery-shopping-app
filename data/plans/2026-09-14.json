@@ -8,7 +8,7 @@
     "Eleven of the fourteen dishes have never been served — the Italian, Spanish, air-fryer and muffin-tin recipes added on 6 September had all sat unused. Nothing from last week repeats. Hob, air fryer, oven and muffin tin each get a night.",
     "If the Drive slot slips to Tuesday, shift everything a day — but move the gyoza forward, not back: the Ginza trays are fresh and no longer keep the way the delisted frozen pack did.",
     "The recipes add up to eleven baguettes. Order three packs of Chabrior demi-baguettes précuites instead and bake them as you go — same equivalence group, and they don't go stale by Wednesday.",
-    "195,54 € once the kitchen list comes off — 45 € over the ceiling, and Charlotte has kept the two coffees and the olive oil on the order deliberately (asked 2026-09-14), which is 42 € of it. The cuts left are the second bag of litter and the gambas night; she decides, nothing is struck for her."
+    "The two coffees and the olive oil stay on the order by her decision (2026-09-14), which is 42 € of it. She cut the gambas night and the second bag of litter the same day: the gambas became pisto, whose parmesan is already bought for the carbonara, and the litter is one bag this week only — the standing order in preferences.json is still a pair, because that is what the receipts show."
   ],
   "meals": [
     { "id": "monday-breakfast", "day": "monday", "slot": "breakfast", "recipe": "sandwich-matin" },
@@ -32,7 +32,7 @@
     { "id": "friday-dinner", "day": "friday", "slot": "dinner", "recipe": "yakisoba-dinde" },
 
     { "id": "saturday-breakfast", "day": "saturday", "slot": "breakfast", "recipe": "sandwich-matin" },
-    { "id": "saturday-dinner", "day": "saturday", "slot": "dinner", "recipe": "gambas-ail-persil", "note": "The treat night, and the one to cut if the basket needs to come down: pisto with manchego keeps the Spanish night for about 4 €." },
+    { "id": "saturday-dinner", "day": "saturday", "slot": "dinner", "recipe": "pisto-manchego", "note": "Was the gambas treat night; Charlotte cut it on 2026-09-14 to bring the basket down. Keeps the Spanish night and the batch cook serves four, so there is a bowl spare." },
 
     { "id": "sunday-breakfast", "day": "sunday", "slot": "breakfast", "recipe": "pain-perdu", "note": "What the week's last baguette is for. Almond milk, no cow's milk in it." },
     { "id": "sunday-dinner", "day": "sunday", "slot": "dinner", "recipe": "poulet-tomates-olives-four", "note": "The batch cook. Serves four, so Monday's lunch next week is already done." }

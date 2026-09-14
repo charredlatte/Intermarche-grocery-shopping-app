@@ -4225,7 +4225,7 @@
     ]
   },
   "pisto-manchego": {
-    "title": "Pisto with manchego and a fried egg",
+    "title": "Pisto with a fried egg and shaved parmesan",
     "cuisine": "spanish",
     "slot": "dinner",
     "kind": "recipe",
@@ -4238,7 +4238,7 @@
       "vegetarian",
       "uses eggs"
     ],
-    "short": "Spain's ratatouille — courgette, aubergine, peppers and tomato cooked right down, with a fried egg broken over it.",
+    "short": "Spain’s ratatouille — courgette, aubergine, peppers and tomato cooked right down, with a fried egg broken over it. It should be manchego on top; Méré does not sell any, so it is the parmesan already on the order, shaved the same way.",
     "ingredients": [
       {
         "item": "courgettes",
@@ -4321,15 +4321,13 @@
         }
       },
       {
-        "item": "manchego",
-        "qty": "100 g, shaved",
-        "product": "Manchego",
-        "guess": true,
+        "item": "parmesan",
+        "qty": "60 g, shaved",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Parmigiano Reggiano AOP",
         "buy": {
           "amount": 1,
-          "mode": "sum",
-          "section": "Best guesses",
-          "price": 4.5
+          "mode": "once",
+          "section": "Bread and cheese"
         }
       },
       {
@@ -4350,7 +4348,7 @@
       "Courgette and garlic, 5 minutes, then the tomatoes.",
       "Now leave it alone on a low heat for 15 minutes, stirring rarely, until it is jammy and the oil separates out at the edges. That separation is how you know it is done; before that it is just hot vegetables.",
       "Fry the eggs hard in olive oil so the whites go lacy and crisp at the edges.",
-      "Pisto into bowls, egg on top, manchego shaved over, baguette to mop."
+      "Pisto into bowls, egg on top, parmesan shaved over, baguette to mop."
     ],
     "equipment": [
       "hob"
