@@ -2,6 +2,7 @@
   "curry-coco-poulet": {
     "title": "Coconut chicken curry",
     "cuisine": "thai",
+    "protein": "chicken",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 15,
@@ -146,6 +147,7 @@
   "boeuf-poivrons": {
     "title": "Beef and green pepper stir-fry",
     "cuisine": "chinese",
+    "protein": "beef",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 8,
@@ -256,6 +258,7 @@
   "yakisoba-dinde": {
     "title": "Turkey yakisoba",
     "cuisine": "japanese",
+    "protein": "turkey",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 10,
@@ -364,6 +367,7 @@
   "donburi-teriyaki": {
     "title": "Chicken teriyaki donburi",
     "cuisine": "japanese",
+    "protein": "chicken",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 10,
@@ -448,6 +452,7 @@
   "gyoza-brocoli": {
     "title": "Gyoza with garlic-ginger broccoli",
     "cuisine": "japanese",
+    "protein": "chicken",
     "slot": "dinner",
     "kind": "assembly",
     "prepMinutes": 5,
@@ -455,10 +460,8 @@
     "serves": 2,
     "tags": [
       "fast",
-      "no chilli",
-      "no cook"
+      "no chilli"
     ],
-    "packNote": "The gyoza are shop-bought and fresh rather than frozen, so they want eating within a couple of days and they cook a shade quicker — follow the tray, roughly 2 minutes in oil, 4 under a lid with a splash of water, 2 more with the lid off. There is no recipe to give you for that. Two trays of seven between the two of you.",
     "short": "A no-cooking night. The gyoza come from a packet; the only real cooking is the broccoli beside them.",
     "ingredients": [
       {
@@ -545,11 +548,13 @@
     ],
     "equipment": [
       "hob"
-    ]
+    ],
+    "packNote": "The gyoza are shop-bought and fresh rather than frozen, so they want eating within a couple of days and they cook a shade quicker — follow the tray, roughly 2 minutes in oil, 4 under a lid with a splash of water, 2 more with the lid off. There is no recipe to give you for that. Two trays of seven between the two of you."
   },
   "porc-soja-gingembre": {
     "title": "Sweet soy and ginger pork chops",
     "cuisine": "chinese",
+    "protein": "pork",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 10,
@@ -660,6 +665,7 @@
   "riz-saute-lardons": {
     "title": "Egg fried rice with lardons",
     "cuisine": "chinese",
+    "protein": "charcuterie",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 8,
@@ -754,6 +760,7 @@
   "poulet-citron-gingembre": {
     "title": "Lemon and ginger chicken",
     "cuisine": "chinese",
+    "protein": "chicken",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 10,
@@ -854,6 +861,7 @@
   "dahl-lentilles-coco": {
     "title": "Coconut lentil dahl",
     "cuisine": "indian",
+    "protein": "vegetarian",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 10,
@@ -973,6 +981,7 @@
   "pho-express-boeuf": {
     "title": "Quick beef noodle soup",
     "cuisine": "vietnamese",
+    "protein": "beef",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 10,
@@ -1082,6 +1091,7 @@
   "aubergines-miso-soja": {
     "title": "Sticky glazed aubergine",
     "cuisine": "japanese",
+    "protein": "vegetarian",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 8,
@@ -1178,6 +1188,7 @@
   "gratin-courgettes": {
     "title": "Courgette and emmental gratin",
     "cuisine": "french",
+    "protein": "vegetarian",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 15,
@@ -1264,6 +1275,7 @@
   "gnocchi-pesto": {
     "title": "Pan-fried gnocchi with pesto rosso",
     "cuisine": "italian",
+    "protein": "vegetarian",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 5,
@@ -1341,6 +1353,7 @@
   "farfalles-pesto-poulet": {
     "title": "Farfalle with pesto and chicken",
     "cuisine": "italian",
+    "protein": "chicken",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 5,
@@ -1418,6 +1431,7 @@
   "pizza-maison": {
     "title": "Tomato and mozzarella pizza",
     "cuisine": "italian",
+    "protein": "vegetarian",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 10,
@@ -1494,6 +1508,7 @@
   "poulet-roti-legumes": {
     "title": "Roast chicken legs with lemon",
     "cuisine": "french",
+    "protein": "chicken",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 10,
@@ -1582,6 +1597,7 @@
   "tortilla-pommes-terre": {
     "title": "Potato tortilla",
     "cuisine": "spanish",
+    "protein": "eggs",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 10,
@@ -1647,6 +1663,7 @@
   "saucisses-lentilles": {
     "title": "Chipolatas with lentils",
     "cuisine": "french",
+    "protein": "pork",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 5,
@@ -1733,6 +1750,7 @@
   "bolognaise-maison": {
     "title": "Slow-ish bolognese",
     "cuisine": "italian",
+    "protein": "beef",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 10,
@@ -1840,6 +1858,7 @@
   "parmigiana-aubergines": {
     "title": "Aubergine parmigiana",
     "cuisine": "italian",
+    "protein": "vegetarian",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 20,
@@ -1930,6 +1949,7 @@
   "tartine-mortadelle": {
     "title": "Grilled mortadella and mozzarella tartine",
     "cuisine": "italian",
+    "protein": "charcuterie",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 5,
@@ -2005,6 +2025,7 @@
   "soupe-legumes": {
     "title": "Winter vegetable soup",
     "cuisine": "french",
+    "protein": "vegetarian",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 15,
@@ -2097,13 +2118,13 @@
       "Bread on the side."
     ],
     "equipment": [
-      "hob",
-      "blender"
+      "hob"
     ]
   },
   "onigiri-oeuf": {
     "title": "Egg and nori onigiri",
     "cuisine": "japanese",
+    "protein": "eggs",
     "slot": "lunch",
     "kind": "recipe",
     "prepMinutes": 15,
@@ -2178,6 +2199,7 @@
   "bun-vermicelles": {
     "title": "Bún noodle salad with peanuts",
     "cuisine": "vietnamese",
+    "protein": "vegetarian",
     "slot": "lunch",
     "kind": "recipe",
     "prepMinutes": 15,
@@ -2275,6 +2297,7 @@
   "salade-mache-oeuf": {
     "title": "Mâche and egg salad, sesame-soy",
     "cuisine": "japanese",
+    "protein": "eggs",
     "slot": "lunch",
     "kind": "recipe",
     "prepMinutes": 10,
@@ -2357,6 +2380,7 @@
   "baguette-boursin": {
     "title": "Baguette, Boursin and cucumber",
     "cuisine": "french",
+    "protein": "vegetarian",
     "slot": "lunch",
     "kind": "recipe",
     "prepMinutes": 5,
@@ -2364,7 +2388,8 @@
     "serves": 1,
     "tags": [
       "no chilli",
-      "make ahead"
+      "make ahead",
+      "no cook"
     ],
     "short": "The one lunch that is not a project. Good bread, garlic cheese, cold cucumber.",
     "ingredients": [
@@ -2415,13 +2440,12 @@
       "Cucumber in overlapping slices, mâche pressed in on top.",
       "Wrap tightly in paper and leave it half an hour if you can — better once the bread has softened against the cheese."
     ],
-    "equipment": [
-      "hob"
-    ]
+    "equipment": []
   },
   "salade-pois-chiches": {
     "title": "Chickpea and brebis salad",
     "cuisine": "greek",
+    "protein": "vegetarian",
     "slot": "lunch",
     "kind": "recipe",
     "prepMinutes": 10,
@@ -2503,13 +2527,12 @@
       "Everything together with the oil from the cheese jar, lemon juice and plenty of pepper.",
       "Cheese cubes folded through last so they keep their shape."
     ],
-    "equipment": [
-      "hob"
-    ]
+    "equipment": []
   },
   "salade-lentilles": {
     "title": "Lentil and cornichon salad",
     "cuisine": "french",
+    "protein": "vegetarian",
     "slot": "lunch",
     "kind": "recipe",
     "prepMinutes": 10,
@@ -2586,13 +2609,12 @@
       "Season generously and leave it 10 minutes — lentils absorb dressing and taste under-seasoned straight away.",
       "Mâche and a halved egg on top at the last moment."
     ],
-    "equipment": [
-      "hob"
-    ]
+    "equipment": []
   },
   "sandwich-mortadelle": {
     "title": "Mortadella and cornichon sandwich",
     "cuisine": "italian",
+    "protein": "charcuterie",
     "slot": "lunch",
     "kind": "recipe",
     "prepMinutes": 5,
@@ -2662,13 +2684,12 @@
       "Cornichons sliced lengthways along the length of the sandwich so every bite gets one.",
       "Lettuce, close it, press it firmly, wrap in paper."
     ],
-    "equipment": [
-      "hob"
-    ]
+    "equipment": []
   },
   "riz-saute-restes": {
     "title": "Leftovers fried rice",
     "cuisine": "chinese",
+    "protein": "eggs",
     "slot": "lunch",
     "kind": "recipe",
     "prepMinutes": 5,
@@ -2741,13 +2762,13 @@
   "salade-avocat-oeuf": {
     "title": "Avocado, egg and mâche",
     "cuisine": "french",
+    "protein": "eggs",
     "slot": "lunch",
     "kind": "recipe",
     "prepMinutes": 8,
     "cookMinutes": 7,
     "serves": 1,
     "tags": [
-      "no cook",
       "no chilli",
       "uses eggs"
     ],
@@ -2824,6 +2845,7 @@
   "salade-tomates-mozzarella": {
     "title": "Tomato and mozzarella",
     "cuisine": "italian",
+    "protein": "vegetarian",
     "slot": "lunch",
     "kind": "recipe",
     "prepMinutes": 8,
@@ -2883,13 +2905,12 @@
       "Olive oil, black pepper. No vinegar; the tomato is acid enough.",
       "Bread to mop the plate."
     ],
-    "equipment": [
-      "hob"
-    ]
+    "equipment": []
   },
   "roules-cannelle": {
     "title": "Cinnamon rolls from pizza dough",
     "cuisine": "american",
+    "protein": "vegetarian",
     "slot": "breakfast",
     "kind": "recipe",
     "prepMinutes": 15,
@@ -2965,6 +2986,7 @@
   "sandwich-matin": {
     "title": "The morning baguette",
     "cuisine": "french",
+    "protein": "charcuterie",
     "slot": "breakfast",
     "kind": "assembly",
     "prepMinutes": 6,
@@ -2975,7 +2997,6 @@
       "no chilli",
       "no cook"
     ],
-    "packNote": "Nothing here is cooked — the baguette, the charcuterie and the Boursin all come as they are. The only real technique is warming the bread and salting the tomatoes.",
     "short": "The sandwich you actually eat every morning: baguette, Boursin, charcuterie, cheese and cherry tomatoes.",
     "ingredients": [
       {
@@ -3043,13 +3064,13 @@
       "Charcuterie in loose folds rather than flat sheets, cheese over, then the tomatoes cut-side down.",
       "Plenty of black pepper, close, press gently, eat."
     ],
-    "equipment": [
-      "oven"
-    ]
+    "equipment": [],
+    "packNote": "Nothing here is cooked — the baguette, the charcuterie and the Boursin all come as they are. The only real technique is warming the bread and salting the tomatoes."
   },
   "truite-amandes-poireaux": {
-    "title": "Trout with almonds and leeks",
+    "title": "Salmon with almonds and leeks",
     "cuisine": "french",
+    "protein": "fish",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 10,
@@ -3059,17 +3080,19 @@
       "fast",
       "no chilli"
     ],
-    "short": "Trout crisped skin-side down, almonds browned in the pan butter. Méré only sells leeks in a jar, already cooked — which for once saves you twelve minutes.",
+    "short": "Salmon fillets in foaming butter with flaked almonds and lemon, the leek whites warmed through beside them. Méré sells no fresh trout fillet, so this is the salmon version — the method is the trout one unchanged.",
     "ingredients": [
       {
-        "item": "trout fillets",
-        "qty": "2",
-        "product": "Notre Sélection Filet de truite",
+        "item": "salmon fillets",
+        "qty": "2 fillets (about 250 g)",
+        "product": "Filet de saumon frais",
         "buy": {
           "amount": 1,
           "mode": "sum",
-          "section": "Proteins"
-        }
+          "section": "Best guesses",
+          "price": 7.5
+        },
+        "guess": true
       },
       {
         "item": "leek whites",
@@ -3124,10 +3147,11 @@
       "Potatoes on to boil first; everything else takes fifteen minutes and will not wait.",
       "Drain the leek whites well and pat them dry, then cut them into 2 cm lengths. They come out of the jar already cooked and quite wet — dry them or they will steam in the pan instead of colouring.",
       "Melt a knob of butter in a wide pan over medium heat and lay the leeks in cut-side down. 4 minutes, undisturbed, until the cut faces catch and go gold. That browning is the only thing you can add to a jarred vegetable, so do not skip it.",
-      "Push them to one side. Pat the trout dry, season, and lay it skin-down in the hot part of the pan. 4 minutes without touching it, until the skin lifts away cleanly by itself.",
+      "Push them to one side. Pat the salmon dry, season, and lay it skin-down in the hot part of the pan. 4 minutes without touching it, until the skin lifts away cleanly by itself.",
       "Turn, 90 seconds, then lift onto the plates.",
       "Almonds into the pan, 1 minute until they smell toasted and go pale gold, then the lemon juice, which will hiss and lift everything off the base.",
-      "Spoon the almonds and pan juices over, leeks and potatoes alongside."
+      "Spoon the almonds and pan juices over, leeks and potatoes alongside.",
+      "Fresh salmon has not been looked up at Méré yet, so it is priced as a guess until the next catalogue check confirms the fillet and its price."
     ],
     "equipment": [
       "hob"
@@ -3136,6 +3160,7 @@
   "poulet-basquaise": {
     "title": "Poulet basquaise",
     "cuisine": "french",
+    "protein": "chicken",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 15,
@@ -3270,6 +3295,7 @@
   "gratin-patates-douces-chevre": {
     "title": "Sweet potato and goat's cheese gratin",
     "cuisine": "french",
+    "protein": "vegetarian",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 15,
@@ -3347,9 +3373,9 @@
         }
       },
       {
-        "item": "rocket",
+        "item": "mâche",
         "qty": "to serve",
-        "product": "Saint Eloi, une marque Intermarché Roquette prête à l'emploi déjà lavée",
+        "product": "Le Choix du Primeur Salade MACHE BIO",
         "buy": {
           "amount": 1,
           "mode": "sum",
@@ -3363,7 +3389,8 @@
       "Layer into a dish: sweet potato, a scatter of onion, torn goat's cheese, seasoning. Repeat, finishing with sweet potato.",
       "Grated cheese over the top, cover with foil, 25 minutes.",
       "Foil off, 10 minutes more, until the top is blistered and the edges have gone dark and sweet. That caramelised rim is the best part of the dish; do not pull it early.",
-      "Stand 10 minutes before cutting, and serve with the rocket dressed in oil and lemon."
+      "Stand 10 minutes before cutting, and serve with the mâche dressed in oil and lemon.",
+      "The handful of leaves alongside is mâche rather than rocket: Méré lists no rocket."
     ],
     "equipment": [
       "oven"
@@ -3372,6 +3399,7 @@
   "omelette-champignons": {
     "title": "Mushroom and emmental omelette",
     "cuisine": "french",
+    "protein": "eggs",
     "slot": "lunch",
     "kind": "recipe",
     "prepMinutes": 5,
@@ -3460,6 +3488,7 @@
   "risotto-safran": {
     "title": "Saffron risotto",
     "cuisine": "italian",
+    "protein": "vegetarian",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 10,
@@ -3564,6 +3593,7 @@
   "carbonara-pancetta": {
     "title": "Carbonara, the Roman way",
     "cuisine": "italian",
+    "protein": "charcuterie",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 5,
@@ -3640,6 +3670,7 @@
   "lasagnes-legumes-ricotta": {
     "title": "Courgette and ricotta lasagne",
     "cuisine": "italian",
+    "protein": "vegetarian",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 20,
@@ -3761,6 +3792,7 @@
   "puttanesca-sans-piment": {
     "title": "Puttanesca, without the heat",
     "cuisine": "italian",
+    "protein": "fish",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 5,
@@ -3853,8 +3885,9 @@
     ]
   },
   "salade-roquette-parmesan-pommes": {
-    "title": "Rocket, parmesan and green apple",
+    "title": "Mâche, parmesan and green apple",
     "cuisine": "italian",
+    "protein": "vegetarian",
     "slot": "lunch",
     "kind": "recipe",
     "prepMinutes": 8,
@@ -3866,12 +3899,12 @@
       "no cook",
       "vegetarian"
     ],
-    "short": "Peppery rocket, sharp apple, salty parmesan shards and toasted pine nuts. Three minutes if the pine nuts are already done.",
+    "short": "Soft mâche, sharp apple, salty parmesan shards and toasted pine nuts. Three minutes if the pine nuts are already done.",
     "ingredients": [
       {
-        "item": "rocket",
+        "item": "mâche",
         "qty": "1 bag",
-        "product": "Saint Eloi, une marque Intermarché Roquette prête à l'emploi déjà lavée",
+        "product": "Le Choix du Primeur Salade MACHE BIO",
         "buy": {
           "amount": 1,
           "mode": "sum",
@@ -3942,17 +3975,17 @@
     "steps": [
       "Toast the pine nuts in a dry pan for 2 minutes, shaking constantly. They go from pale to burnt in about fifteen seconds, so do not walk away.",
       "Cut the apple into matchsticks at the last moment and toss them in a little of the balsamic, which stops them browning.",
-      "Dress the rocket with olive oil first, then a little balsamic, then salt. Oil before acid coats the leaves and stops them collapsing.",
+      "Dress the mâche with olive oil first, then a little balsamic, then salt. Oil before acid coats the leaves and stops them collapsing.",
       "Shave the parmesan over with a peeler — shards, not gratings, so you get a proper salty hit now and then.",
-      "Pine nuts over, black pepper, and the baguette alongside."
+      "Pine nuts over, black pepper, and the baguette alongside.",
+      "Méré stocks no rocket at all — checked 2026-09-14 — so this is the mâche version. Mâche is softer and nuttier than rocket and does not fight the parmesan, so dress it at the last minute and go easy on the balsamic."
     ],
-    "equipment": [
-      "hob"
-    ]
+    "equipment": []
   },
   "pates-saumon-fume-citron": {
     "title": "Smoked salmon and lemon pasta",
     "cuisine": "italian",
+    "protein": "fish",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 5,
@@ -4044,6 +4077,7 @@
   "tortilla-patatas": {
     "title": "Tortilla de patatas",
     "cuisine": "spanish",
+    "protein": "eggs",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 15,
@@ -4120,101 +4154,10 @@
       "hob"
     ]
   },
-  "gambas-ail-persil": {
-    "title": "Gambas al ajillo, no chilli",
-    "cuisine": "spanish",
-    "slot": "dinner",
-    "kind": "recipe",
-    "prepMinutes": 8,
-    "cookMinutes": 8,
-    "serves": 2,
-    "tags": [
-      "fast",
-      "no chilli",
-      "dairy-free"
-    ],
-    "short": "Prawns in garlicky oil, eight minutes start to finish. The Spanish version has a dried guindilla in it; this one has an extra clove of garlic instead.",
-    "ingredients": [
-      {
-        "item": "raw prawns",
-        "qty": "300 g, peeled",
-        "product": "Gambas crues décortiquées",
-        "guess": true,
-        "buy": {
-          "amount": 1,
-          "mode": "sum",
-          "section": "Best guesses",
-          "price": 7.5
-        }
-      },
-      {
-        "item": "garlic",
-        "qty": "6 cloves, sliced thin",
-        "product": "Le Choix du Primeur Ail BLANC",
-        "buy": {
-          "amount": 0.15,
-          "mode": "once",
-          "section": "Vegetables"
-        }
-      },
-      {
-        "item": "olive oil",
-        "qty": "generous",
-        "product": "Bouton d’Or, une marque Intermarché Huile d'olive vierge extra BIO - issue de l'agriculture biologique",
-        "buy": {
-          "amount": 1,
-          "mode": "once",
-          "section": "Store cupboard"
-        }
-      },
-      {
-        "item": "flat-leaf parsley",
-        "qty": "a big handful",
-        "product": "Persil plat",
-        "guess": true,
-        "buy": {
-          "amount": 1,
-          "mode": "once",
-          "section": "Best guesses",
-          "price": 1.1
-        }
-      },
-      {
-        "item": "lemon",
-        "qty": "half",
-        "product": "Le Choix du Primeur Citrons JAUNES",
-        "buy": {
-          "amount": 0.28,
-          "mode": "once",
-          "section": "Vegetables"
-        }
-      },
-      {
-        "item": "baguette",
-        "qty": "1, for the oil",
-        "product": "Cuit sur place Baguette La Généreuse",
-        "buy": {
-          "amount": 1,
-          "mode": "sum",
-          "section": "Bread and cheese"
-        }
-      }
-    ],
-    "steps": [
-      "Pat the prawns very dry and salt them. Wet prawns steam and go rubbery.",
-      "Garlic into cold olive oil in a small pan, then bring it up to a gentle heat over 3 minutes until the slices are pale gold and the oil smells of them. Never let them brown.",
-      "Heat up, prawns in one layer, 90 seconds.",
-      "Turn them, 60 seconds more, and take the pan off as soon as they have just turned opaque. They keep cooking in the hot oil, so pull them early.",
-      "Parsley and a squeeze of lemon in, swirl once.",
-      "Straight to the table in the pan, with the baguette. The oil is the point as much as the prawns."
-    ],
-    "equipment": [
-      "hob"
-    ]
-  },
   "pisto-manchego": {
     "title": "Pisto with a fried egg and shaved parmesan",
     "cuisine": "spanish",
+    "protein": "eggs",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 15,
@@ -4355,15 +4298,12 @@
   "avocado-toast": {
     "title": "Avocado toast, properly seasoned",
     "cuisine": "american",
+    "protein": "eggs",
     "slot": "breakfast",
     "kind": "recipe",
     "prepMinutes": 6,
     "cookMinutes": 6,
     "serves": 2,
-    "equipment": [
-      "air fryer",
-      "hob"
-    ],
     "tags": [
       "fast",
       "no chilli",
@@ -4435,19 +4375,21 @@
       "Halve the avocados and scoop them into a bowl. Mash roughly with a fork — keep some lumps, a smooth purée is baby food.",
       "Now season it much harder than feels right: the lemon juice, a real pinch of salt, plenty of pepper, a slug of olive oil. Taste it. Then add a bit more salt. This is the entire recipe.",
       "Spread thickly on the toast, halved cherry tomatoes over, egg on top, one last grind of pepper."
+    ],
+    "equipment": [
+      "air fryer",
+      "hob"
     ]
   },
   "pilons-airfryer-citron": {
     "title": "Air fryer chicken drumsticks with lemon and thyme",
     "cuisine": "french",
+    "protein": "chicken",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 10,
     "cookMinutes": 25,
     "serves": 2,
-    "equipment": [
-      "air fryer"
-    ],
     "tags": [
       "no chilli",
       "dairy-free"
@@ -4507,9 +4449,9 @@
         }
       },
       {
-        "item": "salad",
+        "item": "mâche",
         "qty": "to serve",
-        "product": "Saint Eloi, une marque Intermarché Mélange de salades mâche et roquette prêt à l'emploi",
+        "product": "Le Choix du Primeur Salade MACHE BIO",
         "buy": {
           "amount": 1,
           "mode": "sum",
@@ -4523,20 +4465,22 @@
       "Air fryer to 200°C. Drumsticks in a single layer, not touching. Stacked, they steam each other and the skin stays flabby.",
       "18 minutes, turning once at 10. Add the potato chunks around them for the last 12, tossed in a little oil.",
       "Check the thickest drumstick at the bone — the juices should run clear with no pink at all.",
-      "Squeeze the lemon over everything the moment it comes out, while it is hot enough to sizzle. Salad alongside."
+      "Squeeze the lemon over everything the moment it comes out, while it is hot enough to sizzle. Salad alongside.",
+      "Plain mâche rather than the bagged mâche-and-rocket mix, which Méré no longer lists."
+    ],
+    "equipment": [
+      "air fryer"
     ]
   },
   "frites-patates-douces-airfryer": {
     "title": "Air fryer sweet potato fries",
     "cuisine": "american",
+    "protein": "vegetarian",
     "slot": "lunch",
     "kind": "recipe",
     "prepMinutes": 10,
     "cookMinutes": 20,
     "serves": 2,
-    "equipment": [
-      "air fryer"
-    ],
     "tags": [
       "fast",
       "no chilli",
@@ -4601,19 +4545,20 @@
       "Air fryer 200°C, single layer, 18–20 minutes, shaking the basket twice. Cook in two batches rather than crowding it.",
       "Salt the moment they come out, not before — salt in the basket draws water and softens them.",
       "Stir the crushed garlic into the mayonnaise for a dip."
+    ],
+    "equipment": [
+      "air fryer"
     ]
   },
   "dinde-panee-airfryer": {
     "title": "Air fryer breaded turkey escalope",
     "cuisine": "italian",
+    "protein": "turkey",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 12,
     "cookMinutes": 14,
     "serves": 2,
-    "equipment": [
-      "air fryer"
-    ],
     "tags": [
       "fast",
       "no chilli"
@@ -4683,9 +4628,9 @@
         }
       },
       {
-        "item": "rocket",
+        "item": "mâche",
         "qty": "to serve",
-        "product": "Saint Eloi, une marque Intermarché Roquette prête à l'emploi déjà lavée",
+        "product": "Le Choix du Primeur Salade MACHE BIO",
         "buy": {
           "amount": 1,
           "mode": "sum",
@@ -4698,20 +4643,22 @@
       "Pat the escalopes dry, then flour, egg, crumb — pressing the crumb on firmly. Shake off the excess flour properly or the coating slides off in sheets.",
       "Spray or brush both sides with oil. An air fryer will not brown a dry crumb; it just goes pale and dusty.",
       "190°C, 7 minutes, flip, 5–7 minutes more until deep gold.",
-      "Lemon squeezed over, rocket alongside dressed in oil and salt."
+      "Lemon squeezed over, mâche alongside dressed in oil and salt.",
+      "Mâche alongside rather than rocket — Méré lists no rocket."
+    ],
+    "equipment": [
+      "air fryer"
     ]
   },
   "legumes-rotis-airfryer": {
     "title": "Air fryer roasted vegetables with brebis",
     "cuisine": "french",
+    "protein": "vegetarian",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 10,
     "cookMinutes": 22,
     "serves": 2,
-    "equipment": [
-      "air fryer"
-    ],
     "tags": [
       "fast",
       "no chilli",
@@ -4798,20 +4745,20 @@
       "20 minutes, shaking hard every 7. You are after blackened edges in places, not an even golden colour; the charred bits are the flavour.",
       "Tip into a warm bowl, splash the balsamic over while it steams, and toss.",
       "Crumble the brebis over so it half melts, and eat with the baguette."
+    ],
+    "equipment": [
+      "air fryer"
     ]
   },
   "muffins-oeufs-legumes": {
     "title": "Egg and vegetable muffins",
     "cuisine": "american",
+    "protein": "eggs",
     "slot": "breakfast",
     "kind": "recipe",
     "prepMinutes": 12,
     "cookMinutes": 20,
     "serves": 4,
-    "equipment": [
-      "muffin tin",
-      "oven"
-    ],
     "tags": [
       "batch cook",
       "no chilli",
@@ -4890,20 +4837,21 @@
       "Beat the eggs with plenty of salt and pepper, stir in the vegetables, cheese and parsley.",
       "Fill each hole about three-quarters. They rise like soufflés and then settle, so leave the room.",
       "20 minutes, until puffed and just set with no wobble at the centre. Cool 5 minutes in the tin before easing them out with a knife."
+    ],
+    "equipment": [
+      "muffin tin",
+      "oven"
     ]
   },
   "muffins-banane-chocolat": {
     "title": "Banana and dark chocolate muffins",
     "cuisine": "american",
+    "protein": "vegetarian",
     "slot": "breakfast",
     "kind": "recipe",
     "prepMinutes": 12,
     "cookMinutes": 22,
     "serves": 4,
-    "equipment": [
-      "muffin tin",
-      "oven"
-    ],
     "tags": [
       "batch cook",
       "no chilli",
@@ -4998,20 +4946,21 @@
       "Fold it about ten times with a spatula and stop while it still looks lumpy and undermixed. Beating a muffin batter smooth develops the gluten and gives you rubber.",
       "Divide between twelve papers, right to the top for a good dome.",
       "22 minutes, until a skewer comes out with a crumb or two but no wet batter. Cool in the tin 5 minutes."
+    ],
+    "equipment": [
+      "muffin tin",
+      "oven"
     ]
   },
   "mini-quiches-muffin": {
     "title": "Mini quiches lorraines",
     "cuisine": "french",
+    "protein": "charcuterie",
     "slot": "lunch",
     "kind": "recipe",
     "prepMinutes": 15,
     "cookMinutes": 25,
     "serves": 4,
-    "equipment": [
-      "muffin tin",
-      "oven"
-    ],
     "tags": [
       "batch cook",
       "no chilli",
@@ -5095,21 +5044,21 @@
       "Lardons, onion and most of the emmental into the cases, then egg poured in to just below the pastry rim. Overfill them and they weld to the tin.",
       "Rest of the cheese on top. 25 minutes, until set and golden.",
       "Cool 5 minutes before lifting out. Good hot, better at room temperature."
+    ],
+    "equipment": [
+      "muffin tin",
+      "oven"
     ]
   },
   "poivrons-farcis-four": {
     "title": "Stuffed peppers baked with rice and beef",
     "cuisine": "spanish",
+    "protein": "beef",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 20,
     "cookMinutes": 45,
     "serves": 4,
-    "equipment": [
-      "oven",
-      "casserole dish",
-      "hob"
-    ],
     "tags": [
       "batch cook",
       "no chilli",
@@ -5207,21 +5156,22 @@
       "Stand the peppers in a casserole dish, fill them about three-quarters, and put their lids back on.",
       "Pour the rest of the sauce and 150 ml water around the base, cover the dish with foil, and bake 35 minutes.",
       "Foil off, 10 minutes more to colour the tops. Test the rice through the side of a pepper with a knife; if it is still firm, another 5 minutes covered."
+    ],
+    "equipment": [
+      "oven",
+      "casserole dish",
+      "hob"
     ]
   },
   "gratin-coquillettes-jambon": {
     "title": "Baked coquillettes with ham",
     "cuisine": "french",
+    "protein": "charcuterie",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 10,
     "cookMinutes": 30,
     "serves": 4,
-    "equipment": [
-      "oven",
-      "casserole dish",
-      "hob"
-    ],
     "tags": [
       "batch cook",
       "no chilli"
@@ -5304,20 +5254,22 @@
       "Rest of the cheese over the top.",
       "30 minutes, until the top is brown and the edges are bubbling. If it looks wet at 25 minutes, give it another five uncovered.",
       "Stand 5 minutes, and eat with a sharp green salad — it needs the contrast."
+    ],
+    "equipment": [
+      "oven",
+      "casserole dish",
+      "hob"
     ]
   },
   "tian-provencal": {
     "title": "Tian provençal",
     "cuisine": "french",
+    "protein": "vegetarian",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 20,
     "cookMinutes": 50,
     "serves": 4,
-    "equipment": [
-      "oven",
-      "casserole dish"
-    ],
     "tags": [
       "batch cook",
       "no chilli",
@@ -5416,20 +5368,21 @@
       "Salt, pepper, the herbs tucked in, and a generous pour of olive oil over the whole surface.",
       "50 minutes. It is done when the tops are browned and the vegetables have sunk to about two-thirds of their original height.",
       "Better warm than hot, and better still the next day. Rice or bread alongside."
+    ],
+    "equipment": [
+      "oven",
+      "casserole dish"
     ]
   },
   "poulet-tomates-olives-four": {
     "title": "Roast chicken thighs with tomatoes and lemon",
     "cuisine": "french",
+    "protein": "chicken",
     "slot": "dinner",
     "kind": "recipe",
     "prepMinutes": 10,
     "cookMinutes": 45,
     "serves": 4,
-    "equipment": [
-      "oven",
-      "casserole dish"
-    ],
     "tags": [
       "batch cook",
       "no chilli",
@@ -5517,19 +5470,21 @@
       "Scatter the cherry tomatoes and lemon wedges around the chicken, and give it 20 minutes more.",
       "The tomatoes should have burst and gone jammy and the skin should be crisp. If the skin is still pale, three minutes under the grill fixes it.",
       "Squeeze the roasted garlic cloves out of their skins and mash them into the pan juices before serving."
+    ],
+    "equipment": [
+      "oven",
+      "casserole dish"
     ]
   },
   "pain-perdu": {
     "title": "Pain perdu",
     "cuisine": "french",
+    "protein": "eggs",
     "slot": "breakfast",
     "kind": "recipe",
     "prepMinutes": 5,
     "cookMinutes": 10,
     "serves": 2,
-    "equipment": [
-      "hob"
-    ],
     "tags": [
       "fast",
       "no chilli",
@@ -5612,21 +5567,20 @@
       "Butter in a pan on medium — not high. Too hot and the outside browns while the custard inside stays raw.",
       "3 minutes a side until deep gold and puffed.",
       "Banana over, the last of the sugar scattered on while hot."
+    ],
+    "equipment": [
+      "hob"
     ]
   },
   "oeufs-tomate-four": {
     "title": "Eggs baked in tomato sauce",
     "cuisine": "italian",
+    "protein": "eggs",
     "slot": "breakfast",
     "kind": "recipe",
     "prepMinutes": 5,
     "cookMinutes": 15,
     "serves": 2,
-    "equipment": [
-      "oven",
-      "casserole dish",
-      "hob"
-    ],
     "tags": [
       "fast",
       "no chilli",
@@ -5705,21 +5659,22 @@
       "Season the eggs, parmesan over the sauce but not the yolks, and into the oven.",
       "8–10 minutes. Pull it when the whites are just set and the yolks still move when you shake the dish; they carry on cooking in the hot sauce.",
       "Basil over, baguette to mop."
+    ],
+    "equipment": [
+      "oven",
+      "casserole dish",
+      "hob"
     ]
   },
   "soupe-oignon-gratinee": {
     "title": "Soupe à l'oignon gratinée",
     "cuisine": "french",
+    "protein": "vegetarian",
     "slot": "lunch",
     "kind": "recipe",
     "prepMinutes": 10,
     "cookMinutes": 50,
     "serves": 4,
-    "equipment": [
-      "hob",
-      "oven",
-      "casserole dish"
-    ],
     "tags": [
       "batch cook",
       "no chilli",
@@ -5806,6 +5761,234 @@
       "Stock in, simmer 15 minutes, season hard.",
       "Toast the baguette slices. Ladle the soup into ovenproof bowls, float the bread, pile the cheese on top.",
       "Under a hot grill or in a 220°C oven until the cheese blisters and runs down the sides, about 5 minutes."
+    ],
+    "equipment": [
+      "hob",
+      "oven",
+      "casserole dish"
+    ]
+  },
+  "choux-bruxelles-airfryer": {
+    "title": "Air fryer sprouts with lardons and lemon",
+    "cuisine": "french",
+    "protein": "charcuterie",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 18,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli"
+    ],
+    "short": "Sprouts halved and charred hard in the air fryer, lardons crisped in with them, lemon and parmesan over the top while it all still steams.",
+    "ingredients": [
+      {
+        "item": "Brussels sprouts",
+        "qty": "500 g",
+        "product": "Choux de Bruxelles",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Best guesses",
+          "price": 3.2
+        }
+      },
+      {
+        "item": "lardons",
+        "qty": "1 pack (200 g)",
+        "product": "Herta Lardons nature",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "2 cloves, sliced",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.05,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "lemon",
+        "qty": "1, zest and juice",
+        "product": "Le Choix du Primeur Citrons JAUNES",
+        "buy": {
+          "amount": 0.1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "parmesan",
+        "qty": "a handful, grated",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Parmigiano Reggiano AOP râpé",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "baguette",
+        "qty": "to serve",
+        "product": "Cuit sur place Baguette La Généreuse",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "olive oil, salt, black pepper",
+        "qty": "to taste",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Trim the sprouts and halve them through the root, so each half holds together and gets one flat face. The flat face is where the browning happens.",
+      "Toss the halves in a little olive oil and salt. Air fryer at 190°C, cut side down, 10 minutes.",
+      "Shake, scatter the lardons and the sliced garlic in among them, and give it 8 minutes more. The lardons render into the sprouts, which is the whole point of cooking them together rather than separately.",
+      "They are ready when the outer leaves are properly black in places. Pale sprouts taste of nothing but sulphur; the charred ones taste sweet.",
+      "Tip into a warm bowl. Lemon zest and juice over while it steams, then the parmesan, then a lot of black pepper. Toss and eat with the baguette.",
+      "No chilli in this: the heat that a recipe like this usually carries comes from the lemon and the pepper instead.",
+      "Brussels sprouts have not been looked up at Méré yet, so they are priced as a guess until the next catalogue check."
+    ],
+    "equipment": [
+      "air fryer"
+    ]
+  },
+  "rouleaux-printemps": {
+    "title": "Fresh spring rolls",
+    "cuisine": "vietnamese",
+    "protein": "chicken",
+    "slot": "lunch",
+    "kind": "recipe",
+    "prepMinutes": 25,
+    "cookMinutes": 8,
+    "serves": 2,
+    "tags": [
+      "no chilli",
+      "make ahead",
+      "dairy-free"
+    ],
+    "short": "Rice paper, poached chicken, vermicelli and a lot of herbs. The rolling is the whole skill and it takes two goes to get right.",
+    "ingredients": [
+      {
+        "item": "rice paper wrappers",
+        "qty": "12 sheets, 22 cm",
+        "product": "Galettes de riz",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Best guesses",
+          "price": 2.5
+        }
+      },
+      {
+        "item": "chicken aiguillettes",
+        "qty": "250 g",
+        "product": "Fermiers de Loué Aiguillettes de poulet jaune",
+        "buy": {
+          "amount": 0.25,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "rice vermicelli",
+        "qty": "100 g",
+        "product": "Suzi Wan Vermicelles de riz",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "cucumber",
+        "qty": "half, in batons",
+        "product": "Le Choix du Primeur Concombre",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "carrot",
+        "qty": "1, shredded",
+        "product": "Le Choix du Primeur Carottes",
+        "buy": {
+          "amount": 0.1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "coriander",
+        "qty": "half a bunch",
+        "product": "Le Choix du Primeur Coriandre",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "mint",
+        "qty": "half a bunch",
+        "product": "Menthe fraîche",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.5
+        }
+      },
+      {
+        "item": "roasted peanuts",
+        "qty": "a handful, crushed",
+        "product": "Menguy's Cacahuètes grillées et salées",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "sweet soy, to dip",
+        "qty": "4 tbsp",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Saveur d'Asie - Sauce soja sucrée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      }
+    ],
+    "steps": [
+      "Poach the aiguillettes in barely-simmering salted water for 8 minutes, then leave them in the water off the heat while you do everything else. They finish cooking as it cools and stay soft; boiled hard, they go stringy.",
+      "Soak the vermicelli in just-boiled water for 3 minutes, drain, and rinse under cold water until it stops clumping.",
+      "Shred the chicken along the grain. Cut the cucumber into batons, shred the carrot, pick the herb leaves off their stalks in whole sprigs rather than chopping them.",
+      "Set everything out in a row before you start rolling, with a wide shallow bowl of warm water at the end of it. Once a wrapper is wet you have about thirty seconds.",
+      "Dip one wrapper in the water for 2 seconds only — it will still feel stiff, and that is right. It keeps softening on the board. A wrapper soaked until it is floppy will tear.",
+      "Lay it down, put herbs first in a line a third of the way up, then vermicelli, carrot, cucumber and chicken on top. Herbs against the wrapper is what makes them show through.",
+      "Fold the bottom edge over the filling, pull it back tight to compact the roll, fold in both sides, then roll up. Tight is the difference between a spring roll and a bundle.",
+      "Crush the peanuts over the dipping soy. No chilli in the dip — the sweet soy and the mint carry it, which is the point of this version.",
+      "They keep a few hours under a damp cloth, not in the fridge uncovered or the wrappers go hard. Rice paper has not been looked up at Méré yet, so it is priced as a guess until the next catalogue check."
+    ],
+    "equipment": [
+      "hob"
     ]
   }
 }

@@ -1,12 +1,12 @@
 {
-  "_comment": "The things receipts can't tell you. Edit this by hand; it is the one file that is not generated. Lives in the private data repo, never in the public one.",
+  "_comment": "The things receipts can't tell you. Edit this by hand; it is the one file that is not generated. It lives in this repo with everything else, and this repo is public — Charlotte's decision on 2026-09-05.",
   "household": {
     "adults": 2,
     "cats": 2,
     "dinnersPerWeek": 7,
     "lunchesPerWeek": 5,
     "lunchStyle": "separate",
-    "notes": "Dinners every night, plus five weekday lunches planned as their own light dishes — not dinner leftovers. Breakfast is the same sandwich almost every morning: baguette, Boursin, charcuterie, a sliced cheese and cherry tomatoes. Plan it every day and put its ingredients on the order — it is the meal they eat most and it was missing entirely until 2026-09-06.",
+    "notes": "Dinners every night, plus five weekday lunches planned as their own light dishes — not dinner leftovers. Breakfast is the same sandwich almost every morning: baguette, Boursin, charcuterie, a sliced cheese and cherry tomatoes. Plan it every day and put its ingredients on the order — it is the meal they eat most and it was missing entirely until 2026-09-06. Charlotte and her partner eat the same thing: one dinner, two portions. Asked and confirmed 2026-09-15 — there is no split to plan around, so nothing here distinguishes between them.",
     "breakfastsPerWeek": 7
   },
   "store": {
@@ -21,7 +21,7 @@
     "ceilingPerOrder": 150,
     "pantryWeekCeiling": 150,
     "currency": "EUR",
-    "note": "Raised from 100 to 150 on 2026-09-04 to cover 7 dinners plus 5 planned lunches. The separate pantry-week allowance is retired — both numbers are 150 now. Observed average across 22 orders was 85,10 €, but those weeks had no planned lunches. Ceiling, not a target."
+    "note": "Raised from 100 to 150 on 2026-09-04 to cover 7 dinners plus 5 planned lunches. The separate pantry-week allowance is retired — both numbers are 150 now. Observed average across 23 orders is 86,03 €, but those weeks had no planned lunches. Ceiling, not a target."
   },
   "dietary": {
     "excluded": [
@@ -39,17 +39,29 @@
     ],
     "limitedReason": "Mildly lactose intolerant. Cheese is fine. Coconut milk is not dairy and is unrestricted.",
     "disliked": [
-      "olives"
+      "olives",
+      "gambas / crevettes"
     ],
-    "dislikedNote": "Olives came out of the puttanesca and the roast chicken on 2026-09-14 because Charlotte does not like them — recorded then in the recipes on her page, and here on 2026-09-15.",
-    "boredOf": [],
+    "dislikedNote": "Olives came out of the puttanesca and the roast chicken on 2026-09-14 because Charlotte does not like them — recorded then in the recipes on her page, and here on 2026-09-15. Prawns went the same day: she said she does not like shrimp much, which retired gambas-ail-persil. Méré sold no raw peeled gambas anyway.",
+    "boredOf": [
+      "chipolatas"
+    ],
     "alwaysWelcome": [
       "choux de Bruxelles",
       "poivrons",
       "rouleaux de printemps",
       "brocolis",
       "aubergines"
-    ]
+    ],
+    "boredOfNote": "Said on 2026-09-15. Chipolatas are in 17 of 23 orders and were carrying a dinner of their own; move them to occasional and let pork chops, lardons and pancetta take the pork side. Asked about the other heavy repeats — the baguette in 18 orders, Barilla pesto rosso in 11, the morning sandwich seven times a week — she said to keep them: the repeats are the point. Don't 'fix' them.",
+    "fish": {
+      "likes": [
+        "saumon frais",
+        "truite fraîche",
+        "saumon fumé"
+      ],
+      "note": "Asked on 2026-09-15 why fish is three purchases in 23 orders. It is price, not taste: the same weight of chicken costs a quarter as much. They do like fresh fish. She asked for the planning rules to be left alone — no fish quota, no cost-per-serving display — so this is here as a fact about them, not a rule. Méré lists no fresh trout fillet (catalogue, 2026-09-14), and fresh salmon has never been looked up; truite-amandes-poireaux is the salmon version now and ships as a guess until it is."
+    }
   },
   "cuisines": {
     "weeklyShare": "half",
@@ -152,7 +164,7 @@
   "ingredients": {
     "_comment": "How adventurous to be with products. Set by Charlotte on 2026-09-06.",
     "useUnboughtProducts": true,
-    "note": "Actively use products she has not bought before — pancetta, saffron, anchovies, capers, pine nuts, gambas, leeks, mushrooms, shallots, arborio rice. These ship as guesses with an estimated price, then get looked up on the site and recorded in data/catalogue.json; once named there, the page lists them under New to you at the real price. Anything already in the receipts should still use its exact name — the key into the pricebook and the catalogue.",
+    "note": "Actively use products she has not bought before — pancetta, saffron, anchovies, capers, pine nuts, mushrooms, shallots, arborio rice. These ship as guesses with an estimated price, then get looked up on the site and recorded in data/catalogue.json; once named there, the page lists them under New to you at the real price. Anything already in the receipts should still use its exact name — the key into the pricebook and the catalogue. Dropped from this list on 2026-09-15: manchego and leeks (Méré stocks neither; the recipes that named them use parmesan and the jarred leek whites) and gambas (she does not like shrimp).",
     "avoidDespiteBeingEuropean": [
       "chorizo",
       "piment d'Espelette",
@@ -166,5 +178,87 @@
   "favourites": {
     "_comment": "Charlotte and her partner star dishes in the page itself, and those live in the shared artifact database under library/favourites — NOT in this repo, and not in the weekly document, so they survive the plan changing. Read them off the page if you need them; nothing here is generated from this file.",
     "askedFor": "2026-09-06, alongside avocado toast"
+  },
+  "flavours": {
+    "_comment": "What carries a dish when heat cannot. All four chosen by Charlotte on 2026-09-15 — she picked every option offered, so the rule is simply: anything but heat.",
+    "wanted": [
+      {
+        "axis": "aromatic",
+        "of": "ail, gingembre, oignon vert, soja, sésame, vinaigre de riz",
+        "note": "Already the Asian backbone and already in dietary.excludedReason."
+      },
+      {
+        "axis": "sharp",
+        "of": "citron, vinaigre, cornichons, câpres",
+        "note": "Possibly the real house flavour: Maille cornichons repeat through the receipts, alongside mustard-honey and balsamic vinaigrettes."
+      },
+      {
+        "axis": "rich",
+        "of": "parmesan, emmental, mozzarella, brebis, Boursin, beurre",
+        "note": "Rich without the cream she reacts to. They buy a lot of cheese and no cream — see dietary.limited."
+      },
+      {
+        "axis": "warm spice",
+        "of": "paprika doux, cumin, curry doux, ras el hanout",
+        "note": "The gap. Bought exactly once each — paprika doux, ras el hanout, curry tandoori — and never again, so the library never used them. Actively use them now. Warm and aromatic, never hot: the IBS rule is untouched."
+      }
+    ]
+  },
+  "proteins": {
+    "_comment": "Added 2026-09-15. Every recipe carries exactly one `protein` from this list — the one the dish is built around — and the Recipes tab groups on it. build-week.mjs validates the value and ships the order to the page as config.proteins. The same eight values tag the groups in equivalents.json, which is how parse-invoices.mjs rolls the receipts up the same way.",
+    "values": [
+      "chicken",
+      "turkey",
+      "pork",
+      "charcuterie",
+      "beef",
+      "fish",
+      "eggs",
+      "vegetarian"
+    ],
+    "charcuterieMeansCured": "Cured or deli meat — mortadelle, lardons, pancetta, jambon. Fresh pork, chipolatas included, is `pork`.",
+    "observed": "purchase-history.json now carries a byProtein block. Pork is in 22 of 23 orders and beef in 14, while the library gives pork two dinners and charcuterie eight. Chicken is 12 of 23 and has ten dishes. Fish is 2 of 23. Worth correcting in the planning, not in the receipts."
+  },
+  "learning": {
+    "_comment": "Charlotte asked on 2026-09-15 to be asked more about her tastes. The weekly run stays three questions — the README is right that a longer one gets skipped — so /courses asks one of these as a fourth, rotating question, writes the answer into this file, and moves the question into `answered` with the date.",
+    "pending": [
+      "Peppers are the most-bought vegetable by a distance — green in 14 orders, red in 13, yellow in 7 — with celery, cucumber and broccoli close behind. Which vegetables do you actually want more of, and which are just habit?",
+      "Brussels sprouts are 'always welcome' and were never once bought in 23 orders. There is a dish for them now — did it get cooked, and should more follow?",
+      "Breakfast is the same sandwich seven mornings a week by design. Is that still right, or do you want two or three rotations?",
+      "How far should the mild spice go — a paprika-and-cumin roast, a proper mild curry, ras el hanout in a tagine? Or just seasoning, not a cuisine?",
+      "The Asian half is cooked from scratch but the receipts buy it as convenience. On a tired Tuesday, would you rather have a packet of ramen with vegetables than cook?"
+    ],
+    "answered": [
+      {
+        "on": "2026-09-15",
+        "q": "Do you and your partner eat the same way?",
+        "a": "The same. One dinner, two portions; no split to plan around."
+      },
+      {
+        "on": "2026-09-15",
+        "q": "Fish is three purchases in 23 orders — taste or something else?",
+        "a": "Price. They like fresh salmon and trout; shrimp no. Leave the planning rules alone."
+      },
+      {
+        "on": "2026-09-15",
+        "q": "What should carry the flavour, given no heat?",
+        "a": "All four axes — aromatic, sharp, rich, and warm mild spice. See `flavours`."
+      },
+      {
+        "on": "2026-09-15",
+        "q": "Which heavy repeats are you bored of?",
+        "a": "Chipolatas only. The rest are repeats because they work."
+      },
+      {
+        "on": "2026-09-15",
+        "q": "Brussels sprouts: always welcome but never bought and never cooked — which half is wrong?",
+        "a": "The library. Added choux-bruxelles-airfryer."
+      },
+      {
+        "on": "2026-09-15",
+        "q": "Asian half: cooked from scratch, or more convenience?",
+        "a": "Scratch is right. Spring rolls were the real gap — added rouleaux-printemps."
+      }
+    ]
   }
 }

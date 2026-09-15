@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-05T18:10:11.343Z",
+  "generatedAt": "2026-09-15T19:05:28.894Z",
   "ordersParsed": 23,
   "averageBasket": 86.03,
   "averageItemCount": 29,
@@ -12,6 +12,50 @@
     "Le Choix du Primeur Poivron ROUGE",
     "Jean Rozé, une marque Intermarché Viande hachée vrac pur BŒUF 5% MG"
   ],
+  "byProtein": {
+    "pork": {
+      "orders": 22,
+      "shareOfOrders": 0.96,
+      "purchases": 31,
+      "spend": 118.04
+    },
+    "beef": {
+      "orders": 14,
+      "shareOfOrders": 0.61,
+      "purchases": 14,
+      "spend": 97.29
+    },
+    "chicken": {
+      "orders": 12,
+      "shareOfOrders": 0.52,
+      "purchases": 21,
+      "spend": 126.2
+    },
+    "charcuterie": {
+      "orders": 10,
+      "shareOfOrders": 0.43,
+      "purchases": 10,
+      "spend": 32.53
+    },
+    "eggs": {
+      "orders": 8,
+      "shareOfOrders": 0.35,
+      "purchases": 9,
+      "spend": 24.55
+    },
+    "turkey": {
+      "orders": 6,
+      "shareOfOrders": 0.26,
+      "purchases": 7,
+      "spend": 38.26
+    },
+    "fish": {
+      "orders": 2,
+      "shareOfOrders": 0.09,
+      "purchases": 2,
+      "spend": 22.89
+    }
+  },
   "products": [
     {
       "name": "Cuit sur place Baguette La Généreuse",

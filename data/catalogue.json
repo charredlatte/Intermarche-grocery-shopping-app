@@ -521,39 +521,6 @@
         "url": "/produit/sauce-pesto-au-basilic-bio/3250392926939"
       }
     },
-    "Gambas crues décortiquées": {
-      "status": "missing",
-      "search": "gambas",
-      "checked": "2026-09-14",
-      "note": "No raw peeled gambas at Méré. Raw ones only come whole: Odyssée 800 g at 22,78 €, or Capitaine Cook frozen 400 g (out of stock today). The cheap option is cooked.",
-      "alternatives": [
-        {
-          "brand": "Intermarché",
-          "title": "Gambas cuites calibre 30/40",
-          "packaging": "La barquette de 400g",
-          "unitPrice": "14,98 €/Kg",
-          "price": 5.99,
-          "url": "/produit/gambas-cuites-calibre-30-ou-40/3250393461231"
-        },
-        {
-          "brand": "Odyssée, une marque Intermarché",
-          "title": "Gambas entières crues",
-          "packaging": "La boite de 800 g",
-          "unitPrice": "28,48 €/Kg",
-          "price": 22.78,
-          "url": "/produit/gambas-entieres-crues/3250391422746"
-        },
-        {
-          "brand": "Capitaine Cook, une marque Intermarché",
-          "title": "Gambas sauvages entières crues congelées",
-          "packaging": "La barquette de 400 g",
-          "unitPrice": null,
-          "price": null,
-          "url": "/produit/gambas-sauvages-entieres-crues-congelees/3250390886471",
-          "available": false
-        }
-      ]
-    },
     "Gingembre frais": {
       "status": "picked",
       "search": "gingembre",

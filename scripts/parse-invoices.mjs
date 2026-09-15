@@ -32,6 +32,7 @@ import { fileURLToPath } from "node:url";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const INVOICE_DIR = join(ROOT, "data", "invoices");
 const OUT = join(ROOT, "data", "purchase-history.json");
+const EQUIVALENTS = join(ROOT, "data", "equivalents.json");
 
 const MONTHS = {
   janvier: 1, février: 2, mars: 3, avril: 4, mai: 5, juin: 6,
@@ -43,6 +44,17 @@ const money = (s) => parseFloat(s.replace(/\s/g, "").replace(",", "."));
 // Product names are compared case- and spacing-insensitively: the same product
 // comes back as "Ultima croquettes..." one week and "Ultima Croquettes..." the next.
 const norm = (s) => s.toLowerCase().replace(/\s+/g, " ").trim();
+// Which protein each product counts towards, read off the equivalence groups —
+// the hand-curated product taxonomy that already exists, now carrying the same
+// eight values the recipe library is grouped by. Optional: without the file the
+// rollup is simply left out, exactly as build-week treats it.
+const PROTEIN_OF = new Map();
+try {
+  for (const g of JSON.parse(readFileSync(EQUIVALENTS, "utf8")).groups ?? []) {
+    if (!g.protein) continue;
+    for (const m of g.members ?? []) PROTEIN_OF.set(norm(m.name), g.protein);
+  }
+} catch { /* no equivalents file; no rollup */ }
 
 // Does `haystack` contain every fragment, in order? Used to fold a truncated
 // name ("Jean Roze, une ma... Chipolata superie...") onto its full version.
@@ -199,6 +211,25 @@ function resolveName(item, canonical) {
   return hits.length === 1 ? hits[0][1] : item.name;
 }
 
+// A product with no equivalence group counts towards nothing: the groups are
+// curated by hand and a product nobody grouped is one nobody has decided about.
+function rollUpProteins(products, orderCount) {
+  if (!PROTEIN_OF.size) return undefined;
+  const out = {};
+  for (const p of products) {
+    const protein = PROTEIN_OF.get(norm(p.name));
+    if (!protein) continue;
+    const e = (out[protein] ??= { orders: new Set(), purchases: 0, spend: 0 });
+    e.purchases += p.timesOrdered;
+    e.spend += p.lineTotals.reduce((a, b) => a + b, 0);
+    for (const o of p.orders) e.orders.add(o);
+  }
+  return Object.fromEntries(Object.entries(out)
+    .map(([k, e]) => [k, { orders: e.orders.size, shareOfOrders: +(e.orders.size / orderCount).toFixed(2),
+                           purchases: e.purchases, spend: +e.spend.toFixed(2) }])
+    .sort((a, b) => b[1].orders - a[1].orders));
+}
+
 function aggregate(orders) {
   const canonical = canonicalNames(orders);
   const byProduct = new Map();
@@ -267,6 +298,10 @@ function aggregate(orders) {
     staples: products
       .filter((p) => !p.nameTruncated && p.timesOrdered / n > 0.5)
       .map((p) => p.name),
+    // What the receipts say about protein, set against how many dishes the
+    // library gives each one. This is the whole of "get to know us from the
+    // orders": it is what says pork is in most orders and has two dinners.
+    byProtein: rollUpProteins(products, n),
     products,
     orders,
   };
@@ -303,6 +338,9 @@ function main() {
   console.log(`Parsed ${orders.length} orders, ${result.products.length} distinct products.`);
   console.log(`Average basket: ${result.averageBasket} € / ${result.averageItemCount} items`);
   console.log(`Staples: ${result.staples.slice(0, 10).join(", ")}`);
+  for (const [k, v] of Object.entries(result.byProtein ?? {})) {
+    console.log(`  ${k.padEnd(12)} ${v.orders}/${orders.length} orders, ${v.purchases} purchases, ${v.spend} €`);
+  }
 }
 
 main();

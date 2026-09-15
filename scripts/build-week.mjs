@@ -58,6 +58,17 @@ let catalogue = { products: {} };
 try { catalogue = JSON.parse(readFileSync(join(DATA, "catalogue.json"), "utf8")); }
 catch { /* not built yet; the checklist falls back to searching by name */ }
 
+// The eight proteins, in the order the Recipes tab groups by. One dish, one
+// protein: the one it is built around. Shipped to the page in config so the
+// page and the library cannot drift apart on either spelling or order.
+const PROTEINS = ["chicken", "turkey", "pork", "charcuterie", "beef", "fish", "eggs", "vegetarian"];
+
+// Nothing else may claim an appliance she does not own — a recipe that assumes
+// one is the same bug as the one that assumed fresh leeks.
+const APPLIANCES = new Set(prefs.cooking?.equipment ?? []);
+// Which of those actually apply heat, for the no-cook rule below.
+const HEAT = new Set(["hob", "oven", "air fryer", "casserole dish"]);
+
 /* ---- pricebook ---------------------------------------------------------- */
 const pricebook = {};
 for (const p of history.products) {
@@ -77,10 +88,30 @@ for (const p of seenInApp.products ?? []) {
 // zero-cost line. Guesses are exempt, but must carry their own estimate.
 const problems = [];
 for (const [slug, r] of Object.entries(recipes)) {
-  for (const f of ["title", "cuisine", "slot", "prepMinutes", "cookMinutes", "serves", "short", "steps"]) {
+  for (const f of ["title", "cuisine", "protein", "slot", "prepMinutes", "cookMinutes", "serves", "short", "steps"]) {
     if (r[f] == null) problems.push(`${slug}: missing "${f}"`);
   }
   if (r.kind && !["recipe", "assembly"].includes(r.kind)) problems.push(`${slug}: unknown kind "${r.kind}"`);
+  if (r.protein != null && !PROTEINS.includes(r.protein)) {
+    problems.push(`${slug}: unknown protein "${r.protein}" — one of ${PROTEINS.join(", ")}`);
+  }
+  // The easy copy-paste error this field invites, and the one the tags can catch.
+  if ((r.tags ?? []).includes("vegetarian") && !["eggs", "vegetarian"].includes(r.protein)) {
+    problems.push(`${slug}: tagged vegetarian but its protein is "${r.protein}"`);
+  }
+  // No chilli is a health rule, not a tag someone remembers to add. Every dish
+  // carries it by hand today and nothing enforced it until now.
+  if (!(r.tags ?? []).includes("no chilli")) problems.push(`${slug}: missing the "no chilli" tag`);
+  // "no cook" has to mean what it says, or the Recipes tab's appliance chips lie.
+  if ((r.tags ?? []).includes("no cook") && r.cookMinutes !== 0) {
+    problems.push(`${slug}: tagged "no cook" but cooks for ${r.cookMinutes} minutes`);
+  }
+  for (const e of r.equipment ?? []) {
+    if (!APPLIANCES.has(e)) problems.push(`${slug}: "${e}" is not in preferences.cooking.equipment`);
+    if (r.cookMinutes === 0 && HEAT.has(e)) {
+      problems.push(`${slug}: cooks for 0 minutes but wants the ${e}`);
+    }
+  }
   if (r.kind === "assembly" && !r.packNote) {
     problems.push(`${slug}: an assembly needs a packNote saying what comes ready-made`);
   }
@@ -219,6 +250,7 @@ const onHand = {
 };
 
 const config = {
+  proteins: PROTEINS,
   budgetCeiling: prefs.budget?.ceilingPerOrder ?? 150,
   store: plans[plans.length - 1].store ?? "",
   // Handed to the dish generator so anything new honours the same rules.

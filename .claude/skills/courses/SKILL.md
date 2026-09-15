@@ -39,15 +39,32 @@ disponible` email post-dates `generatedAt` — add it to `data/invoices/` as
 Come to the conversation already knowing what she buys. Do not ask questions the
 receipts answer.
 
-## The three questions
+`purchase-history.json` carries a `byProtein` block — how many orders each of the
+eight proteins appears in, rolled up through the tagged groups in
+`equivalents.json`. Read it next to how many dishes the library gives each one.
+As of 2026-09-15 pork is in 22 of 23 orders and has two dinners; fish is in 2.
 
-Ask all three at once as tappable options. Not more than three — a longer quiz
-gets skipped, and a skipped week is worth less than an imperfect plan.
+## The three questions, plus one
+
+Ask all of them at once as tappable options. The first three are the week's
+plan; never add a fifth. A longer quiz gets skipped, and a skipped week is worth
+less than an imperfect plan.
 
 1. **How many dinners this week?** (default 7 — offer 5 and 7)
 2. **What are you in the mood for?** — multi-select, up to 3. Draw the tags from
    the cuisines she actually wants and the dishes she actually cooks.
 3. **Anything to use up or avoid?** — free text, optional.
+
+4. **One question about her tastes**, taken from the top of
+   `preferences.learning.pending`. Charlotte asked on 2026-09-15 to be asked
+   more about what she likes; this is how, without lengthening the weekly run.
+   It is about *her*, not about this week, so it never blocks the plan — if she
+   skips it, leave it at the top of the list and carry on.
+
+   When she answers, write the answer where it belongs in `preferences.json`
+   — a new dislike goes in `dietary`, a flavour in `flavours` — and move the
+   question into `learning.answered` with today's date. An answer that changes
+   nothing still gets recorded, or it will be asked again in a month.
 
 ## The constraints, in priority order
 
@@ -67,10 +84,19 @@ These are not preferences. Check the plan against them before showing it.
 
 ## Building the plan
 
-- **Asian most nights.** Japanese, Korean, Chinese, Thai, Vietnamese, Indian.
-  Spring rolls are a favourite and are made often. Non-Asian nights should be
-  vegetable-forward — brussels sprouts, peppers, broccoli, aubergine — not
-  another pasta bake.
+- **Half the dinners Asian, half European.** Japanese, Korean, Chinese, Thai,
+  Vietnamese, Indian on one side; French, Italian, Spanish on the other. Balance
+  the *week's plan*, not the library. `preferences.cuisines.weeklyShare` read
+  `"most"` until 2026-09-06 and quietly made every week about 70% Asian; it is
+  `"half"` now and this line was still saying "most" until 2026-09-15. Spring
+  rolls are a favourite and are made often — `rouleaux-printemps`. European
+  nights should be vegetable-forward — sprouts, peppers, broccoli, aubergine —
+  not another pasta bake.
+- **Balance the proteins too, not just the cuisines.** Every dish carries one of
+  `chicken, turkey, pork, charcuterie, beef, fish, eggs, vegetarian`. No more
+  than two dinners on the same protein while unused dishes remain. Check the
+  plan against `byProtein`: pork is what they actually buy and the library
+  under-serves it, so a week of chicken is a week that ignores the receipts.
 - **Familiarity comes from the ingredient, not the dish.** The receipts show a
   French repertoire, but that is what she *bought*, not what she wants. Build
   Asian dishes out of what she already buys week after week: eggs (20 at a
