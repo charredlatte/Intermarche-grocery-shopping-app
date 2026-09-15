@@ -2295,6 +2295,34 @@
         "price": 3.95,
         "url": "/produit/gyoza-poulet-citronnelle/3456700014057"
       }
+    },
+    "Salakis Fromage 100% brebis": {
+      "status": "picked",
+      "search": "salakis brebis",
+      "checked": "2026-09-15",
+      "listing": {
+        "brand": "Salakis",
+        "title": "Fromage 100% brebis",
+        "packaging": "La barquette de 200 g",
+        "unitPrice": "13,40 €/Kg",
+        "price": 2.68,
+        "url": "/produit/fromage-100%25-brebis/3023260030928"
+      },
+      "note": "The plain one, bought 15 September when the basilic and herbes de Provence jars were both out of stock."
+    },
+    "Bouton d’Or, une marque Intermarché Paprika doux moulu": {
+      "status": "exact",
+      "search": "paprika",
+      "checked": "2026-09-15",
+      "listing": {
+        "brand": "Bouton d’Or, une marque Intermarché",
+        "title": "Paprika doux moulu",
+        "packaging": "Le pot de 45g",
+        "unitPrice": "13,11 €/Kg",
+        "price": 0.59,
+        "url": "/produit/paprika-doux-moulu/3250390003052"
+      },
+      "note": "Doux only. The same search lists a Ducros paprika fumé; hot paprika (fort) is never this line."
     }
   }
 }

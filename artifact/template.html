@@ -2242,7 +2242,7 @@ const MOODS = [
   { id: "fast",       emoji: "⚡", label: "Speedy",     tone: "clay", match: (r) => (r.tags || []).includes("fast") },
   { id: "veg",        emoji: "🥗", label: "Veggie",     tone: "herb", match: (r) => (r.tags || []).includes("vegetarian") },
   { id: "batch",      emoji: "🍲", label: "Batch cook", tone: "herb", match: (r) => (r.tags || []).includes("batch cook") },
-  { id: "asia",       emoji: "🍜", label: "Asian",      tone: "yuzu", match: (r) => ["japanese","chinese","thai","vietnamese","indian"].includes(r.cuisine) },
+  { id: "asia",       emoji: "🍜", label: "Asian",      tone: "yuzu", match: (r) => ["japanese","korean","chinese","thai","vietnamese","indian"].includes(r.cuisine) },
   { id: "europe",     emoji: "🥖", label: "European",   tone: "yuzu", match: (r) => ["french","italian","spanish","greek"].includes(r.cuisine) },
   { id: "protein",    emoji: "💪", label: "Protein",    tone: "clay", match: (r) => (r.ingredients || []).some((i) => i.buy && i.buy.section === "Proteins") },
 ];

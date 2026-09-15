@@ -8,7 +8,8 @@
     "Eleven of the fourteen dishes have never been served — the Italian, Spanish, air-fryer and muffin-tin recipes added on 6 September had all sat unused. Nothing from last week repeats. Hob, air fryer, oven and muffin tin each get a night.",
     "If the Drive slot slips to Tuesday, shift everything a day — but move the gyoza forward, not back: the Ginza trays are fresh and no longer keep the way the delisted frozen pack did.",
     "The recipes add up to eleven baguettes. Order three packs of Chabrior demi-baguettes précuites instead and bake them as you go — same equivalence group, and they don't go stale by Wednesday.",
-    "The two coffees and the olive oil stay on the order by her decision (2026-09-14), which is 42 € of it. She cut the gambas night and the second bag of litter the same day: the gambas became pisto, whose parmesan is already bought for the carbonara, and the litter is one bag this week only — the standing order in preferences.json is still a pair, because that is what the receipts show."
+    "The two coffees and the olive oil stay on the order by her decision (2026-09-14), which is 42 € of it. She cut the gambas night and the second bag of litter the same day: the gambas became pisto, whose parmesan is already bought for the carbonara, and the litter is one bag this week only — the standing order in preferences.json is still a pair, because that is what the receipts show.",
+    "The basket landed on 15 September, and nothing from the 5 September order is left, whatever the kitchen list still says — no Grana Padano, no basmati, no butter. Grate the cheddar or the emmental over the carbonara and the pisto, cook the donburi on the sushi rice, and fry the pain perdu in olive oil. Ten new dishes built only on what arrived are on the Recipes tab."
   ],
   "meals": [
     { "id": "monday-breakfast", "day": "monday", "slot": "breakfast", "recipe": "sandwich-matin" },

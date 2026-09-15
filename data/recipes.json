@@ -5807,5 +5807,1095 @@
       "Toast the baguette slices. Ladle the soup into ovenproof bowls, float the bread, pile the cheese on top.",
       "Under a hot grill or in a 220°C oven until the cheese blisters and runs down the sides, about 5 minutes."
     ]
+  },
+  "gamja-jorim-oeuf": {
+    "title": "Soy-glazed potatoes with a fried egg",
+    "cuisine": "korean",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "serves": 2,
+    "tags": [
+      "no chilli",
+      "dairy-free",
+      "vegetarian",
+      "uses eggs"
+    ],
+    "short": "Gamja jorim: small potato cubes simmered in soy, sugar and garlic until the liquid turns to a sticky glaze. In Korea it is a side dish and often carries gochugaru; this one has none, and a fried egg, rice and cold cucumber make it dinner.",
+    "ingredients": [
+      {
+        "item": "potatoes",
+        "qty": "700 g, in 2 cm cubes",
+        "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "4 cloves, sliced",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "soy sauce",
+        "qty": "4 tbsp",
+        "product": "Kikkoman Sauce soja salée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "sweet soy",
+        "qty": "2 tbsp",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Saveur d'Asie - Sauce soja sucrée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "sugar",
+        "qty": "1 tbsp",
+        "product": "Daddy Sucre en poudre",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "eggs",
+        "qty": "2",
+        "product": "Volaé, une marque Intermarché Œufs frais de poules élevées au sol",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "cucumber",
+        "qty": "half, in batons",
+        "product": "Le Choix du Primeur Concombre",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "sushi rice",
+        "qty": "150 g dry",
+        "product": "Tanoshi Riz pour sushi Japonica",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "oil, water",
+        "qty": "",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Rice first: rinse 150 g until the water runs almost clear, then 200 ml water, lid on, 12 minutes on low and 10 more off the heat with the lid still on.",
+      "Cut the potatoes into 2 cm cubes and rinse them in a bowl of cold water until it stops going cloudy. Drain and pat dry — the surface starch is what makes them stick and break.",
+      "A spoonful of oil in a wide pan over medium-high heat. Potatoes in, 5 minutes, turning now and then, until the edges go translucent.",
+      "Add the garlic, soy, sweet soy, sugar and 200 ml water. Bring to a lively simmer, lid half on, 10 minutes.",
+      "Lid off, heat up. Keep shaking the pan for 4 to 5 minutes as the liquid reduces to a glaze that coats every cube. Stop the moment the pan looks nearly dry — the sugar catches quickly after that.",
+      "Fry the eggs in a little oil in a second pan, whites crisp at the edges, yolks soft.",
+      "Rice into bowls, potatoes and every bit of glaze over it, an egg on each, cucumber batons alongside. The original finishes with sesame oil and seeds; there are none in the kitchen, so a thread of olive oil over the hot potatoes rounds the salt instead."
+    ],
+    "equipment": [
+      "hob"
+    ]
+  },
+  "nikujaga-poulet": {
+    "title": "Chicken and potato nikujaga",
+    "cuisine": "japanese",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 30,
+    "serves": 4,
+    "tags": [
+      "batch cook",
+      "no chilli",
+      "dairy-free"
+    ],
+    "short": "Japan's everyday simmer: potatoes, carrot and onion cooked gently in a sweet soy broth. It is usually made with thin-sliced beef; this one uses chicken thighs, and the yakitori sauce brings the sake and mirin that would otherwise be two more bottles. Better the next day.",
+    "ingredients": [
+      {
+        "item": "chicken thighs",
+        "qty": "a 500 g tray, meat cut off the bone, bones kept",
+        "product": "Volaé, une marque Intermarché Cuisse de poulet jaune déjointée",
+        "buy": {
+          "amount": 0.5,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "potatoes",
+        "qty": "600 g, in large chunks",
+        "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "carrot",
+        "qty": "1, in chunks",
+        "product": "Le Choix du Primeur Carottes",
+        "buy": {
+          "amount": 0.1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "2, in thick wedges",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "ginger",
+        "qty": "a thumb, thinly sliced",
+        "product": "Gingembre frais",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.05
+        }
+      },
+      {
+        "item": "yakitori sauce",
+        "qty": "5 tbsp",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Sauce Yakitori assaisonnement à base de sauce soja, saké et mirin",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "soy sauce",
+        "qty": "2 tbsp",
+        "product": "Kikkoman Sauce soja salée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "sugar",
+        "qty": "1 tbsp",
+        "product": "Daddy Sucre en poudre",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "sushi rice",
+        "qty": "to serve",
+        "product": "Tanoshi Riz pour sushi Japonica",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "oil, water",
+        "qty": "",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Take the meat off the thigh and drumstick bones with a small knife — it comes away easily if you follow the bone — and cut it into bite-size pieces. Keep the bones.",
+      "A spoonful of oil in the casserole over medium-high heat. Brown the chicken, skin side down first, 4 minutes. Add the onion wedges and ginger, 2 minutes more.",
+      "Add the potatoes and carrot and turn everything through the fat for a minute.",
+      "Pour in about 400 ml water, enough to come two-thirds of the way up, with the yakitori sauce, soy and sugar. Drop the bones in. Bring to the boil and skim off the grey foam.",
+      "Lid on but set a little ajar, and simmer gently for 20 minutes without stirring — stirring breaks the potatoes. Shake the pot once or twice instead.",
+      "Lift out the bones. Taste the broth: it should be sweet and salty in about equal measure; a splash more soy if it tastes flat.",
+      "Serve half in deep bowls with rice and some of the broth. Cool the rest and keep it in the fridge — by the next day the potatoes have drunk the broth, which is the point."
+    ],
+    "equipment": [
+      "casserole dish",
+      "hob"
+    ]
+  },
+  "dinde-celeri-gingembre": {
+    "title": "Turkey, celery and pepper stir-fry with ginger",
+    "cuisine": "chinese",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli",
+      "dairy-free"
+    ],
+    "short": "Celery is a proper stir-fry vegetable in China: sliced on the diagonal it stays crisp and turns sweet in a hot pan. Here with turkey, red pepper, ginger and garlic, glossed with soy and sweet soy. Many versions add dried chillies; this one leaves them out.",
+    "ingredients": [
+      {
+        "item": "turkey escalope",
+        "qty": "260 g, in thin strips",
+        "product": "Le Gaulois Escalope de dinde",
+        "buy": {
+          "amount": 0.26,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "celery",
+        "qty": "3 stalks, sliced thin on the diagonal",
+        "product": "Le Choix du Primeur Céleri BRANCHE VERT",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "red pepper",
+        "qty": "1, in strips",
+        "product": "Le Choix du Primeur Poivron ROUGE",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "3 cloves, sliced",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "ginger",
+        "qty": "a thumb, in matchsticks",
+        "product": "Gingembre frais",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.05
+        }
+      },
+      {
+        "item": "soy sauce",
+        "qty": "3 tbsp",
+        "product": "Kikkoman Sauce soja salée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "sweet soy",
+        "qty": "1 tbsp",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Saveur d'Asie - Sauce soja sucrée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "sugar",
+        "qty": "a pinch",
+        "product": "Daddy Sucre en poudre",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "sushi rice",
+        "qty": "150 g dry",
+        "product": "Tanoshi Riz pour sushi Japonica",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "oil",
+        "qty": "",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Rice on first: rinse 150 g until the water runs almost clear, 200 ml water, lid on, 12 minutes on low, 10 off the heat.",
+      "Toss the turkey strips with 1 tbsp of the soy and the pinch of sugar, and leave them while you cut the vegetables.",
+      "Get a wide pan very hot with a spoonful of oil. Turkey in a single layer, 90 seconds without moving it, turn, 1 minute more — only just cooked. Out onto a plate.",
+      "A little more oil in the same pan: celery and pepper, 3 minutes, tossing. They should still snap.",
+      "Garlic and ginger, 30 seconds, until they smell sharp and sweet.",
+      "Turkey back in with its juices, then the rest of the soy and the sweet soy down the hot side of the pan so they sizzle. Toss for a minute until everything is glossy, and serve over the rice."
+    ],
+    "equipment": [
+      "hob"
+    ]
+  },
+  "onigirazu-mortadelle": {
+    "title": "Mortadella, cheddar and cucumber onigirazu",
+    "cuisine": "japanese",
+    "slot": "lunch",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "serves": 1,
+    "tags": [
+      "make ahead",
+      "no chilli"
+    ],
+    "short": "Onigirazu is the onigiri you don't have to shape: rice, filling and more rice folded into a sheet of nori like an envelope, then cut in half. Mortadella and cheddar are not Japanese, but ham-and-cheese onigirazu is a lunchbox classic there, and it keeps until lunchtime.",
+    "ingredients": [
+      {
+        "item": "sushi rice",
+        "qty": "150 g dry",
+        "product": "Tanoshi Riz pour sushi Japonica",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "nori",
+        "qty": "2 sheets",
+        "product": "Tanoshi Feuilles d'algues nori grillées pour sushi",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "mortadella",
+        "qty": "4 slices",
+        "product": "Montorsi Mortadelle",
+        "buy": {
+          "amount": 0.5,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "cheddar",
+        "qty": "2 thin slices",
+        "product": "Maddy's Cheddar rouge mature",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "cucumber",
+        "qty": "a third, thinly sliced",
+        "product": "Le Choix du Primeur Concombre",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "mâche",
+        "qty": "a small handful",
+        "product": "Le Choix du Primeur Salade MACHE",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "soy sauce",
+        "qty": "a few drops",
+        "product": "Kikkoman Sauce soja salée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "salt",
+        "qty": "a pinch",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Rinse the rice until the water runs almost clear, cook it with 200 ml water, lid on, 12 minutes on low and 10 off the heat. Season with a pinch of salt and let it cool until you can handle it.",
+      "Lay a sheet of nori shiny side down on a board, turned so it sits in front of you like a diamond.",
+      "Wet your hands. Spread a quarter of the rice in a square about 10 cm across in the middle of the sheet — an even layer, not pressed hard.",
+      "On the rice: a few mâche leaves, 2 slices of mortadella folded to fit the square, a slice of cheddar, cucumber slices and a few drops of soy. Then another quarter of the rice on top, patted into the same square.",
+      "Fold the four corners of the nori over the top one after another, like closing an envelope, dampening the last corner so it sticks. Turn it seam side down. Make the second one the same way.",
+      "Leave them 5 minutes for the nori to soften and seal, then cut each in half through the middle with a wet knife. Pack them cut side up; they keep until lunchtime without the fridge."
+    ],
+    "equipment": [
+      "hob"
+    ]
+  },
+  "ramen-froid-concombre": {
+    "title": "Cold teriyaki ramen salad with smashed cucumber",
+    "cuisine": "japanese",
+    "slot": "lunch",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 5,
+    "serves": 1,
+    "tags": [
+      "fast",
+      "no chilli",
+      "dairy-free"
+    ],
+    "short": "Hiyashi ramen is Japan's summer noodle: cooked, chilled and piled with cold, crisp things. The precooked teriyaki ramen brings its own sauce; yakitori, ginger and a small splash of balsamic — standing in for the rice vinegar Méré does not sell — turn it into a dressing, and a smashed cucumber does the rest.",
+    "ingredients": [
+      {
+        "item": "ramen noodles",
+        "qty": "half the pack, with half its sauce sachet",
+        "product": "Tanoshi Nouilles ramen précuites au poulet teriyaki",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "cucumber",
+        "qty": "half",
+        "product": "Le Choix du Primeur Concombre",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "carrot",
+        "qty": "1, in ribbons",
+        "product": "Le Choix du Primeur Carottes",
+        "buy": {
+          "amount": 0.1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "yellow pepper",
+        "qty": "half, in thin strips",
+        "product": "Le Choix du Primeur Poivrons JAUNES",
+        "buy": {
+          "amount": 0.1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "yakitori sauce",
+        "qty": "1 tbsp",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Sauce Yakitori assaisonnement à base de sauce soja, saké et mirin",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "balsamic vinegar",
+        "qty": "1 tsp",
+        "product": "Vinaigre balsamique",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.54
+        }
+      },
+      {
+        "item": "ginger",
+        "qty": "a small piece, grated",
+        "product": "Gingembre frais",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.05
+        }
+      },
+      {
+        "item": "sugar",
+        "qty": "a pinch",
+        "product": "Daddy Sucre en poudre",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "olive oil, salt",
+        "qty": "",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Lay the cucumber on a board and press down hard along its length with the flat of a big knife until it cracks open. Break it into bite-size pieces with your hands, toss with a pinch of salt and a pinch of sugar, and leave it in a sieve for 10 minutes.",
+      "Loosen the noodles under the hot tap, then into boiling water for 1 minute. Drain and run them under cold water until they are completely cold. Drain well.",
+      "Dressing: half the sauce sachet from the noodles, the yakitori sauce, the balsamic, the grated ginger and a teaspoon of olive oil. Stir.",
+      "Toss the noodles through the dressing. Pile the carrot ribbons, pepper strips and drained cucumber on top. It holds in a lunchbox, dressing and all, for a morning."
+    ],
+    "equipment": [
+      "hob"
+    ]
+  },
+  "patatas-a-lo-pobre": {
+    "title": "Patatas a lo pobre with a fried egg",
+    "cuisine": "spanish",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "serves": 2,
+    "tags": [
+      "no chilli",
+      "dairy-free",
+      "vegetarian",
+      "uses eggs"
+    ],
+    "short": "Andalusia's poor man's potatoes: potatoes, onion and peppers cooked slowly in olive oil until soft and sweet, with a fried egg broken over them. No chorizo, no guindilla — just the vegetables, garlic and a pinch of sweet paprika.",
+    "ingredients": [
+      {
+        "item": "potatoes",
+        "qty": "600 g, thinly sliced",
+        "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "1 large, sliced",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.15,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "red pepper",
+        "qty": "1, in strips",
+        "product": "Le Choix du Primeur Poivron ROUGE",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "yellow pepper",
+        "qty": "1, in strips",
+        "product": "Le Choix du Primeur Poivrons JAUNES",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "3 cloves, sliced",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "olive oil",
+        "qty": "6 tbsp — it is the cooking medium",
+        "product": "Bouton d’Or, une marque Intermarché Huile d'olive vierge extra BIO - issue de l'agriculture biologique",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "sweet paprika",
+        "qty": "a pinch",
+        "product": "Bouton d’Or, une marque Intermarché Paprika doux moulu",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "eggs",
+        "qty": "2",
+        "product": "Volaé, une marque Intermarché Œufs frais de poules élevées au sol",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "salt",
+        "qty": "",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Slice the potatoes about 3 mm thick, rinse them, and dry them well in a clean tea towel.",
+      "Warm the olive oil in a wide frying pan or the casserole over medium heat. Add the potatoes and onion, salt them, and turn to coat. Lid on, 10 minutes, turning once — they should soften, not brown.",
+      "Add the peppers and garlic, take the lid off and turn the heat up a notch. 10 minutes more, turning every few minutes, until the potatoes are tender and catching gold at the edges and the peppers have collapsed.",
+      "Push everything to one side and fry the eggs in the oil in the clear space, spooning the hot oil over the whites until they crisp at the edges.",
+      "A pinch of sweet paprika over the potatoes, check the salt, and an egg on top of each plate. Break the yolk into the potatoes as you eat."
+    ],
+    "equipment": [
+      "hob"
+    ]
+  },
+  "dinde-pancetta-romarin": {
+    "title": "Turkey wrapped in pancetta with rosemary and lemon",
+    "cuisine": "italian",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 8,
+    "cookMinutes": 12,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "no chilli",
+      "dairy-free"
+    ],
+    "short": "Saltimbocca, adapted to the kitchen: turkey escalopes flattened, wrapped in pancetta with rosemary where the original has sage and prosciutto, seared crisp and finished with lemon and a spoon of water for a quick pan sauce. Garlicky broccoli alongside.",
+    "ingredients": [
+      {
+        "item": "turkey escalope",
+        "qty": "2 escalopes, about 280 g",
+        "product": "Le Gaulois Escalope de dinde",
+        "buy": {
+          "amount": 0.28,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "pancetta",
+        "qty": "6 slices",
+        "product": "Pancetta en dés",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Best guesses",
+          "price": 3.15
+        }
+      },
+      {
+        "item": "rosemary",
+        "qty": "a pinch of needles",
+        "product": "Romarin frais",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.74
+        }
+      },
+      {
+        "item": "lemon",
+        "qty": "half",
+        "product": "Le Choix du Primeur Citrons JAUNES",
+        "buy": {
+          "amount": 0.28,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "broccoli",
+        "qty": "half a head, in florets",
+        "product": "Le Choix du Primeur Brocolis",
+        "buy": {
+          "amount": 0.25,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "garlic",
+        "qty": "2 cloves, sliced",
+        "product": "Le Choix du Primeur Ail BLANC",
+        "buy": {
+          "amount": 0.1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "olive oil, black pepper",
+        "qty": "",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Flatten each escalope with the heel of your hand or the base of a small pan to an even 5 mm, so it cooks through before the pancetta burns.",
+      "Pepper them — no salt, the pancetta brings it. Lay a few rosemary needles on each, then wrap each escalope in three slices of pancetta, slightly overlapping, pressing it on.",
+      "Put the broccoli on: 2 cm of boiling water in a pan, florets in, lid on, 4 minutes. Drain, then toss for a minute in the same hot pan with a little olive oil and the sliced garlic.",
+      "Meanwhile, a spoonful of olive oil in a frying pan over medium-high heat. Turkey in with the side where the pancetta ends meet face down, 3 minutes until crisp, then turn and give it 3 minutes more.",
+      "Squeeze in the lemon and add 3 tbsp water. Let it bubble for 30 seconds, scraping up the brown bits, and spoon the sauce over the turkey. Broccoli alongside."
+    ],
+    "equipment": [
+      "hob"
+    ]
+  },
+  "tarte-tomates-brebis": {
+    "title": "Tomato, brebis and rosemary tart",
+    "cuisine": "french",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 8,
+    "cookMinutes": 22,
+    "serves": 2,
+    "tags": [
+      "no chilli",
+      "vegetarian"
+    ],
+    "short": "A flat Provençal tart: shortcrust baked empty for a few minutes, then covered in overlapping tomato slices, crumbled brebis and rosemary, and baked until the tomatoes slump and the border browns. The plain Salakis takes a pinch of sweet paprika for colour. Mâche on the side.",
+    "ingredients": [
+      {
+        "item": "shortcrust pastry",
+        "qty": "1 roll, 230 g",
+        "product": "Pâte brisée prête à dérouler",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Best guesses",
+          "price": 0.65
+        }
+      },
+      {
+        "item": "tomatoes",
+        "qty": "2 large, sliced",
+        "product": "Le Choix du Primeur Tomates RONDES CHARNUES",
+        "buy": {
+          "amount": 0.6,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "brebis",
+        "qty": "100 g, crumbled — half the pack",
+        "product": "Salakis Fromage 100% brebis",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Best guesses",
+          "price": 2.68
+        }
+      },
+      {
+        "item": "red onion",
+        "qty": "half, in thin rings",
+        "product": "Le Choix du Primeur Oignons ROUGES",
+        "buy": {
+          "amount": 0.08,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "rosemary",
+        "qty": "a pinch of needles, chopped",
+        "product": "Romarin frais",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.74
+        }
+      },
+      {
+        "item": "sweet paprika",
+        "qty": "a pinch",
+        "product": "Bouton d’Or, une marque Intermarché Paprika doux moulu",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "mâche",
+        "qty": "to serve",
+        "product": "Le Choix du Primeur Salade MACHE",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "olive oil, salt, black pepper",
+        "qty": "",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Heat the oven to 210 °C. Unroll the pastry on its own baking paper onto a tray and prick the base all over with a fork, leaving a 2 cm border untouched.",
+      "Bake it empty for 7 minutes, until it has just set and lost its shine. Meanwhile slice the tomatoes 5 mm thick and lay them on a board with a pinch of salt — it draws out the water that would make the base soggy.",
+      "Pat the tomatoes dry. Scatter the onion rings over the pastry inside the border, then lay the tomatoes in overlapping rows.",
+      "Crumble the brebis over, then the rosemary, a pinch of sweet paprika, black pepper and a thread of olive oil.",
+      "Back in the oven for 15 minutes, until the border is deep gold and the tomatoes have softened at the edges. Leave it 3 minutes before cutting. Mâche on the side with a drop of olive oil."
+    ],
+    "equipment": [
+      "oven"
+    ]
+  },
+  "salade-piemontaise": {
+    "title": "Potato salad with cornichons, egg and tomato",
+    "cuisine": "french",
+    "slot": "lunch",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "serves": 2,
+    "tags": [
+      "make ahead",
+      "no chilli",
+      "dairy-free",
+      "vegetarian",
+      "uses eggs"
+    ],
+    "short": "Salade piémontaise is the French canteen potato salad, usually bound with mayonnaise and ham. This one uses an olive-oil dressing sharpened with cornichon brine and a little balsamic instead, and lets the cornichons, eggs and tomatoes carry it. Two lunches' worth.",
+    "ingredients": [
+      {
+        "item": "potatoes",
+        "qty": "500 g, in 2 cm cubes",
+        "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "eggs",
+        "qty": "2",
+        "product": "Volaé, une marque Intermarché Œufs frais de poules élevées au sol",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "cornichons",
+        "qty": "8, sliced, plus 2 tbsp of their brine",
+        "product": "Maille Cornichons extra-fins L'Original",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "cherry tomatoes",
+        "qty": "a handful, halved",
+        "product": "Petit prix Tomates cerises allongées",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "red onion",
+        "qty": "half, finely chopped",
+        "product": "Le Choix du Primeur Oignons ROUGES",
+        "buy": {
+          "amount": 0.08,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "balsamic vinegar",
+        "qty": "1 tsp",
+        "product": "Vinaigre balsamique",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.54
+        }
+      },
+      {
+        "item": "olive oil, salt, black pepper",
+        "qty": "",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Potatoes into a pan of cold salted water, bring to the boil and simmer 10 to 12 minutes, until a knife goes in without resistance. Lower the eggs in for the last 9 minutes.",
+      "Meanwhile make the dressing in the bowl you will serve from: 3 tbsp olive oil, 2 tbsp cornichon brine, the balsamic, salt and plenty of pepper. Stir in the chopped red onion so it softens in the vinegar.",
+      "Drain the potatoes and tip them straight into the dressing while they are hot — warm potatoes drink it, cold ones only get coated. Cool the eggs under cold water.",
+      "Once the potatoes are no more than warm, fold in the sliced cornichons and the tomatoes. Peel and quarter the eggs and set them on top.",
+      "Split it between two boxes. It is better after an hour and keeps two days in the fridge; take it out a little before eating."
+    ],
+    "equipment": [
+      "hob"
+    ]
+  },
+  "riz-au-lait-amande": {
+    "title": "Almond-milk rice pudding with cinnamon and banana",
+    "cuisine": "french",
+    "slot": "breakfast",
+    "kind": "recipe",
+    "prepMinutes": 5,
+    "cookMinutes": 30,
+    "serves": 4,
+    "tags": [
+      "batch cook",
+      "make ahead",
+      "no chilli",
+      "dairy-free",
+      "vegetarian"
+    ],
+    "short": "Riz au lait without the milk: short-grain sushi rice cooked slowly in vanilla almond milk with cinnamon and a little sugar until it turns creamy. Made once, it is breakfast for four mornings, cold from the fridge or warmed through, with banana sliced over.",
+    "ingredients": [
+      {
+        "item": "sushi rice",
+        "qty": "120 g",
+        "product": "Tanoshi Riz pour sushi Japonica",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "almond milk",
+        "qty": "800 ml",
+        "product": "Bjorg Boisson végétale Lait d'amande vanille BIO",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "sugar",
+        "qty": "3 tbsp",
+        "product": "Daddy Sucre en poudre",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "cinnamon",
+        "qty": "1 tsp, plus more to finish",
+        "product": "Bouton d’Or, une marque Intermarché Cannelle moulue",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "banana",
+        "qty": "2, sliced over as you serve",
+        "product": "Le Choix du Primeur Bananes",
+        "buy": {
+          "amount": 0.5,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "salt",
+        "qty": "a pinch",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Don't rinse the rice — the starch you would wash away is what makes it creamy.",
+      "Rice, 600 ml of the almond milk, the sugar, the cinnamon and a pinch of salt into a heavy pan. Bring just to a simmer over medium heat, stirring so nothing sticks.",
+      "Turn the heat right down. Cook uncovered for 25 to 30 minutes, stirring every few minutes and more often towards the end, adding the rest of the almond milk a splash at a time whenever it looks thick. Almond milk catches more easily than cow's milk, so keep it low.",
+      "It is done when the grains are soft right through and it still falls off a spoon — it sets a good deal as it cools.",
+      "Eat a bowl warm with sliced banana and a dusting of cinnamon. Cover the rest and keep it in the fridge up to three days; loosen it in the morning with a splash of almond milk."
+    ],
+    "equipment": [
+      "hob"
+    ]
   }
 }
