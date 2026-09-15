@@ -1380,12 +1380,6 @@
         }
       ]
     },
-    "Manchego": {
-      "status": "missing",
-      "search": "manchego",
-      "checked": "2026-09-14",
-      "note": "Méré lists no manchego — the search returns nothing."
-    },
     "Menguy's Cacahuètes grillées et salées": {
       "status": "check",
       "search": "cacahuètes grillées",
@@ -1468,19 +1462,6 @@
         "url": "/produit/saumon-fume-d'ecosse/3250393463860"
       },
       "note": "Eight slices for 260 g now, not six for 240 g."
-    },
-    "Olives noires dénoyautées": {
-      "status": "picked",
-      "search": "olives noires dénoyautées",
-      "checked": "2026-09-14",
-      "listing": {
-        "brand": "Tramier",
-        "title": "Olives noires confites dénoyautées",
-        "packaging": "Le bocal de 150g",
-        "unitPrice": "10,73 €/Kg",
-        "price": 1.61,
-        "url": "/produit/olives-noires-confites-denoyautees/3017230000059"
-      }
     },
     "Pancetta en dés": {
       "status": "picked",
@@ -2300,6 +2281,20 @@
           "available": false
         }
       ]
+    },
+    "Ginza Gyoza poulet citronnelle": {
+      "status": "picked",
+      "search": "gyoza",
+      "checked": "2026-09-14",
+      "note": "Replaces the delisted Ajinomoto pack. Fresh, not frozen. The third gyoza at Méré is bœuf ail piment — chilli, never this one.",
+      "listing": {
+        "brand": "Ginza",
+        "title": "Gyoza poulet citronnelle",
+        "packaging": "La barquette de 7 - 155g",
+        "unitPrice": "25,48 €/Kg",
+        "price": 3.95,
+        "url": "/produit/gyoza-poulet-citronnelle/3456700014057"
+      }
     }
   }
 }

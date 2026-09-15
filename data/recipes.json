@@ -456,20 +456,22 @@
     "tags": [
       "fast",
       "no chilli",
-      "from the freezer"
+      "no cook"
     ],
-    "packNote": "The gyoza are shop-bought and cook straight from frozen — follow the pack, roughly 3 minutes in oil, 5 under a lid with a splash of water, 2 more with the lid off. There is no recipe to give you for that.",
+    "packNote": "The gyoza are shop-bought and fresh rather than frozen, so they want eating within a couple of days and they cook a shade quicker — follow the tray, roughly 2 minutes in oil, 4 under a lid with a splash of water, 2 more with the lid off. There is no recipe to give you for that. Two trays of seven between the two of you.",
     "short": "A no-cooking night. The gyoza come from a packet; the only real cooking is the broccoli beside them.",
     "ingredients": [
       {
         "item": "gyoza",
-        "qty": "1 pack (400 g)",
-        "product": "Ajinomoto Gyoza poulet et légumes raviolis à poêler",
+        "qty": "2 trays (14 pieces)",
+        "product": "Ginza Gyoza poulet citronnelle",
         "buy": {
-          "amount": 1,
+          "amount": 2,
           "mode": "sum",
-          "section": "Proteins"
-        }
+          "section": "Proteins",
+          "price": 3.95
+        },
+        "guess": true
       },
       {
         "item": "broccoli",
@@ -3769,7 +3771,7 @@
       "no chilli",
       "dairy-free"
     ],
-    "short": "Anchovies melted into oil, olives, capers, tomato. The classic carries peperoncino; this one leaves it out and leans harder on the anchovy instead.",
+    "short": "Anchovies melted into oil, capers, tomato. The classic carries peperoncino and olives; this one has neither — the heat for the IBS rule, the olives because Charlotte does not like them — and leans harder on the anchovy instead.",
     "ingredients": [
       {
         "item": "pasta",
@@ -3791,18 +3793,6 @@
           "mode": "once",
           "section": "Best guesses",
           "price": 2.3
-        }
-      },
-      {
-        "item": "black olives",
-        "qty": "a handful, pitted",
-        "product": "Olives noires dénoyautées",
-        "guess": true,
-        "buy": {
-          "amount": 1,
-          "mode": "once",
-          "section": "Best guesses",
-          "price": 2.2
         }
       },
       {
@@ -3851,10 +3841,10 @@
       }
     ],
     "steps": [
-      "Pasta on. Salt the water properly but go easy — anchovies, olives and capers are all salty and the sauce catches up fast.",
+      "Pasta on. Salt the water properly but go easy — anchovies and capers are both salty and the sauce catches up fast.",
       "Garlic into cold olive oil over a low heat, 2 minutes, until it just turns blond. Hot oil burns it in seconds and turns the whole dish bitter.",
       "Anchovies in, and press them with a wooden spoon. They will dissolve completely in about a minute — that is the point, and why nobody eating it will identify them.",
-      "Olives and capers, 1 minute, then the tomato sauce. Simmer 8 minutes.",
+      "Capers in, 1 minute, then the tomato sauce. Simmer 8 minutes.",
       "Drain the pasta a minute early, keeping a mugful of water, and finish it in the sauce for that last minute with a splash of the water.",
       "Parsley through at the end. Taste before you add any salt at all."
     ],
@@ -4223,7 +4213,7 @@
     ]
   },
   "pisto-manchego": {
-    "title": "Pisto with manchego and a fried egg",
+    "title": "Pisto with a fried egg and shaved parmesan",
     "cuisine": "spanish",
     "slot": "dinner",
     "kind": "recipe",
@@ -4236,7 +4226,7 @@
       "vegetarian",
       "uses eggs"
     ],
-    "short": "Spain's ratatouille — courgette, aubergine, peppers and tomato cooked right down, with a fried egg broken over it.",
+    "short": "Spain’s ratatouille — courgette, aubergine, peppers and tomato cooked right down, with a fried egg broken over it. It should be manchego on top; Méré does not sell any, so it is the parmesan already on the order, shaved the same way.",
     "ingredients": [
       {
         "item": "courgettes",
@@ -4309,6 +4299,16 @@
         }
       },
       {
+        "item": "olive oil",
+        "qty": "plenty — the aubergine drinks it",
+        "product": "Bouton d’Or, une marque Intermarché Huile d'olive vierge extra BIO - issue de l'agriculture biologique",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
         "item": "eggs",
         "qty": "4",
         "product": "Volaé, une marque Intermarché Œufs frais de poules élevées au sol",
@@ -4319,15 +4319,13 @@
         }
       },
       {
-        "item": "manchego",
-        "qty": "100 g, shaved",
-        "product": "Manchego",
-        "guess": true,
+        "item": "parmesan",
+        "qty": "60 g, shaved",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Parmigiano Reggiano AOP",
         "buy": {
           "amount": 1,
-          "mode": "sum",
-          "section": "Best guesses",
-          "price": 4.5
+          "mode": "once",
+          "section": "Bread and cheese"
         }
       },
       {
@@ -4348,7 +4346,7 @@
       "Courgette and garlic, 5 minutes, then the tomatoes.",
       "Now leave it alone on a low heat for 15 minutes, stirring rarely, until it is jammy and the oil separates out at the edges. That separation is how you know it is done; before that it is just hot vegetables.",
       "Fry the eggs hard in olive oil so the whites go lacy and crisp at the edges.",
-      "Pisto into bowls, egg on top, manchego shaved over, baguette to mop."
+      "Pisto into bowls, egg on top, parmesan shaved over, baguette to mop."
     ],
     "equipment": [
       "hob"
@@ -5421,7 +5419,7 @@
     ]
   },
   "poulet-tomates-olives-four": {
-    "title": "Roast chicken thighs with tomatoes and olives",
+    "title": "Roast chicken thighs with tomatoes and lemon",
     "cuisine": "french",
     "slot": "dinner",
     "kind": "recipe",
@@ -5457,18 +5455,6 @@
           "amount": 2,
           "mode": "sum",
           "section": "Vegetables"
-        }
-      },
-      {
-        "item": "black olives",
-        "qty": "a handful",
-        "product": "Olives noires dénoyautées",
-        "guess": true,
-        "buy": {
-          "amount": 1,
-          "mode": "once",
-          "section": "Best guesses",
-          "price": 2.2
         }
       },
       {
@@ -5528,7 +5514,7 @@
       "Oven to 200°C. Halve the potatoes and put them in the dish with the onion wedges, the halved garlic head and the rosemary, tossed in olive oil and salt.",
       "Dry the chicken thighs, salt the skin hard, and sit them on top — skin up, and not touching each other. Anything laid on top of them steams them.",
       "25 minutes.",
-      "Scatter the cherry tomatoes, olives and lemon wedges around the chicken, and give it 20 minutes more.",
+      "Scatter the cherry tomatoes and lemon wedges around the chicken, and give it 20 minutes more.",
       "The tomatoes should have burst and gone jammy and the skin should be crisp. If the skin is still pale, three minutes under the grill fixes it.",
       "Squeeze the roasted garlic cloves out of their skins and mash them into the pan juices before serving."
     ]

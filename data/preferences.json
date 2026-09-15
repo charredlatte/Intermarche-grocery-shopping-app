@@ -38,7 +38,10 @@
       "crème entière"
     ],
     "limitedReason": "Mildly lactose intolerant. Cheese is fine. Coconut milk is not dairy and is unrestricted.",
-    "disliked": [],
+    "disliked": [
+      "olives"
+    ],
+    "dislikedNote": "Olives came out of the puttanesca and the roast chicken on 2026-09-14 because Charlotte does not like them — recorded then in the recipes on her page, and here on 2026-09-15.",
     "boredOf": [],
     "alwaysWelcome": [
       "choux de Bruxelles",
@@ -149,7 +152,7 @@
   "ingredients": {
     "_comment": "How adventurous to be with products. Set by Charlotte on 2026-09-06.",
     "useUnboughtProducts": true,
-    "note": "Actively use products she has not bought before — pancetta, saffron, anchovies, capers, olives, pine nuts, manchego, gambas, leeks, mushrooms, shallots, arborio rice. These ship as guesses with an estimated price, then get looked up on the site and recorded in data/catalogue.json; once named there, the page lists them under New to you at the real price. Anything already in the receipts should still use its exact name — the key into the pricebook and the catalogue.",
+    "note": "Actively use products she has not bought before — pancetta, saffron, anchovies, capers, pine nuts, gambas, leeks, mushrooms, shallots, arborio rice. These ship as guesses with an estimated price, then get looked up on the site and recorded in data/catalogue.json; once named there, the page lists them under New to you at the real price. Anything already in the receipts should still use its exact name — the key into the pricebook and the catalogue.",
     "avoidDespiteBeingEuropean": [
       "chorizo",
       "piment d'Espelette",
