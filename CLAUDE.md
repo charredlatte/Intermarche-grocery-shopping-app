@@ -87,6 +87,17 @@ questions, then a plan, then a line-item list, then the basket.
   and filterable on the Recipes tab. The air fryer and the muffin tin were being
   ignored entirely until 2026-09-06; use them. Assume nothing else: no microwave,
   slow cooker or barbecue is recorded.
+- **Never bind page state to what the database hands you.** On 2026-09-14 the
+  page took `dropped`, `subs`, `choices`, `qtyAdj`, `added` and `addAdj` straight
+  off a snapshot instead of copying them. The client hands out its own cached
+  objects and works out what to write by comparing references, so every strike,
+  swap and decision was being made *inside* that cache; the save then handed the
+  same objects back, the client saw nothing changed, and wrote nothing. No error,
+  no rejection — the write simply had no content. It cost Charlotte an evening,
+  and the tell was visible from the first read of her document: `have`, `picks`
+  and `extra` were the three fields rebuilt fresh, and `have` was the one field
+  she could see saving. There is a `clone()` on both sides of the wire now. If
+  edits ever stop sticking again, check that before anything else.
 - **Favourites live in the page, not the repo.** Stars are written to the shared
   artifact database at `library/favourites`, deliberately outside
   `weeks/<weekOf>` so they survive a new plan. Favourited dishes sort to the top
@@ -173,12 +184,15 @@ the basket in her Chrome and reports each step as a **new document** in
 `push/<weekOf>/progress`; the page folds those over the request and shows the
 progress and, at the end, the site's own total against the estimate.
 
-Why new documents: checked 2026-09-14, the Artifact tool's `write_db` refuses
-`update`, `set` and `delete` on any document that already exists
-(`version_mismatch` — it wants an `if_version` the tool cannot send). Creating a
-document is the only write Claude can make to a page's database once her page is
-live, so everything Claude reports is append-only, and anything seeded into a
-new page has to be written before she first opens it.
+Why new documents: a progress report is a fact about one moment, and the page
+folds the run in order, so each one is its own document rather than an edit to a
+running total. **Corrected 2026-09-15:** the note here used to say `write_db`
+could not touch an existing document at all. It can — pass `if_version` with the
+`version` the last `read_db` returned, and `update`, `set` and `delete` all work.
+That is how the eleven "Decide first" answers, the litter override and the
+carried-over week state were written into a live page. Read first, pin the
+version you read, and a concurrent edit fails the write instead of silently
+overwriting her.
 
 Week, Recipes and the Cook quiz sit behind the basket unchanged. Cook is a
 five-step quiz modelled on the Potto flow Charlotte sent on 2026-09-06; no-chilli

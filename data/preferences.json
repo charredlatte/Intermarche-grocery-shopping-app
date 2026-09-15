@@ -99,21 +99,17 @@
         "note": "Ordered in pairs every time it appears."
       },
       {
-        "name": "L'Or Espresso capsules intensité 8 — boîte de 50",
+        "name": "L'Or Espresso - Capsules de café compatibles Nespresso Brésil Intensité 8",
         "quantity": 1,
-        "price": 17.64,
-        "guess": true,
-        "note": "3 pods a day between the two of them. A box of 50 is about 17 days, so this is on every order and struck off when there is still a box in the cupboard."
+        "note": "3 pods a day between the two of them. Named off the receipt of 15 September 2026, the first that says which L’Or she actually buys: Brésil intensité 8, in a box of 30, not the 50 the old guess assumed. About ten days, so it is on most orders."
       },
       {
-        "name": "L'Or Espresso Décaféiné capsules — boîte de 50",
+        "name": "L'Or Capsules de café compatibles Nespresso Decaffeinato Intensité 6",
         "quantity": 1,
-        "price": 17.64,
-        "guess": true,
-        "note": "The decaf half of the 3-a-day. Lasts longer than the strength 8; strike it off most weeks."
+        "note": "The decaf half of the 3-a-day, named off the same receipt. Decaffeinato is intensité 6, not 8 — Méré sells no decaf at 8 in a usable box. Lasts longer than the Brésil; strike it off most weeks."
       }
     ],
-    "coffeeNote": "Told to Claude 2026-09-06: L'Or capsules, strength 8, plus decaf, 3 pods a day. The only coffee in the receipts is one box on 2025-10-09 at 17,64 € — and the email truncated the name to \"L'Or Capsules de café ...\", so the variety was never captured and the exact Intermarché name is unknown. Both lines are therefore guesses at that same price, flagged in the page. Replace them with the exact names off the next receipt that includes coffee, and drop the guess flag."
+    "coffeeNote": "Resolved 2026-09-15. Both capsules are now exact receipt names with real prices and the guess flags are gone. The only coffee before this was one box on 2025-10-09 whose name the email truncated to “L’Or Capsules de café ...”, which is why both lines were guesses at 17,64 € for a box of 50 for nine months. Méré sells neither in a 50; both are boxes of 30."
   },
   "pantry": {
     "_comment": "Asian staples Méré stocks, from the receipts and re-checked on the site 2026-09-14. These are the receipt names — keys into data/catalogue.json, which holds each one's product page and current pack. They are not search terms.",

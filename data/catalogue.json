@@ -823,54 +823,6 @@
         }
       ]
     },
-    "L'Or Espresso capsules intensité 8 — boîte de 50": {
-      "status": "check",
-      "search": "capsules l'or intensité 8",
-      "checked": "2026-09-14",
-      "listing": {
-        "brand": "L'Or",
-        "title": "Capsules de café compatibles Nespresso Lungo Profondo Intensité 8",
-        "packaging": "La boite de 50 capsules - 260g",
-        "unitPrice": "63,81 €/Kg",
-        "price": 16.59,
-        "url": "/produit/capsules-de-cafe-compatibles-nespresso-lungo-profondo-intensite-8/8711000705063"
-      },
-      "note": "The only strength-8 L'Or capsule in a box of 50 is Lungo Profondo. The Espresso Brésil 8 comes in 30. The receipt never named which one you buy.",
-      "alternatives": [
-        {
-          "brand": "L'Or",
-          "title": "Espresso - Capsules de café compatibles Nespresso Brésil Intensité 8",
-          "packaging": "La boîte de 30 capsules - 165g",
-          "unitPrice": "65,13 €/Kg",
-          "price": 10.16,
-          "url": "/produit/espresso-capsules-de-cafe-compatibles-nespresso-bresil-intensite-8/8711000572580"
-        }
-      ]
-    },
-    "L'Or Espresso Décaféiné capsules — boîte de 50": {
-      "status": "missing",
-      "search": "capsules l'or décaféiné",
-      "checked": "2026-09-14",
-      "note": "No decaf L'Or capsules in a box of 50 at Méré. The biggest is Decaffeinato intensité 6 in 30; Lungo Profondo Decaffeinato 8 only comes in 10.",
-      "alternatives": [
-        {
-          "brand": "L'Or",
-          "title": "Capsules de café compatibles Nespresso Decaffeinato Intensité 6",
-          "packaging": "La boite de 30 capsules - 156g",
-          "unitPrice": "60,19 €/Kg",
-          "price": 9.39,
-          "url": "/produit/capsules-de-cafe-compatibles-nespresso-decaffeinato-intensite-6/8711000547250"
-        },
-        {
-          "brand": "L'Or",
-          "title": "Capsules de café compatibles Nespresso Lungo Profondo Decaffeinato Intensité 8",
-          "packaging": "La boite de 10 capsules - 52g",
-          "unitPrice": "66,73 €/Kg",
-          "price": 3.47,
-          "url": "/produit/capsules-de-cafe-compatibles-nespresso-lungo-profondo-decaffeinato-intensite-8/8711000709405"
-        }
-      ]
-    },
     "La Nouvelle Agriculture Aiguillette de poulet": {
       "status": "exact",
       "search": "Aiguillette de poulet",
@@ -2294,6 +2246,32 @@
         "unitPrice": "25,48 €/Kg",
         "price": 3.95,
         "url": "/produit/gyoza-poulet-citronnelle/3456700014057"
+      }
+    },
+    "L'Or Espresso - Capsules de café compatibles Nespresso Brésil Intensité 8": {
+      "status": "exact",
+      "search": "capsules l'or intensité 8",
+      "checked": "2026-09-15",
+      "note": "Bought on order 819539390, so the listing is confirmed rather than chosen.",
+      "listing": {
+        "brand": "L'Or",
+        "title": "Espresso - Capsules de café compatibles Nespresso Brésil Intensité 8",
+        "packaging": "La boîte de 30 capsules - 165g",
+        "price": 10.16,
+        "url": "/produit/espresso-capsules-de-cafe-compatibles-nespresso-bresil-intensite-8/8711000572580"
+      }
+    },
+    "L'Or Capsules de café compatibles Nespresso Decaffeinato Intensité 6": {
+      "status": "exact",
+      "search": "capsules l'or décaféiné",
+      "checked": "2026-09-15",
+      "note": "Bought on the same order. Intensité 6 — Méré lists no decaf at 8 in a box this size.",
+      "listing": {
+        "brand": "L'Or",
+        "title": "Capsules de café compatibles Nespresso Decaffeinato Intensité 6",
+        "packaging": "La boite de 30 capsules - 156g",
+        "price": 9.39,
+        "url": "/produit/capsules-de-cafe-compatibles-nespresso-decaffeinato-intensite-6/8711000547250"
       }
     }
   }
