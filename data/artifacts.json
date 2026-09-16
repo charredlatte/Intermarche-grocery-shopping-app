@@ -1,10 +1,13 @@
 {
-  "_comment": "One basket page per week, each published fresh by /courses and recorded here. /courses push reads the week's link from this file to find the push request. The page before 2026-09-14 served every week from one bookmarked URL; it is kept as oldSharedPage and no longer updated. The week of 2026-09-14 was published twice; Charlotte approved and pushed from AsuNh1…, and the link first recorded here (a531ad93…) is the copy she never used, kept under duplicates so nobody reads a push from it again.",
+  "_comment": "One basket page per week, each published fresh by /courses and recorded here. /courses push reads the week's link from this file to find the push request, so `weeks` must always name the page she is actually using; everything under `duplicates` is a superseded page for the same week and must never be read for a push. The week of 2026-09-14 has three pages: a531ad93… was published first and never used; AsuNh1… is the one she approved and pushed from on 15 September; 96VqXg42… republished the same week on 16 September to give her the Kitchen tab and the editable week, carrying her favourites, the week document and the finished push across. The page before 2026-09-14 served every week from one bookmarked URL; it is kept as oldSharedPage and no longer updated.",
   "weeks": {
-    "2026-09-14": "https://claude.ai/artifact/AsuNh1WoA3EDHXM9NaiGSP"
+    "2026-09-14": "https://claude.ai/artifact/96VqXg42j4MQWfNGKUzUfL"
   },
   "duplicates": {
-    "2026-09-14": ["https://claude.ai/code/artifact/a531ad93-dfa5-4dcb-832e-a7f2e3f6ca23"]
+    "2026-09-14": [
+      "https://claude.ai/code/artifact/a531ad93-dfa5-4dcb-832e-a7f2e3f6ca23",
+      "https://claude.ai/artifact/AsuNh1WoA3EDHXM9NaiGSP"
+    ]
   },
   "oldSharedPage": "https://claude.ai/code/artifact/6c3028de-cca4-41c2-b063-b10cb4214efb"
 }
