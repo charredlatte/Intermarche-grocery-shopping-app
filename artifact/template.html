@@ -998,12 +998,40 @@ let kitchen = {};        // product -> { qty, at } — what she has told us is h
 let kitchenRef = null;
 /* Corrections from a week document written by the older page, which kept them
    under `have`. Read, never written: they sit just above the receipt and below
-   anything she says now. */
+   anything she says now — but only while they are about the receipt this page
+   is seeded from. The week document records the order it was written against,
+   so when a newer one has landed since, those corrections are precisely the
+   stale statement this page refuses to assume: they move to `legacyOld`, which
+   is asked about rather than counted. */
 let legacyHave = {};
+let legacyOld  = {};
+/* The pair exactly as the document had it, written back untouched by `persist`.
+   They only mean anything together — a set of corrections, and the receipt they
+   were about — so rewriting either would either destroy the questions before
+   she has answered them or, worse, restamp her old numbers as being about this
+   week's shop. Once she has answered, `toConfirm` skips them and the pair sits
+   there inert until next week's page replaces the document. */
+let legacyRaw = {};
+let legacySeed = null;
 
 const staleSaid = (e) => !!e && !(e.at >= SEED_AT);
 const saidNow   = () => Object.entries(kitchen).filter(([, e]) => !staleSaid(e));
 const saidStale = () => Object.entries(kitchen).filter(([, e]) => staleSaid(e));
+
+/* Everything this page is holding but will not count until she says so: her own
+   statements from before this receipt, and corrections carried over from a page
+   seeded from an older one. Same question, same two answers, one list. A
+   carried correction the new receipt already speaks to is dropped rather than
+   asked about — the receipt is the better answer, and a question she does not
+   need to be asked is one more reason to stop reading the list. */
+function toConfirm() {
+  const out = saidStale().map(([product, e]) => ({ product, qty: e.qty, when: whenSaid(e.at) }));
+  for (const [product, qty] of Object.entries(legacyOld)) {
+    if (kitchen[product] || haveSeed[product] != null || !(qty > 0)) continue;
+    out.push({ product, qty, when: "on last week's page" });
+  }
+  return out.sort((a, b) => a.product.localeCompare(b.product));
+}
 const r3 = (n) => Math.round(n * 1000) / 1000;
 
 /* What the meals she has ticked as cooked have taken out of the kitchen. */
@@ -1367,7 +1395,12 @@ async function persist() {
       picks: diff, extra, qtyAdj, subs, dropped, added, addAdj, choices,
       mealDone, mealMoved, mealOff, mealAdded,
       approved, inBasket,
-      seededFrom: ONHAND.from ? ONHAND.from.order : null,
+      // Passed through, never rewritten — see legacyRaw. On a document this page
+      // wrote itself these are its own kitchen and its own receipt; on one
+      // carried from an older page they are that page's, and saying so is what
+      // keeps its corrections in "Still here?" instead of being believed.
+      have: legacyRaw,
+      seededFrom: legacySeed != null ? legacySeed : (ONHAND.from ? ONHAND.from.order : null),
       updatedAt: Date.now(),
     });
   } catch (e) {
@@ -1397,7 +1430,13 @@ function applyRemote(d) {
   picks = { ...baseline, ...(d.picks || {}) };
   // Written by the older page, which kept the kitchen in the week. Still read,
   // so nothing she typed there is lost; the Kitchen tab writes elsewhere now.
-  legacyHave = d.have || {};
+  // Believed only if it was written against the receipt this page is seeded
+  // from — a shop since means she has not seen these numbers against it.
+  legacyRaw = d.have || {};
+  legacySeed = d.seededFrom != null ? d.seededFrom : null;
+  const sameReceipt = !ONHAND.from || String(legacySeed || "") === String(ONHAND.from.order);
+  legacyHave = sameReceipt ? legacyRaw : {};
+  legacyOld = sameReceipt ? {} : legacyRaw;
   mealDone = d.mealDone || {};
   mealMoved = d.mealMoved || {};
   mealOff = d.mealOff || {};
@@ -2027,7 +2066,7 @@ function renderLarder() {
   const used = usedByCooked();
   const now = onHandNow();
   const said = Object.fromEntries(saidNow());
-  const old = saidStale();
+  const old = toConfirm();
 
   // What each thing here is standing in for this week, so a number she changes
   // shows its effect without her going back to the basket to look for it.
@@ -2077,17 +2116,17 @@ function renderLarder() {
     html += `<div class="shop-sec ask-sec">
         <div class="group-head has-icon" style="margin:0"><span class="sec-icon" aria-hidden="true">?</span><h2>Still here?</h2><span class="leader"></span><span class="group-count">${old.length}</span></div>
         <p class="decide-lede">You told us about these before the ${esc(onHandDate() || "last")} order. A shop has happened since, so they count for nothing until you say — nothing here is assumed.</p>
-        <ul class="bl-list">${old.map(([product, e]) => `
+        <ul class="bl-list">${old.map((e) => `
           <li class="bl is-ask"><div class="bl-row">
             <div class="bl-main">
-              <div class="bl-name">${esc(product)}</div>
-              <div class="bl-meta"><span>you said ${esc(fmtQty(product, e.qty))} ${esc(whenSaid(e.at))}</span></div>
+              <div class="bl-name">${esc(e.product)}</div>
+              <div class="bl-meta"><span>you said ${esc(fmtQty(e.product, e.qty))} ${esc(e.when)}</span></div>
             </div>
             <div class="bl-qty is-none">not counted</div>
           </div>
           <div class="line-ctl">
-            <button class="minibtn" type="button" data-larderkeep="${esc(product)}">Still ${esc(fmtQty(product, e.qty))}</button>
-            <button class="minibtn" type="button" data-lardergone="${esc(product)}">All gone</button>
+            <button class="minibtn" type="button" data-larderkeep="${esc(e.product)}">Still ${esc(fmtQty(e.product, e.qty))}</button>
+            <button class="minibtn" type="button" data-lardergone="${esc(e.product)}">All gone</button>
           </div></li>`).join("")}</ul>
         <div class="toolbar" style="margin-top:.7rem"><button class="btn" id="larderallgone">None of it is left</button></div>
       </div>`;
@@ -2487,9 +2526,13 @@ function stepLarder(product, dir) {
 }
 /* Re-stating the same amount is the whole answer to "still here?": the number
    does not move, but its date does, and the date is what makes it count. */
-function larderKeep(product) { if (kitchen[product]) say(product, kitchen[product].qty); }
+function larderKeep(product) {
+  const e = toConfirm().find((x) => x.product === product);
+  if (e) say(product, e.qty);
+}
 function larderAllGone() {
-  for (const [product] of saidStale()) kitchen[product] = { qty: 0, at: Date.now() };
+  const at = Date.now();
+  for (const e of toConfirm()) kitchen[e.product] = { qty: 0, at };
   renderAll(); persistKitchen();
 }
 function resetLarder() { kitchen = {}; renderAll(); persistKitchen(); }

@@ -31,7 +31,7 @@ Everything the parser, the build and the skill need is already in `data/`.
 
 **1. Purchase history.** Intermarché emails a `Votre facture est disponible`
 receipt after every Drive order, itemized with exact product names, quantities,
-unit prices and what was out of stock. 22 of them, Oct 2025 → Aug 2026, are in
+unit prices and what was out of stock. 24 of them, Oct 2025 → Sep 2026, are in
 `data/invoices/` as plain text. `scripts/parse-invoices.mjs` turns them into
 `data/purchase-history.json`. That is a better preference model than any
 onboarding quiz, because it is what she did rather than what she said.
@@ -72,6 +72,15 @@ until she answers. An inventory nobody decrements still under-orders, and
 under-ordering still ends with no dinner; the difference is that there is now
 somewhere to decrement it, and anything unconfirmed counts as zero rather than
 as stock.
+
+**A week document carried from an older page** keeps its corrections under
+`have`, paired with `seededFrom`, the order they were made against. The page
+writes that pair straight back, never rewriting either: together they say "these
+numbers are about *that* receipt". When it is not the receipt the page is seeded
+from, they are not believed — they go to "Still here?" with the rest, minus
+anything the newer receipt already answers. Rewriting `seededFrom` would restamp
+a fortnight-old guess as being about this week's shop, which is the one thing
+that pair must never say.
 
 Note "pantry" is already taken twice (`preferences.pantry` = what Méré stocks; a
 recipe's `pantry: true` = salt, oil, eggs). This is "on hand" — and "larder" in
