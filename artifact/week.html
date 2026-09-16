@@ -1567,8 +1567,10 @@ function applyRemote(d) {
   );
   db.collection("push/" + plan.weekOf + "/progress").onSnapshot(
     (qs) => {
+      // A collection can come back in any order; that is not a change.
       const rows = qs.docs.map((d) => d.data());
-      if (stable(rows) === stable(progress)) return;
+      const byTime = (xs) => stable([...xs].sort((a, b) => stable(a).localeCompare(stable(b))));
+      if (byTime(rows) === byTime(progress)) return;
       progress = rows; renderAll();
     },
     (err) => { pushError = err.code || "unavailable"; renderAll(); },
@@ -2618,7 +2620,12 @@ function stepLarder(product, dir) {
    does not move, but its date does, and the date is what makes it count. */
 function larderKeep(product) {
   const e = toConfirm().find((x) => x.product === product);
-  if (e) say(product, e.qty);
+  // Never silently nothing: if the list has moved under the button, the amount
+  // is still recoverable from wherever it was carried in.
+  const qty = e ? e.qty
+    : kitchen[product] ? kitchen[product].qty
+    : legacyOld[product];
+  if (qty != null) say(product, qty);
 }
 function larderAllGone() {
   const at = Date.now();
@@ -3113,7 +3120,43 @@ function renderResults() {
 }
 
 /* ---------- render all ---------- */
+/* ---------- never redraw under a finger ----------
+   A browser fires `click` only when the press and the release land on the same
+   element. This page rebuilds whole panels with innerHTML, so any redraw that
+   arrives mid-press destroys the button being pressed and the click never
+   happens at all — the tap vanishes with no error and nothing on screen. That
+   is what made the "Still here?" buttons work only sometimes, and chasing each
+   redraw to its source only narrows the window rather than closing it.
+
+   So the window is closed: while a pointer is down nothing is redrawn, and a
+   redraw that wanted to happen runs on release instead. The press always wins,
+   because it is the one thing on this page that came from her. A release that
+   never arrives — the pointer left the window — must not freeze the page, so
+   the hold times out. */
+let pressed = false, heldRender = false, holdTimer = 0;
+function pressStart() {
+  pressed = true;
+  clearTimeout(holdTimer);
+  holdTimer = setTimeout(pressEnd, 1500);
+}
+function pressEnd() {
+  clearTimeout(holdTimer);
+  if (!pressed) return;
+  pressed = false;
+  // After the click has been delivered, not instead of it.
+  if (heldRender) { heldRender = false; setTimeout(renderAll, 0); }
+}
+addEventListener("pointerdown", pressStart, true);
+addEventListener("pointerup", pressEnd, true);
+addEventListener("pointercancel", pressEnd, true);
+addEventListener("blur", pressEnd, true);
+
 function renderAll() {
+  if (pressed) { heldRender = true; return; }
+  renderNow();
+}
+
+function renderNow() {
   renderIngChips();
   renderCuisineChips();
   renderCook();

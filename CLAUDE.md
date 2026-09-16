@@ -208,16 +208,23 @@ the basket in her Chrome and reports each step as a **new document** in
 `push/<weekOf>/progress`; the page folds those over the request and shows the
 progress and, at the end, the site's own total against the estimate.
 
-**The page writes one document at a time.** The db contract says so — one write
-in flight per doc, last writer wins, no transactions — and ignoring it is what
-made the "Still here?" buttons work only sometimes on 2026-09-16. Every tap
-fired its own whole-document `set`; the echo snapshot came back mid-tap and
-re-rendered the page, and a button replaced between mousedown and mouseup fires
-no click at all, so roughly every other tap vanished. Writes now queue (one in
+**Nothing is redrawn while a pointer is down.** A browser fires `click` only
+when the press and the release land on the same element, and this page rebuilds
+whole panels with `innerHTML`. Any redraw arriving mid-press therefore destroys
+the button being pressed and the tap vanishes — no error, nothing on screen.
+That is what killed the "Still here?" buttons on 2026-09-16. `renderAll` holds
+while a pointer is down and runs on release; keep it that way, and keep the
+1.5 s timeout, or a pointer that leaves the window freezes the page. Chasing the
+individual redraw to its source only narrows the window — the press guard is
+what closes it.
+
+**The page also writes one document at a time.** The db contract says so — one
+write in flight per doc, last writer wins, no transactions. Writes queue (one in
 flight, always carrying the newest state), each stamps `updatedAt`, and a
 snapshot is only believed if it was written *after* our own last write. Keep
 both halves: serialising alone still lets a late snapshot of an earlier write
-undo a later one.
+undo a later one. This is what stops needless redraws; the press guard is what
+makes the remaining ones harmless.
 
 Why new documents: checked 2026-09-14, the Artifact tool's `write_db` refuses
 `update`, `set` and `delete` on any document that already exists
