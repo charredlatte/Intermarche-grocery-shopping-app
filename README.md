@@ -100,6 +100,8 @@ The handoff is the plan itself. Answer on the couch Sunday morning, run the bask
 
 It is generated, not hand-written, and **every `/courses` run publishes a fresh page with its own link** for that week, recorded in `data/artifacts.json`. Favourites carry over from one week's page to the next.
 
+**The week is editable while I'm living it.** The plan is a proposal, and by Wednesday something has been cooked, something was eaten out, and Saturday has moved. Every meal takes "Cooked it" or "Didn't", Move, and Off the week, and I can add one; anything I tick stops being shopped for, because one was eaten out of the kitchen and the other never happened. What's left in the fridge has its own tab: it starts from the last receipt, takes off what the meals I ticked as cooked used, and then does exactly what I say — my word wins over both. Those corrections are dated and they carry to next week's page, which is the point. What they don't do is get believed forever: anything I said before the newest order lands in "Still here?" and counts for nothing until I answer, because an inventory nobody decrements under-orders, and under-ordering ends with no dinner.
+
 It is also a two-person app. Any meal can be swapped — either for another dish from the library, or for something new invented on the spot — and the picks live in a shared database, so my partner and I see the same week on our own phones. The shopping list is derived from whatever is currently picked, so the total follows every swap. A dish eaten out of an earlier batch is marked as leftovers and buys nothing, which is the only reason the numbers come out right: counting the Sunday curry three times bought six tins of coconut milk for one pot.
 
 The library is 32 dishes now, roughly half Asian and half European. Ready-made things like the gyoza are still on the menu but marked as assemblies — a note about the packet, and a real recipe only for the part that is actually cooked.
@@ -109,7 +111,7 @@ The library is 32 dishes now, roughly half Asian and half European. Ready-made t
 - [x] Push tested end to end on 2026-09-14 with a two-line test page: request, basket filled in Chrome, progress on the page, site total matched the estimate to the cent. Re-run the same day after the browser pre-flight hardening, with the in-page helper: one tool call for both products, wrong pack refused, out-of-stock reported, off-site call refused, basket restored
 - [x] First push of a whole approved week, 15 September 2026 — 43 products, 130,54 € at Méré (almond milk and paprika from my Keep list included) against a 130,59 € estimate. Two lines were out of stock and settled in chat: the eggs came as two boxes of six, the Salakis as the plain one. Weighed goods turned out to count in grams, so the in-page helper was rebuilt to take one click per call
 - [ ] The budget question — a 7-dinner, 5-lunch week with a pantry restock prices out around 139 €, comfortably over the normal 100 € ceiling. First real run will settle whether the ceiling moves or the lunches go back to being leftovers.
-- [ ] Pantry state — knowing the 20-egg pack from last week is half gone
+- [x] Pantry state — knowing the 20-egg pack from last week is half gone. A Kitchen tab I keep up to date as the week goes on, carried from one week's page to the next, with anything older than the last receipt asked about rather than assumed
 
 ## Setup
 

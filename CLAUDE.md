@@ -44,20 +44,39 @@ section for why.
 **2. Standing preferences.** `data/preferences.json` — household, budget, the
 dietary constraints, the confirmed-in-stock pantry. Hand-edited, never generated.
 
-**2b. What's already in the kitchen.** The build seeds an on-hand list from the
-**most recent invoice** and the page subtracts it, so the shopping list is what
-she still has to buy rather than what the recipes add up to. `data/equivalents.json`
+**2b. What's in the kitchen.** The build seeds an on-hand list from the **most
+recent invoice** and the page subtracts it, so the shopping list is what she
+still has to buy rather than what the recipes add up to. `data/equivalents.json`
 — hand-edited, like preferences — says which products stand in for one another,
 so the Jean Rozé pork chops on the receipt cover a recipe naming the Terroirs
 ones. Every match is printed on the line it covered: an equivalence is reported,
-never silent. Charlotte and her partner can correct any quantity, swap the
-product, strike a line off or add one, and all of it is shared.
+never silent.
 
-Deliberately week-scoped — each plan re-seeds from the newest receipt rather than
-carrying a running inventory forward, because an inventory nobody decrements
-under-orders, and under-ordering ends with no dinner. Note "pantry" is already
-taken twice (`preferences.pantry` = what Méré stocks; a recipe's `pantry: true`
-= salt, oil, eggs). This is "on hand".
+Since 2026-09-16 the kitchen is **its own tab**, because Charlotte asked to keep
+it up to date as the week goes on rather than only at the moment the plan is
+written. What is on hand is three layers, in this order:
+
+1. the newest receipt;
+2. **minus what the meals she has ticked as cooked used** — reversible, and
+   printed on every line it touches, so nothing is deducted in silence;
+3. **plus or minus anything she has said herself**, which outranks both.
+
+Her own statements are dated and live in **`library/kitchen`** in the page's
+shared database — outside `weeks/<weekOf>`, exactly like favourites, so they
+survive next week's page. `/courses` copies that document across with them.
+
+The date is the safety catch, and it is what keeps the old rule intact: **a
+statement older than the newest receipt is not believed.** A shop has happened
+since, so it lands in "Still here?" on the Kitchen tab and counts for nothing
+until she answers. An inventory nobody decrements still under-orders, and
+under-ordering still ends with no dinner; the difference is that there is now
+somewhere to decrement it, and anything unconfirmed counts as zero rather than
+as stock.
+
+Note "pantry" is already taken twice (`preferences.pantry` = what Méré stocks; a
+recipe's `pantry: true` = salt, oil, eggs). This is "on hand" — and "larder" in
+the page's own code, only because `.kitchen` was already the Cook quiz's drawn
+hob.
 
 **3. The weekly conversation.** `.claude/skills/courses/SKILL.md` — three
 questions, then a plan, then a line-item list, then the basket.
@@ -87,6 +106,12 @@ questions, then a plan, then a line-item list, then the basket.
   and filterable on the Recipes tab. The air fryer and the muffin tin were being
   ignored entirely until 2026-09-06; use them. Assume nothing else: no microwave,
   slow cooker or barbecue is recorded.
+- **The week is editable all week.** Every meal card takes "Cooked it" /
+  "Didn't", Move, and Off the week; the Week tab has Add a meal. Anything ticked
+  either way stops being shopped for — one was eaten out of the kitchen, the
+  other never happened — and only "Cooked it" comes off the kitchen counts. So a
+  plan note like "if the Drive slot slips to Tuesday, shift everything a day" is
+  something she can now do on the page instead of in her head.
 - **Favourites live in the page, not the repo.** Stars are written to the shared
   artifact database at `library/favourites`, deliberately outside
   `weeks/<weekOf>` so they survive a new plan. Favourited dishes sort to the top
@@ -150,8 +175,9 @@ npm run drive:list -- <push doc>.json [<progress dir>] [--batch <tabId>]  # work
 
 **A fresh page every week.** Each `/courses` run publishes the built page as a
 new artifact — new link — and records it in `data/artifacts.json` under the
-week. Charlotte asked for this on 2026-09-14. Her favourites (`library/favourites`)
-are copied across from the previous page with `read_db`/`write_db`; publish with
+week. Charlotte asked for this on 2026-09-14. Her favourites
+(`library/favourites`) **and her kitchen (`library/kitchen`)** are copied across
+from the previous page with `read_db`/`write_db`; publish with
 `capabilities: { db: {}, sample: {} }` and `contract: "0.2.41"`. The pages before
 that week shared one bookmarked URL, still listed there as the old page.
 
@@ -180,7 +206,9 @@ document is the only write Claude can make to a page's database once her page is
 live, so everything Claude reports is append-only, and anything seeded into a
 new page has to be written before she first opens it.
 
-Week, Recipes and the Cook quiz sit behind the basket unchanged. Cook is a
+Behind the basket: **Kitchen**, where she says what is actually left and what
+the cooked meals took; **Week**, where meals are swapped, ticked off, moved,
+added or struck; then Recipes and the Cook quiz. Cook is a
 five-step quiz modelled on the Potto flow Charlotte sent on 2026-09-06; no-chilli
 is a locked card, because it is a health rule, not a mood.
 

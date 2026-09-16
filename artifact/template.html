@@ -142,6 +142,10 @@
   }
   .tab:hover { color: var(--ink-2); }
   .tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--herb); }
+  /* Five tabs on a 360px phone: the tracking is what runs out of room first. */
+  @media (max-width: 26rem) {
+    .tab { font-size: .69rem; letter-spacing: .05em; padding-left: .12rem; padding-right: .12rem; }
+  }
 
   /* ---- controls ---- */
   .controls { padding: 1.25rem 0 .3rem; display: flex; flex-direction: column; gap: .95rem; }
@@ -766,6 +770,38 @@
   details.kitchenbox > summary { font: 500 .82rem/1.3 var(--f-body); color: var(--ink); }
   .kitchen-body { padding: 0 .75rem .8rem; }
   .kitchen-note { margin: 0 0 .3rem; font: 400 .78rem/1.5 var(--f-body); color: var(--ink-3); }
+
+  /* ---- the larder: the Kitchen tab ----
+     Called "larder" in here only because .kitchen is already the quiz's drawn
+     hob. It reuses the basket's line furniture — .bl, .step, .minibtn — so a
+     line about what is in the fridge reads as the same kind of object as a line
+     about what to buy. */
+  .said { font: 400 .72rem/1.45 var(--f-mono); color: var(--ink-3); margin-top: .12rem; }
+  .said.is-used { color: var(--herb); }
+  .bl.is-gone .bl-name { color: var(--ink-3); text-decoration: line-through; }
+  .bl.is-ask { padding-left: .7rem; border-left: 2px solid var(--yuzu); border-bottom-style: solid; }
+  .ask-sec .sec-icon { font: 700 .85rem/1 var(--f-mono); background: var(--yuzu-soft); color: var(--yuzu); }
+  .bl-qty {
+    flex: none; font: 600 .88rem/1.35 var(--f-mono); font-variant-numeric: tabular-nums;
+    white-space: nowrap; color: var(--ink);
+  }
+  .bl-qty.is-none { color: var(--ink-3); }
+
+  /* ---- the week as it is actually lived ---- */
+  .mealctl { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; margin-top: .5rem; }
+  .mealctl .seg button { font-size: .72rem; padding: .3rem .5rem; white-space: nowrap; }
+  .card.is-done { opacity: .74; }
+  .card.is-done .card-body > h3 { text-decoration: line-through; text-decoration-color: var(--ink-3); }
+  .card.is-skipped { opacity: .62; }
+  .mark { font: 500 .66rem/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; }
+  .mark.is-cooked { color: var(--herb); }
+  .mark.is-skipped { color: var(--clay); }
+  .mark.is-added, .mark.is-moved { color: var(--ink-3); }
+  .weekstate {
+    display: flex; flex-wrap: wrap; gap: .15rem .9rem; margin-top: .9rem;
+    padding: .6rem .7rem; border-radius: 3px; background: var(--herb-soft);
+    font: 400 .78rem/1.5 var(--f-body); color: var(--ink-2);
+  }
 </style>
 
 <div class="wrap">
@@ -779,6 +815,7 @@
 
   <nav class="tabs" role="tablist" aria-label="Sections">
     <button class="tab" role="tab" id="tab-shop"    aria-controls="panel-shop"    aria-selected="true">Basket</button>
+    <button class="tab" role="tab" id="tab-larder"  aria-controls="panel-larder"  aria-selected="false">Kitchen</button>
     <button class="tab" role="tab" id="tab-week"    aria-controls="panel-week"    aria-selected="false">Week</button>
     <button class="tab" role="tab" id="tab-recipes" aria-controls="panel-recipes" aria-selected="false">Recipes</button>
     <button class="tab" role="tab" id="tab-cook"    aria-controls="panel-cook"    aria-selected="false">Cook</button>
@@ -786,6 +823,10 @@
 
   <section id="panel-shop" role="tabpanel" aria-labelledby="tab-shop">
     <div id="shop-out"></div>
+  </section>
+
+  <section id="panel-larder" role="tabpanel" aria-labelledby="tab-larder" hidden>
+    <div id="larder-out"></div>
   </section>
 
   <section id="panel-cook" role="tabpanel" aria-labelledby="tab-cook" hidden>
@@ -827,6 +868,7 @@
         <button class="linkbtn" id="week-clear" hidden>Clear filters</button>
       </div>
       <div class="toolbar">
+        <button class="btn" id="addmeal">Add a meal</button>
         <button class="btn" id="shuffle">Shuffle the week</button>
         <button class="btn" id="resetweek" hidden>Back to the planned week</button>
       </div>
@@ -913,18 +955,103 @@ let picks = { ...baseline };
 let extra = {};
 let db = null, weekRef = null, sample = null;
 
-/* The ingredient layer. The dishes decide what the week *needs*; these five
+/* The ingredient layer. The dishes decide what the week *needs*; these six
    decide what actually has to be bought, and every one of them is hers to set
    from the Shopping tab. They ride in the same shared document as `picks`, so
-   both phones agree on the basket as well as the menu. */
+   both phones agree on the basket as well as the menu. What is already in the
+   kitchen used to sit here too; it has its own tab and its own document now. */
 const haveSeed = Object.fromEntries(ONHAND.items.map((i) => [i.product, i.quantity]));
-let have    = { ...haveSeed };  // product -> how much is already in the kitchen
 let qtyAdj  = {};               // product -> override what the recipes asked for
 let subs    = {};               // product -> buy this one instead
 let dropped = {};               // product -> struck off by hand
 let added   = {};               // key -> { name, qty, section } she added herself
 let addAdj  = {};               // key -> how many packs to add at Méré, set by hand
 let choices = {};               // key -> { pick: "listing" | <alternative index> | "skip" }
+
+/* ---------- the kitchen, as she reports it ----------
+   The receipt is the best *starting* answer to "what do you already have", and
+   it is wrong by Wednesday. The order of 5 September was still listed as in the
+   kitchen nine days later with not a gram of it left, and the only way to say so
+   was to tap twenty lines in a collapsed box on the shopping list. So the
+   kitchen is its own tab now, and what is on hand is three layers over each
+   other, in this order:
+
+     1. the newest receipt — everything it delivered;
+     2. minus whatever the meals she has ticked as cooked used up;
+     3. plus or minus anything she has said herself, which outranks both.
+
+   Layer 2 is a guess and never hides: every line it touches says which dish
+   took it, and unticking the meal puts the number straight back. Layer 3 is
+   hers, dated, and kept in `library/kitchen` rather than in the week — so, like
+   favourites, it is still there on next week's page.
+
+   That date is the safety catch. A statement made before the newest receipt is
+   not quietly believed: the shop has happened since, so the page asks whether
+   it is still true and leaves it out of the count until she answers. The rule
+   this app was built on holds — an inventory nobody decrements under-orders,
+   and under-ordering ends with no dinner — except that now there is somewhere
+   to decrement it, and anything she has not confirmed counts for nothing. */
+const SEED_AT = ONHAND.from
+  ? Date.UTC(ONHAND.from.date.year, ONHAND.from.date.month - 1, ONHAND.from.date.day, 12)
+  : 0;
+let kitchen = {};        // product -> { qty, at } — what she has told us is here
+let kitchenRef = null;
+/* Corrections from a week document written by the older page, which kept them
+   under `have`. Read, never written: they sit just above the receipt and below
+   anything she says now. */
+let legacyHave = {};
+
+const staleSaid = (e) => !!e && !(e.at >= SEED_AT);
+const saidNow   = () => Object.entries(kitchen).filter(([, e]) => !staleSaid(e));
+const saidStale = () => Object.entries(kitchen).filter(([, e]) => staleSaid(e));
+const r3 = (n) => Math.round(n * 1000) / 1000;
+
+/* What the meals she has ticked as cooked have taken out of the kitchen. */
+function usedByCooked() {
+  const out = {};
+  for (const m of meals()) {
+    if (m.done !== "cooked" || m.leftovers) continue;
+    for (const i of m.r.ingredients || []) {
+      if (!i.buy) continue;
+      const e = out[i.product] || (out[i.product] = { amount: 0, dishes: [] });
+      e.amount += i.buy.amount;
+      if (!e.dishes.includes(m.r.title)) e.dishes.push(m.r.title);
+    }
+  }
+  return out;
+}
+
+/* On hand right now, the three layers resolved. */
+function onHandNow() {
+  const out = { ...haveSeed, ...legacyHave };
+  for (const [product, u] of Object.entries(usedByCooked())) {
+    if (out[product] != null) out[product] = Math.max(0, r3(out[product] - u.amount));
+  }
+  for (const [product, e] of saidNow()) out[product] = Math.max(0, e.qty);
+  return out;
+}
+
+/* Say how much of something is here. Every statement is stamped, because a
+   statement's date is what decides whether next week's page still believes it. */
+function say(product, qty) {
+  kitchen[product] = { qty: Math.max(0, r3(qty)), at: Date.now() };
+  renderAll();
+  persistKitchen();
+}
+function unsay(product) {
+  delete kitchen[product];
+  renderAll();
+  persistKitchen();
+}
+
+/* ---------- the week as it is actually lived ----------
+   A plan is a proposal. By Thursday something has been cooked, something was
+   eaten out, and Saturday has moved to Sunday. These ride in the shared week
+   document alongside the swaps, so both phones see the same week. */
+let mealDone  = {};   // mealId -> "cooked" | "not-cooked"
+let mealMoved = {};   // mealId -> { day, slot }
+let mealOff   = {};   // mealId -> true, struck off the week entirely
+let mealAdded = {};   // id -> { id, day, slot, recipe } she put on herself
 
 /* Favourites. Not week-scoped like the rest — a dish you love is still a dish
    you love next week — so they live in their own document and survive the plan
@@ -969,27 +1096,45 @@ let favRef = null;
 const isFav = (slug) => favs.has(slug);
 
 const all = () => ({ ...LIB, ...extra });
-const dishFor = (mealId) => all()[picks[mealId]];
-const mealById = (id) => plan.meals.find((m) => m.id === id);
+const dishFor = (mealId) => all()[picks[mealId] || (mealAdded[mealId] || {}).recipe];
+const mealById = (id) => {
+  const m = plan.meals.find((x) => x.id === id) || mealAdded[id] || null;
+  return m ? { ...m, ...(mealMoved[id] || {}) } : null;
+};
 const minutesOf = (m, r) => m.minutesOverride ?? (r.prepMinutes + r.cookMinutes);
 const changed = () => Object.keys(picks).filter((k) => picks[k] !== baseline[k]);
-const sameHave = () => Object.keys({ ...have, ...haveSeed })
-  .every((k) => (have[k] || 0) === (haveSeed[k] || 0));
 /* Anything at all touched on the Shopping tab, so the reset button knows to
-   show itself. */
-const shopEdited = () => !sameHave() ||
+   show itself. The kitchen has its own tab and its own undo. */
+const shopEdited = () =>
   [qtyAdj, subs, dropped, added, addAdj, choices].some((o) => Object.keys(o).length > 0);
+const larderEdited = () => Object.keys(kitchen).length > 0;
+/* Anything done to the week beyond the plan as it shipped. */
+const weekEdited = () => changed().length > 0 ||
+  [mealDone, mealMoved, mealOff, mealAdded].some((o) => Object.keys(o).length > 0);
 
-/* Every meal, resolved. Skips a pick whose dish has gone missing. */
+/* Every meal, resolved: the plan, less anything struck off, plus anything she
+   has added, each sitting on whatever day it has been moved to. Skips a pick
+   whose dish has gone missing. */
 function meals() {
-  return plan.meals.map((m) => {
-    const r = dishFor(m.id);
-    if (!r) return null;
-    return { ...m, r, minutes: minutesOf(m, r), leftovers: !!m.leftovers,
-             ingredients: (r.ingredients || []).map((i) => i.item.toLowerCase()),
-             isSwapped: picks[m.id] !== baseline[m.id] };
-  }).filter(Boolean);
+  return [...plan.meals, ...Object.values(mealAdded)]
+    .filter((m) => !mealOff[m.id])
+    .map((m) => {
+      const r = dishFor(m.id);
+      if (!r) return null;
+      const at = mealMoved[m.id] || m;
+      return { ...m, day: at.day, slot: at.slot, r, minutes: minutesOf(m, r),
+               leftovers: !!m.leftovers,
+               done: mealDone[m.id] || null,
+               isAdded: !!mealAdded[m.id],
+               isMoved: !!mealMoved[m.id],
+               ingredients: (r.ingredients || []).map((i) => i.item.toLowerCase()),
+               isSwapped: !!baseline[m.id] && picks[m.id] !== baseline[m.id] };
+    }).filter(Boolean);
 }
+
+/* The meals struck off, so there is a way back for them. */
+const offMeals = () => [...plan.meals, ...Object.values(mealAdded)]
+  .filter((m) => mealOff[m.id] && all()[picks[m.id]]);
 
 /* ---------- equivalences ----------
    A curated map, shipped from data/equivalents.json. It exists so that the
@@ -1021,7 +1166,7 @@ function convert(qty, holding, want) {
    both be told it is already covered. Drawn down line by line. */
 function pool() {
   const p = new Map();
-  for (const [product, qty] of Object.entries(have)) {
+  for (const [product, qty] of Object.entries(onHandNow())) {
     if (qty > 0) p.set(product, qty);
   }
   return p;
@@ -1083,8 +1228,13 @@ function basket() {
   // per serving bought six tins of coconut milk for one pot, so a meal flagged
   // as leftovers eats from a pot already paid for and buys nothing. A dish
   // genuinely cooked twice in a week is not flagged, and does count twice.
-  const cooked = meals().filter((m) => !m.leftovers);
-  for (const m of cooked) {
+  //
+  // A meal she has ticked either way is behind her, and nothing behind her is
+  // worth shopping for: one was cooked out of the kitchen, the other never
+  // happened. The difference between the two is what it did to the kitchen,
+  // not what it does here.
+  const toShop = meals().filter((m) => !m.leftovers && !m.done);
+  for (const m of toShop) {
     for (const i of m.r.ingredients || []) {
       if (!i.buy) continue;
       let e = acc.get(i.product);
@@ -1212,16 +1362,10 @@ async function persist() {
   if (!weekRef) return;
   const diff = {};
   for (const k of changed()) diff[k] = picks[k];
-  // Only the corrections travel, not the whole kitchen. A quantity she never
-  // touched stays whatever the newest receipt says, so a fresh receipt is not
-  // overwritten by a stale copy of the old one sitting in the document.
-  const haveDiff = {};
-  for (const k of new Set([...Object.keys(have), ...Object.keys(haveSeed)])) {
-    if ((have[k] || 0) !== (haveSeed[k] || 0)) haveDiff[k] = have[k] || 0;
-  }
   try {
     await weekRef.set({
-      picks: diff, extra, have: haveDiff, qtyAdj, subs, dropped, added, addAdj, choices,
+      picks: diff, extra, qtyAdj, subs, dropped, added, addAdj, choices,
+      mealDone, mealMoved, mealOff, mealAdded,
       approved, inBasket,
       seededFrom: ONHAND.from ? ONHAND.from.order : null,
       updatedAt: Date.now(),
@@ -1231,13 +1375,33 @@ async function persist() {
   }
 }
 
+/* The kitchen is not week-scoped, so it has its own document — the same trick
+   favourites use. What she says is in the fridge on Thursday is still true on
+   Monday, and it is what next week's plan should be built on. */
+async function persistKitchen() {
+  if (!kitchenRef) return;
+  try {
+    await kitchenRef.set({
+      items: kitchen,
+      seededFrom: ONHAND.from ? ONHAND.from.order : null,
+      updatedAt: Date.now(),
+    });
+  } catch (e) {
+    setSync("off", "Kitchen saved on this phone only — " + (e && e.code ? e.code : "not saved"));
+  }
+}
+
 function applyRemote(d) {
   if (!d) return;
   extra = { ...extra, ...(d.extra || {}) };
   picks = { ...baseline, ...(d.picks || {}) };
-  // A document written against an older receipt keeps its hand corrections, but
-  // the receipt underneath it is the new one.
-  have = { ...haveSeed, ...(d.have || {}) };
+  // Written by the older page, which kept the kitchen in the week. Still read,
+  // so nothing she typed there is lost; the Kitchen tab writes elsewhere now.
+  legacyHave = d.have || {};
+  mealDone = d.mealDone || {};
+  mealMoved = d.mealMoved || {};
+  mealOff = d.mealOff || {};
+  mealAdded = d.mealAdded || {};
   qtyAdj = d.qtyAdj || {};
   subs = d.subs || {};
   dropped = d.dropped || {};
@@ -1260,6 +1424,12 @@ function applyRemote(d) {
   favRef = db.doc("library/favourites");
   favRef.onSnapshot(
     (snap) => { favs = new Set((snap.data() || {}).slugs || []); renderAll(); },
+    () => { /* the week's own sync line already reports a failure */ },
+  );
+  // Outside weeks/, deliberately: what is in the fridge outlives the plan.
+  kitchenRef = db.doc("library/kitchen");
+  kitchenRef.onSnapshot(
+    (snap) => { kitchen = (snap.data() || {}).items || {}; renderAll(); },
     () => { /* the week's own sync line already reports a failure */ },
   );
   weekRef.onSnapshot(
@@ -1308,14 +1478,36 @@ function ingredientList(r) {
       </div><div class="ing-product">${esc(i.product)}</div></li>`).join("")}</ul>`;
 }
 
+/* What happened to a meal, and where it sits now. A week she cannot correct as
+   she lives it goes stale by Wednesday, and takes the kitchen list with it. */
+function mealControls(o) {
+  const btn = (v, label, aria) =>
+    `<button type="button" data-mealdone="${esc(o.mealId)}" data-v="${v}"
+             aria-pressed="${o.done === v}" aria-label="${esc(aria)}">${label}</button>`;
+  return `<div class="mealctl">
+      <span class="seg" role="group" aria-label="How this meal went">
+        ${btn("cooked", "Cooked it", "Mark " + o.r.title + " as cooked")}
+        ${btn("not-cooked", "Didn't", "Mark " + o.r.title + " as not cooked")}
+      </span>
+      <button class="minibtn" type="button" data-mealmove="${esc(o.mealId)}">Move</button>
+      <button class="minibtn danger" type="button" data-mealoff="${esc(o.mealId)}"
+              aria-label="Take ${esc(o.r.title)} off the week">Off the week</button>
+    </div>`;
+}
+
 function card(o) {
   const r = o.r;
   const isPack = r.kind === "assembly";
-  return `<article class="card${o.slot === "dinner" ? "" : " is-lunch"}" data-card="${esc(o.key)}">
+  const state = o.done === "cooked" ? " is-done" : o.done === "not-cooked" ? " is-skipped" : "";
+  return `<article class="card${o.slot === "dinner" ? "" : " is-lunch"}${state}" data-card="${esc(o.key)}">
     <div class="card-top">
       <span class="card-day">${esc(o.day ? cap(o.day) : cap(r.cuisine))}</span>
       <span class="card-slot">${esc(o.slot)}</span>
       ${o.isSwapped ? '<span class="swapped">swapped</span>' : ""}
+      ${o.isAdded ? '<span class="mark is-added">you added this</span>' : ""}
+      ${o.isMoved ? '<span class="mark is-moved">moved</span>' : ""}
+      ${o.done === "cooked" ? '<span class="mark is-cooked">cooked</span>' : ""}
+      ${o.done === "not-cooked" ? '<span class="mark is-skipped">not cooked</span>' : ""}
       <span class="leader"></span>
       <span class="card-time">${o.minutes} min</span>
       <button class="fav" type="button" data-fav="${esc(o.slug)}"
@@ -1339,6 +1531,7 @@ function card(o) {
         </button>
         ${o.mealId ? `<button class="btn swapbtn" type="button" data-swap="${esc(o.mealId)}">Swap</button>` : ""}
       </div>
+      ${o.mealId ? mealControls(o) : ""}
       <div class="drawer"><div><div class="drawer-inner">
         ${ingredientList(r)}
         <p class="sub">${isPack ? "The part you cook" : "Method"}</p>
@@ -1372,20 +1565,56 @@ function renderWeek() {
     ? `${list.length} of ${meals().length} meals`
     : `${meals().length} meals this week`;
   $("#week-clear").hidden = !filtered;
-  $("#resetweek").hidden = changed().length === 0;
-
-  if (!list.length) {
-    $("#week-out").innerHTML = `<div class="empty">Nothing this week matches that. Try a longer time, or clear the ingredient filters.</div>`;
-    return;
-  }
+  $("#resetweek").hidden = !weekEdited();
 
   const asCard = (m) => card({
     key: m.id, mealId: m.id, slug: picks[m.id], r: m.r, slot: m.slot, minutes: m.minutes,
     note: m.note, isSwapped: m.isSwapped, leftovers: m.leftovers,
+    done: m.done, isAdded: m.isAdded, isMoved: m.isMoved,
     day: state.order === "day" ? null : m.day,
   });
 
-  let html = "";
+  // How the week is actually going, and what that does to the two lists. Only
+  // once she has ticked something — an untouched week has nothing to report.
+  const ms = meals();
+  const nCooked = ms.filter((m) => m.done === "cooked").length;
+  const nSkipped = ms.filter((m) => m.done === "not-cooked").length;
+  const off = offMeals();
+  let head = "";
+  if (nCooked || nSkipped || off.length) {
+    const bits = [];
+    if (nCooked) bits.push(`${nCooked} cooked`);
+    if (nSkipped) bits.push(`${nSkipped} not cooked`);
+    if (off.length) bits.push(`${off.length} off the week`);
+    const left = ms.length - nCooked - nSkipped;
+    bits.push(`${left} still to come`);
+    head = `<div class="weekstate"><span>${esc(bits.join(" · "))}</span>
+        <span>Anything ticked is behind you, so the basket stops shopping for it. What you cooked also comes off the kitchen list; what you didn't stays in the fridge.</span>
+      </div>`;
+  }
+
+  const putBack = off.length
+    ? `<details class="chipbox kitchenbox"><summary>Off the week — ${off.length} ${off.length === 1 ? "meal" : "meals"}</summary>
+         <div class="kitchen-body"><ul class="bl-list">${off.map((m) => `
+           <li class="bl is-kitchen"><div class="bl-row">
+             <div class="bl-main">
+               <div class="bl-name">${esc(all()[picks[m.id]].title)}</div>
+               <div class="bl-meta"><span>${esc(cap((mealMoved[m.id] || m).day))} ${esc((mealMoved[m.id] || m).slot)}</span><span>buying nothing for it</span></div>
+             </div>
+           </div>
+           <div class="line-ctl"><button class="minibtn" type="button" data-mealon="${esc(m.id)}">Put it back</button></div></li>`).join("")}</ul></div>
+       </details>`
+    : "";
+
+  if (!list.length) {
+    $("#week-out").innerHTML = head +
+      `<div class="empty">${ms.length
+        ? "Nothing this week matches that. Try a longer time, or clear the ingredient filters."
+        : "Nothing on the week yet — add a meal, or put one back below."}</div>` + putBack;
+    return;
+  }
+
+  let html = head;
   if (state.order === "day") {
     for (const d of DAYS) {
       const g = list.filter((m) => m.day === d)
@@ -1401,7 +1630,7 @@ function renderWeek() {
       html += groupBlock(cap(c), g.length, g.map(asCard).join(""));
     }
   }
-  $("#week-out").innerHTML = html;
+  $("#week-out").innerHTML = html + putBack;
 }
 
 /* ---------- recipes tab ---------- */
@@ -1424,6 +1653,7 @@ function renderRecipes() {
   const servedIn = {};
   for (const p of DATA.plans) for (const m of p.meals) (servedIn[m.recipe] ??= []).push(p.label || p.weekOf);
   for (const [id, slug] of Object.entries(picks)) {
+    if (mealOff[id]) continue;
     if (slug !== baseline[id]) (servedIn[slug] ??= []).push(plan.label || plan.weekOf);
   }
 
@@ -1727,9 +1957,155 @@ function renderShop() {
       <button class="btn primary" id="approve"${lines.length && !pending.length ? "" : " disabled"}>Approve</button>
     </div>`;
 
-  const cookCount = meals().filter((m) => !m.leftovers).length;
-  html += `<div class="foot" style="margin-top:1.6rem">Built from the ${cookCount} meals actually cooked this week — ${meals().length - cookCount} more come out of an earlier pot and cost nothing extra. Follows every swap and every count you change.<br>${(plan.notes || []).map(esc).join("<br>")}</div>`;
+  const cookCount = meals().filter((m) => !m.leftovers && !m.done).length;
+  html += `<div class="foot" style="margin-top:1.6rem">Built from the ${cookCount} meals still to cook this week — ${meals().length - cookCount} more come out of an earlier pot, are already behind you, or cost nothing extra. Follows every swap and every count you change.<br>${(plan.notes || []).map(esc).join("<br>")}</div>`;
   $("#shop-out").innerHTML = html;
+}
+
+/* ---------- the kitchen tab ----------
+   Its own tab because this is the half of the basket she is the only source
+   for. Everything else on the page is derived from a receipt, a recipe or the
+   site; what is left in the fridge on Thursday night is only ever something she
+   tells us. It reuses the basket's line furniture so the two read as one thing.
+
+   ("larder" in the code only because .kitchen is already the quiz's drawn hob.) */
+const STAPLE_NAMES = new Set(STAPLES.map((s) => s.name));
+/* Which aisle a product sits in, so the kitchen groups the way the basket does.
+   SECTION_OF is learnt from the recipes; a receipt product no dish names has
+   nowhere to be filed but the cupboard. */
+const larderSection = (p) =>
+  SECTION_OF[p] || (STAPLE_NAMES.has(p) ? "Standing order" : "Store cupboard");
+const larderStep = (p) => unitOf(p) === "kg" ? 0.1 : 1;
+const fmtQty = (p, q) =>
+  unitOf(p) === "kg" ? q.toFixed(2).replace(".", ",") + " kg" : "x" + Math.round(q);
+
+const midnight = (t) => { const d = new Date(t); d.setHours(0, 0, 0, 0); return d.getTime(); };
+const daysAgo = (t) => Math.round((midnight(Date.now()) - midnight(t)) / 86400000);
+const whenSaid = (at) => {
+  const d = daysAgo(at);
+  return d <= 0 ? "today" : d === 1 ? "yesterday"
+    : "on " + new Date(at).toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" });
+};
+const seedAge = () => {
+  if (!SEED_AT) return "";
+  const d = daysAgo(SEED_AT);
+  return d <= 0 ? "today" : d === 1 ? "yesterday" : d + " days ago";
+};
+
+function larderLine(l) {
+  const none = l.qty <= 0;
+  const meta = [l.seeded ? "from your " + esc(onHandDate() || "last") + " order" : "you put this here"];
+  if (l.covers.length) meta.push("covering " + esc(andList(l.covers)));
+  const note = l.said
+    ? `you said ${esc(fmtQty(l.product, l.said.qty))} ${esc(whenSaid(l.said.at))}`
+    : l.used
+      ? `${esc(andList(l.used.dishes))} took ${esc(fmtQty(l.product, l.used.amount))} off this`
+      : "";
+  return `<li class="bl${none ? " is-gone" : ""}">
+      <div class="bl-row">
+        <div class="bl-main">
+          <div class="bl-name">${esc(l.product)}</div>
+          <div class="bl-meta">${meta.map((m) => `<span>${m}</span>`).join("")}</div>
+          ${note ? `<div class="said${l.used && !l.said ? " is-used" : ""}">${note}</div>` : ""}
+        </div>
+        <div class="bl-qty${none ? " is-none" : ""}">${none ? "none" : esc(fmtQty(l.product, l.qty))}</div>
+      </div>
+      <div class="line-ctl">
+        <span class="step${none ? " is-zero" : ""}" role="group" aria-label="How much of ${esc(l.product)} is left">
+          <button class="stepbtn" type="button" data-larderstep="${esc(l.product)}" data-dir="-1" aria-label="Less"${none ? " disabled" : ""}>−</button>
+          <span class="stepval">${none ? "0" : esc(fmtQty(l.product, l.qty))}</span>
+          <button class="stepbtn" type="button" data-larderstep="${esc(l.product)}" data-dir="1" aria-label="More">+</button>
+        </span>
+        ${none ? "" : `<button class="minibtn" type="button" data-lardergone="${esc(l.product)}">All gone</button>`}
+        ${l.said ? `<button class="minibtn" type="button" data-larderclear="${esc(l.product)}">${l.seeded ? "Back to the receipt" : "Take it off"}</button>` : ""}
+      </div>
+    </li>`;
+}
+
+function renderLarder() {
+  const b = basket();
+  const used = usedByCooked();
+  const now = onHandNow();
+  const said = Object.fromEntries(saidNow());
+  const old = saidStale();
+
+  // What each thing here is standing in for this week, so a number she changes
+  // shows its effect without her going back to the basket to look for it.
+  const covers = {};
+  for (const l of [...b.lines, ...b.kitchen]) {
+    for (const c of l.coveredBy || []) {
+      const set = covers[c.product] || (covers[c.product] = new Set());
+      for (const d of String(l.for || "").split(", ")) if (d) set.add(d);
+    }
+  }
+
+  const ORDER = ["Proteins", "Vegetables", "Bread and cheese", "Store cupboard",
+                 "Standing order", "New to you", "Best guesses", "Added by you"];
+  const rows = [...new Set([...Object.keys(haveSeed), ...Object.keys(legacyHave), ...Object.keys(said)])]
+    .map((product) => ({
+      product, qty: now[product] || 0, section: larderSection(product),
+      seeded: haveSeed[product] != null || legacyHave[product] != null,
+      said: said[product] || null, used: used[product] || null,
+      covers: covers[product] ? [...covers[product]] : [],
+    }))
+    .sort((a, c) => (ORDER.indexOf(a.section) - ORDER.indexOf(c.section)) ||
+                    a.product.localeCompare(c.product));
+
+  const here = rows.filter((r) => r.qty > 0).length;
+  let html = `<section class="hero">
+      <div class="hero-top">
+        <div>
+          <div class="eyebrow">Already in the kitchen</div>
+          <div class="hero-total">${eur(b.saved)}</div>
+          <div class="hero-sub">${here} ${here === 1 ? "thing" : "things"} here · already off the list</div>
+        </div>
+        <div class="hero-state${old.length ? " is-warn" : " is-ok"}">
+          <b>${old.length ? old.length : "✓"}</b>
+          <span>${old.length ? "to confirm" : "up to date"}</span>
+        </div>
+      </div>
+      <p class="hero-note">This is what the basket takes off. It starts at your last Drive order${
+        onHandDate() ? ` — collected ${esc(onHandDate())}, ${esc(seedAge())}` : ""
+      }, subtracts whatever the meals you've ticked as cooked used, and then does exactly what you say here. Your word wins over both, and it carries to next week's page.</p>
+      <div class="toolbar">
+        <button class="btn" id="larderadd">Add something</button>
+        <button class="btn" id="resetlarder"${larderEdited() ? "" : " hidden"}>Undo what I've said</button>
+      </div>
+    </section>`;
+
+  if (old.length) {
+    html += `<div class="shop-sec ask-sec">
+        <div class="group-head has-icon" style="margin:0"><span class="sec-icon" aria-hidden="true">?</span><h2>Still here?</h2><span class="leader"></span><span class="group-count">${old.length}</span></div>
+        <p class="decide-lede">You told us about these before the ${esc(onHandDate() || "last")} order. A shop has happened since, so they count for nothing until you say — nothing here is assumed.</p>
+        <ul class="bl-list">${old.map(([product, e]) => `
+          <li class="bl is-ask"><div class="bl-row">
+            <div class="bl-main">
+              <div class="bl-name">${esc(product)}</div>
+              <div class="bl-meta"><span>you said ${esc(fmtQty(product, e.qty))} ${esc(whenSaid(e.at))}</span></div>
+            </div>
+            <div class="bl-qty is-none">not counted</div>
+          </div>
+          <div class="line-ctl">
+            <button class="minibtn" type="button" data-larderkeep="${esc(product)}">Still ${esc(fmtQty(product, e.qty))}</button>
+            <button class="minibtn" type="button" data-lardergone="${esc(product)}">All gone</button>
+          </div></li>`).join("")}</ul>
+        <div class="toolbar" style="margin-top:.7rem"><button class="btn" id="larderallgone">None of it is left</button></div>
+      </div>`;
+  }
+
+  for (const sec of groupBySection(rows)) {
+    const n = sec.lines.filter((l) => l.qty > 0).length;
+    html += `<div class="shop-sec">
+        <div class="group-head has-icon" style="margin:0">${sectionIcon(sec.name)}<h2>${esc(sec.name)}</h2><span class="leader"></span><span class="group-count">${n} of ${sec.lines.length}</span></div>
+        <ul class="bl-list">${sec.lines.map(larderLine).join("")}</ul>
+      </div>`;
+  }
+  if (!rows.length) {
+    html += `<div class="empty" style="margin-top:1.2rem">Nothing recorded yet. Add whatever is in the fridge and the cupboard, and the basket stops buying it twice.</div>`;
+  }
+
+  html += `<div class="foot" style="margin-top:1.6rem">Every line here is something you can correct, and both of you see the same numbers. Tick a meal as cooked on the Week tab and what it used comes off these counts — untick it and it comes back.</div>`;
+  $("#larder-out").innerHTML = html;
 }
 
 /* ---------- approved: the push ---------- */
@@ -1964,7 +2340,8 @@ function renderProductAlts() {
     }</div>`;
     return;
   }
-  const attr = sheetMode === "product" ? "data-pick-product" : "data-add-product";
+  const attr = sheetMode === "product" ? "data-pick-product"
+    : sheetMode === "larder" ? "data-add-larder" : "data-add-product";
   $("#sheet-alts").innerHTML = opts.map((o) =>
     `<button class="alt" type="button" ${attr}="${esc(o.name)}">
        <span class="alt-name">${esc(o.name)}${o.why ? ` <span class="flag pantry">${esc(o.why)}</span>` : ""}</span>
@@ -1988,6 +2365,79 @@ function openProductSwap(key) {
   $("#sheet").showModal();
 }
 
+/* Every day and slot in the week, with whatever is already on it — the picker
+   behind Move and Add a meal. */
+function slotOptions(attr, exclude) {
+  const ms = meals();
+  let out = "";
+  for (const d of [...DAYS.slice(1), DAYS[0]]) {
+    for (const sl of SLOT_ORDER) {
+      if (exclude && exclude.day === d && exclude.slot === sl) continue;
+      const there = ms.filter((m) => m.day === d && m.slot === sl).map((m) => m.r.title);
+      out += `<button class="alt" type="button" ${attr}="${esc(d + "|" + sl)}">
+          <span class="alt-name">${esc(cap(d))} &middot; ${esc(sl)}</span><span class="leader"></span>
+          <span class="alt-meta">${there.length ? esc(there.join(", ")) : "nothing yet"}</span>
+        </button>`;
+    }
+  }
+  return out;
+}
+
+const dishesFor = (slot) => Object.entries(all())
+  .filter(([, r]) => r.slot === slot)
+  .sort((a, b) => (favs.has(b[0]) - favs.has(a[0])) || a[1].title.localeCompare(b[1].title));
+
+let moveTarget = null, addAt = null;
+
+function sheetShell(title, sub) {
+  $("#sheet-title").textContent = title;
+  $("#sheet-sub").textContent = sub;
+  $("#gen-state").innerHTML = "";
+  $("#gen-btn").hidden = true;
+  $("#sheet-restore").hidden = true;
+  $("#sheet-search").hidden = true;
+}
+
+function openMealMove(mealId) {
+  sheetMode = "mealmove";
+  moveTarget = mealId;
+  const m = mealById(mealId);
+  sheetShell("Move " + all()[picks[mealId]].title,
+    `Currently ${cap(m.day)} ${m.slot}. Moving it changes nothing about the shopping — the week just reads the way it actually went.`);
+  $("#sheet-alts").innerHTML = slotOptions("data-mealto", m);
+  $("#sheet").showModal();
+}
+
+function openAddMeal() {
+  sheetMode = "mealslot";
+  addAt = null;
+  sheetShell("Add a meal", "Which day, and which sitting? Anything you add is shopped for like the rest of the week.");
+  $("#sheet-alts").innerHTML = slotOptions("data-mealslot", null);
+  $("#sheet").showModal();
+}
+
+function openAddMealDish(day, slot) {
+  sheetMode = "mealdish";
+  addAt = { day, slot };
+  sheetShell("Add — " + cap(day) + " " + slot, "Pick a dish. It goes on the week and into the basket.");
+  $("#sheet-alts").innerHTML = dishesFor(slot).map(([slug, r]) =>
+    `<button class="alt" type="button" data-mealdish="${esc(slug)}">
+       <span class="alt-name">${isFav(slug) ? "★ " : ""}${esc(r.title)}</span><span class="leader"></span>
+       <span class="alt-meta">${cap(r.cuisine)} &middot; ${r.prepMinutes + r.cookMinutes} min</span>
+     </button>`).join("") || `<div class="empty" style="padding:1.4rem 1rem">No ${esc(slot)} dishes in the library yet.</div>`;
+  $("#sheet").showModal();
+}
+
+function openAddToLarder() {
+  sheetMode = "larder";
+  productTarget = null;
+  sheetShell("What else is in the kitchen?", "Search anything you buy. Whatever you add here, the basket stops buying.");
+  $("#sheet-search").hidden = false;
+  $("#sheet-search").value = "";
+  renderProductAlts();
+  $("#sheet").showModal();
+}
+
 function openAddItem() {
   sheetMode = "add";
   productTarget = null;
@@ -2002,6 +2452,52 @@ function openAddItem() {
   $("#sheet").showModal();
 }
 
+/* ---------- living the week ---------- */
+function setMealDone(id, v) {
+  if (mealDone[id] === v) delete mealDone[id]; else mealDone[id] = v;
+  renderAll(); persist();
+}
+function moveMeal(id, day, slot) {
+  const base = plan.meals.find((m) => m.id === id) || mealAdded[id];
+  if (base) {
+    if (base.day === day && base.slot === slot) delete mealMoved[id];
+    else mealMoved[id] = { day, slot };
+  }
+  $("#sheet").close();
+  renderAll(); persist();
+}
+function takeMealOff(id) { mealOff[id] = true; renderAll(); persist(); }
+function putMealBack(id) { delete mealOff[id]; renderAll(); persist(); }
+function addMeal(day, slot, slug) {
+  const id = "added-" + Date.now().toString(36) + "-" + Math.floor(Math.random() * 46656).toString(36);
+  mealAdded[id] = { id, day, slot, recipe: slug };
+  picks[id] = slug;
+  $("#sheet").close();
+  renderAll(); persist();
+}
+function resetWeek() {
+  picks = { ...baseline };
+  mealDone = {}; mealMoved = {}; mealOff = {}; mealAdded = {};
+  renderAll(); persist();
+}
+
+/* ---------- the kitchen controls ---------- */
+function stepLarder(product, dir) {
+  say(product, (onHandNow()[product] || 0) + dir * larderStep(product));
+}
+/* Re-stating the same amount is the whole answer to "still here?": the number
+   does not move, but its date does, and the date is what makes it count. */
+function larderKeep(product) { if (kitchen[product]) say(product, kitchen[product].qty); }
+function larderAllGone() {
+  for (const [product] of saidStale()) kitchen[product] = { qty: 0, at: Date.now() };
+  renderAll(); persistKitchen();
+}
+function resetLarder() { kitchen = {}; renderAll(); persistKitchen(); }
+function addToLarder(name) {
+  $("#sheet").close();
+  say(name, unitOf(name) === "kg" ? 0.5 : 1);
+}
+
 /* ---------- the ingredient controls ---------- */
 function commitShop() { renderAll(); persist(); }
 
@@ -2012,13 +2508,15 @@ function toggleAllOf(key) {
   const inKitchen = b.kitchen.some((x) => x.key === key);
   const l = [...b.lines, ...b.kitchen].find((x) => x.key === key);
   if (!l) return;
+  // Keyed on the product actually being bought, not the line, so it lands in
+  // the same kitchen the Kitchen tab edits.
   if (inKitchen) {
-    delete have[key];
+    kitchen[l.name] = { qty: 0, at: Date.now() };
     delete dropped[key];
   } else {
-    have[key] = (have[key] || 0) + l.toBuy;
+    kitchen[l.name] = { qty: r3((onHandNow()[l.name] || 0) + l.toBuy), at: Date.now() };
   }
-  commitShop();
+  renderAll(); persist(); persistKitchen();
 }
 
 function toggleStrike(key) {
@@ -2125,7 +2623,6 @@ async function copyText(text, btn) {
 }
 
 function resetShop() {
-  have = { ...haveSeed };
   qtyAdj = {}; subs = {}; dropped = {}; added = {}; addAdj = {}; choices = {};
   commitShop();
 }
@@ -2331,11 +2828,12 @@ function ingredientChoices() {
       if (!product.has(k)) product.set(k, i.product);
     }
   }
+  const kit = onHandNow();
   const hasIt = (k) => {
     const p = product.get(k);
-    if (have[p] > 0) return true;
+    if (kit[p] > 0) return true;
     const g = GROUP_OF[p];
-    return !!(g && (g.members || []).some((m) => have[m.name] > 0));
+    return !!(g && (g.members || []).some((m) => kit[m.name] > 0));
   };
   return [...count.entries()]
     .filter(([, n]) => n >= 2)
@@ -2489,6 +2987,7 @@ function renderAll() {
   renderWeek();
   renderRecipes();
   renderShop();
+  renderLarder();
   renderMasthead();
 }
 
@@ -2496,7 +2995,7 @@ function renderMasthead() {
   const { lines, pending, total } = basket();
   $("#store-line").textContent = CONF.store || plan.store || "";
   $("#week-title").textContent = plan.label || ("Week of " + plan.weekOf);
-  const count = (s) => plan.meals.filter((m) => m.slot === s).length;
+  const count = (s) => meals().filter((m) => m.slot === s).length;
   const parts = SLOT_ORDER
     .map((s) => [count(s), s])
     .filter(([n]) => n > 0)
@@ -2508,7 +3007,7 @@ function renderMasthead() {
     : pending.length ? `${pending.length} to decide before approving`
     : "Ready to approve";
   $("#strapline").textContent =
-    `The basket for ${andList(parts)}. Swap a dish and the basket follows. No chilli anywhere.`;
+    `The basket for ${andList(parts)}. Swap a dish, tick off what you cooked, say what is left in the kitchen — the basket follows all three. No chilli anywhere.`;
   $("#tally").innerHTML = [
     ["To buy", eur(approved ? approved.total : total)],
     ["Ceiling", eur(CONF.budgetCeiling)],
@@ -2574,7 +3073,7 @@ $("#rec-clear").addEventListener("click", () => {
 $("#shuffle").addEventListener("click", () => {
   const lib = all();
   const used = new Set();
-  for (const m of plan.meals) {
+  for (const m of meals()) {
     const opts = Object.entries(lib).filter(([s, r]) => r.slot === m.slot && !used.has(s));
     if (!opts.length) continue;
     const [slug] = opts[Math.floor(Math.random() * opts.length)];
@@ -2583,7 +3082,7 @@ $("#shuffle").addEventListener("click", () => {
   }
   renderAll(); persist();
 });
-$("#resetweek").addEventListener("click", () => { picks = { ...baseline }; renderAll(); persist(); });
+$("#resetweek").addEventListener("click", resetWeek);
 
 document.addEventListener("click", (e) => {
   // ---- the quiz ----
@@ -2670,6 +3169,38 @@ document.addEventListener("click", (e) => {
   if (e.target.closest("#additem")) return openAddItem();
   if (e.target.closest("#resetshop")) return resetShop();
 
+  // the week as it is lived
+  const md = e.target.closest("button[data-mealdone]");
+  if (md) return setMealDone(md.dataset.mealdone, md.dataset.v);
+  const mv = e.target.closest("button[data-mealmove]");
+  if (mv) return openMealMove(mv.dataset.mealmove);
+  const moff = e.target.closest("button[data-mealoff]");
+  if (moff) return takeMealOff(moff.dataset.mealoff);
+  const mon = e.target.closest("button[data-mealon]");
+  if (mon) return putMealBack(mon.dataset.mealon);
+  const mto = e.target.closest("button[data-mealto]");
+  if (mto) { const [d, sl] = mto.dataset.mealto.split("|"); return moveMeal(moveTarget, d, sl); }
+  const msl = e.target.closest("button[data-mealslot]");
+  if (msl) { const [d, sl] = msl.dataset.mealslot.split("|"); return openAddMealDish(d, sl); }
+  const mdish = e.target.closest("button[data-mealdish]");
+  if (mdish && addAt) return addMeal(addAt.day, addAt.slot, mdish.dataset.mealdish);
+  if (e.target.closest("#addmeal")) return openAddMeal();
+
+  // the kitchen
+  const lstep = e.target.closest("button[data-larderstep]");
+  if (lstep) return stepLarder(lstep.dataset.larderstep, Number(lstep.dataset.dir));
+  const lgone = e.target.closest("button[data-lardergone]");
+  if (lgone) return say(lgone.dataset.lardergone, 0);
+  const lkeep = e.target.closest("button[data-larderkeep]");
+  if (lkeep) return larderKeep(lkeep.dataset.larderkeep);
+  const lclear = e.target.closest("button[data-larderclear]");
+  if (lclear) return unsay(lclear.dataset.larderclear);
+  const ladd = e.target.closest("button[data-add-larder]");
+  if (ladd) return addToLarder(ladd.dataset.addLarder);
+  if (e.target.closest("#larderadd")) return openAddToLarder();
+  if (e.target.closest("#larderallgone")) return larderAllGone();
+  if (e.target.closest("#resetlarder")) return resetLarder();
+
   const btn = e.target.closest(".expand");
   if (!btn) return;
   const c = btn.closest(".card");
@@ -2700,7 +3231,8 @@ document.addEventListener("keydown", (e) => {
 });
 
 const PANELS = { "tab-cook": "panel-cook", "tab-week": "panel-week",
-                "tab-recipes": "panel-recipes", "tab-shop": "panel-shop" };
+                "tab-recipes": "panel-recipes", "tab-shop": "panel-shop",
+                "tab-larder": "panel-larder" };
 $$(".tab").forEach((t) => t.addEventListener("click", () => {
   $$(".tab").forEach((x) => {
     const on = x === t;

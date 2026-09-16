@@ -36,8 +36,27 @@ is older than the newest Intermarché invoice in Gmail if a `Votre facture est
 disponible` email post-dates `generatedAt` — add it to `data/invoices/` as
 `<YYYY-MM-DD>-<orderNumber>.txt` and re-run the parser.
 
+**Then read last week's kitchen.** Open the previous week's page from
+`data/artifacts.json` with `read_db` and take `library/kitchen` — what she told
+the page was actually left in the fridge and the cupboard, each entry dated. It
+is the one thing no receipt can tell you, so it is worth a look every run:
+
+- Anything she said is **still there** is a dish waiting to be written. Plan
+  around it before inventing a shopping list — half a bag of rice, three eggs and
+  an open jar of yakitori sauce is most of a donburi.
+- Anything she said is **all gone** (`qty: 0`) is the correction to make, not a
+  thing to re-derive. The receipt still lists it; she has told you it is not
+  there.
+- A statement older than the newest receipt is **not** current. The page will ask
+  her about it in "Still here?" rather than counting it, and so should you: say
+  what you are assuming rather than quietly planning on it.
+
+Mention what you used in one line when you show the plan ("built around the rice
+and the chicken you said were left"). Never silently plan a week on food she has
+not confirmed is there — under-ordering is the failure that ends with no dinner.
+
 Come to the conversation already knowing what she buys. Do not ask questions the
-receipts answer.
+receipts answer, or the kitchen document answers.
 
 ## The three questions
 
@@ -87,6 +106,9 @@ These are not preferences. Check the plan against them before showing it.
   a big pot of rice, or a batch of spring rolls rolled ahead.
 - **Reuse perishables across dishes.** A 20-egg pack, a bunch of coriander and a
   head of broccoli should each appear in more than one meal, or they rot.
+- **Use what she said is left first.** The kitchen document read above is the
+  cheapest ingredient list there is, and a week that starts from it is a week
+  that does not throw food away.
 - **Lunches are their own small dishes**, sized for one — onigiri, a noodle
   salad, bánh mì, a rice bowl on the batch cook, something with mâche and eggs.
   Not a doubled dinner portion.
@@ -373,10 +395,19 @@ After she agrees the plan:
    generator), and `contract: "0.2.41"`, the runtime the page is written against.
 6. **Carry her state over** from the previous page in `data/artifacts.json`,
    with `read_db` there and a `write_db` batch of `set`s on the new page:
-   `library/favourites` always, and `weeks/<weekOf>` when re-publishing a week
-   that already has a page — her swaps, counts and decisions live there, not in
-   the plan file. Do it straight after publishing, before she opens the page:
-   once a document exists, this tool cannot overwrite it.
+   `library/favourites` and `library/kitchen` always, and `weeks/<weekOf>` when
+   re-publishing a week that already has a page — her swaps, counts and decisions
+   live there, not in the plan file. Do it straight after publishing, before she
+   opens the page: once a document exists, this tool cannot overwrite it.
+   - `library/kitchen` is `{ items: { "<exact product name>": { qty, at } } }`.
+     Copy it **as it is** — do not re-date it, do not drop the zeros, and do not
+     fold in the new receipt. Its dates are what tell the new page which
+     statements predate the newest order, and those are the ones it asks her to
+     confirm instead of counting. Re-stamping them would make the page believe a
+     fortnight-old guess about the fridge.
+   - If she has told you in the conversation what is left — "there's still half
+     the rice" — write it into that same document as part of the batch, dated
+     now, rather than leaving it in the chat. The page is where it does work.
 7. **Record the link** in `data/artifacts.json` under the week, commit and push,
    and send her the link in one line. The page is private to her until she
    shares it from its menu — say so if her partner needs it.
