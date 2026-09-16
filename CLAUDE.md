@@ -208,6 +208,17 @@ the basket in her Chrome and reports each step as a **new document** in
 `push/<weekOf>/progress`; the page folds those over the request and shows the
 progress and, at the end, the site's own total against the estimate.
 
+**The page writes one document at a time.** The db contract says so — one write
+in flight per doc, last writer wins, no transactions — and ignoring it is what
+made the "Still here?" buttons work only sometimes on 2026-09-16. Every tap
+fired its own whole-document `set`; the echo snapshot came back mid-tap and
+re-rendered the page, and a button replaced between mousedown and mouseup fires
+no click at all, so roughly every other tap vanished. Writes now queue (one in
+flight, always carrying the newest state), each stamps `updatedAt`, and a
+snapshot is only believed if it was written *after* our own last write. Keep
+both halves: serialising alone still lets a late snapshot of an earlier write
+undo a later one.
+
 Why new documents: checked 2026-09-14, the Artifact tool's `write_db` refuses
 `update`, `set` and `delete` on any document that already exists
 (`version_mismatch` — it wants an `if_version` the tool cannot send). Creating a

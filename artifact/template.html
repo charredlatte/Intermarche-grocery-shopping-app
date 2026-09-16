@@ -1386,42 +1386,103 @@ function setSync(kind, text) {
   $("#sync-text").textContent = text;
 }
 
-async function persist() {
-  if (!weekRef) return;
+/* ---------- writing a shared document ----------
+   One write in flight per document, always carrying the newest state. The db
+   contract asks for exactly this — one write at a time per doc, last writer
+   wins, no transactions — and two taps in quick succession broke it: each fired
+   a whole-document `set`, and the two raced. The loser's snapshot arrived last
+   carrying the older state, so the question she had just answered came back on
+   screen, and if the server settled that way it was unanswered for good. It
+   looked like a button that worked only sometimes.
+
+   `stale()` is the other half, and serialising alone does not cover it: a
+   snapshot carrying the state after the first write can still be delivered
+   after the second write has landed, and adopting it would put the answered
+   question back just the same. Every write stamps `updatedAt`, so a snapshot is
+   only news if it was written after our own last write. Anything older is ours
+   coming back late, or a change the server has already overwritten with ours.
+   Anything still queued or in flight means the screen is already newer than
+   whatever arrives. Before we have written at all — the first load — everything
+   is news.
+
+   That also stops the page re-rendering under her finger on its own echo, which
+   is the other way a tap disappears: a node replaced between mousedown and
+   mouseup fires no click at all. */
+function writer(send, onError) {
+  const w = {
+    busy: false, dirty: false, sentAt: 0,
+    pending: () => w.busy || w.dirty,
+    stale: (d) => w.pending() ||
+      (w.sentAt > 0 && !(Number((d || {}).updatedAt) > w.sentAt)),
+    async save() {
+      w.dirty = true;
+      if (w.busy) return;
+      w.busy = true;
+      try {
+        while (w.dirty) {
+          w.dirty = false;
+          const at = Math.max(Date.now(), w.sentAt + 1);
+          w.sentAt = at;
+          await send(at);
+        }
+      } catch (e) {
+        onError(e);
+      } finally {
+        w.busy = false; w.dirty = false;
+      }
+    },
+  };
+  return w;
+}
+
+/* Key order is not part of a value, and the store does not promise to hand it
+   back the way we sent it, so comparing raw JSON would report a change on every
+   echo. */
+const stable = (v) => JSON.stringify(v, (k, x) =>
+  x && typeof x === "object" && !Array.isArray(x)
+    ? Object.fromEntries(Object.keys(x).sort().map((kk) => [kk, x[kk]]))
+    : x);
+/* `updatedAt` is a stamp on the write, not part of what the page is showing. */
+const sameDoc = (a, b) => stable({ ...(a || {}), updatedAt: 0 }) === stable({ ...(b || {}), updatedAt: 0 });
+
+function weekDoc() {
   const diff = {};
   for (const k of changed()) diff[k] = picks[k];
-  try {
-    await weekRef.set({
-      picks: diff, extra, qtyAdj, subs, dropped, added, addAdj, choices,
-      mealDone, mealMoved, mealOff, mealAdded,
-      approved, inBasket,
-      // Passed through, never rewritten — see legacyRaw. On a document this page
-      // wrote itself these are its own kitchen and its own receipt; on one
-      // carried from an older page they are that page's, and saying so is what
-      // keeps its corrections in "Still here?" instead of being believed.
-      have: legacyRaw,
-      seededFrom: legacySeed != null ? legacySeed : (ONHAND.from ? ONHAND.from.order : null),
-      updatedAt: Date.now(),
-    });
-  } catch (e) {
-    setSync("off", "Change saved on this phone only — " + (e && e.code ? e.code : "not saved"));
-  }
+  return {
+    picks: diff, extra, qtyAdj, subs, dropped, added, addAdj, choices,
+    mealDone, mealMoved, mealOff, mealAdded,
+    approved, inBasket,
+    // Passed through, never rewritten — see legacyRaw. On a document this page
+    // wrote itself these are its own kitchen and its own receipt; on one
+    // carried from an older page they are that page's, and saying so is what
+    // keeps its corrections in "Still here?" instead of being believed.
+    have: legacyRaw,
+    seededFrom: legacySeed != null ? legacySeed : (ONHAND.from ? ONHAND.from.order : null),
+  };
+}
+const weekWriter = writer(
+  (at) => weekRef.set({ ...weekDoc(), updatedAt: at }),
+  (e) => setSync("off", "Change saved on this phone only — " + (e && e.code ? e.code : "not saved")),
+);
+async function persist() {
+  if (!weekRef) return;
+  await weekWriter.save();
 }
 
 /* The kitchen is not week-scoped, so it has its own document — the same trick
    favourites use. What she says is in the fridge on Thursday is still true on
    Monday, and it is what next week's plan should be built on. */
+const kitchenDoc = () => ({
+  items: kitchen,
+  seededFrom: ONHAND.from ? ONHAND.from.order : null,
+});
+const kitchenWriter = writer(
+  (at) => kitchenRef.set({ ...kitchenDoc(), updatedAt: at }),
+  (e) => setSync("off", "Kitchen saved on this phone only — " + (e && e.code ? e.code : "not saved")),
+);
 async function persistKitchen() {
   if (!kitchenRef) return;
-  try {
-    await kitchenRef.set({
-      items: kitchen,
-      seededFrom: ONHAND.from ? ONHAND.from.order : null,
-      updatedAt: Date.now(),
-    });
-  } catch (e) {
-    setSync("off", "Kitchen saved on this phone only — " + (e && e.code ? e.code : "not saved"));
-  }
+  await kitchenWriter.save();
 }
 
 function applyRemote(d) {
@@ -1462,28 +1523,54 @@ function applyRemote(d) {
   weekRef = db.doc("weeks/" + plan.weekOf);
   favRef = db.doc("library/favourites");
   favRef.onSnapshot(
-    (snap) => { favs = new Set((snap.data() || {}).slugs || []); renderAll(); },
+    (snap) => {
+      if (favWriter.stale(snap.data())) return;
+      const slugs = (snap.data() || {}).slugs || [];
+      if (stable([...favs].sort()) === stable([...slugs].sort())) return;
+      favs = new Set(slugs);
+      renderAll();
+    },
     () => { /* the week's own sync line already reports a failure */ },
   );
   // Outside weeks/, deliberately: what is in the fridge outlives the plan.
   kitchenRef = db.doc("library/kitchen");
   kitchenRef.onSnapshot(
-    (snap) => { kitchen = (snap.data() || {}).items || {}; renderAll(); },
+    (snap) => {
+      if (kitchenWriter.stale(snap.data())) return;
+      const items = (snap.data() || {}).items || {};
+      if (stable(items) === stable(kitchen)) return;
+      kitchen = items;
+      renderAll();
+    },
     () => { /* the week's own sync line already reports a failure */ },
   );
   weekRef.onSnapshot(
-    (snap) => { applyRemote(snap.data()); setSync("live", "Shared — you and your partner see the same week"); },
+    (snap) => {
+      setSync("live", "Shared — you and your partner see the same week");
+      const d = snap.data();
+      if (weekWriter.stale(d)) return;
+      if (d && sameDoc(d, weekDoc())) return;
+      applyRemote(d);
+    },
     (err) => setSync("off", "Sync stopped (" + err.code + ") — changes stay on this phone"),
   );
   // Its own document, so Claude's progress writes and her list edits can never
   // overwrite each other.
   pushRef = db.doc("push/" + plan.weekOf);
   pushRef.onSnapshot(
-    (snap) => { push = snap.exists ? snap.data() : null; renderAll(); },
+    (snap) => {
+      const d = snap.exists ? snap.data() : null;
+      if (stable(d) === stable(push)) return;
+      push = d; renderAll();
+    },
     (err) => { pushError = err.code || "unavailable"; renderAll(); },
   );
   db.collection("push/" + plan.weekOf + "/progress").onSnapshot(
-    (qs) => { progress = qs.docs.map((d) => d.data()); renderAll(); },
+    (qs) => {
+      const rows = qs.docs.map((d) => d.data());
+      if (stable(rows) === stable(progress)) return;
+      progress = rows; renderAll();
+    },
     (err) => { pushError = err.code || "unavailable"; renderAll(); },
   );
   setSync("live", "Shared — you and your partner see the same week");
@@ -2288,10 +2375,13 @@ function openSwap(mealId) {
   $("#sheet").showModal();
 }
 
+const favWriter = writer(
+  (at) => favRef.set({ slugs: [...favs], updatedAt: at }),
+  (e) => setSync("off", "Favourite saved on this phone only — " + (e && e.code ? e.code : "not saved")),
+);
 async function persistFavs() {
   if (!favRef) return;
-  try { await favRef.set({ slugs: [...favs], updatedAt: Date.now() }); }
-  catch (e) { setSync("off", "Favourite saved on this phone only — " + (e && e.code ? e.code : "not saved")); }
+  await favWriter.save();
 }
 
 function toggleFav(slug) {
