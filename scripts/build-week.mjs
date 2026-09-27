@@ -207,7 +207,14 @@ for (const s of staples) {
 // instead of carrying a running inventory forward, because an inventory nobody
 // decrements silently under-orders, and under-ordering is the failure that ends
 // with no dinner.
+//
+// When the receipt is old, the plan can list which of its lines are still in
+// the kitchen (`stillOnHand`); everything else on it is taken as used up.
 const lastOrder = history.orders[history.orders.length - 1];
+const stillOnHand = plans[plans.length - 1].stillOnHand;
+for (const n of stillOnHand ?? []) {
+  if (!lastOrder.items.some((i) => i.name === n)) die(`stillOnHand: "${n}" is not on order ${lastOrder.orderNumber}`);
+}
 const onHand = {
   // Order number and date only. Never the tracking or invoice-download URL from
   // the email — those carry access tokens and this repo is public.
@@ -215,6 +222,7 @@ const onHand = {
   items: lastOrder.items
     // Billed but never handed over, so it is not in the kitchen.
     .filter((i) => !i.unavailable && !i.truncated)
+    .filter((i) => !stillOnHand || stillOnHand.includes(i.name))
     .map((i) => ({ product: i.name, quantity: i.quantity, unit: i.unit })),
 };
 

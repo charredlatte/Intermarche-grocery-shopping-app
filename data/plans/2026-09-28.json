@@ -1,0 +1,51 @@
+{
+  "weekOf": "2026-09-28",
+  "label": "Week of 28 September",
+  "store": "Intermarché Drive Méré",
+  "notes": [
+    "Five dinners, Monday to Friday; the weekend is yours. Three Chinese stir-fries and two Spanish/Italian nights, which is the 50/50 rule as close as five divides, tilted towards what you asked for.",
+    "Kept cheap: the dearest dinner is under 11 €, and two of them (pizza, fried rice with lardons) are under 5 €.",
+    "The ginger you already have carries all three stir-fries and Thursday's cold ramen, so none goes on the order.",
+    "The last order was 15 September, twelve days ago. The kitchen list keeps only the cupboard lines from it: ginger, both soy sauces, the yakitori sauce, sugar, olive oil, paprika, rosemary, balsamic, cornichons and the coffee. Everything fresh on that receipt is taken as eaten.",
+    "Coffee is struck because the two boxes of 30 from 15 September should last until about 5 October. If the cupboard says otherwise, add it back: it is 19,55 €.",
+    "Monday's rice is cooked double. Tuesday's lunch is what's left of it."
+  ],
+  "stillOnHand": [
+    "Le Choix du Primeur Gingembre",
+    "Kikkoman Sauce soja salée",
+    "Itinéraire des Saveurs, une marque Intermarché Saveur d'Asie - Sauce soja sucrée",
+    "Itinéraire des Saveurs, une marque Intermarché Sauce Yakitori assaisonnement à base de sauce soja, saké et mirin",
+    "Daddy Sucre en poudre",
+    "Bouton d’Or, une marque Intermarché Huile d'olive vierge extra BIO - issue de l'agriculture biologique",
+    "Bouton d’Or, une marque Intermarché Paprika doux moulu",
+    "Bouton d’Or, une marque Intermarché Romarin de Provence en branche",
+    "Itinéraire des Saveurs, une marque Intermarché Vinaigre Balsamique de Modène",
+    "Maille Cornichons fins",
+    "L'Or Espresso - Capsules de café compatibles Nespresso Brésil Intensité 8",
+    "L'Or Capsules de café compatibles Nespresso Decaffeinato Intensité 6"
+  ],
+  "meals": [
+    { "id": "monday-breakfast", "day": "monday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "monday-lunch", "day": "monday", "slot": "lunch", "recipe": "baguette-boursin", "note": "Nothing to cook on the day the order lands." },
+    { "id": "monday-dinner", "day": "monday", "slot": "dinner", "recipe": "dinde-celeri-gingembre", "note": "Cook 300 g of rice instead of 150; the other half is Tuesday's lunch." },
+
+    { "id": "tuesday-breakfast", "day": "tuesday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "tuesday-lunch", "day": "tuesday", "slot": "lunch", "recipe": "riz-saute-restes", "note": "Monday's rice with an egg through it.", "leftovers": true },
+    { "id": "tuesday-dinner", "day": "tuesday", "slot": "dinner", "recipe": "patatas-a-lo-pobre", "note": "Paprika doux only, which is what's in the cupboard." },
+
+    { "id": "wednesday-breakfast", "day": "wednesday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "wednesday-lunch", "day": "wednesday", "slot": "lunch", "recipe": "salade-piemontaise", "note": "Make it Tuesday night with the rest of the potatoes from the patatas." },
+    { "id": "wednesday-dinner", "day": "wednesday", "slot": "dinner", "recipe": "porc-soja-gingembre" },
+
+    { "id": "thursday-breakfast", "day": "thursday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "thursday-lunch", "day": "thursday", "slot": "lunch", "recipe": "ramen-froid-concombre" },
+    { "id": "thursday-dinner", "day": "thursday", "slot": "dinner", "recipe": "pizza-maison", "note": "The cherry tomatoes are the breakfast ones, so there is one box for both." },
+
+    { "id": "friday-breakfast", "day": "friday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "friday-lunch", "day": "friday", "slot": "lunch", "recipe": "onigiri-oeuf", "note": "Roll them Thursday while the pizza bakes. The cucumber is the one from Monday and Thursday." },
+    { "id": "friday-dinner", "day": "friday", "slot": "dinner", "recipe": "riz-saute-lardons" },
+
+    { "id": "saturday-breakfast", "day": "saturday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "sunday-breakfast", "day": "sunday", "slot": "breakfast", "recipe": "sandwich-matin" }
+  ]
+}

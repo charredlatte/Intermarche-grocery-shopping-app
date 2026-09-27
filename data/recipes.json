@@ -59,13 +59,11 @@
       {
         "item": "ginger",
         "qty": "a thumb, grated",
-        "product": "Gingembre frais",
-        "guess": true,
+        "product": "Le Choix du Primeur Gingembre",
         "buy": {
-          "amount": 1,
+          "amount": 0.15,
           "mode": "once",
-          "section": "Best guesses",
-          "price": 1.5
+          "section": "Vegetables"
         }
       },
       {
@@ -201,13 +199,11 @@
       {
         "item": "ginger",
         "qty": "a thumb, matchsticked",
-        "product": "Gingembre frais",
-        "guess": true,
+        "product": "Le Choix du Primeur Gingembre",
         "buy": {
-          "amount": 1,
+          "amount": 0.15,
           "mode": "once",
-          "section": "Best guesses",
-          "price": 1.5
+          "section": "Vegetables"
         }
       },
       {
@@ -496,13 +492,11 @@
       {
         "item": "ginger",
         "qty": "a thumb, matchsticked",
-        "product": "Gingembre frais",
-        "guess": true,
+        "product": "Le Choix du Primeur Gingembre",
         "buy": {
-          "amount": 1,
+          "amount": 0.15,
           "mode": "once",
-          "section": "Best guesses",
-          "price": 1.5
+          "section": "Vegetables"
         }
       },
       {
@@ -594,13 +588,11 @@
       {
         "item": "ginger",
         "qty": "a thumb, grated",
-        "product": "Gingembre frais",
-        "guess": true,
+        "product": "Le Choix du Primeur Gingembre",
         "buy": {
-          "amount": 1,
+          "amount": 0.15,
           "mode": "once",
-          "section": "Best guesses",
-          "price": 1.5
+          "section": "Vegetables"
         }
       },
       {
@@ -789,13 +781,11 @@
       {
         "item": "ginger",
         "qty": "a large thumb",
-        "product": "Gingembre frais",
-        "guess": true,
+        "product": "Le Choix du Primeur Gingembre",
         "buy": {
-          "amount": 1,
+          "amount": 0.15,
           "mode": "once",
-          "section": "Best guesses",
-          "price": 1.5
+          "section": "Vegetables"
         }
       },
       {
@@ -912,13 +902,11 @@
       {
         "item": "ginger",
         "qty": "a thumb",
-        "product": "Gingembre frais",
-        "guess": true,
+        "product": "Le Choix du Primeur Gingembre",
         "buy": {
-          "amount": 1,
+          "amount": 0.15,
           "mode": "once",
-          "section": "Best guesses",
-          "price": 1.5
+          "section": "Vegetables"
         }
       },
       {
@@ -1017,13 +1005,11 @@
       {
         "item": "ginger",
         "qty": "a big piece, halved",
-        "product": "Gingembre frais",
-        "guess": true,
+        "product": "Le Choix du Primeur Gingembre",
         "buy": {
-          "amount": 1,
+          "amount": 0.15,
           "mode": "once",
-          "section": "Best guesses",
-          "price": 1.5
+          "section": "Vegetables"
         }
       },
       {
@@ -1127,13 +1113,11 @@
       {
         "item": "ginger",
         "qty": "grated",
-        "product": "Gingembre frais",
-        "guess": true,
+        "product": "Le Choix du Primeur Gingembre",
         "buy": {
-          "amount": 1,
+          "amount": 0.15,
           "mode": "once",
-          "section": "Best guesses",
-          "price": 1.5
+          "section": "Vegetables"
         }
       },
       {
@@ -1521,7 +1505,7 @@
         "qty": "1 kg, in chunks",
         "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
         "buy": {
-          "amount": 1,
+          "amount": 0.5,
           "mode": "sum",
           "section": "Vegetables"
         }
@@ -1600,7 +1584,7 @@
         "qty": "600 g, sliced thin",
         "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
         "buy": {
-          "amount": 1,
+          "amount": 0.3,
           "mode": "sum",
           "section": "Vegetables"
         }
@@ -2022,7 +2006,7 @@
         "qty": "500 g",
         "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
         "buy": {
-          "amount": 1,
+          "amount": 0.25,
           "mode": "sum",
           "section": "Vegetables"
         }
@@ -3108,7 +3092,7 @@
         "qty": "500 g, to serve",
         "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
         "buy": {
-          "amount": 1,
+          "amount": 0.25,
           "mode": "once",
           "section": "Vegetables"
         }
@@ -4062,7 +4046,7 @@
         "qty": "700 g",
         "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
         "buy": {
-          "amount": 1,
+          "amount": 0.35,
           "mode": "sum",
           "section": "Vegetables"
         }
@@ -4501,7 +4485,7 @@
         "qty": "400 g, in chunks",
         "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
         "buy": {
-          "amount": 1,
+          "amount": 0.2,
           "mode": "once",
           "section": "Vegetables"
         }
@@ -5504,7 +5488,7 @@
         "qty": "600 g",
         "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
         "buy": {
-          "amount": 1,
+          "amount": 0.3,
           "mode": "sum",
           "section": "Vegetables"
         }
@@ -5829,7 +5813,7 @@
         "qty": "700 g, in 2 cm cubes",
         "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
         "buy": {
-          "amount": 1,
+          "amount": 0.35,
           "mode": "sum",
           "section": "Vegetables"
         }
@@ -5954,7 +5938,7 @@
         "qty": "600 g, in large chunks",
         "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
         "buy": {
-          "amount": 1,
+          "amount": 0.3,
           "mode": "sum",
           "section": "Vegetables"
         }
@@ -5982,13 +5966,11 @@
       {
         "item": "ginger",
         "qty": "a thumb, thinly sliced",
-        "product": "Gingembre frais",
-        "guess": true,
+        "product": "Le Choix du Primeur Gingembre",
         "buy": {
-          "amount": 1,
+          "amount": 0.15,
           "mode": "once",
-          "section": "Best guesses",
-          "price": 1.05
+          "section": "Vegetables"
         }
       },
       {
@@ -6110,13 +6092,11 @@
       {
         "item": "ginger",
         "qty": "a thumb, in matchsticks",
-        "product": "Gingembre frais",
-        "guess": true,
+        "product": "Le Choix du Primeur Gingembre",
         "buy": {
-          "amount": 1,
+          "amount": 0.15,
           "mode": "once",
-          "section": "Best guesses",
-          "price": 1.05
+          "section": "Vegetables"
         }
       },
       {
@@ -6361,13 +6341,11 @@
       {
         "item": "ginger",
         "qty": "a small piece, grated",
-        "product": "Gingembre frais",
-        "guess": true,
+        "product": "Le Choix du Primeur Gingembre",
         "buy": {
-          "amount": 1,
+          "amount": 0.15,
           "mode": "once",
-          "section": "Best guesses",
-          "price": 1.05
+          "section": "Vegetables"
         }
       },
       {
@@ -6418,7 +6396,7 @@
         "qty": "600 g, thinly sliced",
         "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
         "buy": {
-          "amount": 1,
+          "amount": 0.3,
           "mode": "sum",
           "section": "Vegetables"
         }
@@ -6738,7 +6716,7 @@
         "qty": "500 g, in 2 cm cubes",
         "product": "Le Choix du Primeur Pomme de terre de consommation PRINCESSE AMANDINE à chair ferme avec traitement anti germinatif",
         "buy": {
-          "amount": 1,
+          "amount": 0.25,
           "mode": "sum",
           "section": "Vegetables"
         }
