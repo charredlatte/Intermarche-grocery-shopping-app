@@ -1208,8 +1208,31 @@ function setSync(kind, text) {
   $("#sync-text").textContent = text;
 }
 
+// One write at a time: the runtime rejects overlapping writes to a document,
+// and a rejected write used to come back as a stale snapshot that wiped the
+// picks made since. So clicks only mark the state dirty; a single loop writes
+// the latest state until nothing is left unsaved.
+let saving = false, dirty = false;
+
 async function persist() {
   if (!weekRef) return;
+  dirty = true;
+  if (saving) return;
+  saving = true;
+  while (dirty) {
+    dirty = false;
+    try {
+      await weekRef.set(weekDoc());
+      setSync("live", "Shared — you and your partner see the same week");
+    } catch (e) {
+      setSync("off", "Change saved on this phone only — " + (e && e.code ? e.code : "not saved"));
+      if (!dirty) break;
+    }
+  }
+  saving = false;
+}
+
+function weekDoc() {
   const diff = {};
   for (const k of changed()) diff[k] = picks[k];
   // Only the corrections travel, not the whole kitchen. A quantity she never
@@ -1219,16 +1242,12 @@ async function persist() {
   for (const k of new Set([...Object.keys(have), ...Object.keys(haveSeed)])) {
     if ((have[k] || 0) !== (haveSeed[k] || 0)) haveDiff[k] = have[k] || 0;
   }
-  try {
-    await weekRef.set({
-      picks: diff, extra, have: haveDiff, qtyAdj, subs, dropped, added, addAdj, choices,
-      approved, inBasket,
-      seededFrom: ONHAND.from ? ONHAND.from.order : null,
-      updatedAt: Date.now(),
-    });
-  } catch (e) {
-    setSync("off", "Change saved on this phone only — " + (e && e.code ? e.code : "not saved"));
-  }
+  return {
+    picks: diff, extra, have: haveDiff, qtyAdj, subs, dropped, added, addAdj, choices,
+    approved, inBasket,
+    seededFrom: ONHAND.from ? ONHAND.from.order : null,
+    updatedAt: Date.now(),
+  };
 }
 
 function applyRemote(d) {
@@ -1263,7 +1282,9 @@ function applyRemote(d) {
     () => { /* the week's own sync line already reports a failure */ },
   );
   weekRef.onSnapshot(
-    (snap) => { applyRemote(snap.data()); setSync("live", "Shared — you and your partner see the same week"); },
+    // While a change of hers is unsaved, what the store holds is older than
+    // the screen; the snapshot after her last write brings the two back together.
+    (snap) => { if (saving || dirty) return; applyRemote(snap.data()); setSync("live", "Shared — you and your partner see the same week"); },
     (err) => setSync("off", "Sync stopped (" + err.code + ") — changes stay on this phone"),
   );
   // Its own document, so Claude's progress writes and her list edits can never
