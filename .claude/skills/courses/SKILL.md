@@ -36,37 +36,35 @@ is older than the newest Intermarché invoice in Gmail if a `Votre facture est
 disponible` email post-dates `generatedAt` — add it to `data/invoices/` as
 `<YYYY-MM-DD>-<orderNumber>.txt` and re-run the parser.
 
-**Then read last week's kitchen.** Open the previous week's page from
-`data/artifacts.json` with `read_db` and take `library/kitchen` — what she told
-the page was actually left in the fridge and the cupboard, each entry dated. It
-is the one thing no receipt can tell you, so it is worth a look every run:
-
-- Anything she said is **still there** is a dish waiting to be written. Plan
-  around it before inventing a shopping list — half a bag of rice, three eggs and
-  an open jar of yakitori sauce is most of a donburi.
-- Anything she said is **all gone** (`qty: 0`) is the correction to make, not a
-  thing to re-derive. The receipt still lists it; she has told you it is not
-  there.
-- A statement older than the newest receipt is **not** current. The page will ask
-  her about it in "Still here?" rather than counting it, and so should you: say
-  what you are assuming rather than quietly planning on it.
-
-Mention what you used in one line when you show the plan ("built around the rice
-and the chicken you said were left"). Never silently plan a week on food she has
-not confirmed is there — under-ordering is the failure that ends with no dinner.
-
 Come to the conversation already knowing what she buys. Do not ask questions the
-receipts answer, or the kitchen document answers.
+receipts answer.
 
-## The three questions
+`purchase-history.json` carries a `byProtein` block — how many orders each of the
+eight proteins appears in, rolled up through the tagged groups in
+`equivalents.json`. Read it next to how many dishes the library gives each one.
+As of 2026-09-15 pork is in 22 of 23 orders and has two dinners; fish is in 2.
 
-Ask all three at once as tappable options. Not more than three — a longer quiz
-gets skipped, and a skipped week is worth less than an imperfect plan.
+## The three questions, plus one
+
+Ask all of them at once as tappable options. The first three are the week's
+plan; never add a fifth. A longer quiz gets skipped, and a skipped week is worth
+less than an imperfect plan.
 
 1. **How many dinners this week?** (default 7 — offer 5 and 7)
 2. **What are you in the mood for?** — multi-select, up to 3. Draw the tags from
    the cuisines she actually wants and the dishes she actually cooks.
 3. **Anything to use up or avoid?** — free text, optional.
+
+4. **One question about her tastes**, taken from the top of
+   `preferences.learning.pending`. Charlotte asked on 2026-09-15 to be asked
+   more about what she likes; this is how, without lengthening the weekly run.
+   It is about *her*, not about this week, so it never blocks the plan — if she
+   skips it, leave it at the top of the list and carry on.
+
+   When she answers, write the answer where it belongs in `preferences.json`
+   — a new dislike goes in `dietary`, a flavour in `flavours` — and move the
+   question into `learning.answered` with today's date. An answer that changes
+   nothing still gets recorded, or it will be asked again in a month.
 
 ## The constraints, in priority order
 
@@ -86,10 +84,19 @@ These are not preferences. Check the plan against them before showing it.
 
 ## Building the plan
 
-- **Asian most nights.** Japanese, Korean, Chinese, Thai, Vietnamese, Indian.
-  Spring rolls are a favourite and are made often. Non-Asian nights should be
-  vegetable-forward — brussels sprouts, peppers, broccoli, aubergine — not
-  another pasta bake.
+- **Half the dinners Asian, half European.** Japanese, Korean, Chinese, Thai,
+  Vietnamese, Indian on one side; French, Italian, Spanish on the other. Balance
+  the *week's plan*, not the library. `preferences.cuisines.weeklyShare` read
+  `"most"` until 2026-09-06 and quietly made every week about 70% Asian; it is
+  `"half"` now and this line was still saying "most" until 2026-09-15. Spring
+  rolls are a favourite and are made often — `rouleaux-printemps`. European
+  nights should be vegetable-forward — sprouts, peppers, broccoli, aubergine —
+  not another pasta bake.
+- **Balance the proteins too, not just the cuisines.** Every dish carries one of
+  `chicken, turkey, pork, charcuterie, beef, fish, eggs, vegetarian`. No more
+  than two dinners on the same protein while unused dishes remain. Check the
+  plan against `byProtein`: pork is what they actually buy and the library
+  under-serves it, so a week of chicken is a week that ignores the receipts.
 - **Familiarity comes from the ingredient, not the dish.** The receipts show a
   French repertoire, but that is what she *bought*, not what she wants. Build
   Asian dishes out of what she already buys week after week: eggs (20 at a
@@ -106,9 +113,6 @@ These are not preferences. Check the plan against them before showing it.
   a big pot of rice, or a batch of spring rolls rolled ahead.
 - **Reuse perishables across dishes.** A 20-egg pack, a bunch of coriander and a
   head of broccoli should each appear in more than one meal, or they rot.
-- **Use what she said is left first.** The kitchen document read above is the
-  cheapest ingredient list there is, and a week that starts from it is a week
-  that does not throw food away.
 - **Lunches are their own small dishes**, sized for one — onigiri, a noodle
   salad, bánh mì, a rice bowl on the batch cook, something with mâche and eggs.
   Not a doubled dinner portion.
@@ -154,6 +158,22 @@ the pantry from last order, and say what you subtracted, so she can correct you.
 Show the list with a running total against the budget ceiling before touching
 the browser. A pantry-restock week uses `pantryWeekCeiling` instead of
 `ceilingPerOrder` — say plainly that you're claiming it and why.
+
+## Live stock check (on her PC)
+
+The page's "Decide first" and "check" lines are only as current as the
+catalogue's `checked` date. When she asks whether they are still true, and only
+in her logged-in Chrome (the container cannot reach the site), go through the
+week's non-`exact` lines one product page at a time from `listing.url`, and each
+`alternatives[].url` for `missing` ones. Record the day's pack, price and
+`listing.available`, and set `checked`. Week of 2026-09-28, as of 2026-09-14:
+
+- missing: Le Gaulois Escalope de dinde · Princesse Amandine potatoes · Terroirs Côtes de PORC
+- check: Pâturages Cheddar Les Tranchettes · Ail BLANC (now a net of 2) · Kikkoman 150 ml ·
+  Volaé eggs (12, not 20) · Pâturages Mozzarella (now "Maxi") · Herta Lardons (now "sans nitrite")
+- picked: Vinaigre balsamique
+
+Then rebuild and republish once, carrying `weeks/<weekOf>` over.
 
 ## Keeping the catalogue current
 
@@ -216,9 +236,8 @@ database, and your progress is reported back there so she watches it live.
   in Chrome installed there alone; until that exists, say which browser you are
   driving before the first page.
 
-**Reports are new documents, never edits.** The Artifact tool refuses to
-update, replace or delete an existing document (it demands a version it cannot
-send), so every report is a fresh document in `push/<weekOf>/progress`, id
+**Reports are new documents, never edits.** The page reads every document in
+the progress collection, so every report is a fresh document in `push/<weekOf>/progress`, id
 `<run>-<seq>` where `run` is the request's `requestedAt` — `drive:list` prints
 the next id. Write them with `write_db`, `db_op: batch`, `op: "set"`, up to 50
 at a time. Two shapes:
@@ -390,26 +409,19 @@ After she agrees the plan:
    <date>".
 5. **Publish it as a new page.** Copy `artifact/week.html` to the scratchpad as
    `courses-<weekOf>.html` and publish that path with **no `url`** — a new path
-   is what makes a fresh link. Pass `favicon: "🧺"`, a one-line `description`,
+   is what makes a fresh link. Pass `icon: "basket"`, a one-line `description`,
    `capabilities: { db: {}, sample: {} }` (the shared list and the dish
    generator), and `contract: "0.2.41"`, the runtime the page is written against.
 6. **Carry her state over** from the previous page in `data/artifacts.json`,
    with `read_db` there and a `write_db` batch of `set`s on the new page:
-   `library/favourites` and `library/kitchen` always, and `weeks/<weekOf>` when
-   re-publishing a week that already has a page — her swaps, counts and decisions
-   live there, not in the plan file. Do it straight after publishing, before she
-   opens the page: once a document exists, this tool cannot overwrite it.
-   - `library/kitchen` is `{ items: { "<exact product name>": { qty, at } } }`.
-     Copy it **as it is** — do not re-date it, do not drop the zeros, and do not
-     fold in the new receipt. Its dates are what tell the new page which
-     statements predate the newest order, and those are the ones it asks her to
-     confirm instead of counting. Re-stamping them would make the page believe a
-     fortnight-old guess about the fridge.
-   - If she has told you in the conversation what is left — "there's still half
-     the rice" — write it into that same document as part of the batch, dated
-     now, rather than leaving it in the chat. The page is where it does work.
-7. **Record the link** in `data/artifacts.json` under the week, commit and push,
-   and send her the link in one line. The page is private to her until she
+   `library/favourites` always, and `weeks/<weekOf>` when re-publishing a week
+   that already has a page — her swaps, counts and decisions live there, not in
+   the plan file. Do it straight after publishing, before she opens the page.
+   A later write to an existing document needs its `if_version`.
+7. **Record the link** in `data/artifacts.json` under the week, commit, push,
+   **open a PR and merge it into `main`**. Work left on a `claude/*` branch
+   is lost, because the next session clones `main`. Then send her the link
+   in one line. The page is private to her until she
    shares it from its menu — say so if her partner needs it.
 
 If she asks to keep a swapped-in dish permanently, move it into the plan file.

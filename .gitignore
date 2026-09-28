@@ -1,1 +1,11 @@
 node_modules/
+
+# Build output. `npm run build:week` pours data/ into artifact/template.html and
+# writes this, and /courses runs that build immediately before publishing — so a
+# committed copy is never the one that ships. It was tracked until 2026-09-15,
+# where it differed from the template by two lines and doubled the diff of every
+# commit that touched the page.
+#
+# This is not data/. Everything under data/ stays committed and public, which is
+# Charlotte's decision — see the hard rules in CLAUDE.md.
+artifact/week.html

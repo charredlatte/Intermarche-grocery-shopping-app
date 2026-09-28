@@ -27,6 +27,16 @@ gh repo clone charredlatte/Intermarche-grocery-shopping-app app
 
 Everything the parser, the build and the skill need is already in `data/`.
 
+**Work lands on `main`, or it is lost.** Each session pushes to its own
+`claude/*` branch, and the next one clones `main`. Until 2026-09-28 nothing was
+merged: the same page-sync fix was written six times on four branches, and every
+week was republished from a `main` that had none of them. So:
+
+- start by running `git fetch origin && for b in $(git branch -r | grep claude/); do git log --oneline origin/main..$b; done`,
+  and say so if anything is stranded;
+- a session isn't finished until its branch is merged into `main`. Open a PR
+  and merge it (Charlotte's call, 2026-09-28).
+
 ## The three pieces
 
 **1. Purchase history.** Intermarché emails a `Votre facture est disponible`
@@ -44,48 +54,20 @@ section for why.
 **2. Standing preferences.** `data/preferences.json` — household, budget, the
 dietary constraints, the confirmed-in-stock pantry. Hand-edited, never generated.
 
-**2b. What's in the kitchen.** The build seeds an on-hand list from the **most
-recent invoice** and the page subtracts it, so the shopping list is what she
-still has to buy rather than what the recipes add up to. `data/equivalents.json`
+**2b. What's already in the kitchen.** The build seeds an on-hand list from the
+**most recent invoice** and the page subtracts it, so the shopping list is what
+she still has to buy rather than what the recipes add up to. `data/equivalents.json`
 — hand-edited, like preferences — says which products stand in for one another,
 so the Jean Rozé pork chops on the receipt cover a recipe naming the Terroirs
 ones. Every match is printed on the line it covered: an equivalence is reported,
-never silent.
+never silent. Charlotte and her partner can correct any quantity, swap the
+product, strike a line off or add one, and all of it is shared.
 
-Since 2026-09-16 the kitchen is **its own tab**, because Charlotte asked to keep
-it up to date as the week goes on rather than only at the moment the plan is
-written. What is on hand is three layers, in this order:
-
-1. the newest receipt;
-2. **minus what the meals she has ticked as cooked used** — reversible, and
-   printed on every line it touches, so nothing is deducted in silence;
-3. **plus or minus anything she has said herself**, which outranks both.
-
-Her own statements are dated and live in **`library/kitchen`** in the page's
-shared database — outside `weeks/<weekOf>`, exactly like favourites, so they
-survive next week's page. `/courses` copies that document across with them.
-
-The date is the safety catch, and it is what keeps the old rule intact: **a
-statement older than the newest receipt is not believed.** A shop has happened
-since, so it lands in "Still here?" on the Kitchen tab and counts for nothing
-until she answers. An inventory nobody decrements still under-orders, and
-under-ordering still ends with no dinner; the difference is that there is now
-somewhere to decrement it, and anything unconfirmed counts as zero rather than
-as stock.
-
-**A week document carried from an older page** keeps its corrections under
-`have`, paired with `seededFrom`, the order they were made against. The page
-writes that pair straight back, never rewriting either: together they say "these
-numbers are about *that* receipt". When it is not the receipt the page is seeded
-from, they are not believed — they go to "Still here?" with the rest, minus
-anything the newer receipt already answers. Rewriting `seededFrom` would restamp
-a fortnight-old guess as being about this week's shop, which is the one thing
-that pair must never say.
-
-Note "pantry" is already taken twice (`preferences.pantry` = what Méré stocks; a
-recipe's `pantry: true` = salt, oil, eggs). This is "on hand" — and "larder" in
-the page's own code, only because `.kitchen` was already the Cook quiz's drawn
-hob.
+Deliberately week-scoped — each plan re-seeds from the newest receipt rather than
+carrying a running inventory forward, because an inventory nobody decrements
+under-orders, and under-ordering ends with no dinner. Note "pantry" is already
+taken twice (`preferences.pantry` = what Méré stocks; a recipe's `pantry: true`
+= salt, oil, eggs). This is "on hand".
 
 **3. The weekly conversation.** `.claude/skills/courses/SKILL.md` — three
 questions, then a plan, then a line-item list, then the basket.
@@ -110,17 +92,24 @@ questions, then a plan, then a line-item list, then the basket.
   guindilla, peperoncino, 'nduja, merguez. All carry heat, and the IBS rule
   outranks authenticity. Where a recipe departs from the original for this
   reason, it says so in its own text.
+- **Every recipe declares one `protein`**, from exactly these eight: `chicken`,
+  `turkey`, `pork`, `charcuterie`, `beef`, `fish`, `eggs`, `vegetarian`. It is
+  the protein the dish is *built around*, not everything in it — the bolognese
+  is `beef` though it holds lardons too. `charcuterie` means cured or deli meat
+  (mortadelle, lardons, pancetta, jambon); fresh pork, chipolatas included, is
+  `pork`. `build-week.mjs` validates it and ships
+  the order to the page as `config.proteins` (the Recipes grouping is still to
+  build — see below), and the same eight values tag the
+  groups in `data/equivalents.json` — which is how `parse-invoices.mjs` rolls the
+  receipts up into the `byProtein` block of `data/purchase-history.json`.
+  **Balance the week's proteins as well as its cuisines.** Pork is in 22 of 23
+  orders and the library gives it two dinners; fish is in 2 of 23, and that is
+  price rather than taste.
 - **Every recipe declares its `equipment`.** She has an air fryer, an oven,
   muffin tins and casserole dishes — recorded in `preferences.cooking.equipment`,
   and filterable on the Recipes tab. The air fryer and the muffin tin were being
   ignored entirely until 2026-09-06; use them. Assume nothing else: no microwave,
   slow cooker or barbecue is recorded.
-- **The week is editable all week.** Every meal card takes "Cooked it" /
-  "Didn't", Move, and Off the week; the Week tab has Add a meal. Anything ticked
-  either way stops being shopped for — one was eaten out of the kitchen, the
-  other never happened — and only "Cooked it" comes off the kitchen counts. So a
-  plan note like "if the Drive slot slips to Tuesday, shift everything a day" is
-  something she can now do on the page instead of in her head.
 - **Favourites live in the page, not the repo.** Stars are written to the shared
   artifact database at `library/favourites`, deliberately outside
   `weeks/<weekOf>` so they survive a new plan. Favourited dishes sort to the top
@@ -184,9 +173,8 @@ npm run drive:list -- <push doc>.json [<progress dir>] [--batch <tabId>]  # work
 
 **A fresh page every week.** Each `/courses` run publishes the built page as a
 new artifact — new link — and records it in `data/artifacts.json` under the
-week. Charlotte asked for this on 2026-09-14. Her favourites
-(`library/favourites`) **and her kitchen (`library/kitchen`)** are copied across
-from the previous page with `read_db`/`write_db`; publish with
+week. Charlotte asked for this on 2026-09-14. Her favourites (`library/favourites`)
+are copied across from the previous page with `read_db`/`write_db`; publish with
 `capabilities: { db: {}, sample: {} }` and `contract: "0.2.41"`. The pages before
 that week shared one bookmarked URL, still listed there as the old page.
 
@@ -208,36 +196,36 @@ the basket in her Chrome and reports each step as a **new document** in
 `push/<weekOf>/progress`; the page folds those over the request and shows the
 progress and, at the end, the site's own total against the estimate.
 
-**Nothing is redrawn while a pointer is down.** A browser fires `click` only
-when the press and the release land on the same element, and this page rebuilds
-whole panels with `innerHTML`. Any redraw arriving mid-press therefore destroys
-the button being pressed and the tap vanishes — no error, nothing on screen.
-That is what killed the "Still here?" buttons on 2026-09-16. `renderAll` holds
-while a pointer is down and runs on release; keep it that way, and keep the
-1.5 s timeout, or a pointer that leaves the window freezes the page. Chasing the
-individual redraw to its source only narrows the window — the press guard is
-what closes it.
+Why new documents: on 2026-09-14 the Artifact tool's `write_db` refused
+`update`, `set` and `delete` on existing documents because it could not send
+`if_version`. It can now (`ArtifactData` takes `if_version`, checked
+2026-09-28), but the append-only progress reports work, so they stay. Seeding a
+new page is still best done before she first opens it.
 
-**The page also writes one document at a time.** The db contract says so — one
-write in flight per doc, last writer wins, no transactions. Writes queue (one in
-flight, always carrying the newest state), each stamps `updatedAt`, and a
-snapshot is only believed if it was written *after* our own last write. Keep
-both halves: serialising alone still lets a late snapshot of an earlier write
-undo a later one. This is what stops needless redraws; the press guard is what
-makes the remaining ones harmless.
+Week, Recipes and the Cook quiz sit behind the basket — **for now.** Two things
+Charlotte asked for on 15–16 September were built on `claude/*` branches and
+never merged, and the basket page was redesigned on top of a `main` without
+them. They are her standing requests, confirmed again on 2026-09-28, and are the
+next page work — rebuilt into today's template, not merged from the old one:
 
-Why new documents: checked 2026-09-14, the Artifact tool's `write_db` refuses
-`update`, `set` and `delete` on any document that already exists
-(`version_mismatch` — it wants an `if_version` the tool cannot send). Creating a
-document is the only write Claude can make to a page's database once her page is
-live, so everything Claude reports is append-only, and anything seeded into a
-new page has to be written before she first opens it.
+- **From `claude/meal-planning-app-reorganize-pddufg` (c2d3a32):** three tabs —
+  Basket, Week, Recipes; **the Cook quiz goes** (reconfirmed 2026-09-28). Week
+  becomes a plain seven days, each meal in eating order, dish, time and ★, tap to
+  open, and "Back to the planned week" under the days only once something is
+  swapped. Recipes becomes the only place the week changes: `Group by [Protein]
+  [Cuisine]`, and every card carries `Cook this on…`, opening the day picker on
+  that dish's own slot. The data half of that commit — `protein` on every dish,
+  its build check, `byProtein` in the history, her 15 September answers in
+  `preferences.json` — landed on 2026-09-28; `config.proteins` already ships.
+- **From `claude/trusting-tesla-a9rmyl` (b901bd8, 57b19b0, 415fdfd):** a Kitchen
+  tab that she and her partner keep up to date — what is actually in, stamped
+  per statement, in its own document outside `weeks/` — and a Week that tracks
+  how it is lived: each meal ticked cooked or not, moved, struck off, or added,
+  with cooked meals drawing down the kitchen and anything behind her dropping out
+  of the basket. The sync and redraw fixes from that branch already landed in
+  29c3a65; only the features are outstanding.
 
-Behind the basket: **Kitchen**, where she says what is actually left and what
-the cooked meals took; **Week**, where meals are swapped, ticked off, moved,
-added or struck; then Recipes and the Cook quiz. Cook is a
-five-step quiz modelled on the Potto flow Charlotte sent on 2026-09-06; no-chilli
-is a locked card, because it is a health rule, not a mood.
+Delete those two branches once this list is done, not before.
 
 No dependencies; `npm install` is a no-op. Node 18+.
 
@@ -258,6 +246,16 @@ parser. The filename supplies the year — the email body never states it.
   to what Méré stocks is decided up front and reported; substituting an
   out-of-stock item is not something to do silently.
 - **Budget is a ceiling, not a target.**
+- **A recipe's slug never changes.** Slugs are the keys in `library/favourites`
+  in the live shared database, so renaming one silently orphans a star on her
+  page. Titles and ingredients change freely; the slug stays even when it ends up
+  describing the old version — `pisto-manchego` makes parmesan and
+  `salade-roquette-parmesan-pommes` is mâche, because Méré stocks neither.
+- **A `missing` catalogue entry is usually not a bug.** Most of them carry
+  `alternatives`, and the page's "Decide first" section holds the basket until
+  Charlotte picks — that is the design, and the reason nothing is swapped for
+  her. Only adapt the *recipe* when Méré stocks no version of the thing at all
+  and there is no alternative to offer, and then say so in the recipe's own text.
 - **Everything in this repo is public, `data/` included.** That is deliberate and
   Charlotte's decision — do not re-add a `.gitignore` for it, do not re-split the
   repo, and do not treat committing an invoice as a mistake. The weekly run adds

@@ -521,53 +521,6 @@
         "url": "/produit/sauce-pesto-au-basilic-bio/3250392926939"
       }
     },
-    "Gambas crues décortiquées": {
-      "status": "missing",
-      "search": "gambas",
-      "checked": "2026-09-14",
-      "note": "No raw peeled gambas at Méré. Raw ones only come whole: Odyssée 800 g at 22,78 €, or Capitaine Cook frozen 400 g (out of stock today). The cheap option is cooked.",
-      "alternatives": [
-        {
-          "brand": "Intermarché",
-          "title": "Gambas cuites calibre 30/40",
-          "packaging": "La barquette de 400g",
-          "unitPrice": "14,98 €/Kg",
-          "price": 5.99,
-          "url": "/produit/gambas-cuites-calibre-30-ou-40/3250393461231"
-        },
-        {
-          "brand": "Odyssée, une marque Intermarché",
-          "title": "Gambas entières crues",
-          "packaging": "La boite de 800 g",
-          "unitPrice": "28,48 €/Kg",
-          "price": 22.78,
-          "url": "/produit/gambas-entieres-crues/3250391422746"
-        },
-        {
-          "brand": "Capitaine Cook, une marque Intermarché",
-          "title": "Gambas sauvages entières crues congelées",
-          "packaging": "La barquette de 400 g",
-          "unitPrice": null,
-          "price": null,
-          "url": "/produit/gambas-sauvages-entieres-crues-congelees/3250390886471",
-          "available": false
-        }
-      ]
-    },
-    "Gingembre frais": {
-      "status": "picked",
-      "search": "gingembre",
-      "checked": "2026-09-14",
-      "listing": {
-        "brand": "Le Choix du Primeur",
-        "title": "Gingembre- CAT. 1",
-        "packaging": "En vrac - à partir de 150 gr (soit 1 racine)",
-        "unitPrice": "6,99 €/Kg",
-        "price": 1.05,
-        "url": "/produit/gingembre/2800525000000"
-      },
-      "note": "Loose fresh root, one per add."
-    },
     "Herbes de Provence fraîches": {
       "status": "picked",
       "search": "herbes de provence",
@@ -823,44 +776,44 @@
         }
       ]
     },
-    "L'Or Espresso capsules intensité 8 — boîte de 50": {
-      "status": "check",
+    "L'Or Espresso - Capsules de café compatibles Nespresso Brésil Intensité 8": {
+      "status": "exact",
       "search": "capsules l'or intensité 8",
       "checked": "2026-09-14",
       "listing": {
         "brand": "L'Or",
-        "title": "Capsules de café compatibles Nespresso Lungo Profondo Intensité 8",
-        "packaging": "La boite de 50 capsules - 260g",
-        "unitPrice": "63,81 €/Kg",
-        "price": 16.59,
-        "url": "/produit/capsules-de-cafe-compatibles-nespresso-lungo-profondo-intensite-8/8711000705063"
+        "title": "Espresso - Capsules de café compatibles Nespresso Brésil Intensité 8",
+        "packaging": "La boîte de 30 capsules - 165g",
+        "unitPrice": "65,13 €/Kg",
+        "price": 10.16,
+        "url": "/produit/espresso-capsules-de-cafe-compatibles-nespresso-bresil-intensite-8/8711000572580"
       },
-      "note": "The only strength-8 L'Or capsule in a box of 50 is Lungo Profondo. The Espresso Brésil 8 comes in 30. The receipt never named which one you buy.",
+      "note": "The one on the receipt of 2026-09-15, box of 30. Lungo Profondo 8 is the only strength-8 box of 50.",
       "alternatives": [
         {
           "brand": "L'Or",
-          "title": "Espresso - Capsules de café compatibles Nespresso Brésil Intensité 8",
-          "packaging": "La boîte de 30 capsules - 165g",
-          "unitPrice": "65,13 €/Kg",
-          "price": 10.16,
-          "url": "/produit/espresso-capsules-de-cafe-compatibles-nespresso-bresil-intensite-8/8711000572580"
+          "title": "Capsules de café compatibles Nespresso Lungo Profondo Intensité 8",
+          "packaging": "La boite de 50 capsules - 260g",
+          "unitPrice": "63,81 €/Kg",
+          "price": 16.59,
+          "url": "/produit/capsules-de-cafe-compatibles-nespresso-lungo-profondo-intensite-8/8711000705063"
         }
       ]
     },
-    "L'Or Espresso Décaféiné capsules — boîte de 50": {
-      "status": "missing",
+    "L'Or Capsules de café compatibles Nespresso Decaffeinato Intensité 6": {
+      "status": "exact",
       "search": "capsules l'or décaféiné",
       "checked": "2026-09-14",
-      "note": "No decaf L'Or capsules in a box of 50 at Méré. The biggest is Decaffeinato intensité 6 in 30; Lungo Profondo Decaffeinato 8 only comes in 10.",
+      "listing": {
+        "brand": "L'Or",
+        "title": "Capsules de café compatibles Nespresso Decaffeinato Intensité 6",
+        "packaging": "La boite de 30 capsules - 156g",
+        "unitPrice": "60,19 €/Kg",
+        "price": 9.39,
+        "url": "/produit/capsules-de-cafe-compatibles-nespresso-decaffeinato-intensite-6/8711000547250"
+      },
+      "note": "The one on the receipt of 2026-09-15, box of 30 — no decaf L'Or comes in 50 at Méré.",
       "alternatives": [
-        {
-          "brand": "L'Or",
-          "title": "Capsules de café compatibles Nespresso Decaffeinato Intensité 6",
-          "packaging": "La boite de 30 capsules - 156g",
-          "unitPrice": "60,19 €/Kg",
-          "price": 9.39,
-          "url": "/produit/capsules-de-cafe-compatibles-nespresso-decaffeinato-intensite-6/8711000547250"
-        },
         {
           "brand": "L'Or",
           "title": "Capsules de café compatibles Nespresso Lungo Profondo Decaffeinato Intensité 8",
@@ -2323,6 +2276,20 @@
         "url": "/produit/paprika-doux-moulu/3250390003052"
       },
       "note": "Doux only. The same search lists a Ducros paprika fumé; hot paprika (fort) is never this line."
+    },
+    "Le Choix du Primeur Gingembre": {
+      "status": "exact",
+      "search": "gingembre",
+      "checked": "2026-09-14",
+      "listing": {
+        "brand": "Le Choix du Primeur",
+        "title": "Gingembre- CAT. 1",
+        "packaging": "En vrac - à partir de 150 gr (soit 1 racine)",
+        "unitPrice": "6,99 €/Kg",
+        "price": 1.05,
+        "url": "/produit/gingembre/2800525000000"
+      },
+      "note": "Loose fresh root, one per add. Same listing the receipt of 2026-09-15 names."
     }
   }
 }
