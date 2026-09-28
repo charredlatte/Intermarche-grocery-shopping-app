@@ -41,7 +41,7 @@ week was republished from a `main` that had none of them. So:
 
 **1. Purchase history.** Intermarché emails a `Votre facture est disponible`
 receipt after every Drive order, itemized with exact product names, quantities,
-unit prices and what was out of stock. 22 of them, Oct 2025 → Aug 2026, are in
+unit prices and what was out of stock. 24 of them, Oct 2025 → Sep 2026, are in
 `data/invoices/` as plain text. `scripts/parse-invoices.mjs` turns them into
 `data/purchase-history.json`. That is a better preference model than any
 onboarding quiz, because it is what she did rather than what she said.
@@ -92,6 +92,19 @@ questions, then a plan, then a line-item list, then the basket.
   guindilla, peperoncino, 'nduja, merguez. All carry heat, and the IBS rule
   outranks authenticity. Where a recipe departs from the original for this
   reason, it says so in its own text.
+- **Every recipe declares one `protein`**, from exactly these eight: `chicken`,
+  `turkey`, `pork`, `charcuterie`, `beef`, `fish`, `eggs`, `vegetarian`. It is
+  the protein the dish is *built around*, not everything in it — the bolognese
+  is `beef` though it holds lardons too. `charcuterie` means cured or deli meat
+  (mortadelle, lardons, pancetta, jambon); fresh pork, chipolatas included, is
+  `pork`. `build-week.mjs` validates it and ships
+  the order to the page as `config.proteins` (the Recipes grouping is still to
+  build — see below), and the same eight values tag the
+  groups in `data/equivalents.json` — which is how `parse-invoices.mjs` rolls the
+  receipts up into the `byProtein` block of `data/purchase-history.json`.
+  **Balance the week's proteins as well as its cuisines.** Pork is in 22 of 23
+  orders and the library gives it two dinners; fish is in 2 of 23, and that is
+  price rather than taste.
 - **Every recipe declares its `equipment`.** She has an air fryer, an oven,
   muffin tins and casserole dishes — recorded in `preferences.cooking.equipment`,
   and filterable on the Recipes tab. The air fryer and the muffin tin were being
@@ -189,9 +202,30 @@ Why new documents: on 2026-09-14 the Artifact tool's `write_db` refused
 2026-09-28), but the append-only progress reports work, so they stay. Seeding a
 new page is still best done before she first opens it.
 
-Week, Recipes and the Cook quiz sit behind the basket unchanged. Cook is a
-five-step quiz modelled on the Potto flow Charlotte sent on 2026-09-06; no-chilli
-is a locked card, because it is a health rule, not a mood.
+Week, Recipes and the Cook quiz sit behind the basket — **for now.** Two things
+Charlotte asked for on 15–16 September were built on `claude/*` branches and
+never merged, and the basket page was redesigned on top of a `main` without
+them. They are her standing requests, confirmed again on 2026-09-28, and are the
+next page work — rebuilt into today's template, not merged from the old one:
+
+- **From `claude/meal-planning-app-reorganize-pddufg` (c2d3a32):** three tabs —
+  Basket, Week, Recipes; **the Cook quiz goes** (reconfirmed 2026-09-28). Week
+  becomes a plain seven days, each meal in eating order, dish, time and ★, tap to
+  open, and "Back to the planned week" under the days only once something is
+  swapped. Recipes becomes the only place the week changes: `Group by [Protein]
+  [Cuisine]`, and every card carries `Cook this on…`, opening the day picker on
+  that dish's own slot. The data half of that commit — `protein` on every dish,
+  its build check, `byProtein` in the history, her 15 September answers in
+  `preferences.json` — landed on 2026-09-28; `config.proteins` already ships.
+- **From `claude/trusting-tesla-a9rmyl` (b901bd8, 57b19b0, 415fdfd):** a Kitchen
+  tab that she and her partner keep up to date — what is actually in, stamped
+  per statement, in its own document outside `weeks/` — and a Week that tracks
+  how it is lived: each meal ticked cooked or not, moved, struck off, or added,
+  with cooked meals drawing down the kitchen and anything behind her dropping out
+  of the basket. The sync and redraw fixes from that branch already landed in
+  29c3a65; only the features are outstanding.
+
+Delete those two branches once this list is done, not before.
 
 No dependencies; `npm install` is a no-op. Node 18+.
 
@@ -212,6 +246,16 @@ parser. The filename supplies the year — the email body never states it.
   to what Méré stocks is decided up front and reported; substituting an
   out-of-stock item is not something to do silently.
 - **Budget is a ceiling, not a target.**
+- **A recipe's slug never changes.** Slugs are the keys in `library/favourites`
+  in the live shared database, so renaming one silently orphans a star on her
+  page. Titles and ingredients change freely; the slug stays even when it ends up
+  describing the old version — `pisto-manchego` makes parmesan and
+  `salade-roquette-parmesan-pommes` is mâche, because Méré stocks neither.
+- **A `missing` catalogue entry is usually not a bug.** Most of them carry
+  `alternatives`, and the page's "Decide first" section holds the basket until
+  Charlotte picks — that is the design, and the reason nothing is swapped for
+  her. Only adapt the *recipe* when Méré stocks no version of the thing at all
+  and there is no alternative to offer, and then say so in the recipe's own text.
 - **Everything in this repo is public, `data/` included.** That is deliberate and
   Charlotte's decision — do not re-add a `.gitignore` for it, do not re-split the
   repo, and do not treat committing an invoice as a mistake. The weekly run adds

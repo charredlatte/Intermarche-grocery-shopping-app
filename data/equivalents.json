@@ -4,6 +4,7 @@
     {
       "id": "cotes-de-porc",
       "label": "Pork chops",
+      "protein": "pork",
       "note": "The same cut under two Intermarché house brands, same price.",
       "members": [
         {
@@ -49,6 +50,7 @@
     {
       "id": "poulet-pieces",
       "label": "Chicken pieces — thigh, fillet, aiguillettes",
+      "protein": "chicken",
       "note": "Charlotte swaps these freely and the 6 September plan does exactly that (the curry runs on Saturday's aiguillettes instead of thighs). Thighs take longer and bring their own fat, so the method still needs reading. Priced per kilo except the Notre Sélection tray, hence the kg weights.",
       "members": [
         {
@@ -107,6 +109,7 @@
     {
       "id": "charcuterie",
       "label": "Sliced charcuterie",
+      "protein": "charcuterie",
       "note": "For the morning sandwich. The Negroni assortment is several meats in one pack; the mortadella is the usual default.",
       "members": [
         {
@@ -133,6 +136,7 @@
     {
       "id": "oeufs",
       "label": "Eggs",
+      "protein": "eggs",
       "note": "Box sizes and welfare labels differ; for cooking they are eggs.",
       "members": [
         {
@@ -203,6 +207,7 @@
     {
       "id": "saumon-fume",
       "label": "Smoked salmon",
+      "protein": "fish",
       "note": "The Odyssée one is the better, dearer pack.",
       "members": [
         {
@@ -269,6 +274,7 @@
     {
       "id": "chipolatas",
       "label": "Chipolatas",
+      "protein": "pork",
       "members": [
         {
           "name": "Jean Rozé, une marque Intermarché Chipolata supérieure aux herbes"
@@ -281,6 +287,7 @@
     {
       "id": "viande-hachee",
       "label": "Beef mince",
+      "protein": "beef",
       "note": "5% and 15% fat. The 15% browns better; the 5% is what she usually buys.",
       "members": [
         {
@@ -328,6 +335,20 @@
         },
         {
           "name": "Le Choix du Primeur Tomates RONDES CHARNUES"
+        }
+      ]
+    },
+    {
+      "id": "escalopes-dinde",
+      "label": "Turkey escalopes",
+      "protein": "turkey",
+      "note": "Le Gaulois no longer sells plain escalopes at Méré — the catalogue names Volaé's extra-fines and the butcher counter as the alternatives. Both are sold by the kilo.",
+      "members": [
+        {
+          "name": "Le Gaulois Escalope de dinde"
+        },
+        {
+          "name": "Volaé, une marque Intermarché Escalopes de dinde extra fines x2"
         }
       ]
     }
