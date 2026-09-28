@@ -663,6 +663,12 @@
   .home-head { padding: 1.25rem 0 .2rem; }
   .home-lede { margin: 0 0 .9rem; color: var(--ink-2); font-size: .93rem; max-width: 34rem; }
   .home-note { margin: 1.2rem 0 0; font: 400 .8rem/1.5 var(--f-body); color: var(--ink-3); max-width: 34rem; }
+  details.keepbox { margin-top: 1.6rem; }
+  details.keepbox > summary { font: 500 .82rem/1.3 var(--f-body); color: var(--ink); }
+  .keep-paste { font: 400 .88rem/1.45 var(--f-body); resize: vertical; min-height: 6rem; }
+  .home-offer { margin-top: .35rem; }
+  .home-offer-lab { font: 500 .66rem/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin-right: .15rem; }
+  .home-use { max-width: 100%; text-align: left; white-space: normal; overflow-wrap: anywhere; }
 
   /* ---- the recipe sheet ---- */
   #recipe .sheet-head { align-items: center; }
@@ -708,6 +714,15 @@
 
   <section id="panel-home" role="tabpanel" aria-labelledby="tab-home" hidden>
     <div id="home-out"></div>
+    <details class="chipbox keepbox" id="keepbox">
+      <summary>Paste your Google Keep list</summary>
+      <div class="kitchen-body">
+        <p class="kitchen-note">In Keep, open “Meal Planning”, then ⋮ → Send → Copy to clipboard (or select the items and copy them), and paste here. Ticked items are left out; “bin bags x2” means two.</p>
+        <textarea class="search keep-paste" id="keeppaste" rows="5" aria-label="Your Keep list, pasted" placeholder="☐ Drain cleaner&#10;☐ Bin bags x2"></textarea>
+        <div class="toolbar" style="margin-top:.5rem"><button class="btn primary" type="button" id="keepadd">Add to the list</button></div>
+        <div id="keep-report" aria-live="polite"></div>
+      </div>
+    </details>
   </section>
 
   <section id="panel-week" role="tabpanel" aria-labelledby="tab-week" hidden>
@@ -2140,14 +2155,21 @@ function renderHome() {
     else if (l && !l.cat) meta.push(l.guess ? "not on a receipt yet — Claude looks it up at Méré during the push" : "not checked at Méré — Claude asks during the push");
     if (l && l.pending) meta.push("decide on the Basket tab first");
     if (off) meta.push(esc(coverReason(off)));
+    // A name she typed, or pasted from Keep, that her receipts may know better:
+    // offered, never swapped in for her.
+    const known = !!PRICES[a.name] || !!CATALOGUE[a.name];
+    const offer = known || locked ? [] : suggestFor(a.name).slice(0, 2);
+    const offerHtml = offer.length ? `<div class="line-ctl home-offer"><span class="home-offer-lab">Did you mean</span>${offer.map((n) =>
+      `<button class="minibtn home-use" type="button" data-homeuse="${esc(key)}" data-product="${esc(n)}" title="${esc(n)}">${esc(shortName(n))} · ${esc(priceLabel(n))}</button>`).join("")}</div>` : "";
     return `<li class="bl${off ? " is-kitchen" : ""}">
         <div class="bl-row">
           <div class="bl-main">
-            <div class="bl-name">${esc(a.name)}</div>
+            <div class="bl-name">${esc(a.name)}${a.from === "keep" ? '<span class="flag pantry">from Keep</span>' : ""}</div>
             ${meta.length ? `<div class="bl-meta">${meta.map((m) => `<span>${m}</span>`).join("")}</div>` : ""}
           </div>
           <div class="bl-cost">${l ? money(l) : "—"}</div>
         </div>
+        ${offerHtml}
         ${locked ? "" : `<div class="line-ctl">
           <span class="step" role="group" aria-label="How many ${esc(a.name)}">
             <button class="stepbtn" type="button" data-homestep="${esc(key)}" data-dir="-1" aria-label="One fewer"${(a.qty || 1) <= 1 ? " disabled" : ""}>−</button>
@@ -2172,7 +2194,8 @@ function renderHome() {
         <ul class="bl-list">${items.sort((x, y) => x[1].name.localeCompare(y[1].name)).map(row).join("")}</ul>
       </div>`
       : `<div class="empty">Nothing on the household list yet.</div>`}
-    <p class="home-note">Still using your Google Keep “Meal Planning” list? Claude adds it at push time too, and leaves off anything already here.</p>`;
+    `;
+  $("#keepadd").disabled = locked;
 }
 
 /* ---------- approved: the push ---------- */
@@ -2618,6 +2641,116 @@ function addProduct(name) {
   return null;
 }
 
+/* ---------- her Google Keep list, pasted ----------
+   Keep has no API a page or a personal account can use, so the link is the
+   clipboard: Keep copies a note as text, one item a line, ticked ones marked.
+   Each line goes on the household list. A name her receipts know exactly —
+   one product and no other — goes in as that product, as the push always did;
+   one the basket already buys for a dish or the standing order is left off and
+   said so; anything else goes in as she wrote it, with the likeliest products
+   offered beside it. Nothing hot, and nothing chosen for her. */
+const shortName = (n) => String(n).replace(/, une marque Intermarché/g, "");
+
+// Her Keep list is in English as often as French; her receipts are French.
+const KEEP_WORDS = {
+  "drain cleaner": "déboucheur", "paper towel": "essuie", "paper towels": "essuie", "kitchen roll": "essuie",
+  "toilet paper": "papier toilette", "loo roll": "papier toilette", "bin bags": "sacs poubelle",
+  "bin bag": "sacs poubelle", "trash bags": "sacs poubelle", "dishwasher tablets": "lave-vaisselle",
+  "sponge": "éponge", "sponges": "éponge", "laundry": "lessive", "washing powder": "lessive",
+  "detergent": "lessive", "cat litter": "litière", "litter": "litière", "cat food": "croquettes",
+  "shampoo": "shampo", "shower gel": "gel douche", "toothpaste": "dentifrice", "window cleaner": "vitres",
+  "almond milk": "amande", "milk": "lait", "eggs": "œufs", "butter": "beurre", "coffee": "café",
+  "tissues": "mouchoir", "soap": "savon", "rice": "riz", "lemon": "citron", "lemons": "citron",
+};
+
+/* The products a name most likely means, best first, nothing hot. */
+function suggestFor(name) {
+  const low = name.trim().toLowerCase();
+  const terms = [low, KEEP_WORDS[low]].filter(Boolean);
+  let hits = [...new Set(terms.flatMap((t) => search(t, [], ALL_PRODUCTS)))];
+  if (!hits.length) {
+    for (const w of low.split(/[^a-zà-ÿœ']+/).filter((w) => w.length >= 4)) hits.push(...search(w, [], ALL_PRODUCTS));
+    hits = [...new Set(hits)];
+  }
+  return hits.filter((n) => !hotWord(n)).slice(0, 5);
+}
+
+/* One line of a pasted Keep note: its name and how many, or null for a
+   ticked item, the note's title, or anything too long to be a list item. */
+function keepLine(raw) {
+  let t = String(raw).trim();
+  if (!t) return null;
+  if (/^(?:[-*•]\s*)?(?:☑|☒|✓|✔|✅|\[[xX]\])/.test(t)) return null;
+  t = t.replace(/^(?:[-*•]\s*)?(?:☐|□|▢|⬜|\[ \])?\s*/, "").replace(/^[-*•]\s+/, "").trim();
+  if (!t || t.length > 80 || /^meal planning$/i.test(t)) return null;
+  let qty = 1;
+  // "2 bin bags", "2x bin bags", "bin bags x2" — a count needs a space or an x
+  // beside it, so "7up" and "Mix2" stay names.
+  let m = t.match(/^(\d{1,2})\s*(?:[x×]\s+|\s+)(.+)$/i);
+  if (m) { qty = +m[1]; t = m[2].trim(); }
+  m = t.match(/^(.+?)\s+[x×]\s*(\d{1,2})$/i);
+  if (m) { t = m[1].trim(); qty = +m[2]; }
+  return t ? { name: t, qty: Math.min(30, Math.max(1, qty)) } : null;
+}
+
+let keepReport = null;
+
+function addFromKeep(text) {
+  if (approved) return null;
+  const rep = { added: [], matched: [], covered: [], already: [], refused: [], skipped: 0 };
+  const lines = String(text).split(/\r?\n/).filter((x) => x.trim());
+  const b = basket();
+  const bought = new Map([...b.lines, ...b.kitchen].filter((l) => l.kind !== "added").map((l) => [l.name, l]));
+  const onList = new Set(Object.values(added).map((a) => a.name.toLowerCase()));
+  for (const raw of lines) {
+    const it = keepLine(raw);
+    if (!it) { rep.skipped++; continue; }
+    const word = hotWord(it.name);
+    if (word) { rep.refused.push({ name: it.name, word, why: hotRefusal(it.name, word), safe: suggestFor(it.name)[0] || null }); continue; }
+    // One receipt product and only one: that is the thing she means.
+    const exact = search(it.name, [], Object.keys(PRICES));
+    const product = exact.length === 1 && !hotWord(exact[0]) ? exact[0] : null;
+    if (product && bought.has(product)) { rep.covered.push({ name: it.name, for: bought.get(product).for }); continue; }
+    const name = product || it.name;
+    if (onList.has(name.toLowerCase())) { rep.already.push(it.name); continue; }
+    const key = "added:" + name;
+    added[key] = { name, qty: it.qty, from: "keep" };
+    onList.add(name.toLowerCase());
+    (product ? rep.matched : rep.added).push(product ? { name: it.name, product } : it.name);
+  }
+  keepReport = rep;
+  if (rep.added.length || rep.matched.length) commitShop(); else renderAll();
+  return rep;
+}
+
+function renderKeepReport() {
+  const r = keepReport;
+  if (!r) { $("#keep-report").innerHTML = ""; return; }
+  const li = (xs) => `<ul>${xs.join("")}</ul>`;
+  const parts = [];
+  const n = r.added.length + r.matched.length;
+  parts.push(`<div class="notice-title">${n ? `${n} added to the list` : "Nothing new added"}</div>`);
+  if (r.matched.length) parts.push(`<p>Matched to what you buy:</p>` + li(r.matched.map((m) => `<li>${esc(m.name)} → ${esc(shortName(m.product))}</li>`)));
+  if (r.added.length) parts.push(`<p>As you wrote them — pick a product under each on the list, or Claude looks them up during the push:</p>` + li(r.added.map((x) => `<li>${esc(x)}</li>`)));
+  if (r.covered.length) parts.push(`<p>Left off, the basket already buys them:</p>` + li(r.covered.map((c) => `<li>${esc(c.name)} <span class="why">— for ${esc(c.for)}</span></li>`)));
+  if (r.already.length) parts.push(`<p>Already on the list:</p>` + li(r.already.map((x) => `<li>${esc(x)}</li>`)));
+  if (r.refused.length) parts.push(`<p>Not added — no heat at all, it's the IBS rule:</p>` + li(r.refused.map((x) => `<li>“${esc(x.name)}” reads as ${esc(x.word)}${x.safe
+    ? ` <button class="minibtn" type="button" data-add-product="${esc(x.safe)}">Add ${esc(shortName(x.safe))} instead</button>` : ""}</li>`)));
+  if (r.skipped) parts.push(`<p class="why">${r.skipped} ticked, blank or title ${r.skipped === 1 ? "line" : "lines"} skipped.</p>`);
+  $("#keep-report").innerHTML = `<div class="notice">${parts.join("")}</div>`;
+}
+
+/* Her typed name, replaced by the product she picked from the offer. */
+function useProduct(key, name) {
+  const a = added[key];
+  if (!a || approved || hotWord(name)) return;
+  delete added[key];
+  delete addAdj[key];
+  const nk = "added:" + name;
+  added[nk] = { ...(added[nk] || {}), ...(a.from ? { from: a.from } : {}), name, qty: ((added[nk] && added[nk].qty) || 0) + (a.qty || 1) };
+  commitShop();
+}
+
 /* How many she needs, set from the Household tab. The basket works out the
    packs to add from it, so a count she set there by hand gives way. */
 function stepHousehold(key, dir) {
@@ -2839,6 +2972,7 @@ function renderAll() {
   renderRecipes();
   renderShop();
   renderHome();
+  renderKeepReport();
   renderMasthead();
   renderRecipeSheet();
 }
@@ -2982,6 +3116,13 @@ document.addEventListener("click", (e) => {
   const hs = e.target.closest("button[data-homestep]");
   if (hs) return stepHousehold(hs.dataset.homestep, Number(hs.dataset.dir));
   if (e.target.closest("#homeadd")) return openAddItem();
+  const hu = e.target.closest("button[data-homeuse]");
+  if (hu) return useProduct(hu.dataset.homeuse, hu.dataset.product);
+  if (e.target.closest("#keepadd")) {
+    const r = addFromKeep($("#keeppaste").value);
+    if (r && (r.added.length || r.matched.length)) $("#keeppaste").value = "";
+    return;
+  }
   const tick = e.target.closest("button[data-tick]");
   if (tick) return toggleInBasket(tick.dataset.tick);
   const cmd = e.target.closest("#copycmd");

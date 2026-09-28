@@ -305,6 +305,21 @@ looks up and asks about. Nothing hot gets in this way either. It is the page's
 own copy of her Google Keep "Meal Planning" list and is week-scoped like the
 rest of the week's document: a new week's page starts it empty.
 
+**Keep reaches the page by paste, because nothing else can.** There is no Keep
+connector (checked 2026-09-28: not in her account, not in the registry), and
+Google's Keep API is for Workspace business accounts only. Keep copies a note
+as text — ⋮ → Send → Copy to clipboard — and the Household tab's "Paste your
+Google Keep list" takes it: ticked lines, blank lines and the title are left
+out, "x2" is a count, a name that matches exactly one receipt product goes in
+as that product, one the basket already buys for a dish or the standing order
+is left off and said so, and anything else goes in as written, marked
+`from: "keep"`, with "Did you mean" offers from her receipts beside it — she
+picks; nothing is swapped in for her. English names are looked up through a
+short word list (`KEEP_WORDS`), since her receipts are French. Hot items are
+refused, with a safe product offered (paprika → paprika doux). The paste box
+sits outside the redrawn part of the tab, so a sync never eats what she is
+pasting.
+
 Week and Recipes sit behind the basket. Two things Charlotte asked for on 15–16
 September were built on `claude/*` branches and never merged, and the basket page
 was redesigned on top of a `main` without them. They are her standing requests,
