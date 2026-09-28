@@ -374,9 +374,10 @@ that is a new run from the top, which is also safe — counts are set, not added
 
 ## Publishing: a fresh page for the week
 
-The plan is not delivered until it is on a page she can open. **Every `/courses`
-run publishes a new page with its own link** — the basket page for that week.
-After she agrees the plan:
+The plan is not delivered until it is on a page she can open. **Every new week
+gets a new page with its own link.** A change to a week whose page is already
+out goes onto *that* page — see "Changing a week that is already published",
+below. After she agrees the plan:
 
 1. **Add any new dish to `data/recipes.json`** — slug, title, cuisine, slot,
    `kind`, prep and cook minutes, serves, tags, ingredients and full steps.
@@ -398,15 +399,23 @@ After she agrees the plan:
      being a guess on the page and takes the site's price.
 2. **Write `data/plans/<weekOf>.json`** — the meals, each with a stable `id`
    (swaps are keyed on it), day, slot, recipe slug, and optional `note`.
-   A portion eaten out of an earlier batch gets `"leftovers": true` and a
-   `minutesOverride`; the basket skips it, because that pot is already paid for.
+   A portion eaten out of an earlier batch gets `"leftovers": true`, a
+   `minutesOverride`, and **`"from": "<id of the meal that cooks the pot>"`** —
+   the build refuses a leftovers meal without it. The basket skips the meal
+   while that pot is still being cooked, and shops for it again the moment
+   either meal is swapped, so a changed Monday cannot leave Tuesday's lunch with
+   no rice.
    **There is no shopping array any more** — the basket is derived from whatever
    meals are picked, so it survives her swapping things.
 3. **Check the catalogue** — `npm run catalogue:queue`. Anything this week's
    plan uses that has no entry would reach the page as "Claude asks at push";
    resolve it now if you are on her PC (see "Keeping the catalogue current").
-4. **`npm run build:week`** — emits `artifact/week.html`, titled "Méré Basket,
-   <date>".
+4. **`git fetch origin && git merge origin/main`, then `npm run build:week`** —
+   emits `artifact/week.html`, titled "Méré Basket, <date>". The build refuses
+   a checkout that is missing commits on `main`: the last publish wins the
+   page for everyone, so publishing from behind `main` silently undoes another
+   session's page work. If the page's code changed, `npm run test:page` too —
+   it builds, then drives the page against a stub store; publish only on green.
 5. **Publish it as a new page.** Copy `artifact/week.html` to the scratchpad as
    `courses-<weekOf>.html` and publish that path with **no `url`** — a new path
    is what makes a fresh link. Pass `icon: "basket"`, a one-line `description`,
@@ -433,6 +442,36 @@ apply to a dish on every page it appears on, so plan with them in mind: read
 them before costing a week. If she asks to make one permanent, fold it into
 `data/recipes.json` — keeping the slug and each row's `item`, which are the keys —
 and remove it from the document on the new page, or it applies twice.
+
+### Changing a week that is already published
+
+A recipe gains or loses an ingredient, a product is renamed, a dish in the plan
+file changes. Her swaps, counts, decisions and approval for the week live in
+that page's database, not in the repo, so:
+
+- **Republish onto the week's existing link, never a new one.** Read it first
+  (`Artifact` `action: "read"` with the `url` from `data/artifacts.json`), then
+  publish the rebuilt page with that `url`; omit `capabilities` and `contract`
+  so the page keeps them. Nothing needs copying — the database never moved. A
+  new link splits the week in two: whoever still has the old page open keeps
+  saving there, and a Push pressed on it is invisible to `/courses push`, which
+  reads the link from `data/artifacts.json`.
+- **Keep every meal `id`.** Swaps, and anything else she has done to a meal, are
+  keyed on it; a renamed id quietly drops them.
+- **If she has already approved, leave the approval alone.** The page compares
+  what the week needs now against what it needed when she approved, and lists
+  the difference on the basket and in the header — reopening is her call, and
+  once the order has gone the page tells her what to buy separately instead.
+- **A dish may leave the library, but not a plan file** — the build checks every
+  plan. A swap she made to it falls back to the planned dish, and the page says
+  which.
+- **Never rename an ingredient's `item`.** Her edits to a dish — a dropped
+  row, a new amount, a swapped product — are keyed on it, so a renamed `item`
+  detaches them without a word: the onions she took out come back on the list.
+  Change `qty`, `product` and `buy` freely; keep `item`. If a row genuinely goes,
+  the page reports any edit of hers that no longer matches the dish.
+- **An ingredient taken out of its last recipe** may leave a dead catalogue
+  entry, which fails the build by name: delete the entry.
 
 Reuse a slug rather than writing a near-duplicate — that is what makes the
 Recipes tab a library worth re-picking from, and it shows her which weeks a dish

@@ -471,6 +471,18 @@
   .minibtn.danger:hover { border-color: var(--clay); color: var(--clay); background: var(--clay-soft); }
 
 
+  /* ---- notices on the basket: what changed under it ---- */
+  .notice {
+    margin-top: 1.1rem; padding: .75rem .85rem; border-radius: 4px;
+    background: var(--yuzu-soft); border-left: 3px solid var(--yuzu);
+    font: 400 .84rem/1.5 var(--f-body); color: var(--ink-2);
+  }
+  .notice-title { font: 600 .9rem/1.35 var(--f-body); color: var(--ink); margin-bottom: .2rem; }
+  .notice p { margin: .35rem 0 .15rem; }
+  .notice ul { margin: .1rem 0 .2rem; padding-left: 1.1rem; }
+  .notice li { margin: .1rem 0; }
+  .notice .why { color: var(--ink-3); }
+
   /* ---- approve, then the Drive checklist ---- */
   .approvebar {
     display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; justify-content: space-between;
@@ -865,12 +877,21 @@ const sameHave = () => Object.keys({ ...have, ...haveSeed })
 const shopEdited = () => !sameHave() ||
   [qtyAdj, subs, dropped, added, addAdj, choices].some((o) => Object.keys(o).length > 0);
 
+/* A meal eaten out of an earlier pot buys nothing — but only while there is a
+   pot. The plan names the meal it comes from (`from`), and the moment that
+   meal is swapped for another dish, or this one is, the lunch is shopped for
+   like any other. Any swap counts: the new dish might well make the same rice,
+   but assuming so is how a week ends with no lunch, and a spare bag of rice is
+   the cheaper mistake. A plan from before `from` existed keeps the old rule. */
+const leftoversHold = (m) => !!m.leftovers && picks[m.id] === baseline[m.id] &&
+  (!m.from || picks[m.from] === baseline[m.from]);
+
 /* Every meal, resolved. Skips a pick whose dish has gone missing. */
 function meals() {
   return plan.meals.map((m) => {
     const r = dishFor(m.id);
     if (!r) return null;
-    return { ...m, r, slug: picks[m.id], minutes: minutesOf(m, r), leftovers: !!m.leftovers,
+    return { ...m, r, slug: picks[m.id], minutes: minutesOf(m, r), leftovers: leftoversHold(m),
              edited: !!recipeEdits[picks[m.id]], isSwapped: picks[m.id] !== baseline[m.id] };
   }).filter(Boolean);
 }
@@ -927,7 +948,12 @@ function recipeOf(slug) {
     }
     return i;
   });
-  for (const a of e.add) rows.push({ ...a, added: true });
+  // A row she added that the library recipe now has itself — her edit made
+  // permanent in recipes.json, or the same `item` added there independently —
+  // is the library's row now. Applying hers as well would buy it twice, and
+  // give the dish two rows with one key.
+  const has = new Set(rows.map(itemKey));
+  for (const a of e.add) if (!has.has(itemKey(a))) rows.push({ ...a, added: true });
   return { ...base, ingredients: rows, edited: true };
 }
 
@@ -1040,7 +1066,15 @@ function packRatio(receiptPack, sitePack) {
 }
 
 /* ---------- the basket, derived from whatever is on the menu ---------- */
-function basket() {
+const SECTION_ORDER = ["Proteins", "Vegetables", "Store cupboard", "Bread and cheese",
+                       "Standing order", "New to you", "Best guesses", "Added by you"];
+
+/* Everything the week asks for, before a word about what is in the kitchen: one
+   entry per line of the list, with how much the dishes, the standing order and
+   her own additions need. The basket works from this, and so does approval —
+   which keeps a copy, so that a week changed after she signed it off can say
+   what no longer matches instead of pushing the old list in silence. */
+function weekWanted() {
   const acc = new Map();
   // A batch dish is cooked once and eaten three times. Counting its ingredients
   // per serving bought six tins of coconut milk for one pot, so a meal flagged
@@ -1081,11 +1115,13 @@ function basket() {
                   guessPrice: 3, required: a.qty, name: a.name,
                   for: "you added this", kind: "added" });
   }
+  return wanted.sort((a, b) => (SECTION_ORDER.indexOf(a.section) - SECTION_ORDER.indexOf(b.section)) ||
+                               a.key.localeCompare(b.key));
+}
 
-  const order = ["Proteins", "Vegetables", "Store cupboard", "Bread and cheese",
-                 "Standing order", "New to you", "Best guesses", "Added by you"];
-  wanted.sort((a, b) => (order.indexOf(a.section) - order.indexOf(b.section)) ||
-                        a.key.localeCompare(b.key));
+function basket() {
+  const order = SECTION_ORDER;
+  const wanted = weekWanted();
 
   // Now the kitchen. One pool, drawn down in list order, so the same half-kilo
   // of chicken cannot be counted against two different dinners.
@@ -1178,12 +1214,33 @@ function setSync(kind, text) {
 // picks made since. So clicks only mark the state dirty; a single loop writes
 // the latest state until nothing is left unsaved.
 let saving = false, dirty = false, lastSaved = 0;
+let lostPicks = [];   // swaps that pointed at a dish no longer in the library
+/* The week document as the store last handed it to us. A save is written over
+   it rather than instead of it, so a field this copy of the page has never
+   heard of — written by a newer build, say the Week-tab rework open on her
+   partner's phone — is carried through instead of erased. Two page versions
+   are live at once every time the page is republished: whoever has it open
+   keeps the old one until they reload. */
+let remoteWeek = {};
+/* Nothing is saved until the stored week has arrived. Before that, the page
+   holds the build's defaults, and saving them would replace her whole week —
+   every count, decision and approval — with a blank one. A slow phone and one
+   early tap was enough. */
+let weekLoaded = false;
+/* Republishing leaves the old page running in any tab nobody reloaded, and that
+   copy saves its own idea of the week — all of it — over the new one's. Every
+   save now says which build wrote it; a copy that sees a newer build's save has
+   been replaced, stops saving, and says so. It only protects from the first
+   republish after this line ships — older copies never learnt to check. */
+const BUILT = DATA.builtAt || 0;
+let superseded = false;
+const SUPERSEDED = "This page has been updated — reload it to keep editing. Changes made here are not saved.";
 // The db client hands out its own cached objects and diffs by reference, so page
 // state must never alias them: copy on the way in and on the way out (422686f).
 const clone = (v) => (v == null ? v : JSON.parse(JSON.stringify(v)));
 
 async function persist() {
-  if (!weekRef) return;
+  if (!weekRef || !weekLoaded || superseded) return;
   dirty = true;
   if (saving) return;
   saving = true;
@@ -1213,8 +1270,10 @@ function weekDoc() {
     if ((have[k] || 0) !== (haveSeed[k] || 0)) haveDiff[k] = have[k] || 0;
   }
   return {
+    ...remoteWeek,
     picks: diff, extra, have: haveDiff, qtyAdj, subs, dropped, added, addAdj, choices,
     approved, inBasket,
+    builtAt: BUILT,
     seededFrom: ONHAND.from ? ONHAND.from.order : null,
     updatedAt: Date.now(),
   };
@@ -1225,9 +1284,26 @@ function applyRemote(d) {
   // A snapshot older than our own last save is a late echo: applying it would
   // put back what she has since changed.
   if ((d.updatedAt || 0) < lastSaved) return;
+  // Only a newer build saving *while this copy is open* means it was replaced.
+  // A fresh load is by definition the published page, whatever the store says —
+  // so one built on a machine with a slow clock can never lock itself out, and
+  // reloading is always the way back.
+  if (weekLoaded && (d.builtAt || 0) > BUILT) superseded = true;
   d = clone(d);
+  remoteWeek = clone(d);
   extra = { ...extra, ...(d.extra || {}) };
   picks = { ...baseline, ...(d.picks || {}) };
+  // A swap to a dish deleted from the library since she picked it would drop
+  // the meal from the week and its shopping from the basket without a word —
+  // gambas-ail-persil went on 28 September. Put the planned dish back, and say
+  // so on the basket until the next save forgets the old pick.
+  lostPicks = [];
+  for (const [id, slug] of Object.entries(picks)) {
+    if (!all()[slug] && all()[baseline[id]]) {
+      lostPicks.push({ id, slug, back: all()[baseline[id]].title });
+      picks[id] = baseline[id];
+    }
+  }
   // A document written against an older receipt keeps its hand corrections, but
   // the receipt underneath it is the new one.
   have = { ...haveSeed, ...(d.have || {}) };
@@ -1247,15 +1323,21 @@ function applyRemote(d) {
    collide with a write to weeks/<weekOf> or with Claude's push reports. Last
    writer wins on it, as it does for favourites. */
 let eSaving = false, eDirty = false, eLastSaved = 0;
+/* The same three protections as the week's, and they matter more here: these
+   edits outlive the week, so a blank save would erase every change she has ever
+   made to every dish. Nothing is saved before the stored edits have arrived; a
+   save is written over the stored document, keeping fields another build added;
+   and a copy replaced by a newer build stops saving. */
+let editsLoaded = false, remoteEdits = {};
 async function persistEdits() {
-  if (!editsRef) return;
+  if (!editsRef || !editsLoaded || superseded) return;
   eDirty = true;
   if (eSaving) return;
   eSaving = true;
   while (eDirty) {
     eDirty = false;
     try {
-      const doc = { edits: clone(recipeEdits), updatedAt: Date.now() };
+      const doc = { ...remoteEdits, edits: clone(recipeEdits), builtAt: BUILT, updatedAt: Date.now() };
       await editsRef.set(doc);
       eLastSaved = doc.updatedAt;
     } catch (e) {
@@ -1305,7 +1387,10 @@ function cleanEdits(x) {
       if (eSaving || eDirty) return;
       const d = snap.data();
       if (d && (d.updatedAt || 0) < eLastSaved) return;   // a late echo of an older save
+      if (editsLoaded && d && (d.builtAt || 0) > BUILT) { superseded = true; setSync("off", SUPERSEDED); }
+      remoteEdits = clone(d || {});
       recipeEdits = cleanEdits(d && d.edits);
+      editsLoaded = true;
       renderAll();
     },
     () => { /* as above */ },
@@ -1313,7 +1398,14 @@ function cleanEdits(x) {
   weekRef.onSnapshot(
     // While a change of hers is unsaved, what the store holds is older than
     // the screen; the snapshot after her last write brings the two back together.
-    (snap) => { if (saving || dirty) return; applyRemote(snap.data()); setSync("live", "Shared — you and your partner see the same week"); },
+    (snap) => {
+      if (saving || dirty) return;
+      applyRemote(snap.data());
+      // A week nobody has saved yet arrives empty, and that counts as arrived.
+      weekLoaded = true;
+      if (superseded) setSync("off", SUPERSEDED);
+      else setSync("live", "Shared — you and your partner see the same week");
+    },
     (err) => setSync("off", "Sync stopped (" + err.code + ") — changes stay on this phone"),
   );
   // Its own document, so Claude's progress writes and her list edits can never
@@ -1927,7 +2019,7 @@ function renderShop() {
   const approxCount = lines.filter((l) => l.approx).length;
   const asks = lines.filter((l) => !l.cat).length;
 
-  let html = `<section class="hero">
+  let html = lostNotice() + editsNotice() + `<section class="hero">
       <div class="hero-top">
         <div>
           <div class="eyebrow">To add at ${esc(CONF.store || "the Drive")}</div>
@@ -2083,9 +2175,81 @@ function pushPanel(lines) {
     </div>`;
 }
 
+/* What the week asks for now against what it asked for when she approved.
+   Only the needs are compared, never the kitchen or her counts: those she can
+   only change by reopening the list, and the kitchen is meant to empty once the
+   food arrives. An approval saved before this existed has nothing to compare
+   against, and says nothing. */
+function driftSinceApproval() {
+  if (!approved || !approved.wanted) return null;
+  const now = Object.fromEntries(weekWanted().map((w) => [w.key, w]));
+  const was = approved.wanted;
+  const more = [], less = [];
+  for (const [k, w] of Object.entries(now)) {
+    if (w.required > (was[k] ? was[k].required : 0) + 1e-9) more.push({ name: w.name || k, for: w.for });
+  }
+  for (const [k, w] of Object.entries(was)) {
+    if ((now[k] ? now[k].required : 0) < w.required - 1e-9) less.push({ name: w.name || k, for: w.for });
+  }
+  return more.length || less.length ? { more, less } : null;
+}
+
+const pushSent = () => { const s = pushState(); return pushOpen() || (!!s && s.status === "done"); };
+
+function driftNotice() {
+  const d = driftSinceApproval();
+  if (!d) return "";
+  const sent = pushSent();
+  const item = (x) => `<li>${esc(x.name)} <span class="why">— ${esc(x.for)}</span></li>`;
+  return `<div class="notice" role="status">
+      <div class="notice-title">The week has changed since you approved this list</div>
+      ${d.more.length ? `<p>${sent ? "Needed now, and not in this order:" : "Needed now, and not on the approved list:"}</p><ul>${d.more.map(item).join("")}</ul>` : ""}
+      ${d.less.length ? `<p>${sent ? "In this order, and no longer needed:" : "On the approved list, and no longer needed:"}</p><ul>${d.less.map(item).join("")}</ul>` : ""}
+      <p>${sent
+        ? "The order has already gone to Intermarché, so anything missing needs buying separately."
+        : "Reopen the list to bring it up to date before you push — nothing changes until you do."}</p>
+    </div>`;
+}
+
+/* Her edits to dishes on this week's menu that no longer find their row: the
+   recipe changed in recipes.json under them, a row renamed or taken out. A lost
+   "drop the onions" puts the onions back on the list, so it is said, not
+   swallowed. Dishes off the menu are left alone — they buy nothing this week. */
+function staleEdits() {
+  const out = [];
+  for (const slug of new Set(meals().map((m) => m.slug))) {
+    const e = recipeEdits[slug], base = all()[slug];
+    if (!e || !base) continue;
+    const rows = new Set((base.ingredients || []).map(itemKey));
+    const lost = [...new Set([...e.drop, ...Object.keys(e.set), ...Object.keys(e.swap)])].filter((k) => !rows.has(k));
+    if (lost.length) out.push({ title: base.title, lost });
+  }
+  return out;
+}
+
+function editsNotice() {
+  const st = staleEdits();
+  if (!st.length) return "";
+  return `<div class="notice" role="status">
+      <div class="notice-title">${st.length === 1 ? "A dish has" : "Some dishes have"} changed since you edited ${st.length === 1 ? "it" : "them"}</div>
+      <ul>${st.map((x) => `<li>${esc(x.title)}: your change to ${esc(andList(x.lost))} no longer matches the recipe, so it isn't applied. Open the dish to check what it buys now.</li>`).join("")}</ul>
+    </div>`;
+}
+
+function lostNotice() {
+  if (!lostPicks.length) return "";
+  return `<div class="notice" role="status">
+      <div class="notice-title">${lostPicks.length === 1 ? "A dish you picked" : "Dishes you picked"} left the library</div>
+      <ul>${lostPicks.map((x) => {
+        const m = mealById(x.id);
+        return `<li>${esc(m ? cap(m.day) + " " + m.slot : x.id)}: ${esc(x.slug)} is gone, so it is back to ${esc(x.back)}.</li>`;
+      }).join("")}</ul>
+    </div>`;
+}
+
 function renderApproved() {
   const lines = approved.lines || [];
-  let html = `<div class="drive-head">
+  let html = lostNotice() + editsNotice() + driftNotice() + `<div class="drive-head">
       <div class="eyebrow">Approved ${new Date(approved.at).toLocaleDateString("en-GB", { day: "numeric", month: "long" })} · ${lines.length} lines · ${eur(approved.total)}</div>
       ${pushPanel(lines)}
       <div class="toolbar" style="margin-top:.8rem">
@@ -2143,7 +2307,7 @@ function openAssign(slug) {
 }
 
 async function persistFavs() {
-  if (!favRef) return;
+  if (!favRef || superseded) return;
   try { await favRef.set({ slugs: [...favs], updatedAt: Date.now() }); }
   catch (e) { setSync("off", "Favourite saved on this phone only — " + (e && e.code ? e.code : "not saved")); }
 }
@@ -2374,6 +2538,10 @@ function approveList() {
   // and count, so the push works from what she signed off and never re-derives it.
   approved = {
     at: Date.now(), total: round2(total), count: lines.length, weekOf: plan.weekOf,
+    // What the week asked for at this moment, so a later swap — or a recipe
+    // that gained an ingredient in a republish — shows up as a difference.
+    wanted: Object.fromEntries(weekWanted().map((w) =>
+      [w.key, { required: w.required, for: w.for, name: w.name || w.key }])),
     lines: lines.map((l) => ({
       key: l.key, name: l.name, section: l.section, for: l.for,
       add: l.add, cost: round2(l.cost), approx: l.approx,
@@ -2568,7 +2736,9 @@ function renderMasthead() {
     .filter(([n]) => n > 0)
     .map(([n, s]) => `${n} ${n > 1 ? PLURAL[s] : s}`);
   const ps = pushState();
-  const status = ps && ps.status === "done" ? "In your Intermarché basket"
+  const status = approved && driftSinceApproval()
+      ? (pushSent() ? "Ordered — the week has changed since" : "Changed since you approved")
+    : ps && ps.status === "done" ? "In your Intermarché basket"
     : pushOpen() ? "Being pushed to Intermarché"
     : approved ? "Approved — ready to push"
     : pending.length ? `${pending.length} to decide before approving`

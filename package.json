@@ -8,6 +8,7 @@
     "parse": "node scripts/parse-invoices.mjs",
     "build:week": "node scripts/build-week.mjs",
     "catalogue:queue": "node scripts/catalogue-queue.mjs",
-    "drive:list": "node scripts/drive-list.mjs"
+    "drive:list": "node scripts/drive-list.mjs",
+    "test:page": "node scripts/build-week.mjs && node scripts/test-page.mjs"
   }
 }
