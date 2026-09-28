@@ -78,10 +78,18 @@ const safeExpect = (e) => e && ["brand", "title", "packaging"].every((f) => type
   ? { brand: e.brand, title: e.title, packaging: e.packaging } : null;
 
 const ready = [], lookup = [], done = [], rejected = [];
+// Two lines can land on the same listing — the cat food on the standing order
+// and again on her household list (28 September). The helper *sets* a count, so
+// pushed one after the other the second finds the first's count already there
+// and stops: one bag instead of two. So lines are grouped by listing and pushed
+// once, at their summed count, and every key in the group gets the report. A
+// group counts as settled only when all of its lines are, so a push that
+// stopped between them still sets the whole count when it resumes.
+const byListing = new Map();
 for (const l of doc.lines) {
   const c = catalogue.products[l.name] ?? null;
   const item = {
-    key: l.key, name: l.name, add: l.add, estimate: l.cost, price: l.price ?? null, status: l.status,
+    key: l.key, keys: [l.key], name: l.name, add: l.add, estimate: l.cost, price: l.price ?? null, status: l.status,
     url: l.url ? safeUrl(l.url) : null, expect: safeExpect(l.expect), search: l.search ?? c?.search ?? l.name,
     outOfStockWhenChecked: c?.listing?.available === false && l.status !== "chosen" ? c.checked : null,
   };
@@ -92,9 +100,20 @@ for (const l of doc.lines) {
     : item.url && !item.expect ? "no expected listing to check the page against"
     : null;
   if (bad) rejected.push({ key: l.key, name: l.name, reason: bad });
-  else if (r && SETTLED.includes(r.status)) done.push({ ...item, report: r });
-  else if (item.url) ready.push(item);
-  else lookup.push(item);
+  else if (!item.url) (r && SETTLED.includes(r.status) ? done.push({ ...item, report: r }) : lookup.push(item));
+  else {
+    const g = byListing.get(item.url);
+    if (!g) byListing.set(item.url, { ...item, reports: r && SETTLED.includes(r.status) ? [r] : [] });
+    else {
+      g.keys.push(l.key); g.add += l.add; g.estimate = (g.estimate ?? 0) + (l.cost ?? 0);
+      if (r && SETTLED.includes(r.status)) g.reports.push(r);
+    }
+  }
+}
+for (const { reports, ...g } of byListing.values()) {
+  if (g.add > 30) rejected.push({ key: g.keys.join(" + "), name: g.name, reason: `count ${g.add} across ${g.keys.length} lines out of range` });
+  else if (reports.length === g.keys.length) done.push({ ...g, report: reports[reports.length - 1] });
+  else ready.push(g);
 }
 
 const seq = reports.length + 1;
@@ -134,7 +153,10 @@ if (batchAt >= 0) {
       ];
     }));
   }
-  console.log(JSON.stringify({ run, collection, nextSeq: seq, keys: ready.map((i) => [i.key, i.add]), lookup: lookup.map((i) => i.key), rejected, batches }, null, 2));
+  // `alsoReport`: a merged product's result belongs to every line in it — report
+  // the same status for each of these keys as for the first.
+  const alsoReport = Object.fromEntries(ready.filter((i) => i.keys.length > 1).map((i) => [i.key, i.keys.slice(1)]));
+  console.log(JSON.stringify({ run, collection, nextSeq: seq, keys: ready.map((i) => [i.key, i.add]), alsoReport, lookup: lookup.map((i) => i.key), rejected, batches }, null, 2));
 } else if (args.includes("--json")) {
   console.log(JSON.stringify({ weekOf: doc.weekOf, run, status, collection, nextId: idFor(seq), nextSeq: seq,
     estimate: doc.estimate, ready, lookup, done, rejected }, null, 2));
@@ -154,6 +176,7 @@ if (batchAt >= 0) {
     const e = i.expect;
     console.log(`- ×${i.add}  ${e.brand} · ${e.title}, ${e.packaging}${i.price != null ? `, ${eur(i.price)}` : ""}${i.outOfStockWhenChecked ? `  (was out of stock ${i.outOfStockWhenChecked})` : ""}`);
     console.log(`    ${i.url}\n    key: ${i.key}`);
+    if (i.keys.length > 1) console.log(`    also: ${i.keys.slice(1).join(" | ")}  — ${i.keys.length} lines, one product: report each key`);
   }
   if (done.length) {
     console.log(`\n## Already settled in this push (${done.length})`);
