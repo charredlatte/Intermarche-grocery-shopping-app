@@ -2174,6 +2174,7 @@ HARD RULES, no exceptions:
 - It must be a dish that is genuinely COOKED. Never a recipe for reheating a ready-made or frozen product.
 - Total time at most ${meal.slot === "dinner" ? c.maxWeeknightMinutes + 15 : 20} minutes.
 - Do not repeat any of these existing dishes: ${already}
+- Never say what the dish leaves out, or that it is mild. Describe what is in it.
 
 Every ingredient that must be bought needs a "product" chosen EXACTLY, character for character, from this list of things they actually buy. If nothing in the list fits, set "guess": true and give buy.price as a euro estimate.
 
@@ -2182,7 +2183,7 @@ ${products}
 Reply with JSON only, this exact shape:
 {"title":"","cuisine":"italian|french|spanish|greek|japanese|chinese|thai|vietnamese|indian",
  "slot":"${meal.slot}","kind":"recipe","prepMinutes":0,"cookMinutes":0,"serves":${meal.slot === "dinner" ? 2 : 1},
- "tags":["no chilli"],"short":"one sentence a cook can read at the hob",
+ "tags":[],"short":"one sentence a cook can read at the hob",
  "ingredients":[{"item":"plain name","qty":"how much","product":"exact name from the list",
    "buy":{"amount":0.3,"mode":"sum","section":"Proteins|Vegetables|Store cupboard|Bread and cheese"}}],
  "steps":["numbered method, 4 to 7 steps, specific about heat and timing"]}
@@ -2198,7 +2199,7 @@ function sanitise(r, slot) {
   r.prepMinutes = +r.prepMinutes || 10;
   r.cookMinutes = +r.cookMinutes || 15;
   r.tags = Array.isArray(r.tags) ? r.tags : [];
-  if (!r.tags.includes("no chilli")) r.tags.push("no chilli");
+  r.tags = r.tags.filter((t) => !/chil/i.test(t));
   r.tags.push("invented");
   r.short = r.short || "";
   r.ingredients = (r.ingredients || []).map((i) => {
@@ -2431,9 +2432,8 @@ function renderCook() {
     body = `<p class="q-hint">pick up to 3</p>
       <div class="q-grid">${MOODS.map((m) => qCard({
         key: m.id, on: quiz.mood.has(m.id), emoji: m.emoji, label: m.label, tone: m.tone, kind: "mood",
-      })).join("")}
-      ${qCard({ key: "nochilli", on: true, emoji: "🌱", label: "No chilli", tone: "herb", kind: "locked" })}</div>
-      <p class="q-tally">${quiz.mood.size}/3 &middot; no chilli is always on</p>`;
+      })).join("")}</div>
+      <p class="q-tally">${quiz.mood.size}/3</p>`;
     ok = true;
   }
 
@@ -2561,7 +2561,7 @@ function renderMasthead() {
     : pending.length ? `${pending.length} to decide before approving`
     : "Ready to approve";
   $("#strapline").textContent =
-    `The basket for ${andList(parts)}. Swap a dish and the basket follows. No chilli anywhere.`;
+    `The basket for ${andList(parts)}. Swap a dish and the basket follows.`;
   $("#tally").innerHTML = [
     ["To buy", eur(approved ? approved.total : total)],
     ["Ceiling", eur(CONF.budgetCeiling)],

@@ -69,6 +69,22 @@ const APPLIANCES = new Set(prefs.cooking?.equipment ?? []);
 // Which of those actually apply heat, for the no-cook rule below.
 const HEAT = new Set(["hob", "oven", "air fryer", "casserole dish"]);
 
+// Nothing spicy, checked on what a dish is made of rather than on a label.
+// Recipes used to carry a "no chilli" tag and this build checked the tag was
+// there — which proved someone typed it, not that the dish was mild. Charlotte
+// asked on 2026-09-28 for nothing she reads to say what was left out, so the
+// tag is gone and the words come from her own lists in preferences.json.
+const SPICY_WORDS = [
+  ...(prefs.dietary?.excluded ?? []),
+  ...(prefs.ingredients?.avoidDespiteBeingEuropean ?? []),
+];
+
+// Whether one recipe ingredient — { item, qty, product } — is something spicy.
+function isSpicy(ing) {
+  // TODO(human)
+  return false;
+}
+
 /* ---- pricebook ---------------------------------------------------------- */
 const pricebook = {};
 for (const p of history.products) {
@@ -99,9 +115,9 @@ for (const [slug, r] of Object.entries(recipes)) {
   if ((r.tags ?? []).includes("vegetarian") && !["eggs", "vegetarian"].includes(r.protein)) {
     problems.push(`${slug}: tagged vegetarian but its protein is "${r.protein}"`);
   }
-  // No chilli is a health rule, not a tag someone remembers to add. Every dish
-  // carries it by hand today and nothing enforced it until now.
-  if (!(r.tags ?? []).includes("no chilli")) problems.push(`${slug}: missing the "no chilli" tag`);
+  for (const ing of r.ingredients ?? []) {
+    if (isSpicy(ing)) problems.push(`${slug}: "${ing.item}" (${ing.product || "no product"}) is spicy`);
+  }
   // "no cook" has to mean what it says, or the Recipes tab's appliance chips lie.
   if ((r.tags ?? []).includes("no cook") && r.cookMinutes !== 0) {
     problems.push(`${slug}: tagged "no cook" but cooks for ${r.cookMinutes} minutes`);

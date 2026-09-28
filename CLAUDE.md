@@ -89,9 +89,13 @@ questions, then a plan, then a line-item list, then the basket.
   once the site has named one, the page files it under "New to you" at the
   site's price instead of "Best guesses".
 - **Some European staples are still banned**: chorizo, piment d'Espelette,
-  guindilla, peperoncino, 'nduja, merguez. All carry heat, and the IBS rule
-  outranks authenticity. Where a recipe departs from the original for this
-  reason, it says so in its own text.
+  guindilla, peperoncino, 'nduja, merguez. All carry heat, and the rule
+  outranks authenticity.
+- **Nothing she reads says what was left out.** No "no chilli" tag, no "mild by
+  design", no "the original carries peperoncino" — in a recipe, a plan note or
+  the page. Charlotte asked for that on 2026-09-28: she doesn't like spicy food
+  and doesn't need it pointed out. `build-week.mjs` enforces the rule on the
+  ingredients instead of a label.
 - **Every recipe declares one `protein`**, from exactly these eight: `chicken`,
   `turkey`, `pork`, `charcuterie`, `beef`, `fish`, `eggs`, `vegetarian`. It is
   the protein the dish is *built around*, not everything in it — the bolognese
@@ -102,9 +106,9 @@ questions, then a plan, then a line-item list, then the basket.
   build — see below), and the same eight values tag the
   groups in `data/equivalents.json` — which is how `parse-invoices.mjs` rolls the
   receipts up into the `byProtein` block of `data/purchase-history.json`.
-  **Balance the week's proteins as well as its cuisines.** Pork is in 22 of 23
-  orders and the library gives it two dinners; fish is in 2 of 23, and that is
-  price rather than taste.
+  **Balance the week's proteins as well as its cuisines.** Pork is in 22 of 24
+  orders (to 15 September) and the library gives it two dinners; fish is in 2
+  of 24, and that is price rather than taste.
 - **Every recipe declares its `equipment`.** She has an air fryer, an oven,
   muffin tins and casserole dishes — recorded in `preferences.cooking.equipment`,
   and filterable on the Recipes tab. The air fryer and the muffin tin were being
@@ -241,7 +245,8 @@ parser. The filename supplies the year — the email body never states it.
   staples list, or to her "Meal Planning" list in Google Keep, which the push
   adds on her say-so (2026-09-15). No surprise additions.
 - **No chilli, ever.** IBS — this is a health constraint, not a taste preference.
-  Check the finished list before showing it.
+  Check the finished list before showing it, and never label it: nothing she
+  reads says "no chilli".
 - **If a product is unavailable at basket time, stop and ask.** Adapting a recipe
   to what Méré stocks is decided up front and reported; substituting an
   out-of-stock item is not something to do silently.

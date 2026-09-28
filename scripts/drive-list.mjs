@@ -66,13 +66,15 @@ const SITE = catalogue.site ?? "https://www.intermarche.com";
 // write, so it is untrusted input to a browser signed in to her account. A link
 // is used only if it is an Intermarché product path that resolves to
 // www.intermarche.com — "@elsewhere.example/…" appended to the site would
-// otherwise read as a login name and open another host. Counts and the expected
-// listing are checked the same way.
+// otherwise read as a login name and open another host. The path is checked
+// again once resolved, because "/produit/../../compte/…" passes the pattern and
+// then resolves out of /produit/ to any page on the site. Counts and the
+// expected listing are checked the same way.
 const SITE_HOST = new URL(SITE).hostname;
 const safeUrl = (path) => {
   if (typeof path !== "string" || !/^\/produit\/[^\s?#@\\]+\/\d{6,14}$/.test(path)) return null;
   const u = new URL(path, SITE);
-  return u.protocol === "https:" && u.hostname === SITE_HOST ? u.href : null;
+  return u.protocol === "https:" && u.hostname === SITE_HOST && u.pathname.startsWith("/produit/") ? u.href : null;
 };
 const safeExpect = (e) => e && ["brand", "title", "packaging"].every((f) => typeof e[f] === "string" && e[f].length > 0 && e[f].length < 200)
   ? { brand: e.brand, title: e.title, packaging: e.packaging } : null;

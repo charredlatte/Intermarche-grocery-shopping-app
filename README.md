@@ -27,11 +27,11 @@ Sunday reminder  ──▶  Claude asks 3 questions  ──▶  meal plan for th
                                        basket filled at Drive Méré → I confirm
 ```
 
-## The four pieces
+## The five pieces
 
 ### 1. Purchase history (the part that makes it personal)
 
-Intermarché emails a `Votre facture est disponible` receipt after every Drive order, and those emails are fully itemized — exact product names, quantities, unit prices, and which items were out of stock. A year of them are sitting in Gmail: 22 orders, October 2025 to August 2026, averaging 85,10 € and 29 items.
+Intermarché emails a `Votre facture est disponible` receipt after every Drive order, and those emails are fully itemized — exact product names, quantities, unit prices, and which items were out of stock. A year of them are sitting in Gmail: 24 orders, October 2025 to September 2026, averaging 88,10 € and 29 items.
 
 `scripts/parse-invoices.mjs` turns those into `purchase-history.json`: what I buy, how often, in what quantity, at what price. That is a far better preference model than any onboarding quiz, because it is what I did rather than what I said.
 
@@ -66,6 +66,18 @@ Claude in Chrome, on my PC, with my Intermarché session already logged in. It w
 
 `data/catalogue.json` is what makes that work: for every product the app can buy, the product's page at Méré, the site's own name and pack, the price on the day it was checked, and whether it is the same thing as on my receipts. It was built by browsing the site in my Chrome, because Intermarché blocks anything scripted.
 
+### 5. The app
+
+`artifact/template.html` plus `scripts/build-week.mjs` turn the plan data into a published page, and **the basket is the page**. It opens on the shopping list at Méré's own product names, packs and current prices, with a count to add for each line and the total against my ceiling. Anything Méré sells differently or no longer sells waits under "Decide first" until I pick — I can't approve until every line says exactly what to buy. Once approved, "Push to Intermarché" hands the list to Claude on my PC, which fills my Drive basket and reports back on the page line by line, ending with the site's own total. Week, Recipes and the Cook quiz sit behind it.
+
+It is generated, not hand-written, and **every `/courses` run publishes a fresh page with its own link** for that week, recorded in `data/artifacts.json`. Favourites carry over from one week's page to the next.
+
+It is also a two-person app. Any meal can be swapped — either for another dish from the library, or for something new invented on the spot — and the picks live in a shared database, so my partner and I see the same week on our own phones. The shopping list is derived from whatever is currently picked, so the total follows every swap. A dish eaten out of an earlier batch is marked as leftovers and buys nothing, which is the only reason the numbers come out right: counting the Sunday curry three times bought six tins of coconut milk for one pot.
+
+The library is 73 dishes now — 21 Asian, 52 European or American. That is not the 50/50 I want, and it is not meant to be: the balance to hit is **the week's plan**, not the library. Confusing the two is what caused the one real planning bug so far, when a `weeklyShare` of "most" quietly made every week about 70% Asian while the library looked balanced. Ready-made things like the gyoza are still on the menu but marked as assemblies — a note about the packet, and a real recipe only for the part that is actually cooked.
+
+**Asked for on 15 September 2026, still to build.** The fourth tab, a five-step quiz, is to go: it saves nothing, nothing else reads it, and the Recipes tab already filters on everything it asks. In its place, an axis the library never had — **what protein is in the dish**. Every dish now declares one of eight and the parser rolls my receipts up the same way; the first thing it told me is that **pork is in 22 of my 24 orders and the library gave it two dinners.** The page grouping by protein, a Week tab with no controls on it, and "Cook this on…" on every recipe card are the next page work, together with a Kitchen tab and ticking off what we actually cooked.
+
 ## Non-negotiable rules
 
 - Claude never completes a purchase. It fills, then stops.
@@ -87,18 +99,6 @@ Everything lives here, `data/` included: the invoices, the purchase history, my 
 
 The handoff is the plan itself. Answer on the couch Sunday morning, run the basket step at the PC whenever.
 
-### 5. The app
-
-`artifact/template.html` plus `scripts/build-week.mjs` turn the plan data into a published page, and **the basket is the page**. It opens on the shopping list at Méré's own product names, packs and current prices, with a count to add for each line and the total against my ceiling. Anything Méré sells differently or no longer sells waits under "Decide first" until I pick — I can't approve until every line says exactly what to buy. Once approved, "Push to Intermarché" hands the list to Claude on my PC, which fills my Drive basket and reports back on the page line by line, ending with the site's own total. Week, Recipes and the Cook quiz sit behind it.
-
-It is generated, not hand-written, and **every `/courses` run publishes a fresh page with its own link** for that week, recorded in `data/artifacts.json`. Favourites carry over from one week's page to the next.
-
-It is also a two-person app. Any meal can be swapped — either for another dish from the library, or for something new invented on the spot — and the picks live in a shared database, so my partner and I see the same week on our own phones. The shopping list is derived from whatever is currently picked, so the total follows every swap. A dish eaten out of an earlier batch is marked as leftovers and buys nothing, which is the only reason the numbers come out right: counting the Sunday curry three times bought six tins of coconut milk for one pot.
-
-The library is 73 dishes now — 21 Asian, 52 European or American. That is not the 50/50 I want, and it is not meant to be: the balance to hit is **the week's plan**, not the library. Confusing the two is what caused the one real planning bug so far, when a `weeklyShare` of "most" quietly made every week about 70% Asian while the library looked balanced. Ready-made things like the gyoza are still on the menu but marked as assemblies — a note about the packet, and a real recipe only for the part that is actually cooked.
-
-**Asked for on 15 September 2026, still to build.** The fourth tab, a five-step quiz, is to go: it saves nothing, nothing else reads it, and the Recipes tab already filters on everything it asks. In its place, an axis the library never had — **what protein is in the dish**. Every dish now declares one of eight and the parser rolls my receipts up the same way; the first thing it told me is that **pork is in 22 of my 23 orders and the library gave it two dinners.** The page grouping by protein, a Week tab with no controls on it, and "Cook this on…" on every recipe card are the next page work, together with a Kitchen tab and ticking off what we actually cooked.
-
 ## Status
 
 - [x] Invoice parser — 24 orders, 230 distinct products
@@ -110,7 +110,7 @@ The library is 73 dishes now — 21 Asian, 52 European or American. That is not 
 - [x] Push from the page — approve, press Push, `/courses push` fills the basket and writes progress back
 - [x] Push tested end to end on 2026-09-14 with a two-line test page: request, basket filled in Chrome, progress on the page, site total matched the estimate to the cent. Re-run the same day after the browser pre-flight hardening, with the in-page helper: one tool call for both products, wrong pack refused, out-of-stock reported, off-site call refused, basket restored
 - [x] First push of a whole approved week, 15 September 2026 — 43 products, 130,54 € at Méré (almond milk and paprika from my Keep list included) against a 130,59 € estimate. Two lines were out of stock and settled in chat: the eggs came as two boxes of six, the Salakis as the plain one. Weighed goods turned out to count in grams, so the in-page helper was rebuilt to take one click per call
-- [ ] The budget question — a 7-dinner, 5-lunch week with a pantry restock prices out around 139 €, comfortably over the normal 100 € ceiling. First real run will settle whether the ceiling moves or the lunches go back to being leftovers.
+- [x] The budget question — a 7-dinner, 5-lunch week prices out well over the old 100 € ceiling, so on 4 September it moved to 150 €. The first full week came to 130,54 €.
 - [ ] Pantry state — knowing the 20-egg pack from last week is half gone
 
 ## Setup
