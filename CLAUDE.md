@@ -169,7 +169,19 @@ npm run parse            # data/invoices/*.txt -> data/purchase-history.json
 npm run build:week       # recipes + plans + catalogue -> artifact/week.html
 npm run catalogue:queue  # products with no catalogue entry, or one older than 28 days
 npm run drive:list -- <push doc>.json [<progress dir>] [--batch <tabId>]  # work list, or ready-made browser batches that run scripts/drive-helper.js
+npm run test:page        # builds, then drives the page against a stub store in headless Chromium
 ```
+
+**Run `npm run test:page` after any change to the page, and before publishing.**
+Each file in `test/page/` is one fresh load against a stub store that delivers
+every snapshot late — the condition that broke saving six times — and each
+proves one thing that once went wrong: an early tap blanking her week, a save
+erasing another build's fields, a leftovers meal left without its pot, a
+changed week pushed as the old list, a deleted dish taking its meal with it, a
+replaced tab still saving. None of them names a meal or dish from a particular
+week, so they outlive the plan. Against `main` as it stood before them, 16 of
+their checks failed. Cloud sessions have Chromium at `/opt/pw-browsers/chromium`;
+elsewhere set `CHROMIUM`.
 
 **A fresh page every week.** Each `/courses` run publishes the built page as a
 new artifact — new link — and records it in `data/artifacts.json` under the
@@ -177,6 +189,62 @@ week. Charlotte asked for this on 2026-09-14. Her favourites (`library/favourite
 are copied across from the previous page with `read_db`/`write_db`; publish with
 `capabilities: { db: {}, sample: {} }` and `contract: "0.2.41"`. The pages before
 that week shared one bookmarked URL, still listed there as the old page.
+
+**Within a week, the page is updated in place.** A recipe that gains or loses
+an ingredient, a renamed product, a changed dish in the plan file: rebuild and
+republish onto the week's existing link (`url`, after reading it), never a new
+one. Her state never moves, so nothing is copied. A new link splits the week —
+whoever has the old page open keeps saving to its database, and a Push pressed
+there is invisible to `/courses push`, which reads the link from
+`data/artifacts.json`. The skill has the steps, under "Changing a week that is
+already published".
+
+**The page and a changed week, end to end** (2026-09-28, each one reproduced
+against a stub store before it was fixed):
+
+- *A leftovers meal names its pot.* `"from": "<meal id>"` is required on every
+  `leftovers` meal and checked by the build. The meal buys nothing only while
+  both it and its source are on their planned dishes; swap either and it is
+  shopped for — before this, swapping Monday's dinner left Tuesday's
+  leftover-rice lunch with no rice and no line on the list.
+- *An approval remembers what the week needed* (`approved.wanted`). A swap, or
+  a recipe changed in a republish, after she approved shows on the basket and
+  in the header as what is now needed and what no longer is — and once the
+  order has gone, as what to buy separately. It compares needs only, never the
+  kitchen or her counts. Approvals from before this carry no `wanted` and stay
+  quiet.
+- *A swap to a dish since deleted from the library* falls back to the planned
+  dish with a notice, instead of the meal vanishing from the week and the
+  basket.
+
+**Shared documents are written over, not instead of.** `persist()` saves the
+week on top of the document the store last sent, so a field one copy of the
+page doesn't know — added by a newer build, open on the other phone — survives
+a save from the older copy. Two versions are live after every republish, until
+everyone reloads. So a new field must be additive and optional; never rename
+one or change what it means, because an older copy will keep writing the old
+meaning. And nothing saves until the stored week has arrived: before that the
+page holds only the build's defaults, and one early tap on a slow phone used to
+replace her whole week — counts, decisions, approval — with a blank one.
+
+**A copy of the page that has been replaced stops saving.** Every save carries
+the build's `builtAt`; a copy that sees a newer build save *while it is open*
+turns its sync line amber — "This page has been updated — reload it" — and
+saves nothing more, so a tab left open across a republish cannot write the old
+page's whole idea of her week over the new one's. A fresh load never counts as
+replaced, whatever the store says, so reloading is always the way out and a
+build from a machine with a slow clock can't lock the live page. It protects
+from the first republish after 2026-09-28 on; copies older than that never
+learnt to check,
+which is why fields are also written over rather than instead of. Two copies of
+the *same* build still share last-writer-wins on each field — a real per-key
+merge would need the store's `if_version`, which the page's runtime does not
+offer.
+
+**The build refuses a checkout that is behind `origin/main`.** The last publish
+wins the page's code for everyone, so a page built from a branch missing
+someone else's merged work quietly undoes it. Fetch and merge `main`, then
+build.
 
 The page is an app, not a printout, and **the basket is its centre**. Basket is
 the first tab and where it opens: Méré's own name, pack and current price on
@@ -223,7 +291,23 @@ next page work — rebuilt into today's template, not merged from the old one:
   how it is lived: each meal ticked cooked or not, moved, struck off, or added,
   with cooked meals drawing down the kitchen and anything behind her dropping out
   of the basket. The sync and redraw fixes from that branch already landed in
-  29c3a65; only the features are outstanding.
+  29c3a65; only the features are outstanding. Four things that branch got
+  wrong, or only found late, so the rebuild doesn't:
+  - a `mode: "once"` ingredient is the week's supply — a bottle, a head of
+    garlic — so ticking one dish that uses it cooked must not take the whole of
+    it out of the kitchen;
+  - record what a meal used at the moment it is ticked cooked, or a recipe
+    edited later rewrites what was already eaten;
+  - `approved.wanted` compares the week's *needs*. If "behind her" is made to
+    drop out of `weekWanted()`, every dinner she ticks after the shop will read
+    as a change since approval — take it out in `basket()` instead, or compare
+    against the plan without it. A struck-off or ticked source meal should also
+    end its leftovers meal's `leftoversHold`, as a swap already does;
+  - merge `library/kitchen` per product, newest `at` wins, rather than writing
+    the whole `items` map from whichever copy of the page saved last. On the
+    16 September trial page the document reached version 17 still holding one
+    statement: with the page open in several tabs across four republishes, each
+    copy saved its own map over the others. Single-tab tests never showed it.
 
 Delete those two branches once this list is done, not before.
 

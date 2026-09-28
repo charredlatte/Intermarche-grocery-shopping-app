@@ -22,6 +22,7 @@
 import { readFileSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { execFileSync } from "node:child_process";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const TEMPLATE = join(ROOT, "artifact", "template.html");
@@ -33,6 +34,25 @@ const read = (p) => {
   try { return JSON.parse(readFileSync(p, "utf8")); }
   catch (e) { die(`could not read ${p} — ${e.message}`); }
 };
+
+/* ---- up to date with main? ---------------------------------------------- */
+// The last publish wins the page's code for everyone. A build from a checkout
+// missing work already on main — another session's page changes — would put
+// the live page back to before that work, and nobody notices until something
+// she relied on is gone. That is how one save fix was written six times.
+// Local refs only: fetch first, as the skill says. Outside a git checkout, or
+// with no origin/main to compare against, there is nothing to check.
+{
+  const git = (...a) => execFileSync("git", a, { cwd: ROOT, stdio: ["ignore", "pipe", "ignore"] });
+  let behind = false;
+  try {
+    git("rev-parse", "--verify", "--quiet", "origin/main");
+    try { git("merge-base", "--is-ancestor", "origin/main", "HEAD"); }
+    catch (e) { behind = e.status === 1; }
+  } catch { /* not a checkout, or no origin/main */ }
+  if (behind) die("this checkout is missing commits that are on origin/main, so the page it builds " +
+    "would undo them for everyone. Run `git fetch origin && git merge origin/main`, then build again.");
+}
 
 const recipes = read(join(DATA, "recipes.json"));
 const history = read(join(DATA, "purchase-history.json"));
@@ -171,7 +191,9 @@ const checkListing = (where, l) => {
 };
 for (const [name, c] of Object.entries(catalogue.products ?? {})) {
   const where = `catalogue "${name}"`;
-  if (!usedNames.has(name)) problems.push(`${where}: no recipe, staple, equivalent or receipt uses this name`);
+  // Usually a typo. Just as often now, an ingredient taken out of the only recipe
+  // that used it: then the entry is dead and the fix is to delete it.
+  if (!usedNames.has(name)) problems.push(`${where}: no recipe, staple, equivalent or receipt uses this name — fix the spelling, or delete the entry if its ingredient was just taken out of a recipe`);
   if (!STATUSES.includes(c.status)) problems.push(`${where}: status must be one of ${STATUSES.join(", ")}`);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(c.checked ?? "")) problems.push(`${where}: needs a "checked" date`);
   if (c.status === "missing" ? c.listing : !c.listing) {
@@ -195,6 +217,16 @@ for (const p of plans) {
     if (!m.id) problems.push(`plan ${p.weekOf}: a meal has no id — swaps are keyed on it`);
     if (seen.has(m.id)) problems.push(`plan ${p.weekOf}: duplicate meal id "${m.id}"`);
     seen.add(m.id);
+  }
+  // A leftovers meal buys nothing, so it has to say whose pot it eats: the page
+  // shops for it again the moment that meal is swapped, or the lunch has no
+  // rice. Without the link it would stay free whatever happened to its source.
+  const byId = Object.fromEntries(p.meals.map((m) => [m.id, m]));
+  for (const m of p.meals.filter((x) => x.leftovers)) {
+    const src = byId[m.from];
+    if (!m.from) problems.push(`plan ${p.weekOf}: leftovers meal "${m.id}" needs "from": the id of the meal whose pot it eats`);
+    else if (!src) problems.push(`plan ${p.weekOf}: "${m.id}" is from "${m.from}", which is not a meal in this plan`);
+    else if (src.leftovers) problems.push(`plan ${p.weekOf}: "${m.id}" is from "${m.from}", which is itself leftovers — point at the meal that cooks`);
   }
 }
 
@@ -284,6 +316,10 @@ const titled = template.replace(/<title>[^<]*<\/title>/, `<title>Méré Basket, 
 if (titled === template) die("template.html has lost its <title>.");
 
 const payload = {
+  // Which build this page is. A copy of the page that finds the store written by
+  // a newer build stops saving, so a tab left open across a republish cannot
+  // write the old page's idea of her week over the new one's.
+  builtAt: Date.now(),
   recipes, plans, pricebook, staples, config, onHand, equivalents: equivalents.groups ?? [],
   catalogue: catalogue.products ?? {}, site: catalogue.site ?? "https://www.intermarche.com",
 };

@@ -30,7 +30,7 @@
     { "id": "monday-dinner", "day": "monday", "slot": "dinner", "recipe": "dinde-celeri-gingembre", "note": "Cook 300 g of rice instead of 150; the other half is Tuesday's lunch." },
 
     { "id": "tuesday-breakfast", "day": "tuesday", "slot": "breakfast", "recipe": "sandwich-matin" },
-    { "id": "tuesday-lunch", "day": "tuesday", "slot": "lunch", "recipe": "riz-saute-restes", "note": "Monday's rice with an egg through it.", "leftovers": true },
+    { "id": "tuesday-lunch", "day": "tuesday", "slot": "lunch", "recipe": "riz-saute-restes", "note": "Monday's rice with an egg through it.", "leftovers": true, "from": "monday-dinner" },
     { "id": "tuesday-dinner", "day": "tuesday", "slot": "dinner", "recipe": "patatas-a-lo-pobre", "note": "Paprika doux only, which is what's in the cupboard." },
 
     { "id": "wednesday-breakfast", "day": "wednesday", "slot": "breakfast", "recipe": "sandwich-matin" },

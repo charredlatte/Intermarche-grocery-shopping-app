@@ -25,7 +25,7 @@
     { "id": "wednesday-dinner", "day": "wednesday", "slot": "dinner", "recipe": "donburi-teriyaki", "note": "Cook the whole packet of basmati — Thursday's lunch is what's left." },
 
     { "id": "thursday-breakfast", "day": "thursday", "slot": "breakfast", "recipe": "sandwich-matin" },
-    { "id": "thursday-lunch", "day": "thursday", "slot": "lunch", "recipe": "riz-saute-restes", "note": "Wednesday's rice with an egg through it.", "leftovers": true },
+    { "id": "thursday-lunch", "day": "thursday", "slot": "lunch", "recipe": "riz-saute-restes", "note": "Wednesday's rice with an egg through it.", "leftovers": true, "from": "wednesday-dinner" },
     { "id": "thursday-dinner", "day": "thursday", "slot": "dinner", "recipe": "legumes-rotis-airfryer", "note": "32 minutes but almost none of it yours. Batch the mini quiches in the oven while the air fryer runs." },
 
     { "id": "friday-breakfast", "day": "friday", "slot": "breakfast", "recipe": "sandwich-matin" },

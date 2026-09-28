@@ -36,7 +36,7 @@
       "recipe": "curry-coco-poulet",
       "minutesOverride": 10,
       "note": "Sunday's curry, reheated. Cucumber and coriander alongside to freshen it.",
-      "leftovers": true
+      "leftovers": true, "from": "sunday-dinner"
     },
     {
       "id": "wednesday-dinner",
