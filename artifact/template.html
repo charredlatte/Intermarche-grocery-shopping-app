@@ -1208,8 +1208,36 @@ function setSync(kind, text) {
   $("#sync-text").textContent = text;
 }
 
+// One write at a time: the runtime rejects overlapping writes to a document,
+// and a rejected write used to come back as a stale snapshot that wiped the
+// picks made since. So clicks only mark the state dirty; a single loop writes
+// the latest state until nothing is left unsaved.
+let saving = false, dirty = false, lastSaved = 0;
+// The db client hands out its own cached objects and diffs by reference, so page
+// state must never alias them: copy on the way in and on the way out (422686f).
+const clone = (v) => (v == null ? v : JSON.parse(JSON.stringify(v)));
+
 async function persist() {
   if (!weekRef) return;
+  dirty = true;
+  if (saving) return;
+  saving = true;
+  while (dirty) {
+    dirty = false;
+    try {
+      const doc = weekDoc();
+      await weekRef.set(clone(doc));
+      lastSaved = doc.updatedAt;
+      setSync("live", "Shared — you and your partner see the same week");
+    } catch (e) {
+      setSync("off", "Change saved on this phone only — " + (e && e.code ? e.code : "not saved"));
+      if (!dirty) break;
+    }
+  }
+  saving = false;
+}
+
+function weekDoc() {
   const diff = {};
   for (const k of changed()) diff[k] = picks[k];
   // Only the corrections travel, not the whole kitchen. A quantity she never
@@ -1219,20 +1247,20 @@ async function persist() {
   for (const k of new Set([...Object.keys(have), ...Object.keys(haveSeed)])) {
     if ((have[k] || 0) !== (haveSeed[k] || 0)) haveDiff[k] = have[k] || 0;
   }
-  try {
-    await weekRef.set({
-      picks: diff, extra, have: haveDiff, qtyAdj, subs, dropped, added, addAdj, choices,
-      approved, inBasket,
-      seededFrom: ONHAND.from ? ONHAND.from.order : null,
-      updatedAt: Date.now(),
-    });
-  } catch (e) {
-    setSync("off", "Change saved on this phone only — " + (e && e.code ? e.code : "not saved"));
-  }
+  return {
+    picks: diff, extra, have: haveDiff, qtyAdj, subs, dropped, added, addAdj, choices,
+    approved, inBasket,
+    seededFrom: ONHAND.from ? ONHAND.from.order : null,
+    updatedAt: Date.now(),
+  };
 }
 
 function applyRemote(d) {
   if (!d) return;
+  // A snapshot older than our own last save is a late echo: applying it would
+  // put back what she has since changed.
+  if ((d.updatedAt || 0) < lastSaved) return;
+  d = clone(d);
   extra = { ...extra, ...(d.extra || {}) };
   picks = { ...baseline, ...(d.picks || {}) };
   // A document written against an older receipt keeps its hand corrections, but
@@ -1263,7 +1291,9 @@ function applyRemote(d) {
     () => { /* the week's own sync line already reports a failure */ },
   );
   weekRef.onSnapshot(
-    (snap) => { applyRemote(snap.data()); setSync("live", "Shared — you and your partner see the same week"); },
+    // While a change of hers is unsaved, what the store holds is older than
+    // the screen; the snapshot after her last write brings the two back together.
+    (snap) => { if (saving || dirty) return; applyRemote(snap.data()); setSync("live", "Shared — you and your partner see the same week"); },
     (err) => setSync("off", "Sync stopped (" + err.code + ") — changes stay on this phone"),
   );
   // Its own document, so Claude's progress writes and her list edits can never
@@ -1881,14 +1911,14 @@ async function persistFavs() {
 
 function toggleFav(slug) {
   if (favs.has(slug)) favs.delete(slug); else favs.add(slug);
-  renderAll();
   persistFavs();
+  renderAll();
 }
 
 function setPick(mealId, slug) {
   picks[mealId] = slug;
-  renderAll();
   persist();
+  renderAll();
 }
 
 /* ---------- the same sheet, for products rather than dishes ----------
@@ -2003,7 +2033,8 @@ function openAddItem() {
 }
 
 /* ---------- the ingredient controls ---------- */
-function commitShop() { renderAll(); persist(); }
+// Save before drawing: a render that throws must not take the save with it.
+function commitShop() { persist(); renderAll(); }
 
 /* "I have it" means all of it — enough that nothing needs buying. Pressed again
    from the kitchen list it means the opposite: none of it. */
@@ -2482,7 +2513,29 @@ function renderResults() {
 }
 
 /* ---------- render all ---------- */
+/* Never redraw under a finger. `click` fires only when press and release land on
+   the same element, and this page rebuilds panels with innerHTML, so a redraw
+   mid-press (a sync snapshot, usually) eats the tap. While a pointer is down,
+   redraws wait for the release; a release that never comes times out. */
+let pressed = false, heldRender = false, holdTimer = 0;
+function pressStart() {
+  pressed = true;
+  clearTimeout(holdTimer);
+  holdTimer = setTimeout(pressEnd, 1500);
+}
+function pressEnd() {
+  clearTimeout(holdTimer);
+  if (!pressed) return;
+  pressed = false;
+  if (heldRender) { heldRender = false; setTimeout(renderAll, 0); }
+}
+addEventListener("pointerdown", pressStart, true);
+addEventListener("pointerup", pressEnd, true);
+addEventListener("pointercancel", pressEnd, true);
+addEventListener("blur", pressEnd, true);
+
 function renderAll() {
+  if (pressed) { heldRender = true; return; }
   renderIngChips();
   renderCuisineChips();
   renderCook();
@@ -2581,9 +2634,9 @@ $("#shuffle").addEventListener("click", () => {
     picks[m.id] = slug;
     used.add(slug);
   }
-  renderAll(); persist();
+  persist(); renderAll();
 });
-$("#resetweek").addEventListener("click", () => { picks = { ...baseline }; renderAll(); persist(); });
+$("#resetweek").addEventListener("click", () => { picks = { ...baseline }; persist(); renderAll(); });
 
 document.addEventListener("click", (e) => {
   // ---- the quiz ----

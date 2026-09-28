@@ -67,8 +67,9 @@ These are not preferences. Check the plan against them before showing it.
 
 ## Building the plan
 
-- **Asian most nights.** Japanese, Korean, Chinese, Thai, Vietnamese, Indian.
-  Spring rolls are a favourite and are made often. Non-Asian nights should be
+- **Half the dinners Asian, half European** (`preferences.cuisines.weeklyShare`).
+  Asian means Japanese, Korean, Chinese, Thai, Vietnamese, Indian.
+  Spring rolls are a favourite and are made often. European nights should be
   vegetable-forward — brussels sprouts, peppers, broccoli, aubergine — not
   another pasta bake.
 - **Familiarity comes from the ingredient, not the dish.** The receipts show a
@@ -133,6 +134,22 @@ Show the list with a running total against the budget ceiling before touching
 the browser. A pantry-restock week uses `pantryWeekCeiling` instead of
 `ceilingPerOrder` — say plainly that you're claiming it and why.
 
+## Live stock check (on her PC)
+
+The page's "Decide first" and "check" lines are only as current as the
+catalogue's `checked` date. When she asks whether they are still true, and only
+in her logged-in Chrome (the container cannot reach the site), go through the
+week's non-`exact` lines one product page at a time from `listing.url`, and each
+`alternatives[].url` for `missing` ones. Record the day's pack, price and
+`listing.available`, and set `checked`. Week of 2026-09-28, as of 2026-09-14:
+
+- missing: Le Gaulois Escalope de dinde · Princesse Amandine potatoes · Terroirs Côtes de PORC
+- check: Pâturages Cheddar Les Tranchettes · Ail BLANC (now a net of 2) · Kikkoman 150 ml ·
+  Volaé eggs (12, not 20) · Pâturages Mozzarella (now "Maxi") · Herta Lardons (now "sans nitrite")
+- picked: Vinaigre balsamique
+
+Then rebuild and republish once, carrying `weeks/<weekOf>` over.
+
 ## Keeping the catalogue current
 
 `data/catalogue.json` covers every product a recipe, staple or equivalent can
@@ -194,9 +211,8 @@ database, and your progress is reported back there so she watches it live.
   in Chrome installed there alone; until that exists, say which browser you are
   driving before the first page.
 
-**Reports are new documents, never edits.** The Artifact tool refuses to
-update, replace or delete an existing document (it demands a version it cannot
-send), so every report is a fresh document in `push/<weekOf>/progress`, id
+**Reports are new documents, never edits.** The page reads every document in
+the progress collection, so every report is a fresh document in `push/<weekOf>/progress`, id
 `<run>-<seq>` where `run` is the request's `requestedAt` — `drive:list` prints
 the next id. Write them with `write_db`, `db_op: batch`, `op: "set"`, up to 50
 at a time. Two shapes:
@@ -368,17 +384,19 @@ After she agrees the plan:
    <date>".
 5. **Publish it as a new page.** Copy `artifact/week.html` to the scratchpad as
    `courses-<weekOf>.html` and publish that path with **no `url`** — a new path
-   is what makes a fresh link. Pass `favicon: "🧺"`, a one-line `description`,
+   is what makes a fresh link. Pass `icon: "basket"`, a one-line `description`,
    `capabilities: { db: {}, sample: {} }` (the shared list and the dish
    generator), and `contract: "0.2.41"`, the runtime the page is written against.
 6. **Carry her state over** from the previous page in `data/artifacts.json`,
    with `read_db` there and a `write_db` batch of `set`s on the new page:
    `library/favourites` always, and `weeks/<weekOf>` when re-publishing a week
    that already has a page — her swaps, counts and decisions live there, not in
-   the plan file. Do it straight after publishing, before she opens the page:
-   once a document exists, this tool cannot overwrite it.
-7. **Record the link** in `data/artifacts.json` under the week, commit and push,
-   and send her the link in one line. The page is private to her until she
+   the plan file. Do it straight after publishing, before she opens the page.
+   A later write to an existing document needs its `if_version`.
+7. **Record the link** in `data/artifacts.json` under the week, commit, push,
+   **open a PR and merge it into `main`**. Work left on a `claude/*` branch
+   is lost, because the next session clones `main`. Then send her the link
+   in one line. The page is private to her until she
    shares it from its menu — say so if her partner needs it.
 
 If she asks to keep a swapped-in dish permanently, move it into the plan file.

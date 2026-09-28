@@ -27,6 +27,16 @@ gh repo clone charredlatte/Intermarche-grocery-shopping-app app
 
 Everything the parser, the build and the skill need is already in `data/`.
 
+**Work lands on `main`, or it is lost.** Each session pushes to its own
+`claude/*` branch, and the next one clones `main`. Until 2026-09-28 nothing was
+merged: the same page-sync fix was written six times on four branches, and every
+week was republished from a `main` that had none of them. So:
+
+- start by running `git fetch origin && for b in $(git branch -r | grep claude/); do git log --oneline origin/main..$b; done`,
+  and say so if anything is stranded;
+- a session isn't finished until its branch is merged into `main`. Open a PR
+  and merge it (Charlotte's call, 2026-09-28).
+
 ## The three pieces
 
 **1. Purchase history.** Intermarché emails a `Votre facture est disponible`
@@ -173,12 +183,11 @@ the basket in her Chrome and reports each step as a **new document** in
 `push/<weekOf>/progress`; the page folds those over the request and shows the
 progress and, at the end, the site's own total against the estimate.
 
-Why new documents: checked 2026-09-14, the Artifact tool's `write_db` refuses
-`update`, `set` and `delete` on any document that already exists
-(`version_mismatch` — it wants an `if_version` the tool cannot send). Creating a
-document is the only write Claude can make to a page's database once her page is
-live, so everything Claude reports is append-only, and anything seeded into a
-new page has to be written before she first opens it.
+Why new documents: on 2026-09-14 the Artifact tool's `write_db` refused
+`update`, `set` and `delete` on existing documents because it could not send
+`if_version`. It can now (`ArtifactData` takes `if_version`, checked
+2026-09-28), but the append-only progress reports work, so they stay. Seeding a
+new page is still best done before she first opens it.
 
 Week, Recipes and the Cook quiz sit behind the basket unchanged. Cook is a
 five-step quiz modelled on the Potto flow Charlotte sent on 2026-09-06; no-chilli
