@@ -333,7 +333,13 @@ The page folds the reports for the current run over the request, latest last.
      confirmation. The header's basket count and total lag a beat behind, so
      don't treat them as proof.
 5. **Report after each batch**: one `write_db` batch with a line report per
-   product the helper settled, so the page moves while she watches.
+   product the helper settled, so the page moves while she watches. **Two
+   lines on the same listing are one product** — the cat food on the standing
+   order and again on her household list, 28 September. `drive:list` merges
+   them and sums the count (pushed apart, the second would find the first's
+   count and set nothing more: one bag, not two); `alsoReport` in the batch
+   output, and "also:" in the readable list, name the other keys. Report the
+   same result for every one of them.
 6. **Lines under "Look up and ask"** have no listing: search the term, show her
    what Méré lists, and add only what she picks.
    **Her Keep list goes in too** (she asked on 2026-09-15). It is the checklist
