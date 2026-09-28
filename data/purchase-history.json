@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-27T20:13:39.670Z",
+  "generatedAt": "2026-09-28T19:50:23.447Z",
   "ordersParsed": 24,
   "averageBasket": 88.1,
   "averageItemCount": 29,
@@ -11,6 +11,50 @@
     "Le Choix du Primeur Poivron ROUGE",
     "Look, une marque Intermarché Limonade aux arômes naturels d'agrumes"
   ],
+  "byProtein": {
+    "pork": {
+      "orders": 22,
+      "shareOfOrders": 0.92,
+      "purchases": 31,
+      "spend": 118.04
+    },
+    "beef": {
+      "orders": 14,
+      "shareOfOrders": 0.58,
+      "purchases": 14,
+      "spend": 97.29
+    },
+    "chicken": {
+      "orders": 13,
+      "shareOfOrders": 0.54,
+      "purchases": 22,
+      "spend": 129.04
+    },
+    "charcuterie": {
+      "orders": 11,
+      "shareOfOrders": 0.46,
+      "purchases": 11,
+      "spend": 40.18
+    },
+    "eggs": {
+      "orders": 9,
+      "shareOfOrders": 0.38,
+      "purchases": 10,
+      "spend": 27.85
+    },
+    "turkey": {
+      "orders": 6,
+      "shareOfOrders": 0.25,
+      "purchases": 7,
+      "spend": 38.26
+    },
+    "fish": {
+      "orders": 2,
+      "shareOfOrders": 0.08,
+      "purchases": 2,
+      "spend": 22.89
+    }
+  },
   "products": [
     {
       "name": "Cuit sur place Baguette La Généreuse",

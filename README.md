@@ -87,13 +87,6 @@ Everything lives here, `data/` included: the invoices, the purchase history, my 
 
 The handoff is the plan itself. Answer on the couch Sunday morning, run the basket step at the PC whenever.
 
-## Status
-
-- [x] Invoice parser — 22 orders, 208 distinct products
-- [x] Preference file
-- [x] Weekly planning skill
-- [x] Swap a meal you don't fancy, shared with my partner
-- [x] Recurring Sunday reminder
 ### 5. The app
 
 `artifact/template.html` plus `scripts/build-week.mjs` turn the plan data into a published page, and **the basket is the page**. It opens on the shopping list at Méré's own product names, packs and current prices, with a count to add for each line and the total against my ceiling. Anything Méré sells differently or no longer sells waits under "Decide first" until I pick — I can't approve until every line says exactly what to buy. Once approved, "Push to Intermarché" hands the list to Claude on my PC, which fills my Drive basket and reports back on the page line by line, ending with the site's own total. Week, Recipes and the Cook quiz sit behind it.
@@ -102,8 +95,17 @@ It is generated, not hand-written, and **every `/courses` run publishes a fresh 
 
 It is also a two-person app. Any meal can be swapped — either for another dish from the library, or for something new invented on the spot — and the picks live in a shared database, so my partner and I see the same week on our own phones. The shopping list is derived from whatever is currently picked, so the total follows every swap. A dish eaten out of an earlier batch is marked as leftovers and buys nothing, which is the only reason the numbers come out right: counting the Sunday curry three times bought six tins of coconut milk for one pot.
 
-The library is 32 dishes now, roughly half Asian and half European. Ready-made things like the gyoza are still on the menu but marked as assemblies — a note about the packet, and a real recipe only for the part that is actually cooked.
+The library is 73 dishes now — 21 Asian, 52 European or American. That is not the 50/50 I want, and it is not meant to be: the balance to hit is **the week's plan**, not the library. Confusing the two is what caused the one real planning bug so far, when a `weeklyShare` of "most" quietly made every week about 70% Asian while the library looked balanced. Ready-made things like the gyoza are still on the menu but marked as assemblies — a note about the packet, and a real recipe only for the part that is actually cooked.
 
+**Asked for on 15 September 2026, still to build.** The fourth tab, a five-step quiz, is to go: it saves nothing, nothing else reads it, and the Recipes tab already filters on everything it asks. In its place, an axis the library never had — **what protein is in the dish**. Every dish now declares one of eight and the parser rolls my receipts up the same way; the first thing it told me is that **pork is in 22 of my 23 orders and the library gave it two dinners.** The page grouping by protein, a Week tab with no controls on it, and "Cook this on…" on every recipe card are the next page work, together with a Kitchen tab and ticking off what we actually cooked.
+
+## Status
+
+- [x] Invoice parser — 24 orders, 230 distinct products
+- [x] Preference file
+- [x] Weekly planning skill
+- [x] Swap a meal you don't fancy, shared with my partner
+- [x] Recurring Sunday reminder
 - [x] Méré catalogue — all 153 products the app can buy matched to their product pages, 14 September 2026
 - [x] Push from the page — approve, press Push, `/courses push` fills the basket and writes progress back
 - [x] Push tested end to end on 2026-09-14 with a two-line test page: request, basket filled in Chrome, progress on the page, site total matched the estimate to the cent. Re-run the same day after the browser pre-flight hardening, with the in-page helper: one tool call for both products, wrong pack refused, out-of-stock reported, off-site call refused, basket restored
