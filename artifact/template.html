@@ -2471,16 +2471,19 @@ for (const r of Object.values(LIB)) {
 /* "beurre" should find the butter, not a shampoo that happens to contain
    "beurre de karité". Rank a name that starts with the query first, then one
    where a word starts with it, then anything containing it. */
+/* Accents are ignored both ways — she types on a phone keyboard, so "rapees"
+   finds "râpées" and "oeufs" finds "œufs". */
+const foldSearch = (s) => fold(s).replace(/œ/g, "oe").replace(/æ/g, "ae");
 function search(query, exclude = [], pool = Object.keys(PRICES)) {
-  const q = query.trim().toLowerCase();
+  const q = foldSearch(query.trim());
   if (q.length < 2) return [];
   const scored = [];
   for (const name of pool) {
     if (exclude.includes(name)) continue;
-    const low = name.toLowerCase();
+    const low = foldSearch(name);
     const at = low.indexOf(q);
     if (at < 0) continue;
-    const wordStart = at === 0 || /[^a-z0-9àâäçéèêëîïôöùûü]/.test(low[at - 1]);
+    const wordStart = at === 0 || /[^a-z0-9]/.test(low[at - 1]);
     scored.push([at === 0 ? 0 : wordStart ? 1 : 2, at, name]);
   }
   return scored
@@ -2517,7 +2520,17 @@ function renderProductAlts() {
   }
   let opts;
   if (sheetMode === "product") {
-    opts = productOptions(subs[productTarget] || productTarget, q);
+    const current = subs[productTarget] || productTarget;
+    opts = productOptions(current, q, ALL_PRODUCTS);
+    // Nothing for the whole phrase ("carottes rappees"): try its words, so she
+    // still sees what her receipts have that is close.
+    if (typed.length >= 2 && !opts.length) {
+      const seen = new Set([current]);
+      opts = typed.split(/\s+/).filter((w) => w.length >= 4)
+        .flatMap((w) => search(w, [current], ALL_PRODUCTS))
+        .filter((n) => !seen.has(n) && seen.add(n)).slice(0, 12)
+        .map((n) => ({ name: n, why: "close" }));
+    }
   } else if (sheetMode === "ing-swap") {
     opts = productOptions(rowOf(recipeCtx.slug, productTarget).product, q, ALL_PRODUCTS);
   } else if (sheetMode === "ing-add") {
@@ -2532,7 +2545,7 @@ function renderProductAlts() {
   }
 
   // Warn as she types rather than after she taps.
-  const typeFree = ingMode() || sheetMode === "add";
+  const typeFree = ingMode() || sheetMode === "add" || sheetMode === "product";
   const word = typeFree && typed.length >= 3 ? hotWord(typed) : null;
   $("#gen-state").innerHTML = word ? `<div class="genstate err">${esc(hotRefusal(typed, word))}</div>` : "";
 
@@ -2546,10 +2559,23 @@ function renderProductAlts() {
   // Something neither the receipts nor the catalogue know goes in by name, as a
   // best guess; Claude looks it up and asks about it at push time.
   if (typeFree && typed.length >= 2 && !word && !ALL_PRODUCTS.some((n) => n.toLowerCase() === typed.toLowerCase())) {
-    html += `<button class="alt" type="button" ${attr}="${esc(typed)}">
-       <span class="alt-name">Add “${esc(typed)}” as a new item</span><span class="leader"></span>
-       <span class="alt-meta">best guess · ≈ 3 €</span>
-     </button>`;
+    if (sheetMode === "product") {
+      // From a basket line she can have it instead, or as well — the second
+      // goes on the household & extras list and leaves this line alone.
+      html += `<button class="alt" type="button" data-pick-product="${esc(typed)}">
+         <span class="alt-name">Buy “${esc(typed)}” instead</span><span class="leader"></span>
+         <span class="alt-meta">best guess · ≈ 3 €</span>
+       </button>
+       <button class="alt" type="button" data-add-product="${esc(typed)}">
+         <span class="alt-name">Add “${esc(typed)}” as well</span><span class="leader"></span>
+         <span class="alt-meta">to ${esc(HOUSEHOLD.toLowerCase())}</span>
+       </button>`;
+    } else {
+      html += `<button class="alt" type="button" ${attr}="${esc(typed)}">
+         <span class="alt-name">Add “${esc(typed)}” as a new item</span><span class="leader"></span>
+         <span class="alt-meta">best guess · ≈ 3 €</span>
+       </button>`;
+    }
   }
   $("#sheet-alts").innerHTML = html || `<div class="empty" style="padding:1.4rem 1rem">${
     typed.length >= 2 ? "Nothing in your receipts matches that." : "Type at least two letters to search."
@@ -2565,14 +2591,14 @@ function openPicker(mode, target, title, sub, restorable) {
   $("#sheet-restore").hidden = !restorable;
   $("#sheet-search").hidden = false;
   $("#sheet-search").value = "";
-  $("#sheet-search").placeholder = ingMode() || mode === "add"
+  $("#sheet-search").placeholder = ingMode() || mode === "add" || mode === "product"
     ? "Search what you buy and what Méré lists…" : "Search the products you actually buy…";
   renderProductAlts();
   $("#sheet").showModal();
 }
 
 const openProductSwap = (key) => openPicker("product", key, "Buy something else instead",
-  "The recipes ask for " + key + ". Anything you pick here is bought in its place — the dish does not change.", !!subs[key]);
+  "The recipes ask for " + key + ". Anything you pick here is bought in its place — the dish does not change. Type a name if it isn't listed: Claude looks it up at Méré during the push.", !!subs[key]);
 
 const openAddItem = () => openPicker("add", null, "Add to the household list",
   "Drain cleaner, bin bags, anything no recipe asks for. It goes in this week's basket, and your partner sees it too. Type a name if it isn't here — Claude looks it up at Méré during the push.", false);
@@ -3103,6 +3129,8 @@ document.addEventListener("click", (e) => {
   const pp = e.target.closest("button[data-pick-product]");
   if (pp) {
     const name = pp.dataset.pickProduct;
+    const word = hotWord(name);
+    if (word) { $("#gen-state").innerHTML = `<div class="genstate err">${esc(hotRefusal(name, word))}</div>`; return; }
     if (name === productTarget) delete subs[productTarget]; else subs[productTarget] = name;
     $("#sheet").close();
     return commitShop();

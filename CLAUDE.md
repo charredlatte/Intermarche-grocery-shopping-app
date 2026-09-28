@@ -320,6 +320,15 @@ refused, with a safe product offered (paprika → paprika doux). The paste box
 sits outside the redrawn part of the tab, so a sync never eats what she is
 pasting.
 
+**Every picker takes a name nothing knows** (2026-09-28, after the Basket's Swap
+told her "Nothing in your receipts matches" for *carottes rappees*). All of them
+search her receipts *and* the catalogue, accent-blind ("rapees" finds
+"râpées"), and when nothing matches exactly what she typed they offer it
+anyway: from a basket line's Swap, "Buy … instead" (a `subs` entry to a name no
+receipt knows — a guess Claude looks up at the push) or "Add … as well" (the
+household & extras list); from the recipe sheet, as an ingredient; from the
+Household tab, as an item. The chilli guard sits on every one of those doors.
+
 Week and Recipes sit behind the basket. Two things Charlotte asked for on 15–16
 September were built on `claude/*` branches and never merged, and the basket page
 was redesigned on top of a `main` without them. They are her standing requests,
