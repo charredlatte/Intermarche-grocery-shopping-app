@@ -350,7 +350,10 @@ The page folds the reports for the current run over the request, latest last.
    *fort* or *piquant*. Report them in the `done` note, since they have no line
    on the page. The page's Household tab is the same kind of list and is
    already in the push as lines under "Household & extras"; a Keep item that
-   is on it is covered — leave it off and say so. When she sends Keep items in
+   is on it is covered — leave it off and say so. She can paste the whole
+   note there herself ("Paste your Google Keep list"), which is the quickest
+   route from her phone and needs no Keep access at all; lines marked
+   "from Keep" came that way. When she sends Keep items in
    chat outside a push, add them to the Household list (`added` in
    `weeks/<weekOf>`, `update` with its `if_version`) rather than holding them
    for the push, so she sees them priced.
