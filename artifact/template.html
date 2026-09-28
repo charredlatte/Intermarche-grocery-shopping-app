@@ -884,7 +884,20 @@ const shopEdited = () => !sameHave() ||
    but assuming so is how a week ends with no lunch, and a spare bag of rice is
    the cheaper mistake. A plan from before `from` existed keeps the old rule. */
 const leftoversHold = (m) => !!m.leftovers && picks[m.id] === baseline[m.id] &&
-  (!m.from || picks[m.from] === baseline[m.from]);
+  (!m.from || (picks[m.from] === baseline[m.from] && !potShrunk(picks[m.from])));
+
+/* Her edits to the dish that cooks the pot can empty it just as a swap can.
+   Taking something out — a row dropped, cut down, or bought as another
+   product — may be taking out the rice, so the pot is no longer counted on.
+   Adding to the dish, or more of something, leaves it as it was. Edits that no
+   longer find their row apply to nothing, so they change nothing here either. */
+function potShrunk(slug) {
+  const e = recipeEdits[slug], base = all()[slug];
+  if (!e || !base) return false;
+  const row = (k) => (base.ingredients || []).find((i) => i.buy && itemKey(i) === k);
+  return e.drop.some(row) || Object.keys(e.swap).some(row) ||
+    Object.entries(e.set).some(([k, amount]) => { const r = row(k); return r && amount < r.buy.amount - 1e-9; });
+}
 
 /* Every meal, resolved. Skips a pick whose dish has gone missing. */
 function meals() {
@@ -1080,9 +1093,10 @@ function weekWanted() {
   // per serving bought six tins of coconut milk for one pot, so a meal flagged
   // as leftovers eats from a pot already paid for and buys nothing. A dish
   // genuinely cooked twice in a week is not flagged, and does count twice.
-  const cooked = meals().filter((m) => !m.leftovers);
-  for (const m of cooked) {
-    for (const i of m.r.ingredients || []) {
+  // What she adds to a leftovers dish is not in the pot, so it is bought; the
+  // rest of the dish still comes out of the earlier meal.
+  for (const m of meals()) {
+    for (const i of (m.r.ingredients || []).filter((x) => !m.leftovers || x.added)) {
       if (!i.buy) continue;
       let e = acc.get(i.product);
       if (!e) acc.set(i.product, (e = {

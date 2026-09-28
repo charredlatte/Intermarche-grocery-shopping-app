@@ -225,9 +225,12 @@ against a stub store before it was fixed):
 
 - *A leftovers meal names its pot.* `"from": "<meal id>"` is required on every
   `leftovers` meal and checked by the build. The meal buys nothing only while
-  both it and its source are on their planned dishes; swap either and it is
-  shopped for — before this, swapping Monday's dinner left Tuesday's
-  leftover-rice lunch with no rice and no line on the list.
+  both it and its source are on their planned dishes, and her edits have taken
+  nothing out of the source; swap either, or drop, cut down or swap a row of the
+  source, and it is shopped for — before this, swapping Monday's dinner left
+  Tuesday's leftover-rice lunch with no rice and no line on the list. Adding to
+  the source, or more of something, keeps the pot. What she adds to the
+  leftovers dish itself is bought; the rest still comes from the pot.
 - *An approval remembers what the week needed* (`approved.wanted`). A swap, or
   a recipe changed in a republish, after she approved shows on the basket and
   in the header as what is now needed and what no longer is — and once the
