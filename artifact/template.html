@@ -659,6 +659,11 @@
   }
   .weekfoot { display: flex; justify-content: center; padding: 1.6rem 0 .4rem; }
 
+  /* ---- the household list ---- */
+  .home-head { padding: 1.25rem 0 .2rem; }
+  .home-lede { margin: 0 0 .9rem; color: var(--ink-2); font-size: .93rem; max-width: 34rem; }
+  .home-note { margin: 1.2rem 0 0; font: 400 .8rem/1.5 var(--f-body); color: var(--ink-3); max-width: 34rem; }
+
   /* ---- the recipe sheet ---- */
   #recipe .sheet-head { align-items: center; }
   #recipe .sheet-head h2 { font-size: 1.3rem; }
@@ -694,10 +699,15 @@
     <button class="tab" role="tab" id="tab-shop"    aria-controls="panel-shop"    aria-selected="true">Basket</button>
     <button class="tab" role="tab" id="tab-week"    aria-controls="panel-week"    aria-selected="false">Week</button>
     <button class="tab" role="tab" id="tab-recipes" aria-controls="panel-recipes" aria-selected="false">Recipes</button>
+    <button class="tab" role="tab" id="tab-home"    aria-controls="panel-home"    aria-selected="false">Household</button>
   </nav>
 
   <section id="panel-shop" role="tabpanel" aria-labelledby="tab-shop">
     <div id="shop-out"></div>
+  </section>
+
+  <section id="panel-home" role="tabpanel" aria-labelledby="tab-home" hidden>
+    <div id="home-out"></div>
   </section>
 
   <section id="panel-week" role="tabpanel" aria-labelledby="tab-week" hidden>
@@ -1079,8 +1089,14 @@ function packRatio(receiptPack, sitePack) {
 }
 
 /* ---------- the basket, derived from whatever is on the menu ---------- */
+/* What she adds by hand — drain cleaner, bin bags, a bag of crisps — is one
+   list, `added`, kept in the week's document. The Household tab is its home,
+   the Basket's "Add something" adds to it, and in the basket it is one section.
+   It is the page's own copy of her Google Keep "Meal Planning" list: every line
+   still traces back to something, and this is the thing. */
+const HOUSEHOLD = "Household & extras";
 const SECTION_ORDER = ["Proteins", "Vegetables", "Store cupboard", "Bread and cheese",
-                       "Standing order", "New to you", "Best guesses", "Added by you"];
+                       "Standing order", "New to you", "Best guesses", HOUSEHOLD];
 
 /* Everything the week asks for, before a word about what is in the kitchen: one
    entry per line of the list, with how much the dishes, the standing order and
@@ -1125,9 +1141,9 @@ function weekWanted() {
                   for: s.note || "always on the order", kind: "staple" });
   }
   for (const [key, a] of Object.entries(added)) {
-    wanted.push({ key, section: "Added by you", guess: !PRICES[a.name],
+    wanted.push({ key, section: HOUSEHOLD, guess: !PRICES[a.name],
                   guessPrice: 3, required: a.qty, name: a.name,
-                  for: "you added this", kind: "added" });
+                  for: "your household list", kind: "added" });
   }
   return wanted.sort((a, b) => (SECTION_ORDER.indexOf(a.section) - SECTION_ORDER.indexOf(b.section)) ||
                                a.key.localeCompare(b.key));
@@ -1867,6 +1883,11 @@ const SECTION_ICONS = {
   "Best guesses": { tint: "is-quiet", svg: ico(
     `<path d="M10.5 3.4 12.2 8.3 17.1 10 12.2 11.7 10.5 16.6 8.8 11.7 3.9 10 8.8 8.3 10.5 3.4Z"/>
      <path d="M17.4 15.2 18.2 17.4 20.4 18.2 18.2 19 17.4 21.2 16.6 19 14.4 18.2 16.6 17.4 17.4 15.2Z"/>`) },
+  // a spray bottle: the things for the house no recipe asks for
+  [HOUSEHOLD]: { tint: "", svg: ico(
+    `<path d="M9 8.5h6l1.2 3v8a1.5 1.5 0 0 1-1.5 1.5H9.3a1.5 1.5 0 0 1-1.5-1.5v-8L9 8.5Z"/>
+     <path d="M10 8.5V6h3.5l2.5-1.8M13.5 6v2.5"/>
+     <path d="M17.6 6.2h1.6M17.4 8.3l1.4.7M17.4 4.1l1.4-.7"/>`) },
   // anything a newly generated dish invents
   _default: { tint: "is-quiet", svg: ico(
     `<path d="M5.6 8.6h12.8l.9 10.6a2 2 0 0 1-2 2.2H6.7a2 2 0 0 1-2-2.2l.9-10.6Z"/>
@@ -2097,6 +2118,61 @@ function renderShop() {
   const cookCount = meals().filter((m) => !m.leftovers).length;
   html += `<div class="foot" style="margin-top:1.6rem">Built from the ${cookCount} meals actually cooked this week — ${meals().length - cookCount} more come out of an earlier pot and cost nothing extra. Follows every swap and every count you change.<br>${(plan.notes || []).map(esc).join("<br>")}</div>`;
   $("#shop-out").innerHTML = html;
+}
+
+/* ---------- household tab ----------
+   The list she adds to by hand, on a tab of its own: what is on it, how many,
+   and what the basket makes of each — its price at Méré, already here, or a
+   name Claude will look up during the push. Approved, the basket is locked,
+   and so is this. */
+function renderHome() {
+  const items = Object.entries(added);
+  const b = basket();
+  const lineOf = (key) => b.lines.find((l) => l.key === key) || null;
+  const offOf = (key) => b.kitchen.find((l) => l.key === key) || null;
+  const locked = !!approved;
+
+  const row = ([key, a]) => {
+    const l = lineOf(key), off = offOf(key);
+    const li = l && !l.pending ? l.site : null;
+    const meta = [];
+    if (li) meta.push(esc(listingName(li)) + " · " + esc(li.packaging));
+    else if (l && !l.cat) meta.push(l.guess ? "not on a receipt yet — Claude looks it up at Méré during the push" : "not checked at Méré — Claude asks during the push");
+    if (l && l.pending) meta.push("decide on the Basket tab first");
+    if (off) meta.push(esc(coverReason(off)));
+    return `<li class="bl${off ? " is-kitchen" : ""}">
+        <div class="bl-row">
+          <div class="bl-main">
+            <div class="bl-name">${esc(a.name)}</div>
+            ${meta.length ? `<div class="bl-meta">${meta.map((m) => `<span>${m}</span>`).join("")}</div>` : ""}
+          </div>
+          <div class="bl-cost">${l ? money(l) : "—"}</div>
+        </div>
+        ${locked ? "" : `<div class="line-ctl">
+          <span class="step" role="group" aria-label="How many ${esc(a.name)}">
+            <button class="stepbtn" type="button" data-homestep="${esc(key)}" data-dir="-1" aria-label="One fewer"${(a.qty || 1) <= 1 ? " disabled" : ""}>−</button>
+            <span class="stepval">${a.qty || 1}</span>
+            <button class="stepbtn" type="button" data-homestep="${esc(key)}" data-dir="1" aria-label="One more">+</button>
+          </span>
+          <button class="minibtn danger" type="button" data-strike="${esc(key)}" aria-label="Take ${esc(a.name)} off the list">✕</button>
+        </div>`}
+      </li>`;
+  };
+
+  const total = items.reduce((t, [key]) => t + ((lineOf(key) || {}).cost || 0), 0);
+  $("#home-out").innerHTML = `
+    <div class="home-head">
+      <p class="home-lede">Things for the house that no recipe asks for — drain cleaner, sponges, bin bags — and anything else you want in the order. They go into this week's basket with everything else, and your partner sees the same list.</p>
+      ${locked
+        ? `<p class="home-note">The basket is approved, so this list is locked with it. Reopen the basket to change it.</p>`
+        : `<div class="toolbar"><button class="btn primary" type="button" id="homeadd">+ Add something for the house</button></div>`}
+    </div>
+    ${items.length ? `<div class="shop-sec" style="margin-top:1.2rem">
+        <div class="group-head has-icon" style="margin:0">${sectionIcon(HOUSEHOLD)}<h2>On the list</h2><span class="leader"></span><span class="group-count">${items.length} · ${eur(total)}</span></div>
+        <ul class="bl-list">${items.sort((x, y) => x[1].name.localeCompare(y[1].name)).map(row).join("")}</ul>
+      </div>`
+      : `<div class="empty">Nothing on the household list yet.</div>`}
+    <p class="home-note">Still using your Google Keep “Meal Planning” list? Claude adds it at push time too, and leaves off anything already here.</p>`;
 }
 
 /* ---------- approved: the push ---------- */
@@ -2424,12 +2500,17 @@ function renderProductAlts() {
   } else if (sheetMode === "ing-add") {
     const inDish = (recipeOf(recipeCtx.slug).ingredients || []).filter((i) => i.buy).map((i) => i.product);
     opts = search(q, inDish, ALL_PRODUCTS).map((n) => ({ name: n, why: SECTION_OF[n] || null }));
+  } else if (typed.length < 2) {
+    // Nothing typed yet: the things for the house she has bought before.
+    const inList = Object.values(added).map((a) => a.name);
+    opts = HOUSE_PRODUCTS.filter((n) => !inList.includes(n)).map((n) => ({ name: n, why: "bought before" }));
   } else {
-    opts = search(q).map((n) => ({ name: n, why: SECTION_OF[n] || null }));
+    opts = search(q, [], ALL_PRODUCTS).map((n) => ({ name: n, why: SECTION_OF[n] || null }));
   }
 
   // Warn as she types rather than after she taps.
-  const word = ingMode() && typed.length >= 3 ? hotWord(typed) : null;
+  const typeFree = ingMode() || sheetMode === "add";
+  const word = typeFree && typed.length >= 3 ? hotWord(typed) : null;
   $("#gen-state").innerHTML = word ? `<div class="genstate err">${esc(hotRefusal(typed, word))}</div>` : "";
 
   const attr = sheetMode === "product" ? "data-pick-product" : sheetMode === "add" ? "data-add-product" : "data-ing-pick";
@@ -2441,8 +2522,8 @@ function renderProductAlts() {
      </button>`).join("");
   // Something neither the receipts nor the catalogue know goes in by name, as a
   // best guess; Claude looks it up and asks about it at push time.
-  if (ingMode() && typed.length >= 2 && !word && !ALL_PRODUCTS.some((n) => n.toLowerCase() === typed.toLowerCase())) {
-    html += `<button class="alt" type="button" data-ing-pick="${esc(typed)}">
+  if (typeFree && typed.length >= 2 && !word && !ALL_PRODUCTS.some((n) => n.toLowerCase() === typed.toLowerCase())) {
+    html += `<button class="alt" type="button" ${attr}="${esc(typed)}">
        <span class="alt-name">Add “${esc(typed)}” as a new item</span><span class="leader"></span>
        <span class="alt-meta">best guess · ≈ 3 €</span>
      </button>`;
@@ -2461,7 +2542,7 @@ function openPicker(mode, target, title, sub, restorable) {
   $("#sheet-restore").hidden = !restorable;
   $("#sheet-search").hidden = false;
   $("#sheet-search").value = "";
-  $("#sheet-search").placeholder = ingMode()
+  $("#sheet-search").placeholder = ingMode() || mode === "add"
     ? "Search what you buy and what Méré lists…" : "Search the products you actually buy…";
   renderProductAlts();
   $("#sheet").showModal();
@@ -2470,8 +2551,17 @@ function openPicker(mode, target, title, sub, restorable) {
 const openProductSwap = (key) => openPicker("product", key, "Buy something else instead",
   "The recipes ask for " + key + ". Anything you pick here is bought in its place — the dish does not change.", !!subs[key]);
 
-const openAddItem = () => openPicker("add", null, "Add something to the order",
-  "Anything you add is marked as yours rather than attributed to a dish.", false);
+const openAddItem = () => openPicker("add", null, "Add to the household list",
+  "Drain cleaner, bin bags, anything no recipe asks for. It goes in this week's basket, and your partner sees it too. Type a name if it isn't here — Claude looks it up at Méré during the push.", false);
+
+/* The house things in her receipts, offered before she types: toilet paper,
+   sponges, dishwasher tablets, bin bags, the cats' litter. Named by what they
+   are, since the pricebook has no aisles; anything a standing order already
+   covers stays off. */
+const HOUSE_RE = /papier (toilette|hygi)|essuie|mouchoir|[ée]ponge|lessive|adoucissant|lave-vaisselle|liquide vaisselle|sacs? poubelle|shampo|gel douche|savon|dentifrice|brosse à dents|d[ée]odorant|nettoyant|javel|d[ée]boucheur|d[ée]sodor|liti[èe]re|griffoir|coton|rasoir|lingette|d[ée]sinfect|\bwc\b/i;
+const HOUSE_PRODUCTS = Object.keys(PRICES)
+  .filter((n) => HOUSE_RE.test(n) && !STAPLES.some((st) => st.name === n))
+  .sort((a, b) => a.localeCompare(b));
 
 const openIngAdd = () => openPicker("ing-add", null, "Add to " + recipeOf(recipeCtx.slug).title,
   "It goes in every time this dish is on the menu, and into the basket with it. Nothing hot.", false);
@@ -2520,8 +2610,20 @@ function toggleStrike(key) {
 }
 
 function addProduct(name) {
+  const word = hotWord(name);
+  if (word) return hotRefusal(name, word);
   const key = "added:" + name;
   added[key] = { name, qty: (added[key]?.qty || 0) + 1 };
+  commitShop();
+  return null;
+}
+
+/* How many she needs, set from the Household tab. The basket works out the
+   packs to add from it, so a count she set there by hand gives way. */
+function stepHousehold(key, dir) {
+  if (!added[key] || approved) return;
+  added[key] = { ...added[key], qty: Math.min(30, Math.max(1, (added[key].qty || 1) + dir)) };
+  delete addAdj[key];
   commitShop();
 }
 
@@ -2736,6 +2838,7 @@ function renderAll() {
   renderWeek();
   renderRecipes();
   renderShop();
+  renderHome();
   renderMasthead();
   renderRecipeSheet();
 }
@@ -2871,7 +2974,14 @@ document.addEventListener("click", (e) => {
     return commitShop();
   }
   const ap = e.target.closest("button[data-add-product]");
-  if (ap) { $("#sheet").close(); return addProduct(ap.dataset.addProduct); }
+  if (ap) {
+    const refusal = addProduct(ap.dataset.addProduct);
+    if (refusal) { $("#gen-state").innerHTML = `<div class="genstate err">${esc(refusal)}</div>`; return; }
+    return $("#sheet").close();
+  }
+  const hs = e.target.closest("button[data-homestep]");
+  if (hs) return stepHousehold(hs.dataset.homestep, Number(hs.dataset.dir));
+  if (e.target.closest("#homeadd")) return openAddItem();
   const tick = e.target.closest("button[data-tick]");
   if (tick) return toggleInBasket(tick.dataset.tick);
   const cmd = e.target.closest("#copycmd");
@@ -2894,7 +3004,8 @@ $("#sheet-search").addEventListener("input", renderProductAlts);
 // The recipe sheet is only redrawn while open; a closed one forgets its dish.
 $("#recipe").addEventListener("close", () => { recipeCtx = null; });
 
-const PANELS = { "tab-week": "panel-week", "tab-recipes": "panel-recipes", "tab-shop": "panel-shop" };
+const PANELS = { "tab-week": "panel-week", "tab-recipes": "panel-recipes", "tab-shop": "panel-shop",
+                 "tab-home": "panel-home" };
 $$(".tab").forEach((t) => t.addEventListener("click", () => {
   $$(".tab").forEach((x) => {
     const on = x === t;
