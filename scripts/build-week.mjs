@@ -223,8 +223,8 @@ if (problems.length) {
 /* ---- staples and config ------------------------------------------------- */
 // Only what the page needs travels from preferences — not the store phone
 // number, not the budget note. The dietary constraints DO ship, including the
-// reason text, because the dish generator needs to know it is a health rule
-// rather than a taste. That text is therefore in the published page.
+// reason text, because the dish generator is told why as well as what. That
+// text is therefore in the published page.
 // A staple normally has to be in the pricebook, so a typo cannot ship a
 // zero-cost line. The exception is a product whose name the receipt truncated —
 // the coffee capsules are cut off as "L'Or Capsules de café ..." — which can

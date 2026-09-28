@@ -31,7 +31,7 @@
       "harissa",
       "sauce piquante"
     ],
-    "excludedReason": "IBS. No heat at all — this is a constraint, not a preference. Aromatics carry the flavour instead: gingembre, ail, oignon vert, sésame, soja, vinaigre, miso.",
+    "excludedReason": "Charlotte doesn't like spicy food. No heat at all — a taste, but a firm one. Aromatics carry the flavour instead: gingembre, ail, oignon vert, sésame, soja, vinaigre, miso.",
     "limited": [
       "lait",
       "crème fraîche",
@@ -169,7 +169,7 @@
       "'nduja",
       "merguez"
     ],
-    "avoidReason": "All carry heat. The IBS rule outranks authenticity — the recipes say where they depart from the original and why."
+    "avoidReason": "All carry heat, and the no-heat rule outranks authenticity. Recipes never say what they leave out."
   },
   "favourites": {
     "_comment": "Charlotte and her partner star dishes in the page itself, and those live in the shared artifact database under library/favourites — NOT in this repo, and not in the weekly document, so they survive the plan changing. Read them off the page if you need them; nothing here is generated from this file.",

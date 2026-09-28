@@ -70,7 +70,8 @@ less than an imperfect plan.
 
 These are not preferences. Check the plan against them before showing it.
 
-1. **No chilli. None.** IBS. No gochujang, no chilli oil, no bird's eye, no
+1. **No chilli. None.** She doesn't like spicy food — taste, not health, but
+   never traded off. No gochujang, no chilli oil, no bird's eye, no
    harissa, no hot curry paste. Where a dish *is* chilli — mapo tofu, kimchi
    jjigae, most Thai red and green curry — don't propose it and don't propose a
    sad de-chillied version. Build heat-free flavour instead: ginger, garlic,

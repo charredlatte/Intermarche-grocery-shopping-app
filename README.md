@@ -48,7 +48,7 @@ Three things the invoices do that the parser has to handle:
 
 `preferences.json` holds the things the receipts can't tell you: household size, budget ceiling, what I'm bored of, non-negotiables, which night is a leftovers night.
 
-The two that matter most are constraints rather than tastes. **No chilli at all** — IBS, so this is a health rule and not a preference to be traded off. And **milk and cream minimised** — cheese is fine, coconut milk is fine, so curries still work.
+The two that matter most are firm rules. **No chilli at all** — I don't like spicy food, and that isn't traded off for authenticity. And **milk and cream minimised** — cheese is fine, coconut milk is fine, so curries still work.
 
 There is also a `pantry` block listing the Asian staples Méré is *confirmed* to stock, taken from my own receipts rather than guessed: Kikkoman soy, the Itinéraire des Saveurs yakitori and sweet soy sauces, Tanoshi sushi rice, nori and ramen, Suzi Wan rice vermicelli, Ajinomoto gyoza. By 14 September 2026 two of those — the gyoza and the vermicelli — were no longer sold at Méré, which is the kind of drift the catalogue exists to catch.
 

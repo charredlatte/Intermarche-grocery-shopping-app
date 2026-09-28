@@ -13,7 +13,7 @@ pushes, and is thrown away.
 **One repo now.** `charredlatte/Intermarche-grocery-shopping-app` holds the code
 *and* `data/` — invoices, purchase history, preferences, recipes, plans. Charlotte
 asked for that on 2026-09-05, having been shown that the repo is public and that
-`data/` therefore publishes a year of her receipts and the IBS note in
+`data/` therefore publishes a year of her receipts and her dietary notes in
 `preferences.json`. It was her call; don't quietly re-split it.
 
 There was a separate private `intermarche-grocery-data` repo until 2026-09-05.
@@ -244,7 +244,8 @@ parser. The filename supplies the year — the email body never states it.
 - **Every line item traces back** to a dish in the plan, to the standing
   staples list, or to her "Meal Planning" list in Google Keep, which the push
   adds on her say-so (2026-09-15). No surprise additions.
-- **No chilli, ever.** IBS — this is a health constraint, not a taste preference.
+- **No chilli, ever.** She doesn't like spicy food. It is taste, not health
+  (corrected 2026-09-28 — older notes called it IBS), but it is never traded off.
   Check the finished list before showing it, and never label it: nothing she
   reads says "no chilli".
 - **If a product is unavailable at basket time, stop and ask.** Adapting a recipe
