@@ -115,6 +115,15 @@ for (const [slug, r] of Object.entries(recipes)) {
   if (r.kind === "assembly" && !r.packNote) {
     problems.push(`${slug}: an assembly needs a packNote saying what comes ready-made`);
   }
+  // The page keys her ingredient edits (library/recipe-edits) on `item`, so two
+  // rows sharing one would make an edit land on the wrong line.
+  const items = new Set();
+  for (const i of r.ingredients ?? []) {
+    const k = String(i.item ?? "").toLowerCase();
+    if (!k) problems.push(`${slug}: an ingredient has no "item"`);
+    else if (items.has(k)) problems.push(`${slug}: two ingredients are both "${i.item}" — the page keys edits on it`);
+    items.add(k);
+  }
   for (const i of r.ingredients ?? []) {
     if (!i.buy) continue;
     if (i.guess) {
@@ -267,6 +276,10 @@ const config = {
     bannedReason: prefs.dietary?.excludedReason ?? "",
     limited: prefs.dietary?.limited ?? [],
     limitedReason: prefs.dietary?.limitedReason ?? "",
+    // The European staples that carry heat. The page refuses these, with the
+    // words above, when she adds or swaps an ingredient herself.
+    avoidAlso: prefs.ingredients?.avoidDespiteBeingEuropean ?? [],
+    avoidReason: prefs.ingredients?.avoidReason ?? "",
     maxWeeknightMinutes: prefs.cooking?.maxWeeknightMinutes ?? 30,
   },
 };

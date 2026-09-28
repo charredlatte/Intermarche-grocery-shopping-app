@@ -113,8 +113,19 @@ questions, then a plan, then a line-item list, then the basket.
 - **Favourites live in the page, not the repo.** Stars are written to the shared
   artifact database at `library/favourites`, deliberately outside
   `weeks/<weekOf>` so they survive a new plan. Favourited dishes sort to the top
-  of the library and the swap sheet. Nothing about them is generated at build
-  time — don't look for them in `data/`.
+  of the library. Nothing about them is generated at build time — don't look for
+  them in `data/`.
+- **So do her ingredient edits.** The recipe sheet (tap a meal on Week, or
+  "Ingredients & method" on a Recipes card) lets her change an amount, swap a
+  product, take a row out or add one. They are stored per slug in
+  `library/recipe-edits` — `{ edits: { <slug>: { add, set, drop, swap } } }`, rows
+  keyed by the ingredient's `item`, which the build now requires to be unique
+  within a recipe. So **renaming an `item` orphans her edit to it**, the same way
+  renaming a slug orphans a star. They apply every time the dish is on the menu,
+  are never written back to `data/recipes.json` (promoting one into the library is
+  a `/courses` conversation), and every basket line they touch reads
+  "<dish> (edited)". Adds and swaps are refused if they read as hot
+  (`config.constraints.banned` + `avoidAlso`, plus paprika unless doux).
 
 ## Méré's catalogue: `data/catalogue.json`
 
@@ -174,7 +185,8 @@ npm run drive:list -- <push doc>.json [<progress dir>] [--batch <tabId>]  # work
 **A fresh page every week.** Each `/courses` run publishes the built page as a
 new artifact — new link — and records it in `data/artifacts.json` under the
 week. Charlotte asked for this on 2026-09-14. Her favourites (`library/favourites`)
-are copied across from the previous page with `read_db`/`write_db`; publish with
+and recipe edits (`library/recipe-edits`) are copied across from the previous page
+with `read_db`/`write_db`; publish with
 `capabilities: { db: {}, sample: {} }` and `contract: "0.2.41"`. The pages before
 that week shared one bookmarked URL, still listed there as the old page.
 
@@ -202,30 +214,29 @@ Why new documents: on 2026-09-14 the Artifact tool's `write_db` refused
 2026-09-28), but the append-only progress reports work, so they stay. Seeding a
 new page is still best done before she first opens it.
 
-Week, Recipes and the Cook quiz sit behind the basket — **for now.** Two things
-Charlotte asked for on 15–16 September were built on `claude/*` branches and
-never merged, and the basket page was redesigned on top of a `main` without
-them. They are her standing requests, confirmed again on 2026-09-28, and are the
-next page work — rebuilt into today's template, not merged from the old one:
+Week and Recipes sit behind the basket. Two things Charlotte asked for on 15–16
+September were built on `claude/*` branches and never merged, and the basket page
+was redesigned on top of a `main` without them. They are her standing requests,
+confirmed again on 2026-09-28, rebuilt into today's template rather than merged
+from the old one:
 
-- **From `claude/meal-planning-app-reorganize-pddufg` (c2d3a32):** three tabs —
-  Basket, Week, Recipes; **the Cook quiz goes** (reconfirmed 2026-09-28). Week
-  becomes a plain seven days, each meal in eating order, dish, time and ★, tap to
-  open, and "Back to the planned week" under the days only once something is
-  swapped. Recipes becomes the only place the week changes: `Group by [Protein]
-  [Cuisine]`, and every card carries `Cook this on…`, opening the day picker on
-  that dish's own slot. The data half of that commit — `protein` on every dish,
-  its build check, `byProtein` in the history, her 15 September answers in
-  `preferences.json` — landed on 2026-09-28; `config.proteins` already ships.
-- **From `claude/trusting-tesla-a9rmyl` (b901bd8, 57b19b0, 415fdfd):** a Kitchen
-  tab that she and her partner keep up to date — what is actually in, stamped
-  per statement, in its own document outside `weeks/` — and a Week that tracks
-  how it is lived: each meal ticked cooked or not, moved, struck off, or added,
-  with cooked meals drawing down the kitchen and anything behind her dropping out
-  of the basket. The sync and redraw fixes from that branch already landed in
-  29c3a65; only the features are outstanding.
+- **Done 2026-09-28, from `claude/meal-planning-app-reorganize-pddufg` (c2d3a32):**
+  three tabs — Basket, Week, Recipes; the Cook quiz is gone. Week is a plain seven
+  days from the plan's first day, each meal in eating order with dish, time and ★;
+  tap to open the recipe sheet; "Back to the planned week" sits under the days
+  only once something is swapped. Recipes is the only place the week changes:
+  `Group by [Protein] [Cuisine]`, and every card carries `Cook this on…`, the day
+  picker on that dish's own slot (with "put the original back" per day). The dish
+  generator lives there too and assigns through the same picker.
+- **Still to build, from `claude/trusting-tesla-a9rmyl` (b901bd8, 57b19b0, 415fdfd):**
+  a Kitchen tab that she and her partner keep up to date — what is actually in,
+  stamped per statement, in its own document outside `weeks/` — and a Week that
+  tracks how it is lived: each meal ticked cooked or not, moved, struck off, or
+  added, with cooked meals drawing down the kitchen and anything behind her
+  dropping out of the basket. The sync and redraw fixes from that branch already
+  landed in 29c3a65; only the features are outstanding.
 
-Delete those two branches once this list is done, not before.
+Delete both branches once the Kitchen work is done, not before.
 
 No dependencies; `npm install` is a no-op. Node 18+.
 

@@ -89,7 +89,7 @@ The handoff is the plan itself. Answer on the couch Sunday morning, run the bask
 
 ### 5. The app
 
-`artifact/template.html` plus `scripts/build-week.mjs` turn the plan data into a published page, and **the basket is the page**. It opens on the shopping list at Méré's own product names, packs and current prices, with a count to add for each line and the total against my ceiling. Anything Méré sells differently or no longer sells waits under "Decide first" until I pick — I can't approve until every line says exactly what to buy. Once approved, "Push to Intermarché" hands the list to Claude on my PC, which fills my Drive basket and reports back on the page line by line, ending with the site's own total. Week, Recipes and the Cook quiz sit behind it.
+`artifact/template.html` plus `scripts/build-week.mjs` turn the plan data into a published page, and **the basket is the page**. It opens on the shopping list at Méré's own product names, packs and current prices, with a count to add for each line and the total against my ceiling. Anything Méré sells differently or no longer sells waits under "Decide first" until I pick — I can't approve until every line says exactly what to buy. Once approved, "Push to Intermarché" hands the list to Claude on my PC, which fills my Drive basket and reports back on the page line by line, ending with the site's own total. Week and Recipes sit behind it.
 
 It is generated, not hand-written, and **every `/courses` run publishes a fresh page with its own link** for that week, recorded in `data/artifacts.json`. Favourites carry over from one week's page to the next.
 
@@ -97,7 +97,9 @@ It is also a two-person app. Any meal can be swapped — either for another dish
 
 The library is 73 dishes now — 21 Asian, 52 European or American. That is not the 50/50 I want, and it is not meant to be: the balance to hit is **the week's plan**, not the library. Confusing the two is what caused the one real planning bug so far, when a `weeklyShare` of "most" quietly made every week about 70% Asian while the library looked balanced. Ready-made things like the gyoza are still on the menu but marked as assemblies — a note about the packet, and a real recipe only for the part that is actually cooked.
 
-**Asked for on 15 September 2026, still to build.** The fourth tab, a five-step quiz, is to go: it saves nothing, nothing else reads it, and the Recipes tab already filters on everything it asks. In its place, an axis the library never had — **what protein is in the dish**. Every dish now declares one of eight and the parser rolls my receipts up the same way; the first thing it told me is that **pork is in 22 of my 23 orders and the library gave it two dinners.** The page grouping by protein, a Week tab with no controls on it, and "Cook this on…" on every recipe card are the next page work, together with a Kitchen tab and ticking off what we actually cooked.
+**Asked for on 15 September 2026, built on 28 September.** The fourth tab, a five-step quiz, is gone: it saved nothing, nothing else read it, and the Recipes tab already filters on everything it asked. In its place, an axis the library never had — **what protein is in the dish**. Every dish declares one of eight and the parser rolls my receipts up the same way; the first thing it told me is that **pork is in 22 of my 23 orders and the library gave it two dinners.** Recipes groups by protein or cuisine, and "Cook this on…" on every card is now the one place the week changes. Week is just the seven days with nothing on top of them; tap a meal and it opens.
+
+**Adding to the list by editing a recipe.** Opened from the week or the library, a dish shows every ingredient with a − / + for the amount, a Swap for the product and a ✕ to take it out, plus "Add an ingredient" for anything from my receipts, anything Méré has been looked up for, or a plain name as a best guess. The basket is derived from the dishes, so the list follows, and every line a change adds is marked as coming from "<dish> (edited)". The edits belong to the dish rather than the week — the pad thai keeps its extra lime every time it comes round — and nothing hot gets in: chilli, harissa, chorizo, piment d'Espelette and the rest are refused with the reason. Still to build: a Kitchen tab and ticking off what we actually cooked.
 
 ## Status
 
@@ -105,6 +107,7 @@ The library is 73 dishes now — 21 Asian, 52 European or American. That is not 
 - [x] Preference file
 - [x] Weekly planning skill
 - [x] Swap a meal you don't fancy, shared with my partner
+- [x] Edit a dish's ingredients — amounts, products, add or take out — and the list follows, 28 September 2026
 - [x] Recurring Sunday reminder
 - [x] Méré catalogue — all 153 products the app can buy matched to their product pages, 14 September 2026
 - [x] Push from the page — approve, press Push, `/courses push` fills the basket and writes progress back
