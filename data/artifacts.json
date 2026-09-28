@@ -1,8 +1,8 @@
 {
-  "_comment": "One basket page per week, each published fresh by /courses and recorded here. /courses push reads the week's link from this file to find the push request. The page before 2026-09-14 served every week from one bookmarked URL; it is kept as oldSharedPage and no longer updated. The week of 2026-09-14 was published twice; Charlotte approved and pushed from AsuNh1…, and the link first recorded here (a531ad93…) is the copy she never used, kept under duplicates so nobody reads a push from it again. A third copy (96VqXg42…) was republished on 2026-09-16 from a branch, to try the Kitchen tab; she did not push from it, and its library/kitchen holds one statement, the cinnamon — her other answers there never stuck. The week of 2026-09-28 was republished on 2026-09-28 with the page-sync fix; its first page (1nWBax9…) reset her edits and is kept under duplicates, with its state copied across.",
+  "_comment": "One basket page per week, each published fresh by /courses and recorded here. /courses push reads the week's link from this file to find the push request. The page before 2026-09-14 served every week from one bookmarked URL; it is kept as oldSharedPage and no longer updated. The week of 2026-09-14 was published twice; Charlotte approved and pushed from AsuNh1…, and the link first recorded here (a531ad93…) is the copy she never used, kept under duplicates so nobody reads a push from it again. A third copy (96VqXg42…) was republished on 2026-09-16 from a branch, to try the Kitchen tab; she did not push from it, and its library/kitchen holds one statement, the cinnamon — her other answers there never stuck. The week of 2026-09-28 was republished on 2026-09-28 with the page-sync fix; its first page (1nWBax9…) reset her edits and is kept under duplicates, with its state copied across. Republished again on 2026-09-28 with the recipe sheet and the three-tab redesign (JCCFyub…); her decisions, swap and favourites were copied from W4fw6ej…, which is now under duplicates.",
   "weeks": {
     "2026-09-14": "https://claude.ai/artifact/AsuNh1WoA3EDHXM9NaiGSP",
-    "2026-09-28": "https://claude.ai/artifact/W4fw6ej7U7dAHExtpEqiNn"
+    "2026-09-28": "https://claude.ai/artifact/JCCFyub12eRCR368sGnWD1"
   },
   "duplicates": {
     "2026-09-14": [
@@ -10,7 +10,8 @@
       "https://claude.ai/artifact/96VqXg42j4MQWfNGKUzUfL"
     ],
     "2026-09-28": [
-      "https://claude.ai/artifact/1nWBax9RiW1dNmU3WCqa2G"
+      "https://claude.ai/artifact/1nWBax9RiW1dNmU3WCqa2G",
+      "https://claude.ai/artifact/W4fw6ej7U7dAHExtpEqiNn"
     ]
   },
   "oldSharedPage": "https://claude.ai/code/artifact/6c3028de-cca4-41c2-b063-b10cb4214efb"
