@@ -126,6 +126,14 @@ questions, then a plan, then a line-item list, then the basket.
   a `/courses` conversation), and every basket line they touch reads
   "<dish> (edited)". Adds and swaps are refused if they read as hot
   (`config.constraints.banned` + `avoidAlso`, plus paprika unless doux).
+  Because they outlive the week, the edits document gets the week's three
+  protections — nothing saves before the stored edits arrive (an early tap
+  erased every other dish's edits), a save is written over the stored document,
+  and a replaced copy stops saving. An edit that no longer finds its row — the
+  `item` renamed or removed in `recipes.json` — is listed on the basket rather
+  than silently not applied; and a row she added that the library recipe now
+  has under the same `item` is the library's, so promoting an edit never buys
+  it twice, even before the edit is cleared from the document.
 
 ## Méré's catalogue: `data/catalogue.json`
 
@@ -189,7 +197,8 @@ every snapshot late — the condition that broke saving six times — and each
 proves one thing that once went wrong: an early tap blanking her week, a save
 erasing another build's fields, a leftovers meal left without its pot, a
 changed week pushed as the old list, a deleted dish taking its meal with it, a
-replaced tab still saving. None of them names a meal or dish from a particular
+replaced tab still saving, the same four for her recipe edits, and the chilli
+guard and Approve lock. None of them names a meal or dish from a particular
 week, so they outlive the plan. Against `main` as it stood before them, 16 of
 their checks failed. Cloud sessions have Chromium at `/opt/pw-browsers/chromium`;
 elsewhere set `CHROMIUM`.

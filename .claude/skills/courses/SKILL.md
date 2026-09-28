@@ -465,6 +465,11 @@ that page's database, not in the repo, so:
 - **A dish may leave the library, but not a plan file** — the build checks every
   plan. A swap she made to it falls back to the planned dish, and the page says
   which.
+- **Never rename an ingredient's `item`.** Her edits to a dish — a dropped
+  row, a new amount, a swapped product — are keyed on it, so a renamed `item`
+  detaches them without a word: the onions she took out come back on the list.
+  Change `qty`, `product` and `buy` freely; keep `item`. If a row genuinely goes,
+  the page reports any edit of hers that no longer matches the dish.
 - **An ingredient taken out of its last recipe** may leave a dead catalogue
   entry, which fails the build by name: delete the entry.
 

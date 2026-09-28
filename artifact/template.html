@@ -948,7 +948,12 @@ function recipeOf(slug) {
     }
     return i;
   });
-  for (const a of e.add) rows.push({ ...a, added: true });
+  // A row she added that the library recipe now has itself — her edit made
+  // permanent in recipes.json, or the same `item` added there independently —
+  // is the library's row now. Applying hers as well would buy it twice, and
+  // give the dish two rows with one key.
+  const has = new Set(rows.map(itemKey));
+  for (const a of e.add) if (!has.has(itemKey(a))) rows.push({ ...a, added: true });
   return { ...base, ingredients: rows, edited: true };
 }
 
@@ -1318,15 +1323,21 @@ function applyRemote(d) {
    collide with a write to weeks/<weekOf> or with Claude's push reports. Last
    writer wins on it, as it does for favourites. */
 let eSaving = false, eDirty = false, eLastSaved = 0;
+/* The same three protections as the week's, and they matter more here: these
+   edits outlive the week, so a blank save would erase every change she has ever
+   made to every dish. Nothing is saved before the stored edits have arrived; a
+   save is written over the stored document, keeping fields another build added;
+   and a copy replaced by a newer build stops saving. */
+let editsLoaded = false, remoteEdits = {};
 async function persistEdits() {
-  if (!editsRef) return;
+  if (!editsRef || !editsLoaded || superseded) return;
   eDirty = true;
   if (eSaving) return;
   eSaving = true;
   while (eDirty) {
     eDirty = false;
     try {
-      const doc = { edits: clone(recipeEdits), updatedAt: Date.now() };
+      const doc = { ...remoteEdits, edits: clone(recipeEdits), builtAt: BUILT, updatedAt: Date.now() };
       await editsRef.set(doc);
       eLastSaved = doc.updatedAt;
     } catch (e) {
@@ -1376,7 +1387,10 @@ function cleanEdits(x) {
       if (eSaving || eDirty) return;
       const d = snap.data();
       if (d && (d.updatedAt || 0) < eLastSaved) return;   // a late echo of an older save
+      if (editsLoaded && d && (d.builtAt || 0) > BUILT) { superseded = true; setSync("off", SUPERSEDED); }
+      remoteEdits = clone(d || {});
       recipeEdits = cleanEdits(d && d.edits);
+      editsLoaded = true;
       renderAll();
     },
     () => { /* as above */ },
@@ -2005,7 +2019,7 @@ function renderShop() {
   const approxCount = lines.filter((l) => l.approx).length;
   const asks = lines.filter((l) => !l.cat).length;
 
-  let html = lostNotice() + `<section class="hero">
+  let html = lostNotice() + editsNotice() + `<section class="hero">
       <div class="hero-top">
         <div>
           <div class="eyebrow">To add at ${esc(CONF.store || "the Drive")}</div>
@@ -2197,6 +2211,31 @@ function driftNotice() {
     </div>`;
 }
 
+/* Her edits to dishes on this week's menu that no longer find their row: the
+   recipe changed in recipes.json under them, a row renamed or taken out. A lost
+   "drop the onions" puts the onions back on the list, so it is said, not
+   swallowed. Dishes off the menu are left alone — they buy nothing this week. */
+function staleEdits() {
+  const out = [];
+  for (const slug of new Set(meals().map((m) => m.slug))) {
+    const e = recipeEdits[slug], base = all()[slug];
+    if (!e || !base) continue;
+    const rows = new Set((base.ingredients || []).map(itemKey));
+    const lost = [...new Set([...e.drop, ...Object.keys(e.set), ...Object.keys(e.swap)])].filter((k) => !rows.has(k));
+    if (lost.length) out.push({ title: base.title, lost });
+  }
+  return out;
+}
+
+function editsNotice() {
+  const st = staleEdits();
+  if (!st.length) return "";
+  return `<div class="notice" role="status">
+      <div class="notice-title">${st.length === 1 ? "A dish has" : "Some dishes have"} changed since you edited ${st.length === 1 ? "it" : "them"}</div>
+      <ul>${st.map((x) => `<li>${esc(x.title)}: your change to ${esc(andList(x.lost))} no longer matches the recipe, so it isn't applied. Open the dish to check what it buys now.</li>`).join("")}</ul>
+    </div>`;
+}
+
 function lostNotice() {
   if (!lostPicks.length) return "";
   return `<div class="notice" role="status">
@@ -2210,7 +2249,7 @@ function lostNotice() {
 
 function renderApproved() {
   const lines = approved.lines || [];
-  let html = lostNotice() + driftNotice() + `<div class="drive-head">
+  let html = lostNotice() + editsNotice() + driftNotice() + `<div class="drive-head">
       <div class="eyebrow">Approved ${new Date(approved.at).toLocaleDateString("en-GB", { day: "numeric", month: "long" })} · ${lines.length} lines · ${eur(approved.total)}</div>
       ${pushPanel(lines)}
       <div class="toolbar" style="margin-top:.8rem">
