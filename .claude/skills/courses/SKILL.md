@@ -348,7 +348,12 @@ The page folds the reports for the current run over the request, latest last.
    Méré's options first. Leave off what the basket already covers and say so,
    and hold every Keep item to the chilli rule: paprika means *doux*, never
    *fort* or *piquant*. Report them in the `done` note, since they have no line
-   on the page.
+   on the page. The page's Household tab is the same kind of list and is
+   already in the push as lines under "Household & extras"; a Keep item that
+   is on it is covered — leave it off and say so. When she sends Keep items in
+   chat outside a push, add them to the Household list (`added` in
+   `weeks/<weekOf>`, `update` with its `if_version`) rather than holding them
+   for the push, so she sees them priced.
 7. **Reconcile**: open `https://www.intermarche.com/commandes/panier`, wait
    until its product list has rendered (it can come up blank for several
    seconds), and read the article count and "Total à payer". Report `done` with `siteCount` and

@@ -294,6 +294,17 @@ Why new documents: on 2026-09-14 the Artifact tool's `write_db` refused
 2026-09-28), but the append-only progress reports work, so they stay. Seeding a
 new page is still best done before she first opens it.
 
+**Household is the fourth tab** (Charlotte, 2026-09-28): the things no recipe
+asks for — drain cleaner, bin bags, sponges. It is the list she adds to by hand,
+`added` in `weeks/<weekOf>`, which the Basket's "Add something" also feeds; in
+the basket it is the "Household & extras" section and every line reads "your
+household list". The picker offers the household products in her receipts
+before she types (`HOUSE_PRODUCTS`, matched by name), searches the receipts and
+the catalogue, and takes a typed name as a best guess that `/courses push`
+looks up and asks about. Nothing hot gets in this way either. It is the page's
+own copy of her Google Keep "Meal Planning" list and is week-scoped like the
+rest of the week's document: a new week's page starts it empty.
+
 Week and Recipes sit behind the basket. Two things Charlotte asked for on 15–16
 September were built on `claude/*` branches and never merged, and the basket page
 was redesigned on top of a `main` without them. They are her standing requests,
