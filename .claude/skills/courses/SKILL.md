@@ -414,7 +414,9 @@ After she agrees the plan:
    generator), and `contract: "0.2.41"`, the runtime the page is written against.
 6. **Carry her state over** from the previous page in `data/artifacts.json`,
    with `read_db` there and a `write_db` batch of `set`s on the new page:
-   `library/favourites` always, and `weeks/<weekOf>` when re-publishing a week
+   `library/favourites` and `library/recipe-edits` always (her stars, and her
+   changes to what goes into a dish — both belong to the dish, not the week),
+   and `weeks/<weekOf>` when re-publishing a week
    that already has a page — her swaps, counts and decisions live there, not in
    the plan file. Do it straight after publishing, before she opens the page.
    A later write to an existing document needs its `if_version`.
@@ -425,6 +427,12 @@ After she agrees the plan:
    shares it from its menu — say so if her partner needs it.
 
 If she asks to keep a swapped-in dish permanently, move it into the plan file.
+
+Her ingredient edits (`library/recipe-edits`, made in the page's recipe sheet)
+apply to a dish on every page it appears on, so plan with them in mind: read
+them before costing a week. If she asks to make one permanent, fold it into
+`data/recipes.json` — keeping the slug and each row's `item`, which are the keys —
+and remove it from the document on the new page, or it applies twice.
 
 Reuse a slug rather than writing a near-duplicate — that is what makes the
 Recipes tab a library worth re-picking from, and it shows her which weeks a dish
