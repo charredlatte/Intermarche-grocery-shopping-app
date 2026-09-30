@@ -3887,13 +3887,11 @@
       {
         "item": "balsamic vinegar",
         "qty": "1 tbsp",
-        "product": "Vinaigre balsamique",
-        "guess": true,
+        "product": "Itinéraire des Saveurs, une marque Intermarché Vinaigre Balsamique de Modène",
         "buy": {
           "amount": 1,
           "mode": "once",
-          "section": "Best guesses",
-          "price": 2.8
+          "section": "Store cupboard"
         }
       },
       {
@@ -4652,13 +4650,11 @@
       {
         "item": "balsamic vinegar",
         "qty": "1 tbsp",
-        "product": "Vinaigre balsamique",
-        "guess": true,
+        "product": "Itinéraire des Saveurs, une marque Intermarché Vinaigre Balsamique de Modène",
         "buy": {
           "amount": 1,
           "mode": "once",
-          "section": "Best guesses",
-          "price": 2.8
+          "section": "Store cupboard"
         }
       },
       {
@@ -6448,13 +6444,11 @@
       {
         "item": "balsamic vinegar",
         "qty": "1 tsp",
-        "product": "Vinaigre balsamique",
-        "guess": true,
+        "product": "Itinéraire des Saveurs, une marque Intermarché Vinaigre Balsamique de Modène",
         "buy": {
           "amount": 1,
           "mode": "once",
-          "section": "Best guesses",
-          "price": 1.54
+          "section": "Store cupboard"
         }
       },
       {
@@ -6883,13 +6877,11 @@
       {
         "item": "balsamic vinegar",
         "qty": "1 tsp",
-        "product": "Vinaigre balsamique",
-        "guess": true,
+        "product": "Itinéraire des Saveurs, une marque Intermarché Vinaigre Balsamique de Modène",
         "buy": {
           "amount": 1,
           "mode": "once",
-          "section": "Best guesses",
-          "price": 1.54
+          "section": "Store cupboard"
         }
       },
       {
@@ -6993,6 +6985,130 @@
     ],
     "equipment": [
       "hob"
+    ]
+  },
+  "cotes-porc-romarin-poivrons": {
+    "title": "Rosemary pork chops with roast peppers",
+    "cuisine": "french",
+    "protein": "pork",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "serves": 2,
+    "tags": [
+      "fast",
+      "dairy-free"
+    ],
+    "short": "Chops rubbed with rosemary and sweet paprika, air-fried hot beside a red and a yellow pepper and an onion, finished with a splash of balsamic and a mâche salad.",
+    "ingredients": [
+      {
+        "item": "pork chops",
+        "qty": "the 4-pack — two each, or keep two for another night",
+        "product": "Terroirs, une marque Intermarché Côtes de PORC",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "yellow pepper",
+        "qty": "1, in wide strips",
+        "product": "Le Choix du Primeur Poivrons JAUNES",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "red pepper",
+        "qty": "1, in wide strips",
+        "product": "Le Choix du Primeur Poivron ROUGE",
+        "buy": {
+          "amount": 0.2,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "1, in wedges",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.15,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "rosemary",
+        "qty": "1 tsp, crumbled",
+        "product": "Bouton d’Or, une marque Intermarché Romarin de Provence en branche",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "sweet paprika",
+        "qty": "1 tsp",
+        "product": "Bouton d’Or, une marque Intermarché Paprika doux moulu",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "balsamic vinegar",
+        "qty": "1 tbsp",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Vinaigre Balsamique de Modène",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "mâche",
+        "qty": "the tray",
+        "product": "Le Choix du Primeur Salade MACHE",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "mustard dressing",
+        "qty": "2 tbsp",
+        "product": "Lesieur Sauce salade légère moutarde à l'ancienne",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "olive oil, salt, pepper",
+        "qty": "",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Take the chops out of the fridge 15 minutes ahead. Pat them dry — a wet chop steams instead of browning.",
+      "Rub them with a little olive oil, salt, the crumbled rosemary and the paprika.",
+      "Toss the pepper strips and onion wedges with oil and salt, and give them 6 minutes alone in the air fryer at 200°C.",
+      "Push the vegetables to the edges, lay the chops in the middle, and cook 12 to 14 minutes, turning once halfway. They are done when the juices at the bone run clear; rest them 3 minutes.",
+      "Splash the balsamic over the hot peppers and onion and toss.",
+      "Dress the mâche with the mustard dressing and serve it alongside."
+    ],
+    "equipment": [
+      "air fryer"
     ]
   }
 }

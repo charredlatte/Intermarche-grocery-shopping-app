@@ -321,6 +321,26 @@ const onHand = {
     .map((i) => ({ product: i.name, quantity: i.quantity, unit: i.unit })),
 };
 
+// The week's own shop, once its receipt is in: the newest order dated inside
+// the week. The page does not subtract it from the basket — it is the basket —
+// but a week changed after the order uses it to tell what the order already
+// covers from what really needs buying separately. Order number, date and
+// lines only, for the same reason as above.
+const weekEnd = ymd((() => { const d = new Date(weekStart + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + 6);
+  return { year: d.getUTCFullYear(), month: d.getUTCMonth() + 1, day: d.getUTCDate() }; })());
+const weekOrder = history.orders.filter((o) => o.date && ymd(o.date) > weekStart && ymd(o.date) <= weekEnd).at(-1);
+// A receipt spells a product the way that week's email did ("œufs" one week,
+// "Œufs" the next); the pricebook keeps the first spelling, and the page
+// matches names exactly, so each line is given the pricebook's.
+const PB_NAME = new Map(Object.keys(pricebook).map((n) => [n.toLowerCase().replace(/\s+/g, " ").trim(), n]));
+const pbName = (n) => PB_NAME.get(n.toLowerCase().replace(/\s+/g, " ").trim()) ?? n;
+const delivered = weekOrder ? {
+  from: { order: weekOrder.orderNumber, date: weekOrder.date, store: weekOrder.store },
+  items: weekOrder.items
+    .filter((i) => !i.unavailable && !i.truncated && i.quantity > 0)
+    .map((i) => ({ product: pbName(i.name), quantity: i.quantity, unit: i.unit })),
+} : null;
+
 const config = {
   proteins: PROTEINS,
   budgetCeiling: prefs.budget?.ceilingPerOrder ?? 150,
@@ -356,7 +376,7 @@ const payload = {
   // a newer build stops saving, so a tab left open across a republish cannot
   // write the old page's idea of her week over the new one's.
   builtAt: Date.now(),
-  recipes, plans, pricebook, staples, config, onHand, equivalents: equivalents.groups ?? [],
+  recipes, plans, pricebook, staples, config, onHand, delivered, equivalents: equivalents.groups ?? [],
   catalogue: catalogue.products ?? {}, site: catalogue.site ?? "https://www.intermarche.com",
 };
 // </script> inside the JSON would close the script tag early.
@@ -372,6 +392,7 @@ console.log(`  ${plans.length} week(s); latest: ${latest.label ?? latest.weekOf}
 console.log(`  ceiling ${config.budgetCeiling} EUR, ${staples.length} standing staples`);
 const d = onHand.from.date;
 console.log(`  on hand: ${onHand.items.length} items from order ${onHand.from.order} (${d.year}-${String(d.month).padStart(2, "0")}-${String(d.day).padStart(2, "0")})`);
+if (delivered) console.log(`  delivered: ${delivered.items.length} lines from order ${delivered.from.order} (${ymd(delivered.from.date)}), the week's own shop`);
 console.log(`  ${payload.equivalents.length} equivalence group(s)`);
 const catEntries = Object.values(payload.catalogue);
 const byStatus = Object.fromEntries(STATUSES.map((s) => [s, catEntries.filter((c) => c.status === s).length]));
