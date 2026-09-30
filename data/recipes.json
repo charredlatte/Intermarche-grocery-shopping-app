@@ -10,7 +10,6 @@
     "serves": 4,
     "tags": [
       "batch cook",
-      "no chilli",
       "dairy-free"
     ],
     "short": "Brown the thighs, soften the aromatics, simmer it all in coconut milk for half an hour. Makes enough for three meals.",
@@ -153,7 +152,6 @@
     "serves": 2,
     "tags": [
       "fast",
-      "no chilli",
       "dairy-free"
     ],
     "short": "Get the pan properly hot, brown the mince hard without stirring, then peppers, then both soys.",
@@ -262,7 +260,6 @@
     "serves": 2,
     "tags": [
       "fast",
-      "no chilli",
       "dairy-free"
     ],
     "short": "Sear the turkey, steam the broccoli bright green, then fold the precooked ramen through soy and sweet soy.",
@@ -371,7 +368,6 @@
     "serves": 2,
     "tags": [
       "fast",
-      "no chilli",
       "uses eggs"
     ],
     "short": "Chicken glazed in yakitori sauce over rice, with a soft egg broken across the top.",
@@ -455,8 +451,7 @@
     "cookMinutes": 12,
     "serves": 2,
     "tags": [
-      "fast",
-      "no chilli"
+      "fast"
     ],
     "short": "A no-cooking night. The gyoza come from a packet; the only real cooking is the broccoli beside them.",
     "ingredients": [
@@ -555,7 +550,6 @@
     "cookMinutes": 20,
     "serves": 2,
     "tags": [
-      "no chilli",
       "dairy-free"
     ],
     "short": "Marinate the chops while the rice cooks, sear them hard, then finish them in the reduced marinade.",
@@ -665,7 +659,6 @@
     "serves": 2,
     "tags": [
       "fast",
-      "no chilli",
       "uses eggs"
     ],
     "short": "Yesterday's rice, a very hot pan, lardons for fat and salt, egg scrambled through at the end.",
@@ -760,7 +753,6 @@
     "serves": 2,
     "tags": [
       "fast",
-      "no chilli",
       "dairy-free"
     ],
     "short": "Chicken strips in a sharp lemon-soy glaze that thickens in the pan. Brighter than teriyaki.",
@@ -859,11 +851,10 @@
     "serves": 4,
     "tags": [
       "batch cook",
-      "no chilli",
       "vegetarian",
       "dairy-free"
     ],
-    "short": "Tinned lentils, coconut milk and warm spices, simmered until it thickens. Mild by design — the warmth is cumin and coriander, never heat.",
+    "short": "Tinned lentils, coconut milk and warm spices, simmered until it thickens.",
     "ingredients": [
       {
         "item": "lentils",
@@ -976,7 +967,6 @@
     "cookMinutes": 20,
     "serves": 2,
     "tags": [
-      "no chilli",
       "dairy-free"
     ],
     "short": "A cheat's phở: charred onion and ginger in the broth for twenty minutes, then raw beef cooked by the heat of it in the bowl.",
@@ -1084,7 +1074,6 @@
     "cookMinutes": 22,
     "serves": 2,
     "tags": [
-      "no chilli",
       "vegetarian",
       "dairy-free"
     ],
@@ -1180,7 +1169,6 @@
     "serves": 4,
     "tags": [
       "batch cook",
-      "no chilli",
       "vegetarian"
     ],
     "short": "Courgettes cooked down hard to drive off their water, bound with egg and emmental, baked till the top blisters. No cream.",
@@ -1267,7 +1255,6 @@
     "serves": 2,
     "tags": [
       "fast",
-      "no chilli",
       "vegetarian"
     ],
     "short": "Gnocchi crisped in a dry pan rather than boiled, tossed with pesto rosso and burst cherry tomatoes.",
@@ -1344,8 +1331,7 @@
     "cookMinutes": 15,
     "serves": 2,
     "tags": [
-      "fast",
-      "no chilli"
+      "fast"
     ],
     "short": "Weeknight pasta, done properly: pasta water in the sauce, cheese off the heat.",
     "ingredients": [
@@ -1422,7 +1408,6 @@
     "cookMinutes": 15,
     "serves": 2,
     "tags": [
-      "no chilli",
       "vegetarian"
     ],
     "short": "Bought dough, but everything on top is yours. The trick is the hottest oven you have and a preheated tray.",
@@ -1500,7 +1485,6 @@
     "serves": 4,
     "tags": [
       "batch cook",
-      "no chilli",
       "weekend"
     ],
     "short": "One tray, forty-five minutes, no attention. Potatoes cook in the chicken fat underneath.",
@@ -1589,7 +1573,6 @@
     "serves": 4,
     "tags": [
       "batch cook",
-      "no chilli",
       "vegetarian",
       "uses eggs"
     ],
@@ -1654,8 +1637,7 @@
     "cookMinutes": 20,
     "serves": 2,
     "tags": [
-      "fast",
-      "no chilli"
+      "fast"
     ],
     "short": "Sausages browned properly, lentils warmed through in the pan they came out of. A twenty-minute plate of real food.",
     "ingredients": [
@@ -1741,8 +1723,7 @@
     "cookMinutes": 35,
     "serves": 4,
     "tags": [
-      "batch cook",
-      "no chilli"
+      "batch cook"
     ],
     "short": "Mince browned properly, softened vegetables, tomatoes given long enough to stop tasting of tin.",
     "ingredients": [
@@ -1850,7 +1831,6 @@
     "serves": 4,
     "tags": [
       "batch cook",
-      "no chilli",
       "vegetarian",
       "weekend"
     ],
@@ -1940,8 +1920,7 @@
     "cookMinutes": 10,
     "serves": 2,
     "tags": [
-      "fast",
-      "no chilli"
+      "fast"
     ],
     "short": "Split baguette under the grill with mozzarella, mortadella folded on at the end so it stays soft.",
     "ingredients": [
@@ -2017,7 +1996,6 @@
     "serves": 4,
     "tags": [
       "batch cook",
-      "no chilli",
       "vegetarian"
     ],
     "short": "Everything in the drawer, softened in butter first so it tastes of more than hot water.",
@@ -2116,7 +2094,6 @@
     "serves": 1,
     "tags": [
       "make ahead",
-      "no chilli",
       "uses eggs"
     ],
     "short": "Sushi rice pressed around a soy-seasoned egg, wrapped in nori. Better at room temperature than cold.",
@@ -2191,7 +2168,6 @@
     "serves": 1,
     "tags": [
       "make ahead",
-      "no chilli",
       "dairy-free"
     ],
     "short": "Vermicelli softened in hot water, raw vegetables and herbs piled on, sweet soy and lemon dressing, crushed peanuts.",
@@ -2288,7 +2264,6 @@
     "cookMinutes": 7,
     "serves": 1,
     "tags": [
-      "no chilli",
       "uses eggs"
     ],
     "short": "Soft eggs on a pile of mâche with a soy and lemon dressing. Ten minutes, most of it waiting for the eggs.",
@@ -2371,7 +2346,6 @@
     "cookMinutes": 0,
     "serves": 1,
     "tags": [
-      "no chilli",
       "make ahead",
       "no cook"
     ],
@@ -2437,7 +2411,6 @@
     "serves": 1,
     "tags": [
       "no cook",
-      "no chilli",
       "vegetarian",
       "make ahead"
     ],
@@ -2524,7 +2497,6 @@
     "serves": 1,
     "tags": [
       "no cook",
-      "no chilli",
       "make ahead"
     ],
     "short": "Tinned lentils turned into something worth eating by mustard, cornichons and enough acid.",
@@ -2606,7 +2578,6 @@
     "serves": 1,
     "tags": [
       "no cook",
-      "no chilli",
       "make ahead"
     ],
     "short": "Folded mortadella, sharp cornichons, butter not mayonnaise. Five minutes.",
@@ -2681,7 +2652,6 @@
     "serves": 1,
     "tags": [
       "fast",
-      "no chilli",
       "uses eggs"
     ],
     "short": "Whatever is left, cold rice, one egg, soy. The most useful ten minutes in the week.",
@@ -2753,7 +2723,6 @@
     "cookMinutes": 7,
     "serves": 1,
     "tags": [
-      "no chilli",
       "uses eggs"
     ],
     "short": "Three good things and a sharp dressing. Assemble at the last minute or the avocado turns.",
@@ -2837,7 +2806,6 @@
     "serves": 1,
     "tags": [
       "no cook",
-      "no chilli",
       "vegetarian"
     ],
     "short": "Three ingredients, so all of it rests on salting the tomatoes early and using enough oil.",
@@ -2902,7 +2870,6 @@
     "serves": 10,
     "tags": [
       "batch cook",
-      "no chilli",
       "freezes"
     ],
     "short": "A rolled pizza dough, salted butter, cassonade and cinnamon, cut into ten and baked. Sunday morning's job, all week's breakfast.",
@@ -2978,7 +2945,6 @@
     "serves": 2,
     "tags": [
       "fast",
-      "no chilli",
       "no cook"
     ],
     "short": "The sandwich you actually eat every morning: baguette, Boursin, charcuterie, cheese and cherry tomatoes.",
@@ -3061,8 +3027,7 @@
     "cookMinutes": 15,
     "serves": 2,
     "tags": [
-      "fast",
-      "no chilli"
+      "fast"
     ],
     "short": "Salmon fillets in foaming butter with flaked almonds and lemon, the leek whites warmed through beside them. Méré sells no fresh trout fillet, so this is the salmon version — the method is the trout one unchanged.",
     "ingredients": [
@@ -3152,10 +3117,9 @@
     "serves": 4,
     "tags": [
       "batch cook",
-      "no chilli",
       "dairy-free"
     ],
-    "short": "Chicken braised with three colours of pepper, tomato and onion until it falls off the bone. The Basque original leans on piment d'Espelette; this one does not, and does not miss it.",
+    "short": "Chicken braised with three colours of pepper, tomato and onion until it falls off the bone.",
     "ingredients": [
       {
         "item": "chicken thighs",
@@ -3287,7 +3251,6 @@
     "serves": 4,
     "tags": [
       "batch cook",
-      "no chilli",
       "vegetarian"
     ],
     "short": "Sweet potato sliced thin, layered with goat's cheese and thyme, baked till the edges caramelise. No cream in it.",
@@ -3391,7 +3354,6 @@
     "serves": 2,
     "tags": [
       "fast",
-      "no chilli",
       "vegetarian",
       "uses eggs"
     ],
@@ -3479,7 +3441,6 @@
     "cookMinutes": 25,
     "serves": 2,
     "tags": [
-      "no chilli",
       "vegetarian"
     ],
     "short": "Risotto alla milanese: rice, stock, saffron, parmesan. Twenty minutes of stirring and nothing to hide behind.",
@@ -3585,7 +3546,6 @@
     "serves": 2,
     "tags": [
       "fast",
-      "no chilli",
       "uses eggs"
     ],
     "short": "Egg yolks, pancetta, pecorino and pasta water. No cream anywhere near it — which is also why it sits well with you.",
@@ -3662,7 +3622,6 @@
     "serves": 4,
     "tags": [
       "batch cook",
-      "no chilli",
       "vegetarian"
     ],
     "short": "Ricotta instead of béchamel — lighter, faster, and no milk sauce to split.",
@@ -3774,7 +3733,7 @@
     ]
   },
   "puttanesca-sans-piment": {
-    "title": "Puttanesca, without the heat",
+    "title": "Puttanesca",
     "cuisine": "italian",
     "protein": "fish",
     "slot": "dinner",
@@ -3784,10 +3743,9 @@
     "serves": 2,
     "tags": [
       "fast",
-      "no chilli",
       "dairy-free"
     ],
-    "short": "Anchovies melted into oil, capers, tomato. The classic carries peperoncino and olives; this one has neither — the heat for the IBS rule, the olives because Charlotte does not like them — and leans harder on the anchovy instead.",
+    "short": "Anchovies melted into oil, then capers and tomato. The anchovy carries the whole sauce.",
     "ingredients": [
       {
         "item": "pasta",
@@ -3879,7 +3837,6 @@
     "serves": 2,
     "tags": [
       "fast",
-      "no chilli",
       "no cook",
       "vegetarian"
     ],
@@ -3976,8 +3933,7 @@
     "cookMinutes": 12,
     "serves": 2,
     "tags": [
-      "fast",
-      "no chilli"
+      "fast"
     ],
     "short": "The salmon never sees the pan — it goes in off the heat so it stays silky instead of turning to string.",
     "ingredients": [
@@ -4069,7 +4025,6 @@
     "serves": 4,
     "tags": [
       "batch cook",
-      "no chilli",
       "vegetarian",
       "uses eggs"
     ],
@@ -4149,7 +4104,6 @@
     "serves": 4,
     "tags": [
       "batch cook",
-      "no chilli",
       "vegetarian",
       "uses eggs"
     ],
@@ -4290,7 +4244,6 @@
     "serves": 2,
     "tags": [
       "fast",
-      "no chilli",
       "vegetarian",
       "uses eggs"
     ],
@@ -4375,7 +4328,6 @@
     "cookMinutes": 25,
     "serves": 2,
     "tags": [
-      "no chilli",
       "dairy-free"
     ],
     "short": "Drumsticks in the air fryer come out with skin like crackling and no oven to heat. Twenty-five minutes, one basket.",
@@ -4467,7 +4419,6 @@
     "serves": 2,
     "tags": [
       "fast",
-      "no chilli",
       "vegetarian",
       "dairy-free"
     ],
@@ -4544,8 +4495,7 @@
     "cookMinutes": 14,
     "serves": 2,
     "tags": [
-      "fast",
-      "no chilli"
+      "fast"
     ],
     "short": "A milanese without a pan of hot oil. Parmesan in the crumb is what makes it taste of something.",
     "ingredients": [
@@ -4645,7 +4595,6 @@
     "serves": 2,
     "tags": [
       "fast",
-      "no chilli",
       "vegetarian"
     ],
     "short": "Courgette, pepper and aubergine charred hard, then brebis crumbled over while it is still hot enough to soften.",
@@ -4745,7 +4694,6 @@
     "serves": 4,
     "tags": [
       "batch cook",
-      "no chilli",
       "vegetarian",
       "uses eggs"
     ],
@@ -4838,7 +4786,6 @@
     "serves": 4,
     "tags": [
       "batch cook",
-      "no chilli",
       "vegetarian",
       "uses eggs"
     ],
@@ -4947,7 +4894,6 @@
     "serves": 4,
     "tags": [
       "batch cook",
-      "no chilli",
       "uses eggs"
     ],
     "short": "A whole quiche's worth in twelve, cooked in a third of the time and easy to carry.",
@@ -5045,7 +4991,6 @@
     "serves": 4,
     "tags": [
       "batch cook",
-      "no chilli",
       "dairy-free"
     ],
     "short": "Peppers are on the always-welcome list and this is the best thing to do with four of them. The rice goes in raw and cooks inside the pepper.",
@@ -5157,8 +5102,7 @@
     "cookMinutes": 30,
     "serves": 4,
     "tags": [
-      "batch cook",
-      "no chilli"
+      "batch cook"
     ],
     "short": "The French childhood pasta bake, made without a béchamel — the pasta finishes cooking in the milk it bakes in.",
     "ingredients": [
@@ -5256,7 +5200,6 @@
     "serves": 4,
     "tags": [
       "batch cook",
-      "no chilli",
       "vegetarian",
       "dairy-free"
     ],
@@ -5369,7 +5312,6 @@
     "serves": 4,
     "tags": [
       "batch cook",
-      "no chilli",
       "dairy-free"
     ],
     "short": "One dish, forty-five minutes, no stirring. The tomatoes burst and turn into the sauce by themselves.",
@@ -5471,7 +5413,6 @@
     "serves": 2,
     "tags": [
       "fast",
-      "no chilli",
       "vegetarian",
       "uses eggs"
     ],
@@ -5567,11 +5508,10 @@
     "serves": 2,
     "tags": [
       "fast",
-      "no chilli",
       "vegetarian",
       "uses eggs"
     ],
-    "short": "Uova in purgatorio — normally made hot with chilli, which is exactly what we leave out. Garlic and oregano carry it instead.",
+    "short": "Uova in purgatorio: eggs baked in a garlicky tomato sauce, with parmesan and basil over the top.",
     "ingredients": [
       {
         "item": "tomato sauce",
@@ -5661,7 +5601,6 @@
     "serves": 4,
     "tags": [
       "batch cook",
-      "no chilli",
       "vegetarian"
     ],
     "short": "Replaces the leek and potato soup, which Méré cannot supply. Forty minutes of browning onions and nothing else — there is no shortcut and no substitute for the time.",
@@ -5762,8 +5701,7 @@
     "cookMinutes": 18,
     "serves": 2,
     "tags": [
-      "fast",
-      "no chilli"
+      "fast"
     ],
     "short": "Sprouts halved and charred hard in the air fryer, lardons crisped in with them, lemon and parmesan over the top while it all still steams.",
     "ingredients": [
@@ -5842,7 +5780,6 @@
       "Shake, scatter the lardons and the sliced garlic in among them, and give it 8 minutes more. The lardons render into the sprouts, which is the whole point of cooking them together rather than separately.",
       "They are ready when the outer leaves are properly black in places. Pale sprouts taste of nothing but sulphur; the charred ones taste sweet.",
       "Tip into a warm bowl. Lemon zest and juice over while it steams, then the parmesan, then a lot of black pepper. Toss and eat with the baguette.",
-      "No chilli in this: the heat that a recipe like this usually carries comes from the lemon and the pepper instead.",
       "Brussels sprouts have not been looked up at Méré yet, so they are priced as a guess until the next catalogue check."
     ],
     "equipment": [
@@ -5859,7 +5796,6 @@
     "cookMinutes": 8,
     "serves": 2,
     "tags": [
-      "no chilli",
       "make ahead",
       "dairy-free"
     ],
@@ -5968,7 +5904,7 @@
       "Dip one wrapper in the water for 2 seconds only — it will still feel stiff, and that is right. It keeps softening on the board. A wrapper soaked until it is floppy will tear.",
       "Lay it down, put herbs first in a line a third of the way up, then vermicelli, carrot, cucumber and chicken on top. Herbs against the wrapper is what makes them show through.",
       "Fold the bottom edge over the filling, pull it back tight to compact the roll, fold in both sides, then roll up. Tight is the difference between a spring roll and a bundle.",
-      "Crush the peanuts over the dipping soy. No chilli in the dip — the sweet soy and the mint carry it, which is the point of this version.",
+      "Crush the peanuts over the dipping soy.",
       "They keep a few hours under a damp cloth, not in the fridge uncovered or the wrappers go hard. Rice paper has not been looked up at Méré yet, so it is priced as a guess until the next catalogue check."
     ],
     "equipment": [
@@ -5985,7 +5921,6 @@
     "cookMinutes": 20,
     "serves": 2,
     "tags": [
-      "no chilli",
       "dairy-free",
       "vegetarian",
       "uses eggs"
@@ -6103,7 +6038,6 @@
     "serves": 4,
     "tags": [
       "batch cook",
-      "no chilli",
       "dairy-free"
     ],
     "short": "Japan's everyday simmer: potatoes, carrot and onion cooked gently in a sweet soy broth. It is usually made with thin-sliced beef; this one uses chicken thighs, and the yakitori sauce brings the sake and mirin that would otherwise be two more bottles. Better the next day.",
@@ -6230,10 +6164,9 @@
     "serves": 2,
     "tags": [
       "fast",
-      "no chilli",
       "dairy-free"
     ],
-    "short": "Celery is a proper stir-fry vegetable in China: sliced on the diagonal it stays crisp and turns sweet in a hot pan. Here with turkey, red pepper, ginger and garlic, glossed with soy and sweet soy. Many versions add dried chillies; this one leaves them out.",
+    "short": "Celery is a proper stir-fry vegetable in China: sliced on the diagonal it stays crisp and turns sweet in a hot pan. Here with turkey, red pepper, ginger and garlic, glossed with soy and sweet soy.",
     "ingredients": [
       {
         "item": "turkey escalope",
@@ -6354,8 +6287,7 @@
     "cookMinutes": 15,
     "serves": 1,
     "tags": [
-      "make ahead",
-      "no chilli"
+      "make ahead"
     ],
     "short": "Onigirazu is the onigiri you don't have to shape: rice, filling and more rice folded into a sheet of nori like an envelope, then cut in half. Mortadella and cheddar are not Japanese, but ham-and-cheese onigirazu is a lunchbox classic there, and it keeps until lunchtime.",
     "ingredients": [
@@ -6459,7 +6391,6 @@
     "serves": 1,
     "tags": [
       "fast",
-      "no chilli",
       "dairy-free"
     ],
     "short": "Hiyashi ramen is Japan's summer noodle: cooked, chilled and piled with cold, crisp things. The precooked teriyaki ramen brings its own sauce; yakitori, ginger and a small splash of balsamic — standing in for the rice vinegar Méré does not sell — turn it into a dressing, and a smashed cucumber does the rest.",
@@ -6573,12 +6504,11 @@
     "cookMinutes": 20,
     "serves": 2,
     "tags": [
-      "no chilli",
       "dairy-free",
       "vegetarian",
       "uses eggs"
     ],
-    "short": "Andalusia's poor man's potatoes: potatoes, onion and peppers cooked slowly in olive oil until soft and sweet, with a fried egg broken over them. No chorizo, no guindilla — just the vegetables, garlic and a pinch of sweet paprika.",
+    "short": "Andalusia's poor man's potatoes: potatoes, onion and peppers cooked slowly in olive oil until soft and sweet, with a fried egg broken over them. Garlic and a pinch of sweet paprika are all it needs.",
     "ingredients": [
       {
         "item": "potatoes",
@@ -6689,7 +6619,6 @@
     "serves": 2,
     "tags": [
       "fast",
-      "no chilli",
       "dairy-free"
     ],
     "short": "Saltimbocca, adapted to the kitchen: turkey escalopes flattened, wrapped in pancetta with rosemary where the original has sage and prosciutto, seared crisp and finished with lemon and a spoon of water for a quick pan sauce. Garlicky broccoli alongside.",
@@ -6786,7 +6715,6 @@
     "cookMinutes": 22,
     "serves": 2,
     "tags": [
-      "no chilli",
       "vegetarian"
     ],
     "short": "A flat Provençal tart: shortcrust baked empty for a few minutes, then covered in overlapping tomato slices, crumbled brebis and rosemary, and baked until the tomatoes slump and the border browns. The plain Salakis takes a pinch of sweet paprika for colour. Mâche on the side.",
@@ -6896,7 +6824,6 @@
     "serves": 2,
     "tags": [
       "make ahead",
-      "no chilli",
       "dairy-free",
       "vegetarian",
       "uses eggs"
@@ -6995,7 +6922,6 @@
     "tags": [
       "batch cook",
       "make ahead",
-      "no chilli",
       "dairy-free",
       "vegetarian"
     ],

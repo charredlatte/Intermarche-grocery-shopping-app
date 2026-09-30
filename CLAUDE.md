@@ -13,7 +13,7 @@ pushes, and is thrown away.
 **One repo now.** `charredlatte/Intermarche-grocery-shopping-app` holds the code
 *and* `data/` — invoices, purchase history, preferences, recipes, plans. Charlotte
 asked for that on 2026-09-05, having been shown that the repo is public and that
-`data/` therefore publishes a year of her receipts and the IBS note in
+`data/` therefore publishes a year of her receipts and her dietary notes in
 `preferences.json`. It was her call; don't quietly re-split it.
 
 There was a separate private `intermarche-grocery-data` repo until 2026-09-05.
@@ -55,7 +55,8 @@ section for why.
 dietary constraints, the confirmed-in-stock pantry. Hand-edited, never generated.
 
 **2b. What's already in the kitchen.** The build seeds an on-hand list from the
-**most recent invoice** and the page subtracts it, so the shopping list is what
+**most recent invoice dated on or before the week's first day** (the week's own
+shop, a few days in, is what it buys, not what was there) and the page subtracts it, so the shopping list is what
 she still has to buy rather than what the recipes add up to. `data/equivalents.json`
 — hand-edited, like preferences — says which products stand in for one another,
 so the Jean Rozé pork chops on the receipt cover a recipe naming the Terroirs
@@ -89,9 +90,13 @@ questions, then a plan, then a line-item list, then the basket.
   once the site has named one, the page files it under "New to you" at the
   site's price instead of "Best guesses".
 - **Some European staples are still banned**: chorizo, piment d'Espelette,
-  guindilla, peperoncino, 'nduja, merguez. All carry heat, and the IBS rule
-  outranks authenticity. Where a recipe departs from the original for this
-  reason, it says so in its own text.
+  guindilla, peperoncino, 'nduja, merguez. All carry heat, and the rule
+  outranks authenticity.
+- **Nothing she reads says what was left out.** No "no chilli" tag, no "mild by
+  design", no "the original carries peperoncino" — in a recipe, a plan note or
+  the page. Charlotte asked for that on 2026-09-28: she doesn't like spicy food
+  and doesn't need it pointed out. `build-week.mjs` enforces the rule on the
+  ingredients instead of a label.
 - **Every recipe declares one `protein`**, from exactly these eight: `chicken`,
   `turkey`, `pork`, `charcuterie`, `beef`, `fish`, `eggs`, `vegetarian`. It is
   the protein the dish is *built around*, not everything in it — the bolognese
@@ -102,9 +107,9 @@ questions, then a plan, then a line-item list, then the basket.
   build — see below), and the same eight values tag the
   groups in `data/equivalents.json` — which is how `parse-invoices.mjs` rolls the
   receipts up into the `byProtein` block of `data/purchase-history.json`.
-  **Balance the week's proteins as well as its cuisines.** Pork is in 22 of 23
-  orders and the library gives it two dinners; fish is in 2 of 23, and that is
-  price rather than taste.
+  **Balance the week's proteins as well as its cuisines.** Pork is in 22 of 24
+  orders (to 15 September) and the library gives it two dinners; fish is in 2
+  of 24, and that is price rather than taste.
 - **Every recipe declares its `equipment`.** She has an air fryer, an oven,
   muffin tins and casserole dishes — recorded in `preferences.cooking.equipment`,
   and filterable on the Recipes tab. The air fryer and the muffin tin were being
@@ -382,8 +387,10 @@ parser. The filename supplies the year — the email body never states it.
 - **Every line item traces back** to a dish in the plan, to the standing
   staples list, or to her "Meal Planning" list in Google Keep, which the push
   adds on her say-so (2026-09-15). No surprise additions.
-- **No chilli, ever.** IBS — this is a health constraint, not a taste preference.
-  Check the finished list before showing it.
+- **No chilli, ever.** She doesn't like spicy food. It is taste, not health
+  (corrected 2026-09-28 — older notes called it IBS), but it is never traded off.
+  Check the finished list before showing it, and never label it: nothing she
+  reads says "no chilli".
 - **If a product is unavailable at basket time, stop and ask.** Adapting a recipe
   to what Méré stocks is decided up front and reported; substituting an
   out-of-stock item is not something to do silently.

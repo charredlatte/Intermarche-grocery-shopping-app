@@ -89,6 +89,22 @@ const APPLIANCES = new Set(prefs.cooking?.equipment ?? []);
 // Which of those actually apply heat, for the no-cook rule below.
 const HEAT = new Set(["hob", "oven", "air fryer", "casserole dish"]);
 
+// Nothing spicy, checked on what a dish is made of rather than on a label.
+// Recipes used to carry a "no chilli" tag and this build checked the tag was
+// there — which proved someone typed it, not that the dish was mild. Charlotte
+// asked on 2026-09-28 for nothing she reads to say what was left out, so the
+// tag is gone and the words come from her own lists in preferences.json.
+const SPICY_WORDS = [
+  ...(prefs.dietary?.excluded ?? []),
+  ...(prefs.ingredients?.avoidDespiteBeingEuropean ?? []),
+];
+
+// Whether one recipe ingredient — { item, qty, product } — is something spicy.
+function isSpicy(ing) {
+  // TODO(human)
+  return false;
+}
+
 /* ---- pricebook ---------------------------------------------------------- */
 const pricebook = {};
 for (const p of history.products) {
@@ -119,9 +135,9 @@ for (const [slug, r] of Object.entries(recipes)) {
   if ((r.tags ?? []).includes("vegetarian") && !["eggs", "vegetarian"].includes(r.protein)) {
     problems.push(`${slug}: tagged vegetarian but its protein is "${r.protein}"`);
   }
-  // No chilli is a health rule, not a tag someone remembers to add. Every dish
-  // carries it by hand today and nothing enforced it until now.
-  if (!(r.tags ?? []).includes("no chilli")) problems.push(`${slug}: missing the "no chilli" tag`);
+  for (const ing of r.ingredients ?? []) {
+    if (isSpicy(ing)) problems.push(`${slug}: "${ing.item}" (${ing.product || "no product"}) is spicy`);
+  }
   // "no cook" has to mean what it says, or the Recipes tab's appliance chips lie.
   if ((r.tags ?? []).includes("no cook") && r.cookMinutes !== 0) {
     problems.push(`${slug}: tagged "no cook" but cooks for ${r.cookMinutes} minutes`);
@@ -248,8 +264,8 @@ if (problems.length) {
 /* ---- staples and config ------------------------------------------------- */
 // Only what the page needs travels from preferences — not the store phone
 // number, not the budget note. The dietary constraints DO ship, including the
-// reason text, because the dish generator needs to know it is a health rule
-// rather than a taste. That text is therefore in the published page.
+// reason text, because the dish generator is told why as well as what. That
+// text is therefore in the published page.
 // A staple normally has to be in the pricebook, so a typo cannot ship a
 // zero-cost line. The exception is a product whose name the receipt truncated —
 // the coffee capsules are cut off as "L'Or Capsules de café ..." — which can
@@ -282,7 +298,14 @@ for (const s of staples) {
 //
 // When the receipt is old, the plan can list which of its lines are still in
 // the kitchen (`stillOnHand`); everything else on it is taken as used up.
-const lastOrder = history.orders[history.orders.length - 1];
+//
+// "Newest" means newest when the week began. The week's own shop lands a few
+// days in, and its receipt is what the week buys, not what was already there;
+// seeding from it would count the basket twice.
+const ymd = (d) => `${d.year}-${String(d.month).padStart(2, "0")}-${String(d.day).padStart(2, "0")}`;
+const weekStart = plans[plans.length - 1].weekOf;
+const lastOrder = history.orders.filter((o) => o.date && ymd(o.date) <= weekStart).at(-1)
+  ?? die(`no receipt dated on or before ${weekStart}`);
 const stillOnHand = plans[plans.length - 1].stillOnHand;
 for (const n of stillOnHand ?? []) {
   if (!lastOrder.items.some((i) => i.name === n)) die(`stillOnHand: "${n}" is not on order ${lastOrder.orderNumber}`);
