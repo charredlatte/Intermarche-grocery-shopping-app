@@ -7110,5 +7110,109 @@
     "equipment": [
       "air fryer"
     ]
+  },
+  "poulet-citron-brebis-celeri": {
+    "title": "Lemon chicken with celery and melted brebis",
+    "cuisine": "greek",
+    "protein": "chicken",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "serves": 2,
+    "tags": [
+      "fast"
+    ],
+    "short": "Chicken fillets marinated in the herb oil from the brebis jar and lemon, air-fried beside celery and onion, with the brebis crumbled over at the end and rice underneath.",
+    "ingredients": [
+      {
+        "item": "chicken",
+        "qty": "3 fillets (about 400 g), in thick strips",
+        "product": "Le Gaulois Filet de poulet extra tendre",
+        "buy": {
+          "amount": 0.4,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "brebis in oil",
+        "qty": "the jar: 2 tbsp of its oil for the marinade, the cheese crumbled over",
+        "product": "Salakis Fromage 100% brebis basilic",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Bread and cheese"
+        }
+      },
+      {
+        "item": "lemon",
+        "qty": "1, zest and juice",
+        "product": "Le Choix du Primeur Citrons JAUNES",
+        "buy": {
+          "amount": 0.28,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "celery",
+        "qty": "3 stalks, in 3 cm lengths",
+        "product": "Le Choix du Primeur Céleri BRANCHE VERT",
+        "buy": {
+          "amount": 0.3,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "onion",
+        "qty": "1, in wedges",
+        "product": "Le Choix du Primeur Oignons JAUNES",
+        "buy": {
+          "amount": 0.15,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "sweet paprika",
+        "qty": "1 tsp",
+        "product": "Bouton d’Or, une marque Intermarché Paprika doux moulu",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "basmati rice",
+        "qty": "150 g dry",
+        "product": "Taureau Ailé Riz Basmati",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "salt, pepper",
+        "qty": "",
+        "product": "already in the cupboard",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Toss the chicken strips with 2 tablespoons of the oil from the brebis jar, the lemon zest, half the juice, the paprika and a good pinch of salt. Leave it while the rice goes on — 10 minutes is enough, the whole afternoon is better.",
+      "Rice on: rinse it until the water runs clear, then cook it the way the packet says.",
+      "Celery and onion into the air fryer basket with a spoonful more of the jar oil and some salt, 200°C for 6 minutes. Celery goes sweet when it roasts, which is the point of it here.",
+      "Add the chicken in one layer on top and cook 10 to 12 minutes, shaking once halfway. Cut the fattest strip open: no pink.",
+      "Tip everything into a warm dish, squeeze over the rest of the lemon, and crumble the brebis over while it's hot enough to soften.",
+      "Serve over the rice with every bit of the juice from the bottom of the basket."
+    ],
+    "equipment": [
+      "air fryer",
+      "hob"
+    ]
   }
 }

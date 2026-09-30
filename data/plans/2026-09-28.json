@@ -5,8 +5,8 @@
   "notes": [
     "Rewritten on 30 September around what the 29 September order actually brought: order 880248879, collected Tuesday between 16h30 and 17h30. Every dinner and lunch below is cooked from that bag and the cupboard.",
     "Monday and Tuesday came before the food did, so their lunches and dinners are off the plan. The turkey stir-fry, the patatas, the potato salad and the leftover rice all went with them. Breakfasts stay as they were.",
-    "What the order changed: chicken fillets came instead of turkey (812 g, six fillets), which makes two chicken dinners. The potatoes were skipped, so nothing here needs them. No garlic, broccoli or cheddar came either; the notes on each dish say what to do without them.",
-    "The dinners now run Wednesday to Sunday, the same five as before, just two days later: three Asian (Japanese, Chinese, Chinese) and two European (Italian, French). The European pork night is a new dish, because the only pork chop recipe in the library was a soy stir-fry.",
+    "What the order changed: chicken fillets came instead of turkey (812 g, six fillets), which makes two chicken dinners. The potatoes were skipped, so nothing here needs them. No garlic, broccoli or cheddar came either. Wednesday's donburi does without the broccoli, and Friday's chicken is a new dish built around what did come.",
+    "The dinners now run Wednesday to Sunday, the same five as before, just two days later: two Asian (Japanese, Chinese) and three European (Italian, Greek, French). Two of them are new dishes written for this week's bag: Friday's lemon chicken with celery and brebis, and Saturday's rosemary pork chops, because the only pork chop recipe in the library was a soy stir-fry.",
     "Proteins: chicken twice, pork, lardons, and a vegetarian pizza.",
     "The cat litter was refused at collection, so it is not in the kitchen. It still needs buying.",
     "The kitchen list from 15 September still stands: ginger, both soy sauces, the yakitori sauce, sugar, olive oil, paprika, rosemary, balsamic, cornichons and the coffee."
@@ -31,7 +31,7 @@
     { "id": "tuesday-breakfast", "day": "tuesday", "slot": "breakfast", "recipe": "sandwich-matin" },
 
     { "id": "wednesday-breakfast", "day": "wednesday", "slot": "breakfast", "recipe": "sandwich-matin" },
-    { "id": "wednesday-lunch", "day": "wednesday", "slot": "lunch", "recipe": "salade-pois-chiches", "note": "Your swap from Monday, moved to the first day the chickpeas were in. One jar of brebis is herbes de Provence and the other is basil; either works. The Lesieur mustard dressing that came is the dressing." },
+    { "id": "wednesday-lunch", "day": "wednesday", "slot": "lunch", "recipe": "salade-pois-chiches", "note": "Your swap from Monday, moved to the first day the chickpeas were in. Use the herbes de Provence brebis; the basil jar is Friday's dinner. The Lesieur mustard dressing that came is the dressing." },
     { "id": "wednesday-dinner", "day": "wednesday", "slot": "dinner", "recipe": "donburi-teriyaki", "note": "Three of the six chicken fillets (about 400 g), in strips. No broccoli came: leave it out, or pick up a head if you pass a shop." },
 
     { "id": "thursday-breakfast", "day": "thursday", "slot": "breakfast", "recipe": "sandwich-matin" },
@@ -40,7 +40,7 @@
 
     { "id": "friday-breakfast", "day": "friday", "slot": "breakfast", "recipe": "sandwich-matin" },
     { "id": "friday-lunch", "day": "friday", "slot": "lunch", "recipe": "onigiri-oeuf", "note": "Roll them Thursday while the pizza bakes. The last of the cucumber goes alongside." },
-    { "id": "friday-dinner", "day": "friday", "slot": "dinner", "recipe": "poulet-citron-gingembre", "note": "The other three chicken fillets. No broccoli or garlic came: the celery already in the fridge, sliced thin on the diagonal, goes in where the broccoli would, and the ginger carries the rest." },
+    { "id": "friday-dinner", "day": "friday", "slot": "dinner", "recipe": "poulet-citron-brebis-celeri", "note": "A new dish, written for this week: the other three chicken fillets, the celery already in the fridge, the second lemon and the basil brebis. Nothing in it is missing from the kitchen." },
 
     { "id": "saturday-breakfast", "day": "saturday", "slot": "breakfast", "recipe": "sandwich-matin" },
     { "id": "saturday-dinner", "day": "saturday", "slot": "dinner", "recipe": "cotes-porc-romarin-poivrons", "note": "The Jean Rozé chops, the red pepper and the second yellow one, the mâche and the mustard dressing, all from Tuesday's bag. Cook the rice for Sunday alongside so it's cold by tomorrow." },
