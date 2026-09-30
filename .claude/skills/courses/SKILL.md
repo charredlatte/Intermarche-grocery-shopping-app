@@ -70,12 +70,15 @@ less than an imperfect plan.
 
 These are not preferences. Check the plan against them before showing it.
 
-1. **No chilli. None.** IBS. No gochujang, no chilli oil, no bird's eye, no
+1. **No chilli. None.** She doesn't like spicy food — taste, not health, but
+   never traded off. No gochujang, no chilli oil, no bird's eye, no
    harissa, no hot curry paste. Where a dish *is* chilli — mapo tofu, kimchi
    jjigae, most Thai red and green curry — don't propose it and don't propose a
    sad de-chillied version. Build heat-free flavour instead: ginger, garlic,
    spring onion, sesame, soy, rice vinegar, miso, citrus, black pepper. Mild
-   curry powder and tandoori are fine; she buys both.
+   curry powder and tandoori are fine; she buys both. **And never say so**: no
+   "no chilli" tag, no "mild", no "the original carries X" in a recipe, a plan
+   note or anything else she reads (2026-09-28).
 2. **Milk and cream minimised.** Cheese is fine — the receipts are full of it.
    Coconut milk is not dairy and is unrestricted, so Thai and Indian curries
    work normally. She keeps almond milk in the house, which substitutes in most

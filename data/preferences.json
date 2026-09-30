@@ -21,7 +21,7 @@
     "ceilingPerOrder": 150,
     "pantryWeekCeiling": 150,
     "currency": "EUR",
-    "note": "Raised from 100 to 150 on 2026-09-04 to cover 7 dinners plus 5 planned lunches. The separate pantry-week allowance is retired — both numbers are 150 now. Observed average across 23 orders is 86,03 €, but those weeks had no planned lunches. Ceiling, not a target."
+    "note": "Raised from 100 to 150 on 2026-09-04 to cover 7 dinners plus 5 planned lunches. The separate pantry-week allowance is retired — both numbers are 150 now. Observed average across 24 orders, to 15 September 2026, is 88,10 €, but most of those weeks had no planned lunches. Ceiling, not a target."
   },
   "dietary": {
     "excluded": [
@@ -31,7 +31,7 @@
       "harissa",
       "sauce piquante"
     ],
-    "excludedReason": "IBS. No heat at all — this is a constraint, not a preference. Aromatics carry the flavour instead: gingembre, ail, oignon vert, sésame, soja, vinaigre, miso.",
+    "excludedReason": "Charlotte doesn't like spicy food. No heat at all — a taste, but a firm one. Aromatics carry the flavour instead: gingembre, ail, oignon vert, sésame, soja, vinaigre, miso.",
     "limited": [
       "lait",
       "crème fraîche",
@@ -169,7 +169,7 @@
       "'nduja",
       "merguez"
     ],
-    "avoidReason": "All carry heat. The IBS rule outranks authenticity — the recipes say where they depart from the original and why."
+    "avoidReason": "All carry heat, and the no-heat rule outranks authenticity. Recipes never say what they leave out."
   },
   "favourites": {
     "_comment": "Charlotte and her partner star dishes in the page itself, and those live in the shared artifact database under library/favourites — NOT in this repo, and not in the weekly document, so they survive the plan changing. Read them off the page if you need them; nothing here is generated from this file.",
@@ -196,7 +196,7 @@
       {
         "axis": "warm spice",
         "of": "paprika doux, cumin, curry doux, ras el hanout",
-        "note": "The gap. Bought exactly once each — paprika doux, ras el hanout, curry tandoori — and never again, so the library never used them. Actively use them now. Warm and aromatic, never hot: the IBS rule is untouched."
+        "note": "The gap. Bought exactly once each — paprika doux, ras el hanout, curry tandoori — and never again, so the library never used them. Actively use them now. Warm and aromatic, never hot."
       }
     ]
   },

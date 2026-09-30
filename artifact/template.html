@@ -2613,7 +2613,7 @@ const HOUSE_PRODUCTS = Object.keys(PRICES)
   .sort((a, b) => a.localeCompare(b));
 
 const openIngAdd = () => openPicker("ing-add", null, "Add to " + recipeOf(recipeCtx.slug).title,
-  "It goes in every time this dish is on the menu, and into the basket with it. Nothing hot.", false);
+  "It goes in every time this dish is on the menu, and into the basket with it.", false);
 
 function openIngSwap(key) {
   const row = rowOf(recipeCtx.slug, key);
@@ -2760,7 +2760,7 @@ function renderKeepReport() {
   if (r.added.length) parts.push(`<p>As you wrote them — pick a product under each on the list, or Claude looks them up during the push:</p>` + li(r.added.map((x) => `<li>${esc(x)}</li>`)));
   if (r.covered.length) parts.push(`<p>Left off, the basket already buys them:</p>` + li(r.covered.map((c) => `<li>${esc(c.name)} <span class="why">— for ${esc(c.for)}</span></li>`)));
   if (r.already.length) parts.push(`<p>Already on the list:</p>` + li(r.already.map((x) => `<li>${esc(x)}</li>`)));
-  if (r.refused.length) parts.push(`<p>Not added — no heat at all, it's the IBS rule:</p>` + li(r.refused.map((x) => `<li>“${esc(x.name)}” reads as ${esc(x.word)}${x.safe
+  if (r.refused.length) parts.push(`<p>Not added — too spicy:</p>` + li(r.refused.map((x) => `<li>“${esc(x.name)}” reads as ${esc(x.word)}${x.safe
     ? ` <button class="minibtn" type="button" data-add-product="${esc(x.safe)}">Add ${esc(shortName(x.safe))} instead</button>` : ""}</li>`)));
   if (r.skipped) parts.push(`<p class="why">${r.skipped} ticked, blank or title ${r.skipped === 1 ? "line" : "lines"} skipped.</p>`);
   $("#keep-report").innerHTML = `<div class="notice">${parts.join("")}</div>`;
@@ -2899,6 +2899,7 @@ HARD RULES, no exceptions:
 - It must be a dish that is genuinely COOKED. Never a recipe for reheating a ready-made or frozen product.
 - Total time at most ${meal.slot === "dinner" ? c.maxWeeknightMinutes + 15 : 20} minutes.
 - Do not repeat any of these existing dishes: ${already}
+- Never say what the dish leaves out, or that it is mild. Describe what is in it.
 
 Every ingredient that must be bought needs a "product" chosen EXACTLY, character for character, from this list of things they actually buy. If nothing in the list fits, set "guess": true and give buy.price as a euro estimate.
 
@@ -2907,7 +2908,7 @@ ${products}
 Reply with JSON only, this exact shape:
 {"title":"","cuisine":"italian|french|spanish|greek|japanese|chinese|thai|vietnamese|indian",
  "slot":"${meal.slot}","kind":"recipe","prepMinutes":0,"cookMinutes":0,"serves":${meal.slot === "dinner" ? 2 : 1},
- "tags":["no chilli"],"short":"one sentence a cook can read at the hob",
+ "tags":[],"short":"one sentence a cook can read at the hob",
  "ingredients":[{"item":"plain name","qty":"how much","product":"exact name from the list",
    "buy":{"amount":0.3,"mode":"sum","section":"Proteins|Vegetables|Store cupboard|Bread and cheese"}}],
  "steps":["numbered method, 4 to 7 steps, specific about heat and timing"]}
@@ -2923,7 +2924,7 @@ function sanitise(r, slot) {
   r.prepMinutes = +r.prepMinutes || 10;
   r.cookMinutes = +r.cookMinutes || 15;
   r.tags = Array.isArray(r.tags) ? r.tags : [];
-  if (!r.tags.includes("no chilli")) r.tags.push("no chilli");
+  r.tags = r.tags.filter((t) => !/chil/i.test(t));
   r.tags.push("invented");
   r.short = r.short || "";
   r.ingredients = (r.ingredients || []).map((i) => {
@@ -3021,7 +3022,7 @@ function renderMasthead() {
     : pending.length ? `${pending.length} to decide before approving`
     : "Ready to approve";
   $("#strapline").textContent =
-    `The basket for ${andList(parts)}. Change a dish, or what goes into it, and the basket follows. No chilli anywhere.`;
+    `The basket for ${andList(parts)}. Change a dish, or what goes into it, and the basket follows.`;
   $("#tally").innerHTML = [
     ["To buy", eur(approved ? approved.total : total)],
     ["Ceiling", eur(CONF.budgetCeiling)],
