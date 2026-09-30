@@ -1,50 +1,50 @@
 {
-  "generatedAt": "2026-09-28T19:50:23.447Z",
-  "ordersParsed": 24,
-  "averageBasket": 88.1,
+  "generatedAt": "2026-09-30T22:06:20.362Z",
+  "ordersParsed": 25,
+  "averageBasket": 87.86,
   "averageItemCount": 29,
   "staples": [
     "Cuit sur place Baguette La Généreuse",
     "Jean Rozé, une marque Intermarché Chipolata supérieure aux herbes",
+    "Le Choix du Primeur Poivron ROUGE",
     "Pâturages, une marque Intermarché Beurre moulé demi-sel",
     "Le Choix du Primeur Poivrons VERTS",
-    "Le Choix du Primeur Poivron ROUGE",
     "Look, une marque Intermarché Limonade aux arômes naturels d'agrumes"
   ],
   "byProtein": {
     "pork": {
-      "orders": 22,
+      "orders": 23,
       "shareOfOrders": 0.92,
-      "purchases": 31,
-      "spend": 118.04
+      "purchases": 32,
+      "spend": 122.83
     },
     "beef": {
       "orders": 14,
-      "shareOfOrders": 0.58,
+      "shareOfOrders": 0.56,
       "purchases": 14,
       "spend": 97.29
     },
     "chicken": {
       "orders": 13,
-      "shareOfOrders": 0.54,
+      "shareOfOrders": 0.52,
       "purchases": 22,
       "spend": 129.04
     },
     "charcuterie": {
-      "orders": 11,
-      "shareOfOrders": 0.46,
-      "purchases": 11,
-      "spend": 40.18
+      "orders": 12,
+      "shareOfOrders": 0.48,
+      "purchases": 12,
+      "spend": 46.21
     },
     "eggs": {
-      "orders": 9,
-      "shareOfOrders": 0.38,
-      "purchases": 10,
-      "spend": 27.85
+      "orders": 10,
+      "shareOfOrders": 0.4,
+      "purchases": 11,
+      "spend": 30.81
     },
     "turkey": {
       "orders": 6,
-      "shareOfOrders": 0.25,
+      "shareOfOrders": 0.24,
       "purchases": 7,
       "spend": 38.26
     },
@@ -155,6 +155,52 @@
       ]
     },
     {
+      "name": "Le Choix du Primeur Poivron ROUGE",
+      "packaging": "en vrac - à partir de 200g (soit 1 poivron)",
+      "timesOrdered": 15,
+      "totalQuantity": 4.300000000000002,
+      "unit": "kg",
+      "lastPrice": 4.99,
+      "lineTotals": [
+        1.45,
+        1.05,
+        2.4,
+        2.1,
+        1.06,
+        2,
+        1.85,
+        0.7,
+        0.8,
+        1.72,
+        1.2,
+        1.1,
+        1,
+        2,
+        1
+      ],
+      "lastLineTotal": 1,
+      "typicalLineTotal": 1.2,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "207115061",
+        "773767057",
+        "517088600",
+        "716617122",
+        "714549480",
+        "176573740",
+        "893661981",
+        "410699522",
+        "860136286",
+        "670411596",
+        "091373279",
+        "145148438",
+        "362261931",
+        "819539390",
+        "880248879"
+      ]
+    },
+    {
       "name": "Pâturages, une marque Intermarché Beurre moulé demi-sel",
       "packaging": "la plaquette de 5...",
       "timesOrdered": 14,
@@ -240,50 +286,6 @@
         "959185275",
         "863727172",
         "091373279"
-      ]
-    },
-    {
-      "name": "Le Choix du Primeur Poivron ROUGE",
-      "packaging": "en vrac - à partir de 200g (soit 1 poivron)",
-      "timesOrdered": 14,
-      "totalQuantity": 4.100000000000001,
-      "unit": "kg",
-      "lastPrice": 4.99,
-      "lineTotals": [
-        1.45,
-        1.05,
-        2.4,
-        2.1,
-        1.06,
-        2,
-        1.85,
-        0.7,
-        0.8,
-        1.72,
-        1.2,
-        1.1,
-        1,
-        2
-      ],
-      "lastLineTotal": 2,
-      "typicalLineTotal": 1.32,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "207115061",
-        "773767057",
-        "517088600",
-        "716617122",
-        "714549480",
-        "176573740",
-        "893661981",
-        "410699522",
-        "860136286",
-        "670411596",
-        "091373279",
-        "145148438",
-        "362261931",
-        "819539390"
       ]
     },
     {
@@ -518,6 +520,43 @@
       ]
     },
     {
+      "name": "Le Choix du Primeur Concombre",
+      "packaging": "vendu à la pièce",
+      "timesOrdered": 11,
+      "totalQuantity": 15,
+      "unit": "unit",
+      "lastPrice": 0.9,
+      "lineTotals": [
+        2.69,
+        1.65,
+        1.09,
+        1.25,
+        2.8,
+        2.58,
+        2.18,
+        2.78,
+        1.19,
+        0.9
+      ],
+      "lastLineTotal": 0.9,
+      "typicalLineTotal": 1.92,
+      "timesUnavailable": 1,
+      "nameTruncated": false,
+      "orders": [
+        "716617122",
+        "176573740",
+        "893661981",
+        "410699522",
+        "246195976",
+        "860136286",
+        "670411596",
+        "091373279",
+        "145148438",
+        "819539390",
+        "880248879"
+      ]
+    },
+    {
       "name": "Le Choix du Primeur Tomate RONDE en GRAPPE",
       "packaging": "en vrac - à parti...",
       "timesOrdered": 10,
@@ -590,6 +629,42 @@
       ]
     },
     {
+      "name": "Panzani Sauce Tomates Cuisinées ingrédients origine naturelle",
+      "packaging": "Le pot de 425g",
+      "timesOrdered": 10,
+      "totalQuantity": 10,
+      "unit": "unit",
+      "lastPrice": 1.83,
+      "lineTotals": [
+        1.81,
+        1.81,
+        2.67,
+        2.67,
+        2.67,
+        2.67,
+        2.59,
+        2.59,
+        2.59,
+        1.83
+      ],
+      "lastLineTotal": 1.83,
+      "typicalLineTotal": 2.59,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "276831991",
+        "216030011",
+        "716617122",
+        "714549480",
+        "176573740",
+        "893661981",
+        "670411596",
+        "091373279",
+        "877243131",
+        "880248879"
+      ]
+    },
+    {
       "name": "Bjorg Boisson végétale Lait d'amande vanille BIO",
       "packaging": "la brique de 1l",
       "timesOrdered": 10,
@@ -625,72 +700,71 @@
       ]
     },
     {
-      "name": "Le Choix du Primeur Concombre",
-      "packaging": "vendu à la pièce",
-      "timesOrdered": 10,
-      "totalQuantity": 14,
-      "unit": "unit",
-      "lastPrice": 1.19,
-      "lineTotals": [
-        2.69,
-        1.65,
-        1.09,
-        1.25,
-        2.8,
-        2.58,
-        2.18,
-        2.78,
-        1.19
-      ],
-      "lastLineTotal": 1.19,
-      "typicalLineTotal": 2.18,
-      "timesUnavailable": 1,
-      "nameTruncated": false,
-      "orders": [
-        "716617122",
-        "176573740",
-        "893661981",
-        "410699522",
-        "246195976",
-        "860136286",
-        "670411596",
-        "091373279",
-        "145148438",
-        "819539390"
-      ]
-    },
-    {
-      "name": "Panzani Sauce Tomates Cuisinées ingrédients origine naturelle",
-      "packaging": "Le pot de 425g",
+      "name": "Le Choix du Primeur Poivrons JAUNES",
+      "packaging": "en vrac - à partir de 200 gr (soit 1 poivron)",
       "timesOrdered": 9,
-      "totalQuantity": 9,
-      "unit": "unit",
-      "lastPrice": 2.59,
+      "totalQuantity": 2.45,
+      "unit": "kg",
+      "lastPrice": 4.99,
       "lineTotals": [
-        1.81,
-        1.81,
-        2.67,
-        2.67,
-        2.67,
-        2.67,
-        2.59,
-        2.59,
-        2.59
+        0.96,
+        1,
+        1.2,
+        1.1,
+        0.92,
+        1.6,
+        2,
+        1.2,
+        2
       ],
-      "lastLineTotal": 2.59,
-      "typicalLineTotal": 2.59,
+      "lastLineTotal": 2,
+      "typicalLineTotal": 1.2,
       "timesUnavailable": 0,
       "nameTruncated": false,
       "orders": [
-        "276831991",
-        "216030011",
-        "716617122",
+        "207115061",
+        "773767057",
         "714549480",
-        "176573740",
-        "893661981",
+        "741558701",
+        "246195976",
+        "959185275",
+        "863727172",
+        "819539390",
+        "880248879"
+      ]
+    },
+    {
+      "name": "Boursin Fromage à tartiner ail et fines herbes",
+      "packaging": "la boite de 150g",
+      "timesOrdered": 9,
+      "totalQuantity": 10,
+      "unit": "unit",
+      "lastPrice": 2.17,
+      "lineTotals": [
+        4.32,
+        2.17,
+        2.17,
+        2.17,
+        2.17,
+        2.17,
+        2.17,
+        2.17,
+        2.17
+      ],
+      "lastLineTotal": 2.17,
+      "typicalLineTotal": 2.17,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "773767057",
+        "039374711",
+        "741558701",
+        "246195976",
+        "959185275",
         "670411596",
-        "091373279",
-        "877243131"
+        "863727172",
+        "819539390",
+        "880248879"
       ]
     },
     {
@@ -762,6 +836,37 @@
       ]
     },
     {
+      "name": "Volaé, une marque Intermarché Œufs frais de poules élevées au sol",
+      "packaging": "la boite de 20",
+      "timesOrdered": 9,
+      "totalQuantity": 10,
+      "unit": "unit",
+      "lastPrice": 2.96,
+      "lineTotals": [
+        4.47,
+        4.47,
+        2.95,
+        4.47,
+        3.3,
+        2.96
+      ],
+      "lastLineTotal": 2.96,
+      "typicalLineTotal": 3.88,
+      "timesUnavailable": 3,
+      "nameTruncated": false,
+      "orders": [
+        "517088600",
+        "716617122",
+        "860136286",
+        "670411596",
+        "863727172",
+        "091373279",
+        "362261931",
+        "819539390",
+        "880248879"
+      ]
+    },
+    {
       "name": "Alpro Boisson végétale lait d'amande saveur vanille",
       "packaging": "la brique de 1l",
       "timesOrdered": 8,
@@ -790,70 +895,6 @@
         "741558701",
         "246195976",
         "959185275"
-      ]
-    },
-    {
-      "name": "Le Choix du Primeur Poivrons JAUNES",
-      "packaging": "en vrac - à partir de 200 gr (soit 1 poivron)",
-      "timesOrdered": 8,
-      "totalQuantity": 2.0500000000000003,
-      "unit": "kg",
-      "lastPrice": 5.99,
-      "lineTotals": [
-        0.96,
-        1,
-        1.2,
-        1.1,
-        0.92,
-        1.6,
-        2,
-        1.2
-      ],
-      "lastLineTotal": 1.2,
-      "typicalLineTotal": 1.15,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "207115061",
-        "773767057",
-        "714549480",
-        "741558701",
-        "246195976",
-        "959185275",
-        "863727172",
-        "819539390"
-      ]
-    },
-    {
-      "name": "Boursin Fromage à tartiner ail et fines herbes",
-      "packaging": "la boite de 150g",
-      "timesOrdered": 8,
-      "totalQuantity": 9,
-      "unit": "unit",
-      "lastPrice": 2.17,
-      "lineTotals": [
-        4.32,
-        2.17,
-        2.17,
-        2.17,
-        2.17,
-        2.17,
-        2.17,
-        2.17
-      ],
-      "lastLineTotal": 2.17,
-      "typicalLineTotal": 2.17,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "773767057",
-        "039374711",
-        "741558701",
-        "246195976",
-        "959185275",
-        "670411596",
-        "863727172",
-        "819539390"
       ]
     },
     {
@@ -889,65 +930,6 @@
       ]
     },
     {
-      "name": "Volaé, une marque Intermarché Œufs frais de poules élevées au sol",
-      "packaging": "la boite de 20",
-      "timesOrdered": 8,
-      "totalQuantity": 9,
-      "unit": "unit",
-      "lastPrice": 1.65,
-      "lineTotals": [
-        4.47,
-        4.47,
-        2.95,
-        4.47,
-        3.3
-      ],
-      "lastLineTotal": 3.3,
-      "typicalLineTotal": 4.47,
-      "timesUnavailable": 3,
-      "nameTruncated": false,
-      "orders": [
-        "517088600",
-        "716617122",
-        "860136286",
-        "670411596",
-        "863727172",
-        "091373279",
-        "362261931",
-        "819539390"
-      ]
-    },
-    {
-      "name": "Ultima croquettes pour chat stérilisé adulte poulet",
-      "packaging": "le sac de 1,5 kg",
-      "timesOrdered": 7,
-      "totalQuantity": 7,
-      "unit": "unit",
-      "lastPrice": 7.11,
-      "lineTotals": [
-        12.72,
-        7.03,
-        12.72,
-        7.03,
-        7.03,
-        7.11,
-        7.11
-      ],
-      "lastLineTotal": 7.11,
-      "typicalLineTotal": 7.11,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "543905473",
-        "773767057",
-        "741558701",
-        "246195976",
-        "362261931",
-        "877243131",
-        "819539390"
-      ]
-    },
-    {
       "name": "Le Gaulois Filet de poulet extra tendre",
       "packaging": "la barquette de 2...",
       "timesOrdered": 7,
@@ -975,6 +957,36 @@
         "959185275",
         "863727172",
         "877243131"
+      ]
+    },
+    {
+      "name": "Pâturages, une marque Intermarché Mozzarella",
+      "packaging": "le sachet de 250 g net égoutté",
+      "timesOrdered": 7,
+      "totalQuantity": 13,
+      "unit": "unit",
+      "lastPrice": 0.93,
+      "lineTotals": [
+        1.88,
+        1.86,
+        0.92,
+        1.86,
+        1.86,
+        1.86,
+        1.86
+      ],
+      "lastLineTotal": 1.86,
+      "typicalLineTotal": 1.86,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "207115061",
+        "860136286",
+        "863727172",
+        "145148438",
+        "362261931",
+        "877243131",
+        "880248879"
       ]
     },
     {
@@ -1180,31 +1192,31 @@
       ]
     },
     {
-      "name": "Pâturages, une marque Intermarché Mozzarella",
-      "packaging": "le sachet de 250 g net égoutté",
+      "name": "Ultima croquettes pour chat stérilisé adulte poulet",
+      "packaging": "le sac de 1,5 kg",
       "timesOrdered": 6,
-      "totalQuantity": 11,
+      "totalQuantity": 6,
       "unit": "unit",
-      "lastPrice": 0.93,
+      "lastPrice": 7.11,
       "lineTotals": [
-        1.88,
-        1.86,
-        0.92,
-        1.86,
-        1.86,
-        1.86
+        7.03,
+        12.72,
+        7.03,
+        7.03,
+        7.11,
+        7.11
       ],
-      "lastLineTotal": 1.86,
-      "typicalLineTotal": 1.86,
+      "lastLineTotal": 7.11,
+      "typicalLineTotal": 7.07,
       "timesUnavailable": 0,
       "nameTruncated": false,
       "orders": [
-        "207115061",
-        "860136286",
-        "863727172",
-        "145148438",
+        "773767057",
+        "741558701",
+        "246195976",
         "362261931",
-        "877243131"
+        "877243131",
+        "819539390"
       ]
     },
     {
@@ -1529,6 +1541,32 @@
       ]
     },
     {
+      "name": "Croustipate Pâte à pizza qualité comme à la pizzeria",
+      "packaging": "la boîte de 500g",
+      "timesOrdered": 5,
+      "totalQuantity": 6,
+      "unit": "unit",
+      "lastPrice": 2.43,
+      "lineTotals": [
+        2.42,
+        2.42,
+        2.42,
+        4.86,
+        2.43
+      ],
+      "lastLineTotal": 2.43,
+      "typicalLineTotal": 2.42,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "863727172",
+        "145148438",
+        "362261931",
+        "877243131",
+        "880248879"
+      ]
+    },
+    {
       "name": "Bjorg Boisson végétale ...",
       "packaging": "la brique de 1l",
       "timesOrdered": 4,
@@ -1815,6 +1853,54 @@
       ]
     },
     {
+      "name": "Salakis Fromage 100% brebis herbes de Provence",
+      "packaging": "le bocal de 300g",
+      "timesOrdered": 4,
+      "totalQuantity": 5,
+      "unit": "unit",
+      "lastPrice": 3.63,
+      "lineTotals": [
+        6.78,
+        3.39,
+        3.37,
+        3.63
+      ],
+      "lastLineTotal": 3.63,
+      "typicalLineTotal": 3.51,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "517088600",
+        "716617122",
+        "246195976",
+        "880248879"
+      ]
+    },
+    {
+      "name": "Tanoshi Riz pour sushi Japonica",
+      "packaging": "le sachet de 450g",
+      "timesOrdered": 4,
+      "totalQuantity": 4,
+      "unit": "unit",
+      "lastPrice": 3.53,
+      "lineTotals": [
+        3.5,
+        3.5,
+        3.49,
+        3.53
+      ],
+      "lastLineTotal": 3.53,
+      "typicalLineTotal": 3.5,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "716617122",
+        "863727172",
+        "819539390",
+        "880248879"
+      ]
+    },
+    {
       "name": "Le Choix du Primeur Aubergines VIOLETTES",
       "packaging": "en vrac - à partir de 400 gr (soit 1 aubergine)",
       "timesOrdered": 4,
@@ -1836,6 +1922,30 @@
         "176573740",
         "893661981",
         "860136286"
+      ]
+    },
+    {
+      "name": "Tanoshi Feuilles d'algues nori grillées pour sushi",
+      "packaging": "le sachet de 7 feuilles - 17,5g",
+      "timesOrdered": 4,
+      "totalQuantity": 4,
+      "unit": "unit",
+      "lastPrice": 3.29,
+      "lineTotals": [
+        3.29,
+        3.29,
+        3.29,
+        3.29
+      ],
+      "lastLineTotal": 3.29,
+      "typicalLineTotal": 3.29,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "716617122",
+        "863727172",
+        "819539390",
+        "880248879"
       ]
     },
     {
@@ -1910,27 +2020,51 @@
       ]
     },
     {
-      "name": "Croustipate Pâte à pizza qualité comme à la pizzeria",
-      "packaging": "la boîte de 500g",
+      "name": "Saint Eloi, une marque Intermarché Pois chiches français",
+      "packaging": "la boîte de 530 g net égoutté",
       "timesOrdered": 4,
       "totalQuantity": 5,
       "unit": "unit",
-      "lastPrice": 2.43,
+      "lastPrice": 1.2,
       "lineTotals": [
-        2.42,
-        2.42,
-        2.42,
-        4.86
+        1.2,
+        1.5,
+        1.2,
+        1.2
       ],
-      "lastLineTotal": 4.86,
-      "typicalLineTotal": 2.42,
+      "lastLineTotal": 1.2,
+      "typicalLineTotal": 1.2,
       "timesUnavailable": 0,
       "nameTruncated": false,
       "orders": [
+        "860136286",
+        "670411596",
+        "877243131",
+        "880248879"
+      ]
+    },
+    {
+      "name": "Tanoshi Nouilles ramen précuites au poulet teriyaki",
+      "packaging": "le sachet de 360g",
+      "timesOrdered": 4,
+      "totalQuantity": 5,
+      "unit": "unit",
+      "lastPrice": 3.28,
+      "lineTotals": [
+        6.6,
+        3.3,
+        3.24,
+        3.28
+      ],
+      "lastLineTotal": 3.28,
+      "typicalLineTotal": 3.29,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "670411596",
         "863727172",
-        "145148438",
-        "362261931",
-        "877243131"
+        "819539390",
+        "880248879"
       ]
     },
     {
@@ -2109,72 +2243,6 @@
       ]
     },
     {
-      "name": "Salakis Fromage 100% brebis herbes de Provence",
-      "packaging": "le bocal de 300g",
-      "timesOrdered": 3,
-      "totalQuantity": 4,
-      "unit": "unit",
-      "lastPrice": 3.37,
-      "lineTotals": [
-        6.78,
-        3.39,
-        3.37
-      ],
-      "lastLineTotal": 3.37,
-      "typicalLineTotal": 3.39,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "517088600",
-        "716617122",
-        "246195976"
-      ]
-    },
-    {
-      "name": "Tanoshi Riz pour sushi Japonica",
-      "packaging": "le sachet de 450g",
-      "timesOrdered": 3,
-      "totalQuantity": 3,
-      "unit": "unit",
-      "lastPrice": 3.49,
-      "lineTotals": [
-        3.5,
-        3.5,
-        3.49
-      ],
-      "lastLineTotal": 3.49,
-      "typicalLineTotal": 3.5,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "716617122",
-        "863727172",
-        "819539390"
-      ]
-    },
-    {
-      "name": "Tanoshi Feuilles d'algues nori grillées pour sushi",
-      "packaging": "le sachet de 7 feuilles - 17,5g",
-      "timesOrdered": 3,
-      "totalQuantity": 3,
-      "unit": "unit",
-      "lastPrice": 3.29,
-      "lineTotals": [
-        3.29,
-        3.29,
-        3.29
-      ],
-      "lastLineTotal": 3.29,
-      "typicalLineTotal": 3.29,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "716617122",
-        "863727172",
-        "819539390"
-      ]
-    },
-    {
       "name": "Top Budget Farine de blé Type 55",
       "packaging": "le paquet de 1 kg",
       "timesOrdered": 3,
@@ -2219,25 +2287,25 @@
       ]
     },
     {
-      "name": "Saint Eloi, une marque Intermarché Pois chiches français",
-      "packaging": "la boîte de 530 g net égoutté",
+      "name": "Le Choix du Primeur Citrons JAUNES",
+      "packaging": "en vrac - à partir de 140g environ (soit 1 citron)",
       "timesOrdered": 3,
-      "totalQuantity": 4,
-      "unit": "unit",
-      "lastPrice": 1.2,
+      "totalQuantity": 0.8600000000000001,
+      "unit": "kg",
+      "lastPrice": 3.49,
       "lineTotals": [
-        1.2,
-        1.5,
-        1.2
+        0.98,
+        0.98,
+        1.05
       ],
-      "lastLineTotal": 1.2,
-      "typicalLineTotal": 1.2,
+      "lastLineTotal": 1.05,
+      "typicalLineTotal": 0.98,
       "timesUnavailable": 0,
       "nameTruncated": false,
       "orders": [
         "860136286",
-        "670411596",
-        "877243131"
+        "819539390",
+        "880248879"
       ]
     },
     {
@@ -2263,25 +2331,25 @@
       ]
     },
     {
-      "name": "Tanoshi Nouilles ramen précuites au poulet teriyaki",
-      "packaging": "le sachet de 360g",
+      "name": "Le Choix du Primeur Salade MACHE",
+      "packaging": "la barquette de 125g",
       "timesOrdered": 3,
-      "totalQuantity": 4,
+      "totalQuantity": 3,
       "unit": "unit",
-      "lastPrice": 3.24,
+      "lastPrice": 0.99,
       "lineTotals": [
-        6.6,
-        3.3,
-        3.24
+        0.99,
+        0.99,
+        0.99
       ],
-      "lastLineTotal": 3.24,
-      "typicalLineTotal": 3.3,
+      "lastLineTotal": 0.99,
+      "typicalLineTotal": 0.99,
       "timesUnavailable": 0,
       "nameTruncated": false,
       "orders": [
-        "670411596",
-        "863727172",
-        "819539390"
+        "091373279",
+        "819539390",
+        "880248879"
       ]
     },
     {
@@ -2304,6 +2372,28 @@
         "145148438",
         "877243131",
         "819539390"
+      ]
+    },
+    {
+      "name": "Negroni Assortiment de charcuterie",
+      "packaging": "La barquette de 130 g",
+      "timesOrdered": 3,
+      "totalQuantity": 3,
+      "unit": "unit",
+      "lastPrice": 6.03,
+      "lineTotals": [
+        6.03,
+        6.03,
+        6.03
+      ],
+      "lastLineTotal": 6.03,
+      "typicalLineTotal": 6.03,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "145148438",
+        "362261931",
+        "880248879"
       ]
     },
     {
@@ -2865,26 +2955,6 @@
       ]
     },
     {
-      "name": "Le Choix du Primeur Citrons JAUNES",
-      "packaging": "en vrac - à partir de 140g environ (soit 1 citron)",
-      "timesOrdered": 2,
-      "totalQuantity": 0.56,
-      "unit": "kg",
-      "lastPrice": 3.49,
-      "lineTotals": [
-        0.98,
-        0.98
-      ],
-      "lastLineTotal": 0.98,
-      "typicalLineTotal": 0.98,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "860136286",
-        "819539390"
-      ]
-    },
-    {
       "name": "Regain, une marque Intermarché Boisson à base d'amande BIO",
       "packaging": "la brique de 1l",
       "timesOrdered": 2,
@@ -2982,6 +3052,26 @@
       "orders": [
         "670411596",
         "877243131"
+      ]
+    },
+    {
+      "name": "Salakis Fromage 100% brebis basilic",
+      "packaging": "le bocal de 300 g",
+      "timesOrdered": 2,
+      "totalQuantity": 3,
+      "unit": "unit",
+      "lastPrice": 3.7,
+      "lineTotals": [
+        7,
+        3.7
+      ],
+      "lastLineTotal": 3.7,
+      "typicalLineTotal": 5.35,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "670411596",
+        "880248879"
       ]
     },
     {
@@ -3105,26 +3195,6 @@
       ]
     },
     {
-      "name": "Le Choix du Primeur Salade MACHE",
-      "packaging": "la barquette de 125g",
-      "timesOrdered": 2,
-      "totalQuantity": 2,
-      "unit": "unit",
-      "lastPrice": 0.99,
-      "lineTotals": [
-        0.99,
-        0.99
-      ],
-      "lastLineTotal": 0.99,
-      "typicalLineTotal": 0.99,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "091373279",
-        "819539390"
-      ]
-    },
-    {
       "name": "Le Choix du Primeur Oignons ROUGES",
       "packaging": "en vrac - à partir de 150g environ (soit 1 oignon)",
       "timesOrdered": 2,
@@ -3205,26 +3275,6 @@
       ]
     },
     {
-      "name": "Negroni Assortiment de charcuterie",
-      "packaging": "La barquette de 130 g",
-      "timesOrdered": 2,
-      "totalQuantity": 2,
-      "unit": "unit",
-      "lastPrice": 6.03,
-      "lineTotals": [
-        6.03,
-        6.03
-      ],
-      "lastLineTotal": 6.03,
-      "typicalLineTotal": 6.03,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "145148438",
-        "362261931"
-      ]
-    },
-    {
       "name": "Volaé, une marque Intermarché Escalopes de dinde extra fines x2",
       "packaging": "la barquette de 240 gr environ",
       "timesOrdered": 2,
@@ -3262,6 +3312,66 @@
       "orders": [
         "145148438",
         "362261931"
+      ]
+    },
+    {
+      "name": "Jean Rozé, une marque Intermarché Côtes de PORC",
+      "packaging": "les 4 pièces de 140g - 560 g",
+      "timesOrdered": 2,
+      "totalQuantity": 2,
+      "unit": "unit",
+      "lastPrice": 4.79,
+      "lineTotals": [
+        4.79,
+        4.79
+      ],
+      "lastLineTotal": 4.79,
+      "typicalLineTotal": 4.79,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "877243131",
+        "880248879"
+      ]
+    },
+    {
+      "name": "Itinéraire des Saveurs, une marque Intermarché Vinaigre Balsamique de Modène",
+      "packaging": "la bouteille de 25 cl",
+      "timesOrdered": 2,
+      "totalQuantity": 2,
+      "unit": "unit",
+      "lastPrice": 1.52,
+      "lineTotals": [
+        1.54,
+        1.52
+      ],
+      "lastLineTotal": 1.52,
+      "typicalLineTotal": 1.53,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "819539390",
+        "880248879"
+      ]
+    },
+    {
+      "name": "Herta Lardons nature sans nitrite",
+      "packaging": "Les 2 barquettes de 75g - 150g",
+      "timesOrdered": 2,
+      "totalQuantity": 3,
+      "unit": "unit",
+      "lastPrice": 1.77,
+      "lineTotals": [
+        1.85,
+        3.54
+      ],
+      "lastLineTotal": 3.54,
+      "typicalLineTotal": 2.7,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "819539390",
+        "880248879"
       ]
     },
     {
@@ -3352,6 +3462,24 @@
       "nameTruncated": true,
       "orders": [
         "276831991"
+      ]
+    },
+    {
+      "name": "Ultima croquettes pour c...",
+      "packaging": "le sac de 1,5 kg",
+      "timesOrdered": 1,
+      "totalQuantity": 1,
+      "unit": "unit",
+      "lastPrice": 12.72,
+      "lineTotals": [
+        12.72
+      ],
+      "lastLineTotal": 12.72,
+      "typicalLineTotal": 12.72,
+      "timesUnavailable": 0,
+      "nameTruncated": true,
+      "orders": [
+        "543905473"
       ]
     },
     {
@@ -4339,24 +4467,6 @@
       ]
     },
     {
-      "name": "Salakis Fromage 100% brebis basilic",
-      "packaging": "le bocal de 300 g",
-      "timesOrdered": 1,
-      "totalQuantity": 2,
-      "unit": "unit",
-      "lastPrice": 3.5,
-      "lineTotals": [
-        7
-      ],
-      "lastLineTotal": 7,
-      "typicalLineTotal": 7,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "670411596"
-      ]
-    },
-    {
       "name": "Bouton d’Or, une marque Intermarché Poivre noir moulu",
       "packaging": "le pot de 48g",
       "timesOrdered": 1,
@@ -4785,24 +4895,6 @@
       ]
     },
     {
-      "name": "Jean Rozé, une marque Intermarché Côtes de PORC",
-      "packaging": "les 4 pièces de 140g - 560 g",
-      "timesOrdered": 1,
-      "totalQuantity": 1,
-      "unit": "unit",
-      "lastPrice": 4.79,
-      "lineTotals": [
-        4.79
-      ],
-      "lastLineTotal": 4.79,
-      "typicalLineTotal": 4.79,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "877243131"
-      ]
-    },
-    {
       "name": "Chabrior, une marque Intermarché Demi-baguettes de campagne précuites BIO",
       "packaging": "le paquet de 2 de 125g - 250g",
       "timesOrdered": 1,
@@ -5019,24 +5111,6 @@
       ]
     },
     {
-      "name": "Itinéraire des Saveurs, une marque Intermarché Vinaigre Balsamique de Modène",
-      "packaging": "la bouteille de 25 cl",
-      "timesOrdered": 1,
-      "totalQuantity": 1,
-      "unit": "unit",
-      "lastPrice": 1.54,
-      "lineTotals": [
-        1.54
-      ],
-      "lastLineTotal": 1.54,
-      "typicalLineTotal": 1.54,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "819539390"
-      ]
-    },
-    {
       "name": "Le Choix du Primeur Gingembre",
       "packaging": "en vrac - à partir de 150 gr (soit 1 racine)",
       "timesOrdered": 1,
@@ -5073,24 +5147,6 @@
       ]
     },
     {
-      "name": "Herta Lardons nature sans nitrite",
-      "packaging": "Les 2 barquettes de 75g - 150g",
-      "timesOrdered": 1,
-      "totalQuantity": 1,
-      "unit": "unit",
-      "lastPrice": 1.85,
-      "lineTotals": [
-        1.85
-      ],
-      "lastLineTotal": 1.85,
-      "typicalLineTotal": 1.85,
-      "timesUnavailable": 0,
-      "nameTruncated": false,
-      "orders": [
-        "819539390"
-      ]
-    },
-    {
       "name": "Terroirs, une marque Intermarché Pomme de terre blonde - vapeur rissolée salade - NOUVELLE RECOLTE",
       "packaging": "le filet de 2kg",
       "timesOrdered": 1,
@@ -5106,6 +5162,148 @@
       "nameTruncated": false,
       "orders": [
         "819539390"
+      ]
+    },
+    {
+      "name": "Catsan Naturelle Plus - litière pour chat compostable végétale",
+      "packaging": "le sachet de 7L",
+      "timesOrdered": 1,
+      "totalQuantity": 0,
+      "unit": "unit",
+      "lastPrice": 6.92,
+      "lineTotals": [],
+      "lastLineTotal": null,
+      "typicalLineTotal": null,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "880248879"
+      ]
+    },
+    {
+      "name": "Apta, une marque Intermarché Gel déboucheur X-Trem à la soude",
+      "packaging": "le flacon de 1 l",
+      "timesOrdered": 1,
+      "totalQuantity": 2,
+      "unit": "unit",
+      "lastPrice": 1.46,
+      "lineTotals": [
+        2.92
+      ],
+      "lastLineTotal": 2.92,
+      "typicalLineTotal": 2.92,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "880248879"
+      ]
+    },
+    {
+      "name": "Ultima croquettes pour chat stérilisé protection urinaire poulet",
+      "packaging": "le sac de 1,5 kg",
+      "timesOrdered": 1,
+      "totalQuantity": 1,
+      "unit": "unit",
+      "lastPrice": 8.48,
+      "lineTotals": [
+        8.48
+      ],
+      "lastLineTotal": 8.48,
+      "typicalLineTotal": 8.48,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "880248879"
+      ]
+    },
+    {
+      "name": "Zainab Riz long basmati",
+      "packaging": "le paquet de 1kg",
+      "timesOrdered": 1,
+      "totalQuantity": 1,
+      "unit": "unit",
+      "lastPrice": 4.02,
+      "lineTotals": [
+        4.02
+      ],
+      "lastLineTotal": 4.02,
+      "typicalLineTotal": 4.02,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "880248879"
+      ]
+    },
+    {
+      "name": "Galzin Baguette de pain aveyronnaise",
+      "packaging": "la baguette de 300 g",
+      "timesOrdered": 1,
+      "totalQuantity": 1,
+      "unit": "unit",
+      "lastPrice": 0.99,
+      "lineTotals": [
+        0.99
+      ],
+      "lastLineTotal": 0.99,
+      "typicalLineTotal": 0.99,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "880248879"
+      ]
+    },
+    {
+      "name": "Mix buffet Carottes finement râpées BIO",
+      "packaging": "la barquette de 250 g",
+      "timesOrdered": 1,
+      "totalQuantity": 1,
+      "unit": "unit",
+      "lastPrice": 3.54,
+      "lineTotals": [
+        3.54
+      ],
+      "lastLineTotal": 3.54,
+      "typicalLineTotal": 3.54,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "880248879"
+      ]
+    },
+    {
+      "name": "Lesieur Sauce salade légère moutarde à l'ancienne",
+      "packaging": "la bouteille de 500ml",
+      "timesOrdered": 1,
+      "totalQuantity": 1,
+      "unit": "unit",
+      "lastPrice": 1.93,
+      "lineTotals": [
+        1.93
+      ],
+      "lastLineTotal": 1.93,
+      "typicalLineTotal": 1.93,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "880248879"
+      ]
+    },
+    {
+      "name": "Volaé, une marque Intermarché Filets de poulet blanc x6",
+      "packaging": "la barquette de 1 kg environ",
+      "timesOrdered": 1,
+      "totalQuantity": 0.812,
+      "unit": "kg",
+      "lastPrice": 11.85,
+      "lineTotals": [
+        9.62
+      ],
+      "lastLineTotal": 9.62,
+      "typicalLineTotal": 9.62,
+      "timesUnavailable": 0,
+      "nameTruncated": false,
+      "orders": [
+        "880248879"
       ]
     }
   ],
@@ -12427,6 +12625,298 @@
         }
       ],
       "total": 135.77
+    },
+    {
+      "orderNumber": "880248879",
+      "store": "Méré",
+      "date": {
+        "year": 2026,
+        "day": 29,
+        "month": 9
+      },
+      "items": [
+        {
+          "name": "Herta Lardons nature sans nitrite",
+          "truncated": false,
+          "packaging": "Les 2 barquettes de 75g - 150g",
+          "quantity": 2,
+          "unit": "unit",
+          "unitPrice": 1.77,
+          "lineTotal": 3.54,
+          "unavailable": false
+        },
+        {
+          "name": "Panzani Sauce Tomates Cuisinées ingrédients origine naturelle",
+          "truncated": false,
+          "packaging": "Le pot de 425g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 1.83,
+          "lineTotal": 1.83,
+          "unavailable": false
+        },
+        {
+          "name": "Le Choix du Primeur Citrons JAUNES",
+          "truncated": false,
+          "packaging": "en vrac - à partir de 140g environ (soit 1 citron)",
+          "quantity": 0.3,
+          "unit": "kg",
+          "unitPrice": 3.49,
+          "lineTotal": 1.05,
+          "unavailable": false
+        },
+        {
+          "name": "Croustipate Pâte à pizza qualité comme à la pizzeria",
+          "truncated": false,
+          "packaging": "la boîte de 500g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 2.43,
+          "lineTotal": 2.43,
+          "unavailable": false
+        },
+        {
+          "name": "Le Choix du Primeur Salade MACHE",
+          "truncated": false,
+          "packaging": "la barquette de 125g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 0.99,
+          "lineTotal": 0.99,
+          "unavailable": false
+        },
+        {
+          "name": "Salakis Fromage 100% brebis herbes de Provence",
+          "truncated": false,
+          "packaging": "le bocal de 300g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 3.63,
+          "lineTotal": 3.63,
+          "unavailable": false
+        },
+        {
+          "name": "Volaé, une marque Intermarché œufs frais de poules élevées au sol",
+          "truncated": false,
+          "packaging": "la boîte de 12 œufs",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 2.96,
+          "lineTotal": 2.96,
+          "unavailable": false
+        },
+        {
+          "name": "Le Choix du Primeur Poivrons JAUNES",
+          "truncated": false,
+          "packaging": "en vrac - à partir de 200 gr (soit 1 poivron)",
+          "quantity": 0.4,
+          "unit": "kg",
+          "unitPrice": 4.99,
+          "lineTotal": 2,
+          "unavailable": false
+        },
+        {
+          "name": "Le Choix du Primeur Poivron ROUGE",
+          "truncated": false,
+          "packaging": "en vrac - à partir de 200g (soit 1 poivron)",
+          "quantity": 0.2,
+          "unit": "kg",
+          "unitPrice": 4.99,
+          "lineTotal": 1,
+          "unavailable": false
+        },
+        {
+          "name": "Catsan Naturelle Plus - litière pour chat compostable végétale",
+          "truncated": false,
+          "packaging": "le sachet de 7L",
+          "quantity": 0,
+          "unit": "unit",
+          "unitPrice": 6.92,
+          "lineTotal": 0,
+          "unavailable": false
+        },
+        {
+          "name": "Le Choix du Primeur Concombre",
+          "truncated": false,
+          "packaging": "vendu à la pièce",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 0.9,
+          "lineTotal": 0.9,
+          "unavailable": false
+        },
+        {
+          "name": "Negroni Assortiment de charcuterie",
+          "truncated": false,
+          "packaging": "La barquette de 130 g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 6.03,
+          "lineTotal": 6.03,
+          "unavailable": false
+        },
+        {
+          "name": "Apta, une marque Intermarché Gel déboucheur X-Trem à la soude",
+          "truncated": false,
+          "packaging": "le flacon de 1 l",
+          "quantity": 2,
+          "unit": "unit",
+          "unitPrice": 1.46,
+          "lineTotal": 2.92,
+          "unavailable": false
+        },
+        {
+          "name": "Itinéraire des Saveurs, une marque Intermarché Vinaigre Balsamique de Modène",
+          "truncated": false,
+          "packaging": "la bouteille de 50 cl",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 1.52,
+          "lineTotal": 1.52,
+          "unavailable": false
+        },
+        {
+          "name": "Saint Eloi, une marque Intermarché Pois chiches français",
+          "truncated": false,
+          "packaging": "la boîte de 530 g net égoutté",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 1.2,
+          "lineTotal": 1.2,
+          "unavailable": false
+        },
+        {
+          "name": "Ultima croquettes pour chat stérilisé protection urinaire poulet",
+          "truncated": false,
+          "packaging": "le sac de 1,5 kg",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 8.48,
+          "lineTotal": 8.48,
+          "unavailable": false
+        },
+        {
+          "name": "Zainab Riz long basmati",
+          "truncated": false,
+          "packaging": "le paquet de 1kg",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 4.02,
+          "lineTotal": 4.02,
+          "unavailable": false
+        },
+        {
+          "name": "Tanoshi Riz pour sushi Japonica",
+          "truncated": false,
+          "packaging": "le sachet de 450g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 3.53,
+          "lineTotal": 3.53,
+          "unavailable": false
+        },
+        {
+          "name": "Jean Rozé, une marque Intermarché Côtes de PORC",
+          "truncated": false,
+          "packaging": "les 4 pièces de 140g - 560 g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 4.79,
+          "lineTotal": 4.79,
+          "unavailable": false
+        },
+        {
+          "name": "Galzin Baguette de pain aveyronnaise",
+          "truncated": false,
+          "packaging": "la baguette de 300 g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 0.99,
+          "lineTotal": 0.99,
+          "unavailable": false
+        },
+        {
+          "name": "Tanoshi Nouilles ramen précuites au poulet teriyaki",
+          "truncated": false,
+          "packaging": "le sachet de 360g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 3.28,
+          "lineTotal": 3.28,
+          "unavailable": false
+        },
+        {
+          "name": "Mix buffet Carottes finement râpées BIO",
+          "truncated": false,
+          "packaging": "la barquette de 250 g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 3.54,
+          "lineTotal": 3.54,
+          "unavailable": false
+        },
+        {
+          "name": "Salakis Fromage 100% brebis basilic",
+          "truncated": false,
+          "packaging": "le bocal de 300 g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 3.7,
+          "lineTotal": 3.7,
+          "unavailable": false
+        },
+        {
+          "name": "Tanoshi Feuilles d'algues nori grillées pour sushi",
+          "truncated": false,
+          "packaging": "le sachet de 7 feuilles - 17,5g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 3.29,
+          "lineTotal": 3.29,
+          "unavailable": false
+        },
+        {
+          "name": "Boursin Fromage à tartiner ail et fines herbes",
+          "truncated": false,
+          "packaging": "la boite de 150g",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 2.17,
+          "lineTotal": 2.17,
+          "unavailable": false
+        },
+        {
+          "name": "Lesieur Sauce salade légère moutarde à l'ancienne",
+          "truncated": false,
+          "packaging": "la bouteille de 500ml",
+          "quantity": 1,
+          "unit": "unit",
+          "unitPrice": 1.93,
+          "lineTotal": 1.93,
+          "unavailable": false
+        },
+        {
+          "name": "Pâturages, une marque Intermarché Mozzarella",
+          "truncated": false,
+          "packaging": "le sachet de 125 g net égoutté",
+          "quantity": 2,
+          "unit": "unit",
+          "unitPrice": 0.93,
+          "lineTotal": 1.86,
+          "unavailable": false
+        },
+        {
+          "name": "Volaé, une marque Intermarché Filets de poulet blanc x6",
+          "truncated": false,
+          "packaging": "la barquette de 1 kg environ",
+          "quantity": 0.812,
+          "unit": "kg",
+          "unitPrice": 11.85,
+          "lineTotal": 9.62,
+          "unavailable": false
+        }
+      ],
+      "total": 82
     }
   ]
 }
