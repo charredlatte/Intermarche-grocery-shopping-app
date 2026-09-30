@@ -71,6 +71,7 @@ const otherDish=(id)=>{const slot=plan.meals.find((m)=>m.id===id).slot;
   return Object.keys(all()).find((s)=>all()[s].slot===slot&&s!==picks[id]&&s!==baseline[id]);};
 const shopText=()=>document.querySelector("#shop-out").textContent;
 const approveAll=()=>{for(const l of basket().pending)chooseLine(l.key,"skip");approveList();};
+window.__builtDelivered=DATA.delivered;DATA.delivered=null; // whether this week's receipt is in yet is not a scenario's business; one that wants it sets it
 `;
 
 const only = process.argv[2];

@@ -790,6 +790,10 @@
 const DATA = /*__DATA__*/ null;
 const LIB = DATA.recipes, PRICES = DATA.pricebook, STAPLES = DATA.staples, CONF = DATA.config;
 const ONHAND = DATA.onHand || { from: null, items: [] };
+// The week's own shop, once its receipt is in the repo. Never subtracted from
+// the basket (it is the basket); used only to tell a changed week what the
+// order already covers.
+const weekReceipt = () => DATA.delivered || null;
 const EQUIV = DATA.equivalents || [];
 const CATALOGUE = DATA.catalogue || {};
 const SITE = DATA.site || "https://www.intermarche.com";
@@ -2295,14 +2299,41 @@ function pushPanel(lines) {
    against, and says nothing. */
 function driftSinceApproval() {
   if (!approved || !approved.wanted) return null;
-  const now = Object.fromEntries(weekWanted().map((w) => [w.key, w]));
+  const wanted = weekWanted();
+  const now = Object.fromEntries(wanted.map((w) => [w.key, w]));
   const was = approved.wanted;
+
+  // Once the receipt is in, the order is what it delivered, not what was
+  // approved: a line the store filled with another product, or one bought
+  // beyond the list, is in the kitchen all the same. Together with what was
+  // already there it is one pool, drawn down in list order like the basket's,
+  // and a need it covers is not something to buy separately.
+  const receipt = weekReceipt();
+  let covered = null;
+  if (receipt) {
+    const p = pool();
+    for (const i of receipt.items) p.set(i.product, (p.get(i.product) || 0) + i.quantity);
+    covered = new Set();
+    for (const w of wanted) {
+      const name = w.name || subs[w.key] || w.key;
+      if (draw(p, name, w.required).got >= w.required - 1e-9) covered.add(w.key);
+    }
+  }
+  // How much of `k` the order brought, counting its equivalents.
+  const delivered = (k) => receipt.items.reduce((t, i) => t + convert(i.quantity, i.product, k), 0);
+
   const more = [], less = [];
   for (const [k, w] of Object.entries(now)) {
+    if (covered && covered.has(k)) continue;
     if (w.required > (was[k] ? was[k].required : 0) + 1e-9) more.push({ name: w.name || k, for: w.for });
   }
   for (const [k, w] of Object.entries(was)) {
-    if ((now[k] ? now[k].required : 0) < w.required - 1e-9) less.push({ name: w.name || k, for: w.for });
+    const need = now[k] ? now[k].required : 0;
+    // After the receipt, "in this order and no longer needed" means it came and
+    // some of it is now left over — not a line that never arrived, and not the
+    // part of an approved need the store only half filled.
+    if (receipt && need >= delivered(k) - 1e-9) continue;
+    if (need < w.required - 1e-9) less.push({ name: w.name || k, for: w.for });
   }
   return more.length || less.length ? { more, less } : null;
 }
@@ -2312,7 +2343,7 @@ const pushSent = () => { const s = pushState(); return pushOpen() || (!!s && s.s
 function driftNotice() {
   const d = driftSinceApproval();
   if (!d) return "";
-  const sent = pushSent();
+  const sent = pushSent() || !!weekReceipt();
   const item = (x) => `<li>${esc(x.name)} <span class="why">— ${esc(x.for)}</span></li>`;
   return `<div class="notice" role="status">
       <div class="notice-title">The week has changed since you approved this list</div>

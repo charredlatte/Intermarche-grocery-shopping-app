@@ -31,6 +31,9 @@
         },
         {
           "name": "Saint Eloi, une marque Intermarché Riz long grain de qualité supérieure basmati origine Inde ou Pakistan naturellement parfumé"
+        },
+        {
+          "name": "Zainab Riz long basmati"
         }
       ]
     },
@@ -71,6 +74,9 @@
         {
           "name": "Notre Sélection Aiguillettes de poulet",
           "kg": 0.5
+        },
+        {
+          "name": "Volaé, une marque Intermarché Filets de poulet blanc x6"
         }
       ]
     },
@@ -103,6 +109,9 @@
         },
         {
           "name": "Chabrior, une marque Intermarché Demi-baguettes de campagne précuites BIO"
+        },
+        {
+          "name": "Galzin Baguette de pain aveyronnaise"
         }
       ]
     },
@@ -349,6 +358,50 @@
         },
         {
           "name": "Volaé, une marque Intermarché Escalopes de dinde extra fines x2"
+        }
+      ]
+    },
+    {
+      "id": "carottes",
+      "label": "Carrots — loose, or ready-grated",
+      "note": "Added 2026-09-30: the 29 September order came with a tray of grated carrots where the recipes name loose ones. Grated works anywhere the carrot goes in raw or is stir-fried; a dish that wants coins or chunks reads worse with it.",
+      "members": [
+        {
+          "name": "Le Choix du Primeur Carottes"
+        },
+        {
+          "name": "Mix buffet Carottes finement râpées BIO",
+          "kg": 0.25
+        }
+      ]
+    },
+    {
+      "id": "brebis-salakis",
+      "label": "Salakis brebis in a jar — herbs, basil or plain",
+      "note": "Same cheese, different herbs in the oil. The 29 September order had one herbes de Provence and one basil where two herbes were planned.",
+      "members": [
+        {
+          "name": "Salakis Fromage 100% brebis herbes de Provence"
+        },
+        {
+          "name": "Salakis Fromage 100% brebis basilic"
+        },
+        {
+          "name": "Salakis Fromage 100% brebis"
+        }
+      ]
+    },
+    {
+      "id": "lardons",
+      "label": "Herta lardons nature",
+      "protein": "charcuterie",
+      "note": "The same lardons; Herta added \"sans nitrite\" to the name, as the catalogue lookup of 14 September found.",
+      "members": [
+        {
+          "name": "Herta Lardons nature"
+        },
+        {
+          "name": "Herta Lardons nature sans nitrite"
         }
       ]
     }

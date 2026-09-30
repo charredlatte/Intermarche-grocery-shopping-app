@@ -2131,8 +2131,8 @@
       "checked": "2026-09-14",
       "note": "No cooking wine as such — \"vin blanc\" returns 370 bottles. Pick any dry white; nothing chosen for you."
     },
-    "Vinaigre balsamique": {
-      "status": "picked",
+    "Itinéraire des Saveurs, une marque Intermarché Vinaigre Balsamique de Modène": {
+      "status": "check",
       "search": "vinaigre balsamique",
       "checked": "2026-09-14",
       "listing": {
@@ -2142,7 +2142,8 @@
         "unitPrice": "6,16 €/L",
         "price": 1.54,
         "url": "/produit/vinaigre-balsamique-de-modene/3250391593422"
-      }
+      },
+      "note": "Re-keyed 2026-09-30 from the placeholder \"Vinaigre balsamique\" to the bottle on her receipts. The receipts have the 50 cl bottle; the listing recorded on 14 September is the 25 cl one."
     },
     "Volaé, une marque Intermarché Cuisse de poulet jaune déjointée": {
       "status": "exact",

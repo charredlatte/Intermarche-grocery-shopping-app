@@ -202,8 +202,10 @@ every snapshot late — the condition that broke saving six times — and each
 proves one thing that once went wrong: an early tap blanking her week, a save
 erasing another build's fields, a leftovers meal left without its pot, a
 changed week pushed as the old list, a deleted dish taking its meal with it, a
-replaced tab still saving, the same four for her recipe edits, and the chilli
-guard and Approve lock. None of them names a meal or dish from a particular
+replaced tab still saving, the same four for her recipe edits, the chilli
+guard and Approve lock, and a week rewritten after the order asking her to buy
+what the receipt already brought. The harness starts every scenario with no
+receipt (`DATA.delivered = null`); a scenario that needs one supplies it. None of them names a meal or dish from a particular
 week, so they outlive the plan. Against `main` as it stood before them, 16 of
 their checks failed. Cloud sessions have Chromium at `/opt/pw-browsers/chromium`;
 elsewhere set `CHROMIUM`.
@@ -242,6 +244,16 @@ against a stub store before it was fixed):
   order has gone, as what to buy separately. It compares needs only, never the
   kitchen or her counts. Approvals from before this carry no `wanted` and stay
   quiet.
+- *Once the week's receipt is in, it settles what to buy separately*
+  (2026-09-30). The build ships the newest receipt dated inside the week as
+  `delivered`, never subtracted from the basket. After it, a need that the
+  receipt plus the kitchen covers, equivalents included, is not "buy
+  separately", and "no longer needed" means it came and is left over. Before
+  this, a plan rewritten around what actually came (chicken where turkey was
+  approved) told her to buy the chicken again. So when an order comes back
+  different, add the receipt, link any new product names in `equivalents.json`,
+  and rewrite the plan file around what is in the kitchen. The week of
+  28 September was the first.
 - *A swap to a dish since deleted from the library* falls back to the planned
   dish with a notice, instead of the meal vanishing from the week and the
   basket.

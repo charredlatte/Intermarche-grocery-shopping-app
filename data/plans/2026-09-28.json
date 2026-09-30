@@ -3,12 +3,13 @@
   "label": "Week of 28 September",
   "store": "Intermarché Drive Méré",
   "notes": [
-    "Five dinners, Monday to Friday; the weekend is yours. Three Chinese stir-fries and two Spanish/Italian nights, which is the 50/50 rule as close as five divides, tilted towards what you asked for.",
-    "Kept cheap: the dearest dinner is under 11 €, and two of them (pizza, fried rice with lardons) are under 5 €.",
-    "The ginger you already have carries all three stir-fries and Thursday's cold ramen, so none goes on the order.",
-    "The last order was 15 September, twelve days ago. The kitchen list keeps only the cupboard lines from it: ginger, both soy sauces, the yakitori sauce, sugar, olive oil, paprika, rosemary, balsamic, cornichons and the coffee. Everything fresh on that receipt is taken as eaten.",
-    "Coffee is struck because the two boxes of 30 from 15 September should last until about 5 October. If the cupboard says otherwise, add it back: it is 19,55 €.",
-    "Monday's rice is cooked double. Tuesday's lunch is what's left of it."
+    "Rewritten on 30 September around what the 29 September order actually brought: order 880248879, collected Tuesday between 16h30 and 17h30. Every dinner and lunch below is cooked from that bag and the cupboard.",
+    "Monday and Tuesday came before the food did, so their lunches and dinners are off the plan. The turkey stir-fry, the patatas, the potato salad and the leftover rice all went with them. Breakfasts stay as they were.",
+    "What the order changed: chicken fillets came instead of turkey (812 g, six fillets), which makes two chicken dinners. The potatoes were skipped, so nothing here needs them. No garlic, broccoli or cheddar came either; the notes on each dish say what to do without them.",
+    "The dinners now run Wednesday to Sunday, the same five as before, just two days later: three Asian (Japanese, Chinese, Chinese) and two European (Italian, French). The European pork night is a new dish, because the only pork chop recipe in the library was a soy stir-fry.",
+    "Proteins: chicken twice, pork, lardons, and a vegetarian pizza.",
+    "The cat litter was refused at collection, so it is not in the kitchen. It still needs buying.",
+    "The kitchen list from 15 September still stands: ginger, both soy sauces, the yakitori sauce, sugar, olive oil, paprika, rosemary, balsamic, cornichons and the coffee."
   ],
   "stillOnHand": [
     "Le Choix du Primeur Gingembre",
@@ -26,26 +27,25 @@
   ],
   "meals": [
     { "id": "monday-breakfast", "day": "monday", "slot": "breakfast", "recipe": "sandwich-matin" },
-    { "id": "monday-lunch", "day": "monday", "slot": "lunch", "recipe": "baguette-boursin", "note": "Nothing to cook on the day the order lands." },
-    { "id": "monday-dinner", "day": "monday", "slot": "dinner", "recipe": "dinde-celeri-gingembre", "note": "Cook 300 g of rice instead of 150; the other half is Tuesday's lunch." },
 
     { "id": "tuesday-breakfast", "day": "tuesday", "slot": "breakfast", "recipe": "sandwich-matin" },
-    { "id": "tuesday-lunch", "day": "tuesday", "slot": "lunch", "recipe": "riz-saute-restes", "note": "Monday's rice with an egg through it.", "leftovers": true, "from": "monday-dinner" },
-    { "id": "tuesday-dinner", "day": "tuesday", "slot": "dinner", "recipe": "patatas-a-lo-pobre", "note": "Paprika doux only, which is what's in the cupboard." },
 
     { "id": "wednesday-breakfast", "day": "wednesday", "slot": "breakfast", "recipe": "sandwich-matin" },
-    { "id": "wednesday-lunch", "day": "wednesday", "slot": "lunch", "recipe": "salade-piemontaise", "note": "Make it Tuesday night with the rest of the potatoes from the patatas." },
-    { "id": "wednesday-dinner", "day": "wednesday", "slot": "dinner", "recipe": "porc-soja-gingembre" },
+    { "id": "wednesday-lunch", "day": "wednesday", "slot": "lunch", "recipe": "salade-pois-chiches", "note": "Your swap from Monday, moved to the first day the chickpeas were in. One jar of brebis is herbes de Provence and the other is basil; either works. The Lesieur mustard dressing that came is the dressing." },
+    { "id": "wednesday-dinner", "day": "wednesday", "slot": "dinner", "recipe": "donburi-teriyaki", "note": "Three of the six chicken fillets (about 400 g), in strips. No broccoli came: leave it out, or pick up a head if you pass a shop." },
 
     { "id": "thursday-breakfast", "day": "thursday", "slot": "breakfast", "recipe": "sandwich-matin" },
-    { "id": "thursday-lunch", "day": "thursday", "slot": "lunch", "recipe": "ramen-froid-concombre" },
-    { "id": "thursday-dinner", "day": "thursday", "slot": "dinner", "recipe": "pizza-maison", "note": "The cherry tomatoes are the breakfast ones, so there is one box for both." },
+    { "id": "thursday-lunch", "day": "thursday", "slot": "lunch", "recipe": "ramen-froid-concombre", "note": "The ramen that came is the teriyaki chicken one, so the sachet already tastes of what the yakitori sauce adds; go easy on the sauce. The grated carrots go in as they are." },
+    { "id": "thursday-dinner", "day": "thursday", "slot": "dinner", "recipe": "pizza-maison", "note": "The cherry tomatoes are the breakfast ones. No garlic came, so leave it out unless you have some. If there's half a yellow pepper left from lunch, slice it over the top." },
 
     { "id": "friday-breakfast", "day": "friday", "slot": "breakfast", "recipe": "sandwich-matin" },
-    { "id": "friday-lunch", "day": "friday", "slot": "lunch", "recipe": "onigiri-oeuf", "note": "Roll them Thursday while the pizza bakes. The cucumber is the one from Monday and Thursday." },
-    { "id": "friday-dinner", "day": "friday", "slot": "dinner", "recipe": "riz-saute-lardons" },
+    { "id": "friday-lunch", "day": "friday", "slot": "lunch", "recipe": "onigiri-oeuf", "note": "Roll them Thursday while the pizza bakes. The last of the cucumber goes alongside." },
+    { "id": "friday-dinner", "day": "friday", "slot": "dinner", "recipe": "poulet-citron-gingembre", "note": "The other three chicken fillets. No broccoli or garlic came: the celery already in the fridge, sliced thin on the diagonal, goes in where the broccoli would, and the ginger carries the rest." },
 
     { "id": "saturday-breakfast", "day": "saturday", "slot": "breakfast", "recipe": "sandwich-matin" },
-    { "id": "sunday-breakfast", "day": "sunday", "slot": "breakfast", "recipe": "sandwich-matin" }
+    { "id": "saturday-dinner", "day": "saturday", "slot": "dinner", "recipe": "cotes-porc-romarin-poivrons", "note": "The Jean Rozé chops, the red pepper and the second yellow one, the mâche and the mustard dressing, all from Tuesday's bag. Cook the rice for Sunday alongside so it's cold by tomorrow." },
+
+    { "id": "sunday-breakfast", "day": "sunday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "sunday-dinner", "day": "sunday", "slot": "dinner", "recipe": "riz-saute-lardons", "note": "Yesterday's cold rice. Two packs of lardons came and one is enough; the second keeps until its date. The grated carrots can go straight in." }
   ]
 }
