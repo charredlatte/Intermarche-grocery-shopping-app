@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T22:06:20.362Z",
+  "generatedAt": "2026-10-01T15:19:50.117Z",
   "ordersParsed": 25,
   "averageBasket": 87.86,
   "averageItemCount": 29,
@@ -24,17 +24,17 @@
       "purchases": 14,
       "spend": 97.29
     },
-    "chicken": {
-      "orders": 13,
-      "shareOfOrders": 0.52,
-      "purchases": 22,
-      "spend": 129.04
-    },
     "charcuterie": {
-      "orders": 12,
-      "shareOfOrders": 0.48,
-      "purchases": 12,
-      "spend": 46.21
+      "orders": 14,
+      "shareOfOrders": 0.56,
+      "purchases": 16,
+      "spend": 55.31
+    },
+    "chicken": {
+      "orders": 14,
+      "shareOfOrders": 0.56,
+      "purchases": 23,
+      "spend": 138.66
     },
     "eggs": {
       "orders": 10,
