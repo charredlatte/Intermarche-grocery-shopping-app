@@ -15,10 +15,6 @@ from. Edit them freely: the sorter only adds, and never files a note that is alr
   plain week were rebuilt on 28 September, and the built page is ignored. CLAUDE.md says to delete it with
   `claude/trusting-tesla-a9rmyl` once the Kitchen work is done, not before. *— litterbox/2026-10-01-branches-grocery.md*
 
-- **Merged branches that can be deleted:** `claude/cool-johnson-u1r9xb`, `claude/exciting-bardeen-9vehk0`,
-  `claude/funny-knuth-1w0baa`, `claude/no-chilli-labels`, `claude/weekly-meal-grocery-list-wahieb`.
-  (`claude/trusting-tesla-a9rmyl` stays, as above.) *— litterbox/2026-10-01-branches-grocery.md*
-
 ## Ideas not built
 
 ### 1 October 2026: branches that never reached main
