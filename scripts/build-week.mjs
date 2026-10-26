@@ -94,15 +94,29 @@ const HEAT = new Set(["hob", "oven", "air fryer", "casserole dish"]);
 // there — which proved someone typed it, not that the dish was mild. Charlotte
 // asked on 2026-09-28 for nothing she reads to say what was left out, so the
 // tag is gone and the words come from her own lists in preferences.json.
+// The same extras the page refuses where she types an ingredient (HOT_WORDS in
+// artifact/template.html) travel with them, because the rule has to read the
+// same on both sides: the library must not ship what the page would refuse.
+const fold = (s) => String(s ?? "").normalize("NFD").replace(/\p{Mn}/gu, "").toLowerCase();
 const SPICY_WORDS = [
   ...(prefs.dietary?.excluded ?? []),
   ...(prefs.ingredients?.avoidDespiteBeingEuropean ?? []),
-];
+  "chilli", "piquant", "cayenne", "tabasco", "sriracha", "sambal", "jalapeno",
+  "gochujang", "habanero", "espelette", "nduja", "spicy",
+].map((w) => fold(w).replace(/^'+/, ""));   // accent-blind, and 'nduja is written both ways
 
-// Whether one recipe ingredient — { item, qty, product } — is something spicy.
+// Whether one recipe ingredient — { item, qty, product } — is something spicy,
+// and if so which word gave it away. The plain name and the exact Intermarché
+// name are both read: a dish can call the row "sauce" and carry the heat in the
+// product, and Méré shelves the hot version beside the plain one — the gyoza
+// bœuf ail piment, the anchois sauce piquante.
 function isSpicy(ing) {
-  // TODO(human)
-  return false;
+  const n = fold(`${ing.item ?? ""} ${ing.product ?? ""}`);
+  const hit = SPICY_WORDS.find((w) => w && n.includes(w));
+  if (hit) return hit;
+  // Paprika she buys and likes; only the kinds that don't say doux are out.
+  if (n.includes("paprika") && !n.includes("doux")) return "paprika";
+  return null;
 }
 
 /* ---- pricebook ---------------------------------------------------------- */
@@ -136,7 +150,8 @@ for (const [slug, r] of Object.entries(recipes)) {
     problems.push(`${slug}: tagged vegetarian but its protein is "${r.protein}"`);
   }
   for (const ing of r.ingredients ?? []) {
-    if (isSpicy(ing)) problems.push(`${slug}: "${ing.item}" (${ing.product || "no product"}) is spicy`);
+    const hot = isSpicy(ing);
+    if (hot) problems.push(`${slug}: "${ing.item}" (${ing.product || "no product"}) reads as ${hot}`);
   }
   // "no cook" has to mean what it says, or the Recipes tab's appliance chips lie.
   if ((r.tags ?? []).includes("no cook") && r.cookMinutes !== 0) {

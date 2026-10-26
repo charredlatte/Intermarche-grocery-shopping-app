@@ -2309,7 +2309,7 @@ function driftSinceApproval() {
   // already there it is one pool, drawn down in list order like the basket's,
   // and a need it covers is not something to buy separately.
   const receipt = weekReceipt();
-  let covered = null;
+  let covered = null, surplus = null;
   if (receipt) {
     const p = pool();
     for (const i of receipt.items) p.set(i.product, (p.get(i.product) || 0) + i.quantity);
@@ -2318,9 +2318,21 @@ function driftSinceApproval() {
       const name = w.name || subs[w.key] || w.key;
       if (draw(p, name, w.required).got >= w.required - 1e-9) covered.add(w.key);
     }
+    // What the order still holds once every need the week has NOW has drawn
+    // from it. Weighing the whole receipt against each dropped line instead
+    // called a product left over while another dish this week was still
+    // eating it: two dinners naming different members of one equivalence
+    // group are enough to do it, and she would read that the turkey escalope
+    // is spare on the day Thursday wants it. The kitchen is deliberately not
+    // in this pool — "in this order, and no longer needed" has to mean the
+    // order is what brought it.
+    surplus = new Map();
+    for (const i of receipt.items) surplus.set(i.product, (surplus.get(i.product) || 0) + i.quantity);
+    for (const w of wanted) draw(surplus, w.name || subs[w.key] || w.key, w.required);
   }
-  // How much of `k` the order brought, counting its equivalents.
-  const delivered = (k) => receipt.items.reduce((t, i) => t + convert(i.quantity, i.product, k), 0);
+  // How much of `name` the order brought that nothing in the week now eats.
+  const spare = (name) => [...surplus.keys()]
+    .reduce((t, held) => t + Math.max(0, convert(surplus.get(held) || 0, held, name)), 0);
 
   const more = [], less = [];
   for (const [k, w] of Object.entries(now)) {
@@ -2330,9 +2342,10 @@ function driftSinceApproval() {
   for (const [k, w] of Object.entries(was)) {
     const need = now[k] ? now[k].required : 0;
     // After the receipt, "in this order and no longer needed" means it came and
-    // some of it is now left over — not a line that never arrived, and not the
-    // part of an approved need the store only half filled.
-    if (receipt && need >= delivered(k) - 1e-9) continue;
+    // some of it is now left over — not a line that never arrived, not the
+    // part of an approved need the store only half filled, and not one that
+    // another dish still on the menu is going to eat.
+    if (receipt && spare(w.name || k) <= 1e-9) continue;
     if (need < w.required - 1e-9) less.push({ name: w.name || k, for: w.for });
   }
   return more.length || less.length ? { more, less } : null;
