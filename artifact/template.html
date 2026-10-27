@@ -2329,11 +2329,15 @@ function driftSinceApproval() {
     for (const i of receipt.items) surplus.set(i.product, (surplus.get(i.product) || 0) + i.quantity);
     for (const w of wanted) {
       const name = w.name || subs[w.key] || w.key;
-      // Drawn at what the basket actually buys, not at the bare figure: you
-      // cannot buy 1.4 jars, so a week wanting 2.8 Boursins draws three. The
-      // bare figure left two tenths of a Boursin sitting in the surplus, and
-      // two tenths is enough to call an equivalent of it spare — the very
-      // claim this pool exists to stop.
+      // Rounded up the way the basket rounds a count up: you cannot buy 1.4
+      // jars, so a week wanting 2.8 Boursins draws three. The bare figure
+      // left two tenths of a Boursin sitting in the surplus, and two tenths
+      // is enough to call an equivalent of it spare — the very claim this
+      // pool exists to stop. It is the need rounded, not the count basket()
+      // finally buys: a line she struck off or counted down by hand still
+      // draws its full need here, which can hide a leftover rather than
+      // invent one. Sharing one required/rounding helper with basket() is
+      // the way to close that, and is not done.
       draw(surplus, name, unitOf(name) === "kg" ? w.required : Math.max(1, Math.ceil(w.required)));
     }
   }
@@ -2352,8 +2356,13 @@ function driftSinceApproval() {
     // another dish still on the menu is going to eat. It draws the amount no
     // longer wanted rather than peeking, so one spare pack is reported against
     // one line instead of against every member of its equivalence group.
-    if (receipt && draw(surplus, w.name || k, w.required - need).got <= 1e-9) continue;
-    less.push({ name: w.name || k, for: w.for });
+    const took = receipt ? draw(surplus, w.name || k, w.required - need) : null;
+    if (took && took.got <= 1e-9) continue;
+    // Named as the product the order actually brought. Filled with an
+    // equivalent — Terroirs chops where the approved line said Jean Rozé —
+    // the spare pack on the shelf is the one the store sent, and telling her
+    // to look for the other is telling her to look for something not there.
+    less.push({ name: (took && took.from.length ? took.from[0].product : null) || w.name || k, for: w.for });
   }
   return more.length || less.length ? { more, less } : null;
 }

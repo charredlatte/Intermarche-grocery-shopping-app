@@ -95,15 +95,20 @@ const HEAT = new Set(["hob", "oven", "air fryer", "casserole dish"]);
 // asked on 2026-09-28 for nothing she reads to say what was left out, so the
 // tag is gone and the words come from her own lists in preferences.json.
 // The same extras the page refuses where she types an ingredient (HOT_WORDS in
-// artifact/template.html) travel with them, because the rule has to read the
-// same on both sides: the library must not ship what the page would refuse.
+// artifact/template.html) travel with them, so both sides refuse the same
+// words. The two are NOT identical and should not be read as such: the page
+// tests paprika on each name separately, so it would refuse the library's four
+// `item: "sweet paprika"` rows, which the product-decides rule below passes;
+// and only this side reads the amount. The list itself is also still copied
+// rather than shared — it belongs in preferences.ingredients, shipped through
+// config.constraints like the two lists above it.
 const fold = (s) => String(s ?? "").normalize("NFD").replace(/\p{Mn}/gu, "").toLowerCase();
 const SPICY_WORDS = [
   ...(prefs.dietary?.excluded ?? []),
   ...(prefs.ingredients?.avoidDespiteBeingEuropean ?? []),
   "chilli", "piquant", "cayenne", "tabasco", "sriracha", "sambal", "jalapeno",
   "gochujang", "habanero", "espelette", "nduja", "spicy",
-].map((w) => fold(w).replace(/^'+/, ""));   // accent-blind, and 'nduja is written both ways
+].map((w) => fold(w).replace(/^['’‘`]+/u, ""));   // accent-blind, and 'nduja is written with any of the apostrophes
 
 // Whether one recipe ingredient — { item, qty, product } — is something spicy,
 // and if so which word gave it away. The plain name and the exact Intermarché

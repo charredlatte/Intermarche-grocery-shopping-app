@@ -46,8 +46,8 @@ if (pair) {
   const less = d ? d.less.map((x) => x.name) : [];
   ok("a product another dish still eats is not called left over", !less.includes(pair.other), less.join(", "));
   ok("and a receipt holding exactly this week's needs leaves nothing over", less.length === 0, less.join(", "));
-  ok("while what the order did not bring is still asked for",
-     !d || d.more.every((x) => !byName.has(x.name)), d ? d.more.map((x) => x.name).join(", ") : "");
+  ok("and nothing is asked for separately, the order having brought every need",
+     !d || d.more.length === 0, d ? d.more.map((x) => x.name).join(", ") : "");
 
   // The same approval, and an order that brought a second of the pair as well:
   // that one really is spare, and she should be told.
