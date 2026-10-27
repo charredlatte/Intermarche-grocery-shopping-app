@@ -4,14 +4,15 @@
   "store": "Intermarché Drive Méré",
   "notes": [
     "First order in four weeks. The last receipt is 29 September, so the kitchen is taken as bare apart from what keeps: the balsamic, the basmati and the sushi rice, the nori, the salad dressing and the drain gel. Everything fresh from that order is counted as gone.",
-    "What that receipt cannot tell the page: the soy sauces, the yakitori sauce, the sugar, the olive oil, the paprika and the rosemary all came on 15 September, so they are not on this order and the basket asks for them again. Strike off whatever is still in the cupboard — the Basket tab lets you, and it is about 20 € of the total.",
+    "The basket comes to about 199 €, against a ceiling of 150. That is four weeks of cupboard landing in one order: both cat items, both coffee boxes and every sauce at once. The standing order alone is 45 € and seven breakfasts are another 27, before a single dinner. Striking the four lines below takes it to about 182 €; past that something has to come off the menu, and Sunday's stuffed peppers (about 15 €) or Tuesday's spring rolls (about 11 €) are the two biggest single cuts.",
+    "Four lines the 29 September receipt cannot prove you already own, because they came on 15 September and the kitchen is only seeded from the newest receipt: Kikkoman soja 7,56 €, the sweet soy 3,13 €, the yakitori sauce 4,12 € and the sugar 1,80 € — 16,61 € in all. Strike off whatever is still in the cupboard. (The olive oil, paprika and rosemary are still in too, but no dish this week asks for them, so they are not on the list to strike.)",
     "Four Asian dinners to three European, which is as close to half as seven divides. Celery and peppers lead, since that is what you said you actually want: celery and peppers on Monday, red pepper on Wednesday, four peppers on Sunday, yellow pepper in Monday's lunch.",
     "Wednesday's pork chops cook the rice that Thursday's lunch fries, so Thursday's lunch buys nothing while both stay as planned. Swap either and the rice reappears on the list.",
     "Saturday's nikujaga and Sunday's stuffed peppers each serve four, so both leave a second night — the nikujaga is better the next day.",
     "The air fryer takes Thursday's dinner and the muffin tin Wednesday's lunch. Both had been going unused.",
     "Ten lines wait on a decision before Approve unlocks, and most of them are not a problem. Three are things Méré lists nothing for and each has an alternative to pick: the rice vermicelli (the Suzi Wan one is gone), the Terroirs pork chops, and the Princesse Amandine potatoes. The other seven only need a glance — the product was renamed or repacked since the receipt: the cheddar slices, the garlic net, the Kikkoman carafe, the box of eggs, the lardons, the grated emmental and the beef mince.",
-    "One line to eyeball even though the page does not stop on it: the turkey escalopes. Méré lists nothing at all for the Le Gaulois ones any more, so Monday and Thursday were both moved onto the Volaé extra-fines — which were themselves out of stock the day the catalogue was read. It is the likeliest thing in this order not to be there, and it carries two dinners.",
-    "The catalogue was last read on the site on 14 September, so the prices and in-stock marks on the page are six weeks old. The live check needs your own Chrome.",
+    "Four things were out of stock the day the catalogue was read, and only one of them stops the page: the beef mince, which is already waiting on a decision. The other three go through without a word — the turkey escalopes, the chicken aiguillettes for Tuesday's spring rolls, and the breadcrumbs for Thursday. The turkey is the one to watch: Méré lists nothing at all for the Le Gaulois escalopes any more, so Monday and Thursday were both moved onto the Volaé extra-fines, and that one tray now carries two dinners.",
+    "The catalogue was last read on the site on 14 September, so the prices and in-stock marks on the page are six weeks old. The live re-check needs your own Chrome.",
     "The cat litter was refused at collection on 29 September, so it is still to buy. The coffee from 15 September is long gone — both boxes are on the list."
   ],
   "stillOnHand": [
@@ -23,134 +24,30 @@
     "Apta, une marque Intermarché Gel déboucheur X-Trem à la soude"
   ],
   "meals": [
-    {
-      "id": "monday-breakfast",
-      "day": "monday",
-      "slot": "breakfast",
-      "recipe": "sandwich-matin"
-    },
-    {
-      "id": "monday-lunch",
-      "day": "monday",
-      "slot": "lunch",
-      "recipe": "ramen-froid-concombre",
-      "note": "The smashed cucumber is the point — salt it while the noodles chill."
-    },
-    {
-      "id": "monday-dinner",
-      "day": "monday",
-      "slot": "dinner",
-      "recipe": "dinde-celeri-gingembre",
-      "note": "Celery and peppers in one pan, and the first time this one has been cooked. Keep the celery in wide slices so it stays crunchy."
-    },
-    {
-      "id": "tuesday-breakfast",
-      "day": "tuesday",
-      "slot": "breakfast",
-      "recipe": "sandwich-matin"
-    },
-    {
-      "id": "tuesday-lunch",
-      "day": "tuesday",
-      "slot": "lunch",
-      "recipe": "rouleaux-printemps",
-      "note": "The rolling takes two goes to get right, so give it the longer lunch. Poach the chicken while the vermicelli softens."
-    },
-    {
-      "id": "tuesday-dinner",
-      "day": "tuesday",
-      "slot": "dinner",
-      "recipe": "carbonara-pancetta",
-      "note": "Off the heat before the egg goes in, or it scrambles."
-    },
-    {
-      "id": "wednesday-breakfast",
-      "day": "wednesday",
-      "slot": "breakfast",
-      "recipe": "sandwich-matin"
-    },
-    {
-      "id": "wednesday-lunch",
-      "day": "wednesday",
-      "slot": "lunch",
-      "recipe": "mini-quiches-muffin",
-      "note": "Twelve out of the muffin tin. More than one lunch's worth, and they keep — but nothing later in the week is planned around them, so eat them whenever."
-    },
-    {
-      "id": "wednesday-dinner",
-      "day": "wednesday",
-      "slot": "dinner",
-      "recipe": "porc-soja-gingembre",
-      "note": "Cook the whole bag of rice, not two portions: tomorrow's lunch is the rest of it, fried."
-    },
-    {
-      "id": "thursday-breakfast",
-      "day": "thursday",
-      "slot": "breakfast",
-      "recipe": "sandwich-matin"
-    },
-    {
-      "id": "thursday-lunch",
-      "day": "thursday",
-      "slot": "lunch",
-      "recipe": "riz-saute-restes",
-      "leftovers": true,
-      "from": "wednesday-dinner",
-      "minutesOverride": 10,
-      "note": "Last night's rice, cold, with an egg through it."
-    },
-    {
-      "id": "thursday-dinner",
-      "day": "thursday",
-      "slot": "dinner",
-      "recipe": "dinde-panee-airfryer",
-      "note": "Air fryer. The parmesan in the crumb is what makes it taste of something."
-    },
-    {
-      "id": "friday-breakfast",
-      "day": "friday",
-      "slot": "breakfast",
-      "recipe": "sandwich-matin"
-    },
-    {
-      "id": "friday-lunch",
-      "day": "friday",
-      "slot": "lunch",
-      "recipe": "bun-vermicelles",
-      "note": "The other half of the cucumber, and the rest of the coriander before it turns."
-    },
-    {
-      "id": "friday-dinner",
-      "day": "friday",
-      "slot": "dinner",
-      "recipe": "poulet-citron-gingembre",
-      "note": "Twenty-five minutes and nothing on the list for it is in doubt — a good Friday."
-    },
-    {
-      "id": "saturday-breakfast",
-      "day": "saturday",
-      "slot": "breakfast",
-      "recipe": "sandwich-matin"
-    },
-    {
-      "id": "saturday-dinner",
-      "day": "saturday",
-      "slot": "dinner",
-      "recipe": "nikujaga-poulet",
-      "note": "The week's long cook, in the casserole dish. Serves four, and it is better on Sunday than on the night."
-    },
-    {
-      "id": "sunday-breakfast",
-      "day": "sunday",
-      "slot": "breakfast",
-      "recipe": "sandwich-matin"
-    },
-    {
-      "id": "sunday-dinner",
-      "day": "sunday",
-      "slot": "dinner",
-      "recipe": "poivrons-farcis-four",
-      "note": "Four peppers, rice in raw, forty-five minutes in the oven. Serves four, so Monday is covered."
-    }
+    { "id": "monday-breakfast", "day": "monday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "monday-lunch", "day": "monday", "slot": "lunch", "recipe": "ramen-froid-concombre", "note": "The smashed cucumber is the point — salt it while the noodles chill." },
+    { "id": "monday-dinner", "day": "monday", "slot": "dinner", "recipe": "dinde-celeri-gingembre", "note": "Celery and peppers in one pan, and the first time this one has been cooked. Keep the celery in wide slices so it stays crunchy." },
+
+    { "id": "tuesday-breakfast", "day": "tuesday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "tuesday-lunch", "day": "tuesday", "slot": "lunch", "recipe": "rouleaux-printemps", "note": "The rolling takes two goes to get right, so give it the longer lunch. Poach the chicken while the vermicelli softens." },
+    { "id": "tuesday-dinner", "day": "tuesday", "slot": "dinner", "recipe": "carbonara-pancetta", "note": "Off the heat before the egg goes in, or it scrambles." },
+
+    { "id": "wednesday-breakfast", "day": "wednesday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "wednesday-lunch", "day": "wednesday", "slot": "lunch", "recipe": "mini-quiches-muffin", "note": "Twelve out of the muffin tin. More than one lunch's worth, and they keep — but nothing later in the week is planned around them, so eat them whenever." },
+    { "id": "wednesday-dinner", "day": "wednesday", "slot": "dinner", "recipe": "porc-soja-gingembre", "note": "Cook the whole bag of rice, not two portions: tomorrow's lunch is the rest of it, fried." },
+
+    { "id": "thursday-breakfast", "day": "thursday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "thursday-lunch", "day": "thursday", "slot": "lunch", "recipe": "riz-saute-restes", "leftovers": true, "from": "wednesday-dinner", "minutesOverride": 10, "note": "Last night's rice, cold, with an egg through it." },
+    { "id": "thursday-dinner", "day": "thursday", "slot": "dinner", "recipe": "dinde-panee-airfryer", "note": "Air fryer. The parmesan in the crumb is what makes it taste of something." },
+
+    { "id": "friday-breakfast", "day": "friday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "friday-lunch", "day": "friday", "slot": "lunch", "recipe": "bun-vermicelles", "note": "The other half of the cucumber, and the rest of the coriander before it turns." },
+    { "id": "friday-dinner", "day": "friday", "slot": "dinner", "recipe": "poulet-citron-gingembre", "note": "Twenty-five minutes and nothing on the list for it is in doubt — a good Friday." },
+
+    { "id": "saturday-breakfast", "day": "saturday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "saturday-dinner", "day": "saturday", "slot": "dinner", "recipe": "nikujaga-poulet", "note": "The week's long cook, in the casserole dish. Serves four, and it is better on Sunday than on the night." },
+
+    { "id": "sunday-breakfast", "day": "sunday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "sunday-dinner", "day": "sunday", "slot": "dinner", "recipe": "poivrons-farcis-four", "note": "Four peppers, rice in raw, forty-five minutes in the oven. Serves four, so Monday is covered." }
   ]
 }

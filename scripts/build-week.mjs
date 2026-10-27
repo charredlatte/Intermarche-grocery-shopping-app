@@ -127,9 +127,13 @@ function isSpicy(ing) {
     if (hit) return hit;
   }
   // Paprika she buys and likes; only the kinds that don't say doux are out.
-  // The product decides, being what actually lands in the basket; a row with
-  // no product of its own is read on its plain name.
-  const decides = fold(ing.product || ing.item);
+  // A bought row is judged on its product, being what actually lands in the
+  // basket. A cupboard row is judged on its item, because 39 rows in the
+  // library spell "no product" as prose — "already in the cupboard" — rather
+  // than as a missing field, and folding that prose asked the question of a
+  // string that can never answer it: { item: "hot paprika", product:
+  // "already in the cupboard" } walked straight through.
+  const decides = fold(ing.buy ? ing.product : ing.item);
   if (decides.includes("paprika") && !decides.includes("doux")) return "paprika";
   return null;
 }
