@@ -2309,7 +2309,7 @@ function driftSinceApproval() {
   // already there it is one pool, drawn down in list order like the basket's,
   // and a need it covers is not something to buy separately.
   const receipt = weekReceipt();
-  let covered = null;
+  let covered = null, surplus = new Map();
   if (receipt) {
     const p = pool();
     for (const i of receipt.items) p.set(i.product, (p.get(i.product) || 0) + i.quantity);
@@ -2318,9 +2318,29 @@ function driftSinceApproval() {
       const name = w.name || subs[w.key] || w.key;
       if (draw(p, name, w.required).got >= w.required - 1e-9) covered.add(w.key);
     }
+    // What the order still holds once every need the week has NOW has drawn
+    // from it. Weighing the whole receipt against each dropped line instead
+    // called a product left over while another dish this week was still
+    // eating it: two dinners naming different members of one equivalence
+    // group are enough to do it, and she would read that the turkey escalope
+    // is spare on the day Thursday wants it. The kitchen is deliberately not
+    // in this pool — "in this order, and no longer needed" has to mean the
+    // order is what brought it.
+    for (const i of receipt.items) surplus.set(i.product, (surplus.get(i.product) || 0) + i.quantity);
+    for (const w of wanted) {
+      const name = w.name || subs[w.key] || w.key;
+      // Rounded up the way the basket rounds a count up: you cannot buy 1.4
+      // jars, so a week wanting 2.8 Boursins draws three. The bare figure
+      // left two tenths of a Boursin sitting in the surplus, and two tenths
+      // is enough to call an equivalent of it spare — the very claim this
+      // pool exists to stop. It is the need rounded, not the count basket()
+      // finally buys: a line she struck off or counted down by hand still
+      // draws its full need here, which can hide a leftover rather than
+      // invent one. Sharing one required/rounding helper with basket() is
+      // the way to close that, and is not done.
+      draw(surplus, name, unitOf(name) === "kg" ? w.required : Math.max(1, Math.ceil(w.required)));
+    }
   }
-  // How much of `k` the order brought, counting its equivalents.
-  const delivered = (k) => receipt.items.reduce((t, i) => t + convert(i.quantity, i.product, k), 0);
 
   const more = [], less = [];
   for (const [k, w] of Object.entries(now)) {
@@ -2329,11 +2349,20 @@ function driftSinceApproval() {
   }
   for (const [k, w] of Object.entries(was)) {
     const need = now[k] ? now[k].required : 0;
+    if (need >= w.required - 1e-9) continue;   // the week wants it as much as ever
     // After the receipt, "in this order and no longer needed" means it came and
-    // some of it is now left over — not a line that never arrived, and not the
-    // part of an approved need the store only half filled.
-    if (receipt && need >= delivered(k) - 1e-9) continue;
-    if (need < w.required - 1e-9) less.push({ name: w.name || k, for: w.for });
+    // some of it is now left over — not a line that never arrived, not the
+    // part of an approved need the store only half filled, and not one that
+    // another dish still on the menu is going to eat. It draws the amount no
+    // longer wanted rather than peeking, so one spare pack is reported against
+    // one line instead of against every member of its equivalence group.
+    const took = receipt ? draw(surplus, w.name || k, w.required - need) : null;
+    if (took && took.got <= 1e-9) continue;
+    // Named as the product the order actually brought. Filled with an
+    // equivalent — Terroirs chops where the approved line said Jean Rozé —
+    // the spare pack on the shelf is the one the store sent, and telling her
+    // to look for the other is telling her to look for something not there.
+    less.push({ name: (took && took.from.length ? took.from[0].product : null) || w.name || k, for: w.for });
   }
   return more.length || less.length ? { more, less } : null;
 }

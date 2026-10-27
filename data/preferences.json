@@ -51,8 +51,11 @@
       "poivrons",
       "rouleaux de printemps",
       "brocolis",
-      "aubergines"
+      "aubergines",
+      "concombre",
+      "céleri branche"
     ],
+    "vegetablesNote": "Asked on 2026-10-26 which of the most-bought vegetables she actually wants rather than buys out of habit. Peppers are genuine — keep them central — and so are cucumber and celery, the raw, sharp ones, which is why they are now on alwaysWelcome. She did not pick broccoli and Brussels sprouts, or aubergine and courgette; that is not a dislike and they stay on the list above, but prefer peppers, cucumber and celery when a dish could take either. The week of 26 October leads on celery and peppers because of this.",
     "boredOfNote": "Said on 2026-09-15. Chipolatas are in 17 of 23 orders and were carrying a dinner of their own; move them to occasional and let pork chops, lardons and pancetta take the pork side. Asked about the other heavy repeats — the baguette in 18 orders, Barilla pesto rosso in 11, the morning sandwich seven times a week — she said to keep them: the repeats are the point. Don't 'fix' them.",
     "fish": {
       "likes": [
@@ -218,13 +221,17 @@
   "learning": {
     "_comment": "Charlotte asked on 2026-09-15 to be asked more about her tastes. The weekly run stays three questions — the README is right that a longer one gets skipped — so /courses asks one of these as a fourth, rotating question, writes the answer into this file, and moves the question into `answered` with the date.",
     "pending": [
-      "Peppers are the most-bought vegetable by a distance — green in 14 orders, red in 13, yellow in 7 — with celery, cucumber and broccoli close behind. Which vegetables do you actually want more of, and which are just habit?",
       "Brussels sprouts are 'always welcome' and were never once bought in 23 orders. There is a dish for them now — did it get cooked, and should more follow?",
       "Breakfast is the same sandwich seven mornings a week by design. Is that still right, or do you want two or three rotations?",
       "How far should the mild spice go — a paprika-and-cumin roast, a proper mild curry, ras el hanout in a tagine? Or just seasoning, not a cuisine?",
       "The Asian half is cooked from scratch but the receipts buy it as convenience. On a tired Tuesday, would you rather have a packet of ramen with vegetables than cook?"
     ],
     "answered": [
+      {
+        "on": "2026-10-26",
+        "q": "Peppers are the most-bought vegetable by a distance — green in 14 orders, red in 13, yellow in 7 — with celery, cucumber and broccoli close behind. Which vegetables do you actually want more of, and which are just habit?",
+        "a": "Peppers genuinely, and cucumber and celery. Not broccoli or sprouts, and not aubergine or courgette — kept on alwaysWelcome, but second choice. See dietary.vegetablesNote."
+      },
       {
         "on": "2026-09-15",
         "q": "Do you and your partner eat the same way?",

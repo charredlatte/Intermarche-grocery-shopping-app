@@ -94,15 +94,48 @@ const HEAT = new Set(["hob", "oven", "air fryer", "casserole dish"]);
 // there — which proved someone typed it, not that the dish was mild. Charlotte
 // asked on 2026-09-28 for nothing she reads to say what was left out, so the
 // tag is gone and the words come from her own lists in preferences.json.
+// The same extras the page refuses where she types an ingredient (HOT_WORDS in
+// artifact/template.html) travel with them, so both sides refuse the same
+// words. The two are NOT identical and should not be read as such: the page
+// tests paprika on each name separately, so it would refuse the library's four
+// `item: "sweet paprika"` rows, which the product-decides rule below passes;
+// and only this side reads the amount. The list itself is also still copied
+// rather than shared — it belongs in preferences.ingredients, shipped through
+// config.constraints like the two lists above it.
+const fold = (s) => String(s ?? "").normalize("NFD").replace(/\p{Mn}/gu, "").toLowerCase();
 const SPICY_WORDS = [
   ...(prefs.dietary?.excluded ?? []),
   ...(prefs.ingredients?.avoidDespiteBeingEuropean ?? []),
-];
+  "chilli", "piquant", "cayenne", "tabasco", "sriracha", "sambal", "jalapeno",
+  "gochujang", "habanero", "espelette", "nduja", "spicy",
+].map((w) => fold(w).replace(/^['’‘`]+/u, ""));   // accent-blind, and 'nduja is written with any of the apostrophes
 
-// Whether one recipe ingredient — { item, qty, product } — is something spicy.
+// Whether one recipe ingredient — { item, qty, product } — is something spicy,
+// and if so which word gave it away. The plain name and the exact Intermarché
+// name are both read: a dish can call the row "sauce" and carry the heat in the
+// product, and Méré shelves the hot version beside the plain one — the gyoza
+// bœuf ail piment, the anchois sauce piquante.
 function isSpicy(ing) {
-  // TODO(human)
-  return false;
+  // Field by field, never joined into one string. Joined, a row reading item
+  // "paprika doux" and product "Ducros Paprika fort moulu" held both words at
+  // once, and the "doux" in the one field vouched for the heat in the other.
+  // The amount is read too: "1 tsp cayenne" is written there as often as not.
+  for (const field of [ing.item, ing.product, ing.qty]) {
+    const n = fold(field);
+    if (!n) continue;
+    const hit = SPICY_WORDS.find((w) => w && n.includes(w));
+    if (hit) return hit;
+  }
+  // Paprika she buys and likes; only the kinds that don't say doux are out.
+  // A bought row is judged on its product, being what actually lands in the
+  // basket. A cupboard row is judged on its item, because 39 rows in the
+  // library spell "no product" as prose — "already in the cupboard" — rather
+  // than as a missing field, and folding that prose asked the question of a
+  // string that can never answer it: { item: "hot paprika", product:
+  // "already in the cupboard" } walked straight through.
+  const decides = fold(ing.buy ? ing.product : ing.item);
+  if (decides.includes("paprika") && !decides.includes("doux")) return "paprika";
+  return null;
 }
 
 /* ---- pricebook ---------------------------------------------------------- */
@@ -136,7 +169,8 @@ for (const [slug, r] of Object.entries(recipes)) {
     problems.push(`${slug}: tagged vegetarian but its protein is "${r.protein}"`);
   }
   for (const ing of r.ingredients ?? []) {
-    if (isSpicy(ing)) problems.push(`${slug}: "${ing.item}" (${ing.product || "no product"}) is spicy`);
+    const hot = isSpicy(ing);
+    if (hot) problems.push(`${slug}: "${ing.item}" (${ing.product || "no product"}) reads as ${hot}`);
   }
   // "no cook" has to mean what it says, or the Recipes tab's appliance chips lie.
   if ((r.tags ?? []).includes("no cook") && r.cookMinutes !== 0) {
