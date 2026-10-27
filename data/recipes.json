@@ -2215,7 +2215,7 @@
       {
         "item": "peanuts",
         "qty": "2 tbsp, crushed",
-        "product": "Menguy's Cacahuètes grillées et salées",
+        "product": "Bouton d’Or, une marque Intermarché Cacahuètes grillées à l'huile et salées",
         "buy": {
           "amount": 1,
           "mode": "once",
@@ -3585,7 +3585,7 @@
       {
         "item": "parmesan",
         "qty": "60 g, finely grated",
-        "product": "Itinéraire des Saveurs, une marque Intermarché Parmigiano Reggiano AOP",
+        "product": "Itinéraire des Saveurs, une marque Intermarché Grana Padano AOP râpé",
         "buy": {
           "amount": 1,
           "mode": "once",
@@ -4562,7 +4562,7 @@
       {
         "item": "mâche",
         "qty": "to serve",
-        "product": "Le Choix du Primeur Salade MACHE BIO",
+        "product": "Le Choix du Primeur Salade MACHE",
         "buy": {
           "amount": 1,
           "mode": "sum",
@@ -5874,7 +5874,7 @@
       {
         "item": "roasted peanuts",
         "qty": "a handful, crushed",
-        "product": "Menguy's Cacahuètes grillées et salées",
+        "product": "Bouton d’Or, une marque Intermarché Cacahuètes grillées à l'huile et salées",
         "buy": {
           "amount": 1,
           "mode": "once",
@@ -6167,7 +6167,7 @@
       {
         "item": "turkey escalope",
         "qty": "260 g, in thin strips",
-        "product": "Le Gaulois Escalope de dinde",
+        "product": "Volaé, une marque Intermarché Escalopes de dinde extra fines x2",
         "buy": {
           "amount": 0.26,
           "mode": "sum",
