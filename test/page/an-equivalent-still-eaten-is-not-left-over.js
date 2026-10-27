@@ -13,18 +13,24 @@ approveAll();
 const wanted = weekWanted();
 const byName = new Map(wanted.map((w) => [w.name || w.key, w]));
 
-// An interchangeable pair where the week wants one of the two: the order will
-// bring that one, and the approval will remember the other.
+// An interchangeable pair where the week wants one of the two and NOT the
+// other: the order brings the one it wants, and the approval remembers the
+// other. `other` has to be a product this week does not buy, or standing it
+// into approved.wanted would overwrite its real entry, the checks below would
+// pass without touching anything, and the last one would fail for the wrong
+// reason.
 let pair = null;
 for (const g of EQUIV) {
   const names = (g.members || []).map((m) => m.name);
   const held = names.find((n) => byName.has(n));
-  const other = held && names.find((n) => n !== held && unitOf(n) === unitOf(held));
+  const other = held && names.find((n) => n !== held && unitOf(n) === unitOf(held) && !byName.has(n));
   if (held && other) { pair = { held, other }; break; }
 }
 
-if (!pair) info("no equivalence group has a member this week buys — not exercised");
-else {
+// Not a skip: a pin that quietly stops pinning is worse than one that fails,
+// so if the library ever stops offering a usable pair, say so out loud.
+ok("the library offers an interchangeable pair to test with", !!pair);
+if (pair) {
   info("approved " + pair.other + ", the order brought " + pair.held);
   // The week as approved, plus one line for a dish since swapped away.
   approved = { ...approved, wanted: {

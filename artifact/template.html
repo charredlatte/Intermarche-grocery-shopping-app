@@ -2309,7 +2309,7 @@ function driftSinceApproval() {
   // already there it is one pool, drawn down in list order like the basket's,
   // and a need it covers is not something to buy separately.
   const receipt = weekReceipt();
-  let covered = null, surplus = null;
+  let covered = null, surplus = new Map();
   if (receipt) {
     const p = pool();
     for (const i of receipt.items) p.set(i.product, (p.get(i.product) || 0) + i.quantity);
@@ -2326,13 +2326,17 @@ function driftSinceApproval() {
     // is spare on the day Thursday wants it. The kitchen is deliberately not
     // in this pool — "in this order, and no longer needed" has to mean the
     // order is what brought it.
-    surplus = new Map();
     for (const i of receipt.items) surplus.set(i.product, (surplus.get(i.product) || 0) + i.quantity);
-    for (const w of wanted) draw(surplus, w.name || subs[w.key] || w.key, w.required);
+    for (const w of wanted) {
+      const name = w.name || subs[w.key] || w.key;
+      // Drawn at what the basket actually buys, not at the bare figure: you
+      // cannot buy 1.4 jars, so a week wanting 2.8 Boursins draws three. The
+      // bare figure left two tenths of a Boursin sitting in the surplus, and
+      // two tenths is enough to call an equivalent of it spare — the very
+      // claim this pool exists to stop.
+      draw(surplus, name, unitOf(name) === "kg" ? w.required : Math.max(1, Math.ceil(w.required)));
+    }
   }
-  // How much of `name` the order brought that nothing in the week now eats.
-  const spare = (name) => [...surplus.keys()]
-    .reduce((t, held) => t + Math.max(0, convert(surplus.get(held) || 0, held, name)), 0);
 
   const more = [], less = [];
   for (const [k, w] of Object.entries(now)) {
@@ -2341,12 +2345,15 @@ function driftSinceApproval() {
   }
   for (const [k, w] of Object.entries(was)) {
     const need = now[k] ? now[k].required : 0;
+    if (need >= w.required - 1e-9) continue;   // the week wants it as much as ever
     // After the receipt, "in this order and no longer needed" means it came and
     // some of it is now left over — not a line that never arrived, not the
     // part of an approved need the store only half filled, and not one that
-    // another dish still on the menu is going to eat.
-    if (receipt && spare(w.name || k) <= 1e-9) continue;
-    if (need < w.required - 1e-9) less.push({ name: w.name || k, for: w.for });
+    // another dish still on the menu is going to eat. It draws the amount no
+    // longer wanted rather than peeking, so one spare pack is reported against
+    // one line instead of against every member of its equivalence group.
+    if (receipt && draw(surplus, w.name || k, w.required - need).got <= 1e-9) continue;
+    less.push({ name: w.name || k, for: w.for });
   }
   return more.length || less.length ? { more, less } : null;
 }

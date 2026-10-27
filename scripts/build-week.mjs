@@ -111,11 +111,21 @@ const SPICY_WORDS = [
 // product, and Méré shelves the hot version beside the plain one — the gyoza
 // bœuf ail piment, the anchois sauce piquante.
 function isSpicy(ing) {
-  const n = fold(`${ing.item ?? ""} ${ing.product ?? ""}`);
-  const hit = SPICY_WORDS.find((w) => w && n.includes(w));
-  if (hit) return hit;
+  // Field by field, never joined into one string. Joined, a row reading item
+  // "paprika doux" and product "Ducros Paprika fort moulu" held both words at
+  // once, and the "doux" in the one field vouched for the heat in the other.
+  // The amount is read too: "1 tsp cayenne" is written there as often as not.
+  for (const field of [ing.item, ing.product, ing.qty]) {
+    const n = fold(field);
+    if (!n) continue;
+    const hit = SPICY_WORDS.find((w) => w && n.includes(w));
+    if (hit) return hit;
+  }
   // Paprika she buys and likes; only the kinds that don't say doux are out.
-  if (n.includes("paprika") && !n.includes("doux")) return "paprika";
+  // The product decides, being what actually lands in the basket; a row with
+  // no product of its own is read on its plain name.
+  const decides = fold(ing.product || ing.item);
+  if (decides.includes("paprika") && !decides.includes("doux")) return "paprika";
   return null;
 }
 
