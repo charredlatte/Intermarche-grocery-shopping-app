@@ -1,0 +1,38 @@
+{
+  "weekOf": "2026-11-19",
+  "label": "Week of 19 November",
+  "store": "Intermarché Drive Méré",
+  "notes": [
+    "Shopping Thursday 19 November; the week runs Thursday to Wednesday. Five dinners, Thursday to Monday, and five weekday lunches.",
+    "Thursday is the spring rolls you asked for, with carrot, lettuce and a peanut dipping sauce. Friday is sushi: smoked salmon, avocado and cucumber maki.",
+    "Saturday is stuffed peppers, Sunday a coconut chicken curry, Monday gnocchi with pesto rosso. Three Asian dinners, two European. Proteins: chicken twice, salmon, beef, and a vegetarian Monday.",
+    "Saturday's peppers and Sunday's curry both make four portions, so Monday's and Tuesday's lunches come out of them.",
+    "The last receipt is from 29 September, so nothing is assumed to be in the kitchen. Strike off anything you already have."
+  ],
+  "stillOnHand": [],
+  "meals": [
+    { "id": "thursday-breakfast", "day": "thursday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "thursday-lunch", "day": "thursday", "slot": "lunch", "recipe": "baguette-boursin" },
+    { "id": "thursday-dinner", "day": "thursday", "slot": "dinner", "recipe": "rouleaux-printemps", "note": "Make the peanut sauce first; it loosens as it sits." },
+
+    { "id": "friday-breakfast", "day": "friday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "friday-lunch", "day": "friday", "slot": "lunch", "recipe": "salade-mache-oeuf" },
+    { "id": "friday-dinner", "day": "friday", "slot": "dinner", "recipe": "maki-saumon-avocat", "note": "Keep a cup of the sushi rice back if you like: it is Wednesday's onigiri." },
+
+    { "id": "saturday-breakfast", "day": "saturday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "saturday-dinner", "day": "saturday", "slot": "dinner", "recipe": "poivrons-farcis-four", "note": "Makes four. Two go in the fridge for Monday's lunch." },
+
+    { "id": "sunday-breakfast", "day": "sunday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "sunday-dinner", "day": "sunday", "slot": "dinner", "recipe": "curry-coco-poulet", "note": "The Sunday batch cook. Half goes in the fridge, with rice, for Tuesday's lunch." },
+
+    { "id": "monday-breakfast", "day": "monday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "monday-lunch", "day": "monday", "slot": "lunch", "recipe": "poivrons-farcis-four", "leftovers": true, "from": "saturday-dinner", "minutesOverride": 5 },
+    { "id": "monday-dinner", "day": "monday", "slot": "dinner", "recipe": "gnocchi-pesto" },
+
+    { "id": "tuesday-breakfast", "day": "tuesday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "tuesday-lunch", "day": "tuesday", "slot": "lunch", "recipe": "curry-coco-poulet", "leftovers": true, "from": "sunday-dinner", "minutesOverride": 5 },
+
+    { "id": "wednesday-breakfast", "day": "wednesday", "slot": "breakfast", "recipe": "sandwich-matin" },
+    { "id": "wednesday-lunch", "day": "wednesday", "slot": "lunch", "recipe": "onigiri-oeuf" }
+  ]
+}

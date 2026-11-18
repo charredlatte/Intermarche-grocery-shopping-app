@@ -5795,7 +5795,7 @@
       "make ahead",
       "dairy-free"
     ],
-    "short": "Rice paper, poached chicken, vermicelli and a lot of herbs. The rolling is the whole skill and it takes two goes to get right.",
+    "short": "Rice paper, poached chicken, carrot, lettuce and herbs, with a peanut dipping sauce. The rolling is the whole skill and it takes two goes to get right.",
     "ingredients": [
       {
         "item": "rice paper wrappers",
@@ -5840,11 +5840,23 @@
         }
       },
       {
+        "item": "lettuce",
+        "qty": "6 leaves, whole",
+        "product": "Laitue iceberg",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 1.29
+        }
+      },
+      {
         "item": "carrot",
-        "qty": "1, shredded",
+        "qty": "2, shredded",
         "product": "Le Choix du Primeur Carottes",
         "buy": {
-          "amount": 0.1,
+          "amount": 0.2,
           "mode": "sum",
           "section": "Vegetables"
         }
@@ -5883,25 +5895,48 @@
       },
       {
         "item": "sweet soy, to dip",
-        "qty": "4 tbsp",
+        "qty": "2 tbsp, into the peanut sauce",
         "product": "Itinéraire des Saveurs, une marque Intermarché Saveur d'Asie - Sauce soja sucrée",
         "buy": {
           "amount": 1,
           "mode": "once",
           "section": "Store cupboard"
         }
+      },
+      {
+        "item": "peanut butter",
+        "qty": "3 tbsp",
+        "product": "Beurre de cacahuète",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 3.2
+        }
+      },
+      {
+        "item": "lemon",
+        "qty": "half, juiced",
+        "product": "Le Choix du Primeur Citrons JAUNES",
+        "buy": {
+          "amount": 0.28,
+          "mode": "once",
+          "section": "Vegetables"
+        }
       }
     ],
     "steps": [
       "Poach the aiguillettes in barely-simmering salted water for 8 minutes, then leave them in the water off the heat while you do everything else. They finish cooking as it cools and stay soft; boiled hard, they go stringy.",
       "Soak the vermicelli in just-boiled water for 3 minutes, drain, and rinse under cold water until it stops clumping.",
-      "Shred the chicken along the grain. Cut the cucumber into batons, shred the carrot, pick the herb leaves off their stalks in whole sprigs rather than chopping them.",
+      "Shred the chicken along the grain. Cut the cucumber into batons, shred the carrots, wash the lettuce and tear out the thick rib, and pick the herb leaves off their stalks in whole sprigs rather than chopping them.",
+      "Make the peanut sauce: whisk the peanut butter with the sweet soy, the lemon juice and 3–4 tbsp of warm water until it pours like thick cream. It wants to be nutty, sweet and a little sharp.",
       "Set everything out in a row before you start rolling, with a wide shallow bowl of warm water at the end of it. Once a wrapper is wet you have about thirty seconds.",
       "Dip one wrapper in the water for 2 seconds only — it will still feel stiff, and that is right. It keeps softening on the board. A wrapper soaked until it is floppy will tear.",
-      "Lay it down, put herbs first in a line a third of the way up, then vermicelli, carrot, cucumber and chicken on top. Herbs against the wrapper is what makes them show through.",
+      "Lay it down, put a piece of lettuce first a third of the way up, then herbs, vermicelli, carrot, cucumber and chicken on top. The lettuce stops anything sharp tearing the wrapper.",
       "Fold the bottom edge over the filling, pull it back tight to compact the roll, fold in both sides, then roll up. Tight is the difference between a spring roll and a bundle.",
-      "Crush the peanuts over the dipping soy.",
-      "They keep a few hours under a damp cloth, not in the fridge uncovered or the wrappers go hard. Rice paper has not been looked up at Méré yet, so it is priced as a guess until the next catalogue check."
+      "Crush the peanuts over the sauce and serve the rolls alongside.",
+      "They keep a few hours under a damp cloth, not in the fridge uncovered or the wrappers go hard. Méré lists no romaine or oak-leaf lettuce, so the lettuce is a guess until it is looked up; if there is none, mâche does the same job."
     ],
     "equipment": [
       "hob"
@@ -7212,6 +7247,111 @@
     ],
     "equipment": [
       "air fryer",
+      "hob"
+    ]
+  },
+  "maki-saumon-avocat": {
+    "title": "Smoked salmon, avocado and cucumber maki",
+    "cuisine": "japanese",
+    "protein": "fish",
+    "slot": "dinner",
+    "kind": "recipe",
+    "prepMinutes": 30,
+    "cookMinutes": 15,
+    "serves": 2,
+    "tags": [
+      "dairy-free"
+    ],
+    "short": "Home maki rolls with smoked salmon, avocado and cucumber, on the Tanoshi sushi rice and nori Méré already stocks.",
+    "ingredients": [
+      {
+        "item": "sushi rice",
+        "qty": "300 g dry",
+        "product": "Tanoshi Riz pour sushi Japonica",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "nori",
+        "qty": "5 sheets",
+        "product": "Tanoshi Feuilles d'algues nori grillées pour sushi",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      },
+      {
+        "item": "rice vinegar",
+        "qty": "4 tbsp",
+        "product": "Vinaigre de riz",
+        "guess": true,
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Best guesses",
+          "price": 2.6
+        }
+      },
+      {
+        "item": "sugar",
+        "qty": "1 tbsp, and a pinch of salt",
+        "product": "already in the cupboard",
+        "pantry": true
+      },
+      {
+        "item": "smoked salmon",
+        "qty": "1 pack, in strips",
+        "product": "Petit navire Saumon fumé de Norvège",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Proteins"
+        }
+      },
+      {
+        "item": "avocado",
+        "qty": "1, sliced",
+        "product": "Le Choix du Primeur Avocat AFFINE",
+        "buy": {
+          "amount": 1,
+          "mode": "sum",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "cucumber",
+        "qty": "half, in long batons",
+        "product": "Le Choix du Primeur Concombre",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Vegetables"
+        }
+      },
+      {
+        "item": "soy sauce",
+        "qty": "to dip",
+        "product": "Kikkoman Sauce soja salée",
+        "buy": {
+          "amount": 1,
+          "mode": "once",
+          "section": "Store cupboard"
+        }
+      }
+    ],
+    "steps": [
+      "Rinse the rice in cold water until it runs almost clear, four or five changes. Cook it with 330 ml water: bring to the boil, lid on, lowest heat for 12 minutes, then 10 minutes off the heat with the lid still on.",
+      "Warm the rice vinegar with the sugar and a good pinch of salt until dissolved. Tip the rice into a wide bowl, pour it over and fold with a spatula, fanning, until it is glossy and at room temperature.",
+      "Cut the salmon into strips, the avocado into slices and the cucumber into long batons the width of a pencil.",
+      "Lay a nori sheet shiny side down on a clean tea towel or a sheet of cling film. With wet hands, spread a thin layer of rice over it, leaving a 2 cm strip bare at the far edge.",
+      "Put a line of salmon, avocado and cucumber across the rice nearest you. Roll away from you, pressing gently through the towel, and dab the bare strip with water to seal.",
+      "Wet a sharp knife between every cut and slice each roll into eight. Serve with soy sauce to dip."
+    ],
+    "equipment": [
       "hob"
     ]
   }
